@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9NRJZFJK4G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9NRJZFJK4G');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velocity Studio - Pre-Construction for Repeat Developers</title>
+  <meta name="description" content="A licensed architecture and engineering firm for developers who run their own build team and close 5+ projects a year. Design, permits, estimates, bid packages — one team." />
+  <meta name="facebook-domain-verification" content="5hs64bmxb8djrx764110p5zv5598g4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #F0EDE6; color: #1C1C1C;
+      overflow-x: hidden; line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:      #F0EDE6;
+      --card:    #F8F5EF;
+      --dark:    #1C1C1C;
+      --teal:    #2D8B6E;
+      --teal-dk: #1F6451;
+      --gold:    #C9942B;
+      --gold-lt: #E6B84A;
+      --white:   #FFFFFF;
+      --border:  #E0DAD0;
+      --muted:   #6B6560;
+      --r:       12px;
+      --rlg:     20px;
+      --sh:      0 4px 24px rgba(28,28,28,.08);
+    }
+
+    /* ─── UTILITIES ──────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px;
+    }
+    .pill {
+      display: inline-flex; align-items: center;
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      background: rgba(45,139,110,.1); color: var(--teal);
+      padding: 5px 13px; border-radius: 100px;
+      border: 1px solid rgba(45,139,110,.2); margin: 3px 3px 3px 0;
+    }
+    .divider { height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold), #7A5230); }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 26px; border-radius: 8px; font-weight: 700;
+      font-size: .9rem; cursor: pointer; transition: all .22s;
+      border: none; font-family: inherit; min-height: 52px; white-space: nowrap;
+    }
+    .btn-teal { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
+    .btn-teal:hover { background: var(--teal-dk); transform: translateY(-2px); }
+    .btn-lg { padding: 17px 34px; font-size: .98rem; }
+    .arr { transition: transform .2s; }
+    .btn:hover .arr { transform: translateX(4px); }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      padding: 6px 0;
+      background: rgba(240,237,230,.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(224,218,208,.4);
+      transition: all .3s;
+    }
+    .nav.scrolled { padding: 5px 0; background: rgba(240,237,230,.97); box-shadow: 0 2px 24px rgba(28,28,28,.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 48px; width: auto; display: block; }
+    .nav-logo-text { font-size: 1.08rem; font-weight: 800; letter-spacing: -.02em; }
+    .nav-logo-text span { color: var(--teal); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero { background: #1C1C1C; padding: 106px 0 72px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 80% at 0% 50%, rgba(45,139,110,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.09) 0%, transparent 55%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 55fr 45fr;
+      gap: 56px; align-items: center; position: relative; z-index: 1;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(45,139,110,.18); color: rgba(60,210,130,.8);
+      border: 1px solid rgba(45,139,110,.3);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.4vw, 3.3rem);
+      font-weight: 900; line-height: 1.07; letter-spacing: -.028em;
+      color: #fff; margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--gold-lt), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(.88rem, 1.8vw, 1rem); color: rgba(255,255,255,.62);
+      line-height: 1.72; margin-bottom: 24px; max-width: 520px;
+    }
+    .hero-pills { display: flex; flex-wrap: wrap; margin-bottom: 32px; }
+    .hero-pill {
+      font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 5px 12px; border-radius: 100px; margin: 3px 3px 3px 0;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+    .hero-micro { font-size: .74rem; color: rgba(255,255,255,.3); letter-spacing: .03em; }
+
+    /* Hero right panel */
+    .hero-panel {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--rlg); overflow: hidden;
+    }
+    .hero-panel img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero { padding: 94px 0 56px; }
+      .hero-sub { max-width: 100%; }
+      .hero-panel { max-width: 480px; }
+    }
+    @media (max-width: 480px) {
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────────── */
+    .sec { padding: 84px 0; }
+    .sec-hd { text-align: center; max-width: 680px; margin: 0 auto 48px; }
+    .sec-hd h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -.022em; margin-bottom: 12px;
+    }
+    .sec-hd p { color: var(--muted); font-size: .95rem; line-height: 1.7; }
+
+    /* ─── PAIN ───────────────────────────────────────────────── */
+    .pain-sec { background: var(--white); }
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .pain-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-top: 3px solid #C0392B;
+      border-radius: var(--r); padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .pain-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+    .pain-icon {
+      font-size: 1.5rem; margin-bottom: 14px; display: block;
+    }
+    .pain-card h3 {
+      font-size: .78rem; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase; color: #C0392B; margin-bottom: 8px;
+    }
+    .pain-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+    @media (max-width: 680px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WHY VS ─────────────────────────────────────────────── */
+    .why-sec { background: var(--bg); }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .why-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 28px 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .why-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+    .why-ico {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(45,139,110,.1); border: 1px solid rgba(45,139,110,.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .why-card h4 {
+      font-size: .72rem; font-weight: 800; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 6px;
+    }
+    .why-card p { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+    @media (max-width: 640px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── PROOF ──────────────────────────────────────────────── */
+    .proof-sec { background: #162F26; }
+    .proof-inner {
+      max-width: 820px; margin: 0 auto; text-align: center;
+    }
+    .quote-mark {
+      font-size: 4rem; line-height: 1; color: var(--teal);
+      opacity: .5; margin-bottom: 8px; font-family: Georgia, serif;
+    }
+    .quote-text {
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      color: rgba(255,255,255,.88); line-height: 1.72;
+      font-weight: 400; font-style: italic;
+      margin-bottom: 28px;
+    }
+    .quote-attr {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold-lt);
+    }
+    .quote-attr span {
+      display: block; margin-top: 4px;
+      font-size: .68rem; font-weight: 500; letter-spacing: .06em;
+      color: rgba(255,255,255,.38); text-transform: none;
+    }
+
+    /* ─── CTA ────────────────────────────────────────────────── */
+    .cta-sec { background: var(--dark); }
+    .cta-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 64px; align-items: center; max-width: 1040px; margin: 0 auto;
+    }
+    .cta-text .eyebrow { color: var(--teal); }
+    .cta-text h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+      font-weight: 800; letter-spacing: -.022em;
+      line-height: 1.08; margin-bottom: 16px; color: #fff;
+    }
+    .cta-text h2 em { font-style: normal; color: var(--teal); }
+    .cta-text .lead {
+      font-size: .94rem; color: rgba(255,255,255,.52);
+      line-height: 1.75; margin-bottom: 28px; max-width: 380px;
+    }
+    .cta-trust {
+      display: flex; flex-direction: column; gap: 10px;
+      font-size: .81rem; font-weight: 600;
+      color: rgba(255,255,255,.44); margin-bottom: 0;
+    }
+    .cta-trust span { display: flex; align-items: flex-start; gap: 9px; line-height: 1.5; }
+    .cta-trust span::before { content: "✓"; color: var(--teal); font-weight: 800; font-size: .88rem; flex-shrink: 0; margin-top: 1px; }
+    .cta-micro {
+      margin-top: 20px; font-size: .7rem;
+      color: rgba(255,255,255,.2); font-style: italic; line-height: 1.5;
+    }
+    .cal-card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.32);
+    }
+    .calendly-inline-widget { display: block; }
+    @media (max-width: 820px) {
+      .cta-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-text .lead { max-width: 100%; }
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--dark); padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-brand { font-size: .9rem; font-weight: 800; color: #fff; }
+    .footer-brand span { color: var(--teal); }
+    .footer-legal { font-size: .72rem; color: rgba(255,255,255,.24); }
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '778078978037243');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'DeveloperPageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=778078978037243&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ NAV ══ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Velocity Studio">
+        <img src="images/VS_Logo.png" alt="Velocity Studio"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="nav-logo-text" style="display:none">Velocity <span>Studio</span></span>
+      </a>
+      <a href="#contact" class="btn btn-teal" style="padding:10px 20px;font-size:.85rem;min-height:44px;">
+        Book a Discovery Call
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-tag">⚡ For Residential Developers &amp; Builder-GCs</div>
+        <h1>Your build team is ready.<br><em>Your preconstruction isn't.</em></h1>
+        <p class="hero-sub">Velocity Studio is a licensed architecture and engineering firm for developers who run their own build team and close five or more projects a year. We own the full preconstruction path — design, permits, estimates, bid packages — so it stops being the slowest thing in your deal flow.</p>
+
+        <div class="hero-pills">
+          <span class="hero-pill">Architecture</span>
+          <span class="hero-pill">Structural Engineering</span>
+          <span class="hero-pill">Civil Engineering</span>
+          <span class="hero-pill">MEP Engineering</span>
+          <span class="hero-pill">Landscape</span>
+          <span class="hero-pill">Interiors</span>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-teal btn-lg">Scope Our First Project Together <span class="arr">→</span></a>
+        </div>
+        <p class="hero-micro">15-minute call &nbsp;·&nbsp; No commitment required &nbsp;·&nbsp; Fixed-fee proposal within 24 hours</p>
+      </div>
+
+      <div class="hero-panel">
+        <img src="images/team-whiteboard.jpg"
+             alt="Velocity Studio licensed professionals collaborating on a project design session"/>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ PAIN ══ -->
+<section class="sec pain-sec">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow" style="color:#C0392B;">Sound familiar?</span>
+      <h2>Your deal machine runs well. Your A&amp;E team doesn't keep up.</h2>
+      <p>You've solved financing. You've built a great construction team. But every project still kicks off the same way — chasing architects who move at their own pace, across a process nobody fully owns.</p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">⏱</span>
+        <h3>Architects bill hourly. Your loan doesn't care.</h3>
+        <p>They deliver when they're ready. Structural and civil are worse — slower per unit of scope than any other discipline on your team. Every extra week is carry you're absorbing with no recourse.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🗺</span>
+        <h3>Five projects a year means five permit rodeos.</h3>
+        <p>No repeatability. Every AHJ is a new adventure your team re-learns from scratch — different submission formats, different reviewers, different timelines. Nothing carries forward.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📞</span>
+        <h3>You're the one chasing vendors who don't talk to each other.</h3>
+        <p>Architect, structural, civil, MEP. None of them own the coordination between disciplines. So you do — on every project, every time, in addition to everything else you're running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ WHY VS ══ -->
+<section class="sec why-sec">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">Why Velocity Studio</span>
+      <h2>We're built for developers who need preconstruction to move at the speed of their capital.</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-ico">🏢</div>
+        <div>
+          <h4>Every license. One team.</h4>
+          <p>A licensed architect, structural PE, civil PE, and MEP engineer are permanent members of our firm — backed by a fleet of drafters who execute across all disciplines simultaneously. You're not assembling a team for each project. We already are one.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-ico">⚡</div>
+        <div>
+          <h4>Designed once. Drafted in parallel.</h4>
+          <p>Every licensed professional sits at the same table for a single design session — constraints resolved, disciplines coordinated, decisions locked. The moment design is set, all drafting tracks launch at once. Zero handoff cycles between disciplines. No waiting.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-ico">🤖</div>
+        <div>
+          <h4>AI-assisted delivery.</h4>
+          <p>Code checks, permit pre-screening, drawing review — our tools run these in minutes. What takes a traditional firm a week, we complete before your next site visit. Speed is a system, not a promise.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-ico">📋</div>
+        <div>
+          <h4>From permit to bid-ready — without switching firms.</h4>
+          <p>Once permits are approved, we keep going. Quantity takeoffs, basis-of-design cost estimates, bid packages, scope documents — all produced by the same team who designed the project. Your subs get briefed faster. Your bids come in tighter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ PROOF ══ -->
+<section class="sec proof-sec">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">We build in five states, with tons of noteworthy architects and designers, and none of them can do what you do. We get the same quality, at lightning speed. And because you do takeoffs, bid packages, and project management, it lets us take on at least 2 new projects a year.</p>
+      <div class="quote-attr">
+        Principal, residential development firm
+        <span>10 homes per year &nbsp;·&nbsp; $3M–$12M exit per project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ CTA ══ -->
+<section class="sec cta-sec" id="contact">
+  <div class="container">
+    <div class="cta-grid">
+
+      <div class="cta-text">
+        <span class="eyebrow">Book a Discovery Call</span>
+        <h2>Scope our <em>first project</em> together.</h2>
+        <p class="lead">Book 15 minutes. Walk us through your current deal. We'll tell you immediately whether Velocity Studio is the right permanent A+E and pre-construction team for your pipeline.</p>
+        <div class="cta-trust">
+          <span>We ask a few quick questions about how your process works, then give you an honest read on fit as your long-term vendor</span>
+          <span>We research your parcel and jurisdiction before the call</span>
+          <span>Fixed-fee proposal within 24 hours if you'd like to move forward</span>
+          <span>No obligation to engage</span>
+        </div>
+        <p class="cta-micro">Fixed-fee, project-specific pricing — we quote before we start. The number is the number.</p>
+      </div>
+
+      <div class="cal-card">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1"
+             style="min-width:280px;height:700px;min-height:700px;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  window.addEventListener('message', function(e) {
+    if (!e.data) return;
+    if (e.data.event === 'calendly.page_height') {
+      var h = parseInt(e.data.payload.height, 10);
+      if (h > 500) {
+        var widget = document.querySelector('.calendly-inline-widget');
+        if (widget) widget.style.height = h + 'px';
+      }
+    }
+    if (e.data.event === 'calendly.event_scheduled') {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Schedule');
+        fbq('trackCustom', 'DeveloperPageSchedule');
+      }
+    }
+  });
+</script>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Velocity <span>Studio</span></div>
+      <span class="footer-legal">© 2026 Velocity Studio LLC &nbsp;·&nbsp; Licensed Architects &amp; PE &nbsp;·&nbsp; Operating across the United States</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+</script>
+
+</body>
+</html>
