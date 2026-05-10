@@ -161,57 +161,66 @@
 
     /* ─── PAIN ───────────────────────────────────────────────── */
     .pain-sec { background: var(--white); }
-    .pain-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .pain-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: start;
     }
+    .pain-image { order: -1; }
+    .pain-image img {
+      width: 100%; border-radius: var(--r);
+      object-fit: cover; display: block;
+    }
+    .pain-cards { display: flex; flex-direction: column; gap: 16px; }
     .pain-card {
       background: var(--white); border: 1px solid var(--border);
       border-top: 3px solid #C0392B;
-      border-radius: var(--r); padding: 24px 20px;
+      border-radius: var(--r); padding: 22px 22px;
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
       transition: transform .2s, box-shadow .2s;
     }
     .pain-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
-    .pain-icon {
-      font-size: 1.5rem; margin-bottom: 14px; display: block;
-    }
     .pain-card h3 {
       font-size: .78rem; font-weight: 800; letter-spacing: .12em;
       text-transform: uppercase; color: #C0392B; margin-bottom: 8px;
     }
     .pain-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
-    @media (max-width: 680px) {
-      .pain-grid { grid-template-columns: 1fr; }
+    @media (max-width: 720px) {
+      .pain-split { grid-template-columns: 1fr; }
+      .pain-image { order: 1; }
     }
 
     /* ─── WHY VS ─────────────────────────────────────────────── */
     .why-sec { background: var(--bg); }
-    .why-grid {
+    .why-split {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 40px; align-items: start;
+    }
+    .why-cards { display: flex; flex-direction: column; gap: 16px; }
+    .why-image img {
+      width: 100%; border-radius: var(--r);
+      object-fit: cover; display: block;
     }
     .why-card {
       background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 28px 24px;
+      border-radius: var(--r); padding: 22px 20px;
       display: flex; gap: 16px; align-items: flex-start;
       box-shadow: 0 2px 10px rgba(0,0,0,.04);
       transition: transform .2s, box-shadow .2s;
     }
     .why-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
     .why-ico {
-      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
       background: rgba(45,139,110,.1); border: 1px solid rgba(45,139,110,.18);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     .why-card h4 {
       font-size: .72rem; font-weight: 800; letter-spacing: .13em;
       text-transform: uppercase; color: var(--teal); margin-bottom: 6px;
     }
     .why-card p { font-size: .84rem; color: var(--muted); line-height: 1.65; }
-    @media (max-width: 640px) {
-      .why-grid { grid-template-columns: 1fr; }
+    @media (max-width: 720px) {
+      .why-split { grid-template-columns: 1fr; }
     }
 
     /* ─── PROOF ──────────────────────────────────────────────── */
@@ -369,21 +378,23 @@
       <p>You've solved financing. You've built a great construction team. But every project still kicks off the same way — chasing architects who move at their own pace, across a process nobody fully owns.</p>
     </div>
 
-    <div class="pain-grid">
-      <div class="pain-card">
-        <span class="pain-icon">⏱</span>
-        <h3>Their pace. Your carry.</h3>
-        <p>They deliver when they're ready. Structural and civil are worse — slower per unit of scope than any other discipline on your team. Every extra week is carry you're absorbing with no recourse.</p>
+    <div class="pain-split">
+      <div class="pain-cards">
+        <div class="pain-card">
+          <h3>Their pace. Your carry.</h3>
+          <p>They deliver when they're ready. Structural and civil are worse — slower per unit of scope than any other discipline on your team. Every extra week is carry you're absorbing with no recourse.</p>
+        </div>
+        <div class="pain-card">
+          <h3>Every permit is its own rodeo.</h3>
+          <p>No repeatability. Every AHJ is a new adventure your team re-learns from scratch — different submission formats, different reviewers, different timelines. Nothing carries forward.</p>
+        </div>
+        <div class="pain-card">
+          <h3>Nobody coordinates but you.</h3>
+          <p>Architect, structural, civil, MEP. None of them own the coordination between disciplines. So you do — on every project, every time, in addition to everything else you're running.</p>
+        </div>
       </div>
-      <div class="pain-card">
-        <span class="pain-icon">🗺</span>
-        <h3>Every permit is its own rodeo.</h3>
-        <p>No repeatability. Every AHJ is a new adventure your team re-learns from scratch — different submission formats, different reviewers, different timelines. Nothing carries forward.</p>
-      </div>
-      <div class="pain-card">
-        <span class="pain-icon">📞</span>
-        <h3>Nobody coordinates but you.</h3>
-        <p>Architect, structural, civil, MEP. None of them own the coordination between disciplines. So you do — on every project, every time, in addition to everything else you're running.</p>
+      <div class="pain-image">
+        <img src="images/permits-painful.jpg" alt="The path to a permit — architects, structural engineers, and building officials as obstacles"/>
       </div>
     </div>
   </div>
@@ -397,34 +408,39 @@
       <h2>We're built for developers who need preconstruction to move at the speed of their capital.</h2>
     </div>
 
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-ico">🏢</div>
-        <div>
-          <h4>Every license. One team.</h4>
-          <p>A licensed architect, structural PE, civil PE, and MEP engineer are permanent members of our firm — backed by a fleet of drafters who execute across all disciplines simultaneously. You're not assembling a team for each project. We already are one.</p>
+    <div class="why-split">
+      <div class="why-cards">
+        <div class="why-card">
+          <div class="why-ico">🏢</div>
+          <div>
+            <h4>Every license. One team.</h4>
+            <p>Architect, structural PE, civil PE, and MEP engineer are permanent firm members, backed by drafters executing all disciplines in parallel. We're already assembled. No new team per project.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-ico">⚡</div>
+          <div>
+            <h4>Designed once. Drafted in parallel.</h4>
+            <p>All licensed professionals in one design session — constraints resolved, decisions locked. The moment design is set, all drafting tracks launch simultaneously. Zero handoff cycles.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-ico">🤖</div>
+          <div>
+            <h4>AI-assisted delivery.</h4>
+            <p>Code checks, permit pre-screening, drawing review — our tools run these in minutes. What takes a traditional firm a week, we complete before your next site visit.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-ico">📋</div>
+          <div>
+            <h4>We don't stop at the permit.</h4>
+            <p>Takeoffs, cost estimates, bid packages, scope documents — produced by the same team who designed the project. Your subs get briefed faster. Bids come in tighter.</p>
+          </div>
         </div>
       </div>
-      <div class="why-card">
-        <div class="why-ico">⚡</div>
-        <div>
-          <h4>Designed once. Drafted in parallel.</h4>
-          <p>Every licensed professional sits at the same table for a single design session — constraints resolved, disciplines coordinated, decisions locked. The moment design is set, all drafting tracks launch at once. Zero handoff cycles between disciplines. No waiting.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-ico">🤖</div>
-        <div>
-          <h4>AI-assisted delivery.</h4>
-          <p>Code checks, permit pre-screening, drawing review — our tools run these in minutes. What takes a traditional firm a week, we complete before your next site visit. Speed is a system, not a promise.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-ico">📋</div>
-        <div>
-          <h4>We don't stop at the permit.</h4>
-          <p>Once permits are approved, we keep going. Quantity takeoffs, basis-of-design cost estimates, bid packages, scope documents — all produced by the same team who designed the project. Your subs get briefed faster. Your bids come in tighter.</p>
-        </div>
+      <div class="why-image">
+        <img src="images/team-whiteboard.jpg" alt="Velocity Studio team collaborating around a screen"/>
       </div>
     </div>
   </div>
