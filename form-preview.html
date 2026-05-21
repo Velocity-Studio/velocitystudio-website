@@ -684,6 +684,14 @@
     .qual-opt strong { font-weight: 700; }
     .qual-opt-detail { font-size: .8rem; color: var(--muted); margin-left: 4px; }
 
+    .qual-size-group { margin-bottom: 14px; }
+    .qual-size-group:last-child { margin-bottom: 0; }
+    .qual-group-label {
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 8px;
+    }
+
     .qual-submit { margin-top: 8px; }
     .qual-footnote {
       font-size: .72rem; color: var(--muted); text-align: center;
@@ -1247,13 +1255,24 @@
 
           <fieldset class="qual-field" style="border:0;padding:0;">
             <legend class="qual-label">What's the size of the project?</legend>
-            <div class="qual-options">
-              <label class="qual-opt"><input type="radio" name="size" value="small_reno_addition_adu" required><span><strong>Small reno, addition, or ADU</strong> <span class="qual-opt-detail">· standard home, single-discipline</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="standard_new_or_major_reno"><span><strong>New build or major reno</strong> <span class="qual-opt-detail">· standard single-family</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="luxury_home"><span><strong>Luxury home</strong> <span class="qual-opt-detail">· large or high-end finish (new or reno)</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="small_multifamily_2_4"><span><strong>Small multi-family</strong> <span class="qual-opt-detail">· 2 to 4 units</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="mid_multifamily_5_9"><span><strong>Multi-family</strong> <span class="qual-opt-detail">· 5 to 9 units</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="large_multifamily_10_plus"><span><strong>Large multi-family</strong> <span class="qual-opt-detail">· 10+ units or tract</span></span></label>
+
+            <div class="qual-size-group">
+              <div class="qual-group-label">Residential</div>
+              <div class="qual-options">
+                <label class="qual-opt"><input type="radio" name="size" value="res_addition_adu" required><span>Addition / alteration / ADU</span></label>
+                <label class="qual-opt"><input type="radio" name="size" value="res_new_1u"><span>New construction (1 unit)</span></label>
+                <label class="qual-opt"><input type="radio" name="size" value="res_2_4u"><span>2 – 4 units</span></label>
+                <label class="qual-opt"><input type="radio" name="size" value="res_5_9u"><span>5 – 9 units</span></label>
+                <label class="qual-opt"><input type="radio" name="size" value="res_10_plus_u"><span>10+ units</span></label>
+              </div>
+            </div>
+
+            <div class="qual-size-group">
+              <div class="qual-group-label">Commercial</div>
+              <div class="qual-options">
+                <label class="qual-opt"><input type="radio" name="size" value="com_lt_10k"><span>Under 10,000 sq.ft.</span></label>
+                <label class="qual-opt"><input type="radio" name="size" value="com_gt_10k"><span>Over 10,000 sq.ft.</span></label>
+              </div>
             </div>
           </fieldset>
 
@@ -1306,12 +1325,13 @@
       other:               5
     },
     size: {
-      small_reno_addition_adu:    8,
-      standard_new_or_major_reno: 22,
-      luxury_home:                28,
-      small_multifamily_2_4:      30,
-      mid_multifamily_5_9:        36,
-      large_multifamily_10_plus:  40
+      res_addition_adu:  8,
+      res_new_1u:       22,
+      res_2_4u:         30,
+      res_5_9u:         36,
+      res_10_plus_u:    40,
+      com_lt_10k:       30,
+      com_gt_10k:       38
     }
   };
   // Tier thresholds — these label the Meta event so we can build custom audiences.
