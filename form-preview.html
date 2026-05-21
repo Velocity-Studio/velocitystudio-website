@@ -644,13 +644,22 @@
     }
     .qual-field input[type="text"],
     .qual-field input[type="email"],
-    .qual-field input[type="tel"] {
+    .qual-field input[type="tel"],
+    .qual-field textarea {
       width: 100%; padding: 12px 14px; border: 1px solid var(--border);
       border-radius: 8px; font-family: inherit; font-size: .95rem;
       background: #fff; color: var(--dark);
       transition: border-color .15s, box-shadow .15s;
     }
-    .qual-field input:focus {
+    .qual-field textarea {
+      resize: vertical; min-height: 84px; line-height: 1.5;
+    }
+    .qual-field input::placeholder,
+    .qual-field textarea::placeholder {
+      color: rgba(28,28,28,.32); font-style: normal;
+    }
+    .qual-field input:focus,
+    .qual-field textarea:focus {
       outline: none; border-color: var(--teal);
       box-shadow: 0 0 0 3px rgba(45,139,110,.12);
     }
@@ -1224,52 +1233,50 @@
 
         <form class="qual-form" id="qualForm" novalidate>
 
-          <div class="qual-field-row">
-            <div class="qual-field">
-              <label class="qual-label" for="qf-name">Name</label>
-              <input id="qf-name" type="text" name="name" autocomplete="name" required />
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-email">Email</label>
-              <input id="qf-email" type="email" name="email" autocomplete="email" required />
-            </div>
-          </div>
-
           <fieldset class="qual-field" style="border:0;padding:0;">
             <legend class="qual-label">Which best describes you?</legend>
             <div class="qual-options qual-options-2col">
-              <label class="qual-opt"><input type="radio" name="role" value="developer" required><span>Developer</span></label>
+              <label class="qual-opt"><input type="radio" name="role" value="pure_developer" required><span>Pure developer</span></label>
+              <label class="qual-opt"><input type="radio" name="role" value="pure_gc"><span>Pure GC</span></label>
               <label class="qual-opt"><input type="radio" name="role" value="developer_gc"><span>Developer + GC</span></label>
-              <label class="qual-opt"><input type="radio" name="role" value="gc"><span>General contractor</span></label>
-              <label class="qual-opt"><input type="radio" name="role" value="architect"><span>Architect</span></label>
-              <label class="qual-opt"><input type="radio" name="role" value="engineer"><span>Engineer</span></label>
+              <label class="qual-opt"><input type="radio" name="role" value="architect_engineer"><span>Architect / Engineer</span></label>
               <label class="qual-opt"><input type="radio" name="role" value="homeowner"><span>Homeowner</span></label>
-              <label class="qual-opt" style="grid-column:1 / -1;"><input type="radio" name="role" value="other"><span>Other</span></label>
+              <label class="qual-opt"><input type="radio" name="role" value="other"><span>Other</span></label>
             </div>
           </fieldset>
 
           <fieldset class="qual-field" style="border:0;padding:0;">
             <legend class="qual-label">What's the size of the project?</legend>
             <div class="qual-options">
-              <label class="qual-opt"><input type="radio" name="size" value="minor" required><span><strong>Minor</strong> <span class="qual-opt-detail">· addition or reno under 50% of the building</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="major"><span><strong>Major</strong> <span class="qual-opt-detail">· addition or reno over 50% of the building</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="newbuild_small"><span><strong>New build</strong> <span class="qual-opt-detail">· 1–4 units</span></span></label>
-              <label class="qual-opt"><input type="radio" name="size" value="newbuild_large"><span><strong>New build</strong> <span class="qual-opt-detail">· 5+ units</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="small_reno_addition_adu" required><span><strong>Small reno, addition, or ADU</strong> <span class="qual-opt-detail">· standard home, single-discipline</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="standard_new_or_major_reno"><span><strong>New build or major reno</strong> <span class="qual-opt-detail">· standard single-family</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="luxury_home"><span><strong>Luxury home</strong> <span class="qual-opt-detail">· large or high-end finish (new or reno)</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="small_multifamily_2_4"><span><strong>Small multi-family</strong> <span class="qual-opt-detail">· 2 to 4 units</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="mid_multifamily_5_9"><span><strong>Multi-family</strong> <span class="qual-opt-detail">· 5 to 9 units</span></span></label>
+              <label class="qual-opt"><input type="radio" name="size" value="large_multifamily_10_plus"><span><strong>Large multi-family</strong> <span class="qual-opt-detail">· 10+ units or tract</span></span></label>
             </div>
           </fieldset>
 
-          <fieldset class="qual-field" style="border:0;padding:0;">
-            <legend class="qual-label">Construction budget?</legend>
-            <div class="qual-options qual-options-2col">
-              <label class="qual-opt"><input type="radio" name="budget" value="100_500" required><span>$100K – $500K</span></label>
-              <label class="qual-opt"><input type="radio" name="budget" value="500_1m"><span>$500K – $1M</span></label>
-              <label class="qual-opt"><input type="radio" name="budget" value="1m_2_5m"><span>$1M – $2.5M</span></label>
-              <label class="qual-opt"><input type="radio" name="budget" value="2_5m_plus"><span>$2.5M+</span></label>
-            </div>
-          </fieldset>
+          <div class="qual-field">
+            <label class="qual-label" for="qf-address">Project address</label>
+            <input id="qf-address" type="text" name="address" autocomplete="street-address"
+                   placeholder="38 Maple Court, Princeton, NJ 08540" required />
+          </div>
+
+          <div class="qual-field">
+            <label class="qual-label" for="qf-scope">Project scope</label>
+            <textarea id="qf-scope" name="scope" rows="3"
+                      placeholder="Tear down 1,600 sf single-family and build an all-electric 3,200 sf duplex with roof decks and detached two-car garage." required></textarea>
+          </div>
+
+          <div class="qual-field">
+            <label class="qual-label" for="qf-email">Email</label>
+            <input id="qf-email" type="email" name="email" autocomplete="email"
+                   placeholder="you@example.com" required />
+          </div>
 
           <button type="submit" class="btn btn-teal btn-lg btn-full qual-submit">See available times <span class="arr">→</span></button>
-          <p class="qual-footnote">We'll respond within one business day · No commitment required</p>
+          <p class="qual-footnote">We'll research your parcel before the call · No commitment required</p>
         </form>
       </div>
 
@@ -1286,34 +1293,43 @@
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
   // ─── Qualifying form logic ─────────────────────────────────
-  // Lead-quality scoring: 0–100 composite. Tune weights here in one place.
+  // Lead-quality scoring: max ~70. Tune weights here in one place.
+  // Only role + size feed the score. Address/scope/email are routing data —
+  // we infer cost from parcel + scope via separate research, not from the form.
   const QUAL_WEIGHTS = {
     role: {
-      developer: 30, developer_gc: 30, architect: 25, engineer: 25,
-      gc: 20, homeowner: 15, other: 10
+      pure_developer:     30,
+      developer_gc:       30,
+      pure_gc:            22,
+      homeowner:          18,
+      architect_engineer: 15,
+      other:               5
     },
     size: {
-      minor: 10, major: 25, newbuild_small: 20, newbuild_large: 30
-    },
-    budget: {
-      "100_500": 5, "500_1m": 15, "1m_2_5m": 25, "2_5m_plus": 35
+      small_reno_addition_adu:    8,
+      standard_new_or_major_reno: 22,
+      luxury_home:                28,
+      small_multifamily_2_4:      30,
+      mid_multifamily_5_9:        36,
+      large_multifamily_10_plus:  40
     }
   };
   // Tier thresholds — these label the Meta event so we can build custom audiences.
   function leadTier(score) {
-    if (score >= 70) return 'high';
-    if (score >= 50) return 'mid';
+    if (score >= 55) return 'high';
+    if (score >= 30) return 'mid';
     return 'low';
   }
 
   // ─── Progress bar (filled-fields fraction) ─────────────────
   const qualForm = document.getElementById('qualForm');
   const qualProgress = document.getElementById('qualProgress');
+  const PROGRESS_FIELDS = ['role','size','address','scope','email'];
   function updateProgress() {
     const fd = new FormData(qualForm);
-    const filled = ['name','email','role','size','budget']
+    const filled = PROGRESS_FIELDS
       .filter(k => (fd.get(k) || '').trim() !== '').length;
-    qualProgress.style.width = (filled / 5 * 100) + '%';
+    qualProgress.style.width = (filled / PROGRESS_FIELDS.length * 100) + '%';
   }
   qualForm.addEventListener('input', updateProgress);
   qualForm.addEventListener('change', updateProgress);
@@ -1323,22 +1339,21 @@
     e.preventDefault();
     const fd = new FormData(qualForm);
     const data = {
-      name:   (fd.get('name')   || '').trim(),
-      email:  (fd.get('email')  || '').trim(),
-      role:   fd.get('role'),
-      size:   fd.get('size'),
-      budget: fd.get('budget')
+      role:    fd.get('role'),
+      size:    fd.get('size'),
+      address: (fd.get('address') || '').trim(),
+      scope:   (fd.get('scope')   || '').trim(),
+      email:   (fd.get('email')   || '').trim()
     };
 
     // Validate
-    if (!data.name || !data.email || !data.role || !data.size || !data.budget) {
+    if (!data.role || !data.size || !data.address || !data.scope || !data.email) {
       qualForm.reportValidity();
       return;
     }
 
-    const score = (QUAL_WEIGHTS.role[data.role]   || 0)
-                + (QUAL_WEIGHTS.size[data.size]   || 0)
-                + (QUAL_WEIGHTS.budget[data.budget] || 0);
+    const score = (QUAL_WEIGHTS.role[data.role] || 0)
+                + (QUAL_WEIGHTS.size[data.size] || 0);
     const tier = leadTier(score);
 
     // Meta Pixel: standard Lead event, value-weighted, tier-labeled, role-categorized.
@@ -1348,8 +1363,7 @@
         currency: 'USD',
         content_name: tier,
         content_category: data.role,
-        project_size: data.size,
-        budget_range: data.budget
+        project_size: data.size
       });
     }
 
@@ -1359,20 +1373,21 @@
         lead_score: score,
         lead_tier: tier,
         role: data.role,
-        project_size: data.size,
-        budget_range: data.budget
+        project_size: data.size
       });
     }
 
     // Build Calendly URL with prefill so user doesn't re-enter contact info.
+    // Calendly will still collect Name on its own form.
     const calBase = 'https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat';
     const calUrl = calBase
       + '?hide_gdpr_banner=1'
-      + '&name='  + encodeURIComponent(data.name)
       + '&email=' + encodeURIComponent(data.email)
+      + '&a1='    + encodeURIComponent(data.address)
+      + '&a2='    + encodeURIComponent(data.scope)
       + '&utm_source=qualifying_form'
       + '&utm_medium=score_' + tier
-      + '&utm_content=' + encodeURIComponent(data.role + '|' + data.size + '|' + data.budget);
+      + '&utm_content=' + encodeURIComponent(data.role + '|' + data.size);
 
     const calCard   = document.getElementById('calCard');
     const calWidget = document.getElementById('calWidget');
