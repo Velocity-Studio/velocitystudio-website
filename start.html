@@ -11,9 +11,8 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Velocity Studio  -  Form Preview (not indexed)</title>
+  <title>Velocity Studio  -  Your A&E Team for Lightning-Fast Permits</title>
   <meta name="description" content="One team. Architecture, structural, MEP, civil. Every permit type. Fixed price. 3–5× faster." />
-  <meta name="robots" content="noindex,nofollow" />
   <meta name="facebook-domain-verification" content="5hs64bmxb8djrx764110p5zv5598g4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -551,11 +550,11 @@
       display: grid;
       grid-template-columns: 1fr 1.4fr;
       gap: 64px;
-      align-items: center;
+      align-items: start;
       max-width: 1080px;
       margin: 0 auto;
     }
-    .cta-text { padding-top: 12px; }
+    .cta-text { padding-top: 32px; }
     .cta-text h2 {
       font-size: clamp(1.8rem, 3.2vw, 2.8rem);
       font-weight: 800; letter-spacing: -.022em;
@@ -1472,15 +1471,17 @@
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
   const ham = document.getElementById('ham');
   const mob = document.getElementById('mobMenu');
-  ham.addEventListener('click', () => {
-    ham.classList.toggle('active');
-    mob.classList.toggle('open');
-    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
-  });
-  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    ham.classList.remove('active'); mob.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
+  if (ham && mob) {
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('active');
+      mob.classList.toggle('open');
+      document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+    });
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      ham.classList.remove('active'); mob.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  }
 </script>
 
 
