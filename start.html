@@ -1396,6 +1396,28 @@
       });
     }
 
+    // Capture Meta click identifiers (these cookies only exist here, client-side)
+    // and upsert a Pipedrive Person keyed by email, so fbp/fbc survive to the CRM
+    // and the post-call skill can attach them to the deal.
+    const getCookie = (n) => (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || '';
+    let fbc = getCookie('_fbc');
+    if (!fbc) {
+      const fbclid = new URLSearchParams(location.search).get('fbclid');
+      if (fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    }
+    fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      keepalive: true,
+      body: JSON.stringify({
+        email: data.email,
+        fbp: getCookie('_fbp'),
+        fbc: fbc,
+        lead_created_at: String(Math.floor(Date.now() / 1000)),
+        lead_quality: tier
+      })
+    }).catch(function () {});
+
     // Build Calendly URL with prefill so user doesn't re-enter contact info.
     // Calendly will still collect Name on its own form.
     const calBase = 'https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat';
