@@ -16,8 +16,10 @@ const META_TOKEN  = process.env.META_CAPI_TOKEN;
 const PIXEL_ID    = process.env.META_PIXEL_ID || '778078978037243';
 const WH_SECRET   = process.env.PD_WEBHOOK_SECRET;        // shared secret in Pipedrive basic-auth
 const TEST_CODE   = process.env.META_TEST_EVENT_CODE || ''; // set during QA, unset for production
-const QL_VALUE    = Number(process.env.QUALIFIED_LEAD_VALUE || 1500);
-const ACTIVE_SQL_STAGE_ID = 4;
+const QL_VALUE    = Number(process.env.QUALIFIED_LEAD_VALUE || 500);
+const AGREED_VALUE = Number(process.env.AGREED_TERMS_VALUE || 5000);
+const QUALIFIED_STAGE_ID = 4;   // "Qualified"     -> QualifiedLead
+const TERMS_STAGE_ID     = 10;  // "Terms Agreed"  -> TermsAgreed
 const GRAPH_VER   = 'v21.0';
 
 // Person custom-field keys.
@@ -84,11 +86,13 @@ module.exports = async (req, res) => {
   const previous = b.previous || {};
 
   // Decide which event (if any) this change fires.
-  const enteredSQL = current.stage_id === ACTIVE_SQL_STAGE_ID && previous.stage_id !== ACTIVE_SQL_STAGE_ID;
-  const becameWon  = current.status === 'won' && previous.status !== 'won';
+  const enteredQualified = current.stage_id === QUALIFIED_STAGE_ID && previous.stage_id !== QUALIFIED_STAGE_ID;
+  const enteredTerms     = current.stage_id === TERMS_STAGE_ID && previous.stage_id !== TERMS_STAGE_ID;
+  const becameWon        = current.status === 'won' && previous.status !== 'won';
   let eventName = null, value = 0;
-  if (becameWon)        { eventName = 'Purchase';      value = Number(current.value || 0); }
-  else if (enteredSQL)  { eventName = 'QualifiedLead'; value = QL_VALUE; }
+  if (becameWon)            { eventName = 'Purchase';      value = Number(current.value || 0); }
+  else if (enteredTerms)    { eventName = 'TermsAgreed';   value = AGREED_VALUE; }
+  else if (enteredQualified){ eventName = 'QualifiedLead'; value = QL_VALUE; }
   if (!eventName) { res.statusCode = 200; return res.end(JSON.stringify({ ok: true, skipped: 'no trigger' })); }
 
   // Idempotency: skip if this event already sent for this deal.
