@@ -16,6 +16,10 @@ const F = {
   external_id:     '8d6edd1c496274be496787770edf5dba6709d62a',
   lead_created_at: 'e99516949bfdfec88ee84d5a4a8c6202a67ef619',
   lead_quality:    'ba9963674d8028438d398d6bc3e87271cdd1b40d',
+  utm_source:      'a8dc7ad5648960c4fa8c3349867cd001ed113be1',
+  utm_medium:      '98ed85e6f2e8528df76b2bf9aa444ef032e71bf9',
+  utm_campaign:    '502aef7a43210b4cd80ab6401d9a40961ac77b4e',
+  utm_content:     '902f42c528ba6e12fe58cafb978bd0fede40ed90',
 };
 
 function pd(method, path, body) {
@@ -67,6 +71,10 @@ module.exports = async (req, res) => {
   };
   if (b.fbp) custom[F.fbp] = b.fbp;
   if (b.fbc) custom[F.fbc] = b.fbc;
+  if (b.utm_source) custom[F.utm_source] = b.utm_source;
+  if (b.utm_medium) custom[F.utm_medium] = b.utm_medium;
+  if (b.utm_campaign) custom[F.utm_campaign] = b.utm_campaign;
+  if (b.utm_content) custom[F.utm_content] = b.utm_content;
 
   try {
     // Find existing person by exact email.

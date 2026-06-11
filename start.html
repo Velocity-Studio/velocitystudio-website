@@ -17,6 +17,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Ad-click attribution capture (utm_*): persist last paid-touch through the funnel -->
+  <script>
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      if (keys.some(function (k) { return p.get(k); })) {
+        var a = {};
+        keys.forEach(function (k) { a[k] = p.get(k) || ''; });
+        a.landing_page = location.pathname;
+        localStorage.setItem('vs_attribution', JSON.stringify(a));
+      }
+    } catch (e) {}
+  })();
+  window.vsAttribution = function () {
+    try { return JSON.parse(localStorage.getItem('vs_attribution') || '{}'); } catch (e) { return {}; }
+  };
+  </script>
 
   <style>
     /* ─── RESET ──────────────────────────────────────────────── */
@@ -1405,6 +1423,8 @@
       const fbclid = new URLSearchParams(location.search).get('fbclid');
       if (fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
     }
+    // Stored ad-click attribution (utm_*) captured on landing.
+    const attr = window.vsAttribution ? window.vsAttribution() : {};
     fetch('/api/lead-capture', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1414,7 +1434,11 @@
         fbp: getCookie('_fbp'),
         fbc: fbc,
         lead_created_at: String(Math.floor(Date.now() / 1000)),
-        lead_quality: tier
+        lead_quality: tier,
+        utm_source: attr.utm_source || '',
+        utm_medium: attr.utm_medium || '',
+        utm_campaign: attr.utm_campaign || '',
+        utm_content: attr.utm_content || ''
       })
     }).catch(function () {});
 
@@ -1426,9 +1450,11 @@
       + '&email=' + encodeURIComponent(data.email)
       + '&a1='    + encodeURIComponent(data.address)
       + '&a2='    + encodeURIComponent(data.scope)
-      + '&utm_source=qualifying_form'
-      + '&utm_medium=score_' + tier
-      + '&utm_content=' + encodeURIComponent(data.role + '|' + data.size);
+      + '&utm_source='   + encodeURIComponent(attr.utm_source || 'qualifying_form')
+      + '&utm_medium='   + encodeURIComponent(attr.utm_medium || ('score_' + tier))
+      + '&utm_campaign=' + encodeURIComponent(attr.utm_campaign || '')
+      + '&utm_content='  + encodeURIComponent(attr.utm_content || (data.role + '|' + data.size))
+      + '&utm_term='     + encodeURIComponent('score_' + tier + '|' + data.role + '|' + data.size);
 
     const calCard   = document.getElementById('calCard');
     const calWidget = document.getElementById('calWidget');

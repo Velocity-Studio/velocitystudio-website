@@ -27,12 +27,21 @@ const P = {
   fbp:         '7841c7e4a2dfe015f9a5c35aa445c5784b6ef3b1',
   fbc:         '347b74dcafbf6b1ec7a359039dd240839665e701',
   external_id: '8d6edd1c496274be496787770edf5dba6709d62a',
+  utm_source:   'a8dc7ad5648960c4fa8c3349867cd001ed113be1',
+  utm_medium:   '98ed85e6f2e8528df76b2bf9aa444ef032e71bf9',
+  utm_campaign: '502aef7a43210b4cd80ab6401d9a40961ac77b4e',
+  utm_content:  '902f42c528ba6e12fe58cafb978bd0fede40ed90',
 };
 // Deal custom-field keys.
 const D = {
   meta_event_sent:    '1089106fb5b00013626baad5c3a4dfafc4846bef',
   meta_event_sent_at: '5c056b945a5d5c235b0e6c9be4bc52cad235b1be',
+  utm_source:   'eab661079a707656d787d8dacb3ba4c378a45cd7',
+  utm_medium:   '9d73b4d3f363783ac293fb07d8565581dff9bbe8',
+  utm_campaign: '4c3ed4f23bda7bcf3fc6d64fa1a1b699d87f6f96',
+  utm_content:  'b36f49b59395ce423975d33fc9e75d1f16ad5d36',
 };
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
 const sha = (v) => crypto.createHash('sha256').update(String(v).trim().toLowerCase()).digest('hex');
 
@@ -104,6 +113,12 @@ module.exports = async (req, res) => {
   if (!pid) { res.statusCode = 200; return res.end(JSON.stringify({ ok: true, skipped: 'no person' })); }
   const personResp = await pd('GET', '/v1/persons/' + pid);
   const person = (personResp && personResp.data) || {};
+
+  // Self-healing campaign attribution: copy the lead's UTMs onto the deal if the
+  // deal doesn't have them yet. Independent of Meta-attributability.
+  const utmPatch = {};
+  UTM_KEYS.forEach((k) => { if (!current[D[k]] && person[P[k]]) utmPatch[D[k]] = person[P[k]]; });
+  if (Object.keys(utmPatch).length) { await pd('PUT', '/v1/deals/' + current.id, utmPatch); }
 
   const fbp = person[P.fbp] || '';
   const fbc = person[P.fbc] || '';

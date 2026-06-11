@@ -17,6 +17,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Ad-click attribution capture (utm_*): persist last paid-touch through the funnel -->
+  <script>
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      if (keys.some(function (k) { return p.get(k); })) {
+        var a = {};
+        keys.forEach(function (k) { a[k] = p.get(k) || ''; });
+        a.landing_page = location.pathname;
+        localStorage.setItem('vs_attribution', JSON.stringify(a));
+      }
+    } catch (e) {}
+  })();
+  window.vsAttribution = function () {
+    try { return JSON.parse(localStorage.getItem('vs_attribution') || '{}'); } catch (e) { return {}; }
+  };
+  </script>
 
   <style>
     /* ─── RESET ──────────────────────────────────────────────── */
@@ -1138,6 +1156,22 @@
     </div>
   </div>
 </section>
+<script>
+  // Carry ad-click attribution into the Calendly embed so bookings keep their UTMs.
+  (function () {
+    try {
+      var a = window.vsAttribution ? window.vsAttribution() : {};
+      var w = document.querySelector('.calendly-inline-widget');
+      if (w && a.utm_source) {
+        var u = new URL(w.getAttribute('data-url'));
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+          if (a[k]) u.searchParams.set(k, a[k]);
+        });
+        w.setAttribute('data-url', u.toString());
+      }
+    } catch (e) {}
+  })();
+</script>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
   // Auto-resize the Calendly inline widget to its content height,
