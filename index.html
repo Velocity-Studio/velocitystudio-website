@@ -630,7 +630,7 @@
     .footer-creds { font-size: .74rem; color: rgba(255,255,255,.26); margin-top: 24px; }
 
     /* ─── BY-RIGHT QUALIFIER ─────────────────────────────────── */
-    .byright-sec { background: var(--bg); }
+    .byright-sec { background: var(--white); }
     .byright-wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
     .byright-wrap h2 { font-size: clamp(1.55rem,3.2vw,2.3rem); font-weight: 800; line-height: 1.14; letter-spacing: -.02em; margin-bottom: 16px; }
     .byright-wrap h2 span { color: var(--teal); }
@@ -671,6 +671,17 @@
 
     /* ─── PROJECT CONCEPT BADGE ──────────────────────────────── */
     .proj-badge { display: inline-block; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); background: rgba(201,148,43,.12); border: 1px solid rgba(201,148,43,.3); padding: 2px 8px; border-radius: 99px; margin-bottom: 7px; }
+
+    /* ─── AUDIENCE THREE-UP ──────────────────────────────────── */
+    .audience-sec { background: var(--bg); }
+    .audience-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .aud-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--rlg); overflow: hidden; box-shadow: var(--sh); display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+    .aud-card:hover { transform: translateY(-4px); box-shadow: var(--shlg); }
+    .aud-title { font-size: 1.02rem; font-weight: 800; color: var(--teal-dk); padding: 20px 22px 14px; }
+    .aud-img { aspect-ratio: 4/3; overflow: hidden; background: #1C2820; }
+    .aud-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .aud-card > p { font-size: .86rem; color: var(--muted); line-height: 1.62; padding: 16px 22px 24px; margin: 0; }
+    @media (max-width: 760px) { .audience-grid { grid-template-columns: 1fr; gap: 16px; max-width: 420px; margin: 0 auto; } }
   </style>
 
   <!-- Meta Pixel -->
@@ -822,13 +833,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════ AUDIENCE ══ -->
+<section class="sec audience-sec" id="who">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">Who we build for</span>
+      <h2>If one of these is you, we're built for it.</h2>
+      <p>Three different projects, one job: get you to a stamped permit set fast.</p>
+    </div>
+    <div class="audience-grid">
+
+      <div class="aud-card">
+        <h3 class="aud-title">Multi-family infill</h3>
+        <div class="aud-img"><img src="images/audience-infill.jpg" alt="A single-family lot upzoned for a three-story multi-family building"/></div>
+        <p>Your parcel just got rezoned for more density. We take it from upzoned lot to condos you can sell or units you can rent - design, engineering, and permits, one team.</p>
+      </div>
+
+      <div class="aud-card">
+        <h3 class="aud-title">Repeat home builders</h3>
+        <div class="aud-img"><img src="images/audience-builders.jpg" alt="A proven home design being set onto a new high-end lot"/></div>
+        <p>You already know the plans that sell. We adapt your proven design to the next lot and carry it through the permit hoops of the high-end neighborhoods you build in - fast.</p>
+      </div>
+
+      <div class="aud-card">
+        <h3 class="aud-title">Design partners</h3>
+        <div class="aud-img"><img src="images/audience-partners.jpg" alt="A designer handing a concept floor plan to an engineering team"/></div>
+        <p>You design the spaces. We take your layouts all the way to a stamped permit set for your jurisdiction, so your team keeps designing and selling instead of chasing approvals.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════════════ BY-RIGHT ══ -->
 <section class="sec byright-sec" id="byright">
   <div class="container">
     <div class="byright-wrap">
       <div>
-        <span class="eyebrow eyebrow-gold">The zoning changed in your favor</span>
-        <h2>If the law already says <span>yes</span>, you just need a team fast enough to use it.</h2>
+        <span class="eyebrow eyebrow-gold">For multi-family infill</span>
+        <h2>The zoning opened up. Now you just need a team fast enough to <span>use it</span>.</h2>
         <p>A wave of new laws now clears duplexes, triplexes, and fourplexes by right - approved over the counter, no discretionary hearing. The entitlement used to be the bottleneck. Now the bottleneck is finding an A&amp;E team that can move as fast as the law lets you. That's the gap we fill.</p>
         <div class="byright-chips">
           <span class="byright-chip">Washington <b>HB 1110</b></span>
