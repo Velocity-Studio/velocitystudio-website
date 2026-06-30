@@ -18,8 +18,8 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Velocity Studio  -  Your A&E Team for Lightning-Fast Permits</title>
-  <meta name="description" content="One team. Architecture, structural, MEP, civil. Every permit type. Fixed price. 3–5× faster." />
+  <title>Velocity Studio - Design, Engineering &amp; Fast Permits for Developers</title>
+  <meta name="description" content="Architecture, structural, civil, MEP, and permitting under one roof. We design for your return and get developers to a stamped permit set in about a month." />
   <meta name="facebook-domain-verification" content="5hs64bmxb8djrx764110p5zv5598g4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -628,6 +628,49 @@
     }
     .footer-bottom span { font-size: .72rem; color: rgba(255,255,255,.22); }
     .footer-creds { font-size: .74rem; color: rgba(255,255,255,.26); margin-top: 24px; }
+
+    /* ─── BY-RIGHT QUALIFIER ─────────────────────────────────── */
+    .byright-sec { background: var(--bg); }
+    .byright-wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+    .byright-wrap h2 { font-size: clamp(1.55rem,3.2vw,2.3rem); font-weight: 800; line-height: 1.14; letter-spacing: -.02em; margin-bottom: 16px; }
+    .byright-wrap h2 span { color: var(--teal); }
+    .byright-wrap > div > p { color: var(--muted); font-size: .94rem; line-height: 1.72; margin-bottom: 20px; }
+    .byright-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .byright-chip { font-size: .72rem; font-weight: 600; padding: 6px 12px; border-radius: 99px; background: var(--white); border: 1px solid var(--border); color: var(--teal-dk); }
+    .byright-chip b { color: var(--gold); font-weight: 800; }
+    .byright-card { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: var(--r); padding: 26px 24px; box-shadow: var(--sh); }
+    .byright-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 10px; }
+    .byright-card p { font-size: .86rem; color: var(--muted); line-height: 1.68; margin: 0; }
+    @media (max-width: 820px) { .byright-wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* ─── SPEED EXAMPLE (value section) ──────────────────────── */
+    .speed-example { margin-top: 44px; background: rgba(255,255,255,.04); border: 1px solid rgba(201,148,43,.28); border-radius: var(--rlg); padding: 28px 30px; }
+    .speed-example .se-eyebrow { font-size: .6rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-lt); display: block; margin-bottom: 12px; }
+    .speed-example h3 { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 14px; }
+    .speed-example p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.72; margin-bottom: 10px; }
+    .speed-example p b { color: rgba(255,255,255,.92); font-weight: 700; }
+    .speed-example .se-kicker { color: var(--gold-lt); font-weight: 700; font-style: italic; }
+    .speed-example .se-fine { font-size: .68rem; color: rgba(255,255,255,.3); font-style: italic; margin-top: 10px; margin-bottom: 0; }
+
+    /* ─── COST FIT + ALLEY ───────────────────────────────────── */
+    .fit-sec { background: var(--white); }
+    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+    .fit-copy h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; line-height: 1.16; letter-spacing: -.02em; margin-bottom: 16px; }
+    .fit-copy > p { color: var(--muted); font-size: .92rem; line-height: 1.74; margin-bottom: 14px; }
+    .fit-copy p b { color: var(--dark); }
+    .fit-floor { margin-top: 18px; padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); font-size: .86rem; color: var(--dark); font-weight: 600; line-height: 1.5; }
+    .fit-floor span { color: var(--teal); font-weight: 800; }
+    .alley-label { font-size: .63rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 14px; }
+    .alley-list { display: flex; flex-direction: column; gap: 12px; }
+    .alley-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; display: flex; gap: 13px; align-items: flex-start; }
+    .alley-item .ai-ico { color: var(--teal); font-weight: 800; flex-shrink: 0; }
+    .alley-item p { font-size: .86rem; color: var(--dark); line-height: 1.55; margin: 0; }
+    .alley-note { font-size: .84rem; color: var(--muted); margin-top: 16px; }
+    .alley-note a { color: var(--teal); font-weight: 700; }
+    @media (max-width: 820px) { .fit-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* ─── PROJECT CONCEPT BADGE ──────────────────────────────── */
+    .proj-badge { display: inline-block; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); background: rgba(201,148,43,.12); border: 1px solid rgba(201,148,43,.3); padding: 2px 8px; border-radius: 99px; margin-bottom: 7px; }
   </style>
 
   <!-- Meta Pixel -->
@@ -672,9 +715,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-grid">
 
       <div>
-        <div class="hero-tag">⚡ Architecture · Structural · MEP · Civil</div>
-        <h1>Your A&amp;E team for <em>lightning-fast</em> permits.</h1>
-        <p class="hero-sub">Better, faster, cheaper preconstruction - built to shave months off real estate developers' timelines and accelerate capital velocity.</p>
+        <div class="hero-tag">⚡ Architecture · Structural · Civil · MEP · One Team</div>
+        <h1>Great design that makes the deal <em>pencil</em>.</h1>
+        <p class="hero-sub">Architecture, structural, civil, MEP, and permitting under one roof - and a stamped permit set in about a month, so you stop paying carry on a project that isn't moving.</p>
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-teal btn-lg">Book a Discovery Call <span class="arr">→</span></a>
         </div>
@@ -698,66 +741,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════ STRIP ══ -->
 <div class="strip">
   <div class="strip-track">
-    <span class="strip-item">Building Permit</span>
-    <span class="strip-item">Custom Single-Family</span>
-    <span class="strip-item">North Caldwell, NJ</span>
-    <span class="strip-item">Zoning / CUP</span>
-    <span class="strip-item">Multi-Family / Apartments</span>
+    <span class="strip-item">Duplex Infill</span>
     <span class="strip-item">Los Angeles, CA</span>
-    <span class="strip-item">Grading Permit</span>
-    <span class="strip-item">Mixed-Use Development</span>
-    <span class="strip-item">Maui, HI</span>
-    <span class="strip-item">Stormwater / NPDES</span>
-    <span class="strip-item">Cottage Court / ADU Cluster</span>
-    <span class="strip-item">Lake Tahoe, NV</span>
-    <span class="strip-item">Fire &amp; Life Safety Clearance</span>
-    <span class="strip-item">Light Commercial</span>
-    <span class="strip-item">Miami, FL</span>
-    <span class="strip-item">Historic Preservation Review</span>
-    <span class="strip-item">Hillside Estate</span>
-    <span class="strip-item">Austin, TX</span>
-    <span class="strip-item">Coastal / SMA Permit</span>
-    <span class="strip-item">Waterfront Residence</span>
-    <span class="strip-item">Fairfield County, CT</span>
-    <span class="strip-item">Energy Compliance</span>
-    <span class="strip-item">Historic Renovation</span>
-    <span class="strip-item">Raleigh, NC</span>
-    <span class="strip-item">Cultural Resources Review</span>
-    <span class="strip-item">Post-Fire Rebuild</span>
-    <span class="strip-item">Portland, OR</span>
-    <span class="strip-item">Public Works Approval</span>
-    <span class="strip-item">Ground-Up Retail</span>
-    <span class="strip-item">Salt Lake City, UT</span>
-    <span class="strip-item">Building Permit</span>
+    <span class="strip-item">SB 9 Lot Split</span>
+    <span class="strip-item">Fourplex · Middle Housing</span>
+    <span class="strip-item">Seattle, WA</span>
+    <span class="strip-item">By-Right Multifamily</span>
     <span class="strip-item">Custom Single-Family</span>
-    <span class="strip-item">North Caldwell, NJ</span>
-    <span class="strip-item">Zoning / CUP</span>
-    <span class="strip-item">Multi-Family / Apartments</span>
-    <span class="strip-item">Los Angeles, CA</span>
-    <span class="strip-item">Grading Permit</span>
-    <span class="strip-item">Mixed-Use Development</span>
-    <span class="strip-item">Maui, HI</span>
-    <span class="strip-item">Stormwater / NPDES</span>
-    <span class="strip-item">Cottage Court / ADU Cluster</span>
-    <span class="strip-item">Lake Tahoe, NV</span>
-    <span class="strip-item">Fire &amp; Life Safety Clearance</span>
-    <span class="strip-item">Light Commercial</span>
-    <span class="strip-item">Miami, FL</span>
-    <span class="strip-item">Historic Preservation Review</span>
-    <span class="strip-item">Hillside Estate</span>
     <span class="strip-item">Austin, TX</span>
-    <span class="strip-item">Coastal / SMA Permit</span>
-    <span class="strip-item">Waterfront Residence</span>
-    <span class="strip-item">Fairfield County, CT</span>
-    <span class="strip-item">Energy Compliance</span>
-    <span class="strip-item">Historic Renovation</span>
-    <span class="strip-item">Raleigh, NC</span>
-    <span class="strip-item">Cultural Resources Review</span>
-    <span class="strip-item">Post-Fire Rebuild</span>
+    <span class="strip-item">Building Permit</span>
+    <span class="strip-item">Repeated High-End Plan</span>
+    <span class="strip-item">Miami, FL</span>
+    <span class="strip-item">Title 24 · Energy</span>
+    <span class="strip-item">Two-on-a-Lot</span>
+    <span class="strip-item">Oxnard, CA</span>
+    <span class="strip-item">Zoning · CUP</span>
+    <span class="strip-item">ADU Cluster</span>
     <span class="strip-item">Portland, OR</span>
-    <span class="strip-item">Public Works Approval</span>
-    <span class="strip-item">Ground-Up Retail</span>
-    <span class="strip-item">Salt Lake City, UT</span>
+    <span class="strip-item">Structural · Civil · MEP</span>
+    <span class="strip-item">Duplex Infill</span>
+    <span class="strip-item">Los Angeles, CA</span>
+    <span class="strip-item">SB 9 Lot Split</span>
+    <span class="strip-item">Fourplex · Middle Housing</span>
+    <span class="strip-item">Seattle, WA</span>
+    <span class="strip-item">By-Right Multifamily</span>
+    <span class="strip-item">Custom Single-Family</span>
+    <span class="strip-item">Austin, TX</span>
+    <span class="strip-item">Building Permit</span>
+    <span class="strip-item">Repeated High-End Plan</span>
+    <span class="strip-item">Miami, FL</span>
+    <span class="strip-item">Title 24 · Energy</span>
+    <span class="strip-item">Two-on-a-Lot</span>
+    <span class="strip-item">Oxnard, CA</span>
+    <span class="strip-item">Zoning · CUP</span>
+    <span class="strip-item">ADU Cluster</span>
+    <span class="strip-item">Portland, OR</span>
+    <span class="strip-item">Structural · Civil · MEP</span>
   </div>
 </div>
 
@@ -781,14 +800,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="pain-icon">⏳</div>
           <div>
             <h3>Months Lost</h3>
-            <p>Your capital sits idle while vendors wait on each other.</p>
+            <p>Your cash is stuck in a deal that isn't moving while vendors wait on each other.</p>
           </div>
         </div>
         <div class="pain-card">
           <div class="pain-icon">💸</div>
           <div>
-            <h3>No Price Ceiling</h3>
-            <p>Soft cost overruns average 40 - 60% over budget. The meter keeps running until someone stops the bleeding.</p>
+            <h3>Soft Costs Creep</h3>
+            <p>The meter runs the whole time. Every extra month is more soft cost out of your budget, with nothing built.</p>
           </div>
         </div>
         <div class="pain-card">
@@ -803,13 +822,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════ BY-RIGHT ══ -->
+<section class="sec byright-sec" id="byright">
+  <div class="container">
+    <div class="byright-wrap">
+      <div>
+        <span class="eyebrow eyebrow-gold">The zoning changed in your favor</span>
+        <h2>If the law already says <span>yes</span>, you just need a team fast enough to use it.</h2>
+        <p>A wave of new laws now clears duplexes, triplexes, and fourplexes by right - approved over the counter, no discretionary hearing. The entitlement used to be the bottleneck. Now the bottleneck is finding an A&amp;E team that can move as fast as the law lets you. That's the gap we fill.</p>
+        <div class="byright-chips">
+          <span class="byright-chip">Washington <b>HB 1110</b></span>
+          <span class="byright-chip">California <b>SB 9</b></span>
+          <span class="byright-chip">Oregon <b>HB 2001</b></span>
+          <span class="byright-chip">Minneapolis <b>2040</b></span>
+          <span class="byright-chip">Berkeley, CA</span>
+          <span class="byright-chip">Florida <b>Live Local</b></span>
+          <span class="byright-chip">Vermont <b>HOME Act</b></span>
+          <span class="byright-chip">Montana <b>SB 323</b></span>
+        </div>
+      </div>
+      <div class="byright-card">
+        <h3>Not sure your parcel qualifies?</h3>
+        <p>Send us the address. We'll read the zoning and the overlays and tell you how many units you can build by right - usually before we even get on the phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════════════ SOLUTION ══ -->
 <section class="sec sol-sec" id="solution">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">The Velocity Studio Difference</span>
+      <span class="eyebrow">How We Work</span>
       <h2>Every discipline. One team. One contract.</h2>
-      <p>All disciplines, in parallel, from day one. One fixed fee.</p>
+      <p>All of it runs in parallel from day one, on one fixed fee.</p>
     </div>
 
     <div class="sol-layout">
@@ -864,9 +910,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec meth-sec" id="method">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">Services We Offer</span>
+      <span class="eyebrow">What We Do</span>
       <h2>From parcel to permit - and all the way to bid.</h2>
-      <p>Most clients start with permits. Many ask us to stay through pre-construction. Either way, one team owns the whole job.</p>
+      <p>We make the design calls that move the number, and we make them in days, not months. Then one team carries the project through engineering, permitting, and pre-construction.</p>
     </div>
 
     <div class="scope-grid">
@@ -929,14 +975,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Left 1/3: headline + compact stats -->
       <div class="val-left">
-        <span class="eyebrow eyebrow-gold">What You Get Back</span>
-        <h2>VS typically saves more in holding costs than we charge.</h2>
-        <p>Every month of permit delay costs ~$26K in carry. We compress months.</p>
+        <span class="eyebrow eyebrow-gold">What Speed Is Worth</span>
+        <h2>Do the math - we pay for ourselves several times over.</h2>
+        <p>Every month a project sits in permitting is a month you carry it with nothing coming in. We take those months out, and the fee is a fraction of what the wait costs you.</p>
         <div class="val-grid">
           <div class="val-block">
-            <div class="val-stat">Months</div>
-            <span class="val-label">Faster to Revenue</span>
-            <p>Lower carry costs + faster capital into your next deal.</p>
+            <div class="val-stat">~1 Month</div>
+            <span class="val-label">To Permit</span>
+            <p>vs. the three to four months a typical firm takes.</p>
+          </div>
+          <div class="val-block">
+            <div class="val-stat">Less Carry</div>
+            <span class="val-label">Paid With No Income</span>
+            <p>Every month saved is loan interest, taxes, and insurance you keep.</p>
           </div>
           <div class="val-block">
             <div class="val-stat">Fixed</div>
@@ -944,17 +995,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>We quote before we start. The number is the number.</p>
           </div>
           <div class="val-block">
-            <div class="val-stat">1 vs. 7+</div>
-            <span class="val-label">One Relationship</span>
-            <p>One team, one scope, one schedule.</p>
-          </div>
-          <div class="val-block">
-            <div class="val-stat">~50%</div>
-            <span class="val-label">Lower Soft Costs</span>
-            <p>Market rate: 10–15% of construction. VS: 4–6%.</p>
+            <div class="val-stat">One Team</div>
+            <span class="val-label">Nobody to Chase</span>
+            <p>Every discipline in-house, on one schedule. No finger-pointing.</p>
           </div>
         </div>
-        <p class="val-note">Illustrative. Actual results vary by market and loan terms.</p>
+        <p class="val-note">Illustrative. Actual results vary by market, loan terms, and exit strategy.</p>
       </div>
 
       <!-- Right 2/3: cost chart -->
@@ -988,6 +1034,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div>
 
+    </div>
+
+    <!-- Value of speed: sweet-spot worked example -->
+    <div class="speed-example">
+      <span class="se-eyebrow">What three months is worth</span>
+      <h3>A 4,200 sq ft duplex in Los Angeles.</h3>
+      <p>A typical firm quotes around <b>$45K</b> and takes about <b>four months</b> to get it to permit. We quote around <b>$50K</b> and get there in about <b>one</b>.</p>
+      <p>That is roughly <b>$5K more to stop carrying the deal three months sooner.</b> On a project bleeding even $10-15K a month in loan interest, taxes, and insurance, those three months are <b>$30-45K you never spend</b> - before you count a month of rent or a sale that closes sooner.</p>
+      <p class="se-kicker">The extra fee isn't a cost. It's the best money in the whole deal.</p>
+      <p class="se-fine">Illustrative. Actual figures vary by market, loan terms, and exit strategy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ COST FIT + ALLEY ══ -->
+<section class="sec fit-sec" id="fit">
+  <div class="container">
+    <div class="fit-grid">
+      <div class="fit-copy">
+        <span class="eyebrow">Where we fit</span>
+        <h2>Worth it the moment a project needs the full engineering stack.</h2>
+        <p>We staff more licensed professionals per project than most firms - architecture, structural, civil, MEP, landscape, and interiors, all in-house. On a small job that is overkill, and we will not be your cheapest bid.</p>
+        <p>The moment a project needs every discipline, the math flips. One team runs them all at once, so we come in faster and cheaper than a string of separate consultants. <b>And the bigger the project, the wider that gap gets.</b></p>
+        <div class="fit-floor">Most engagements run <span>$35K and up</span> - the point where one in-house A&amp;E team clearly beats stitching it together yourself.</div>
+      </div>
+      <div>
+        <span class="alley-label">Right up our alley</span>
+        <div class="alley-list">
+          <div class="alley-item"><span class="ai-ico">→</span><p>Tear down a single-family home and put up two duplexes - ten bedrooms across the lot.</p></div>
+          <div class="alley-item"><span class="ai-ico">→</span><p>Add four two-bedroom units behind an existing California fourplex.</p></div>
+          <div class="alley-item"><span class="ai-ico">→</span><p>Build a 3,000 sq ft spec home for sale in a high-end neighborhood.</p></div>
+          <div class="alley-item"><span class="ai-ico">→</span><p>Take a raw parcel for a small ground-up development to a permit-ready set.</p></div>
+        </div>
+        <p class="alley-note">Not sure you fit? <a href="#contact">Send us the parcel</a> and we'll tell you straight.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1060,9 +1141,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- ── Projects in design and permitting now ── -->
-    <p class="proof-sub">Projects in design and permitting now.</p>
+    <!-- ── Project range ── -->
+    <p class="proof-sub">Multi-family infill and high-end homes - one fast team.</p>
     <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="images/concept-fourplex-oxnard.jpg" alt="Fourplex infill concept, Oxnard, California"/>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-badge">Concept</div>
+          <div class="proj-type">Fourplex · Infill</div>
+          <div class="proj-name">Four 2-Bed Units</div>
+          <div class="proj-mkt">Oxnard, California</div>
+          <div class="proj-scope">Architecture · Structural · Civil · MEP</div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="images/concept-fourplex-seattle.jpg" alt="Middle-housing fourplex concept, Seattle, Washington"/>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-badge">Concept</div>
+          <div class="proj-type">Middle Housing · Fourplex</div>
+          <div class="proj-name">By-Right Fourplex</div>
+          <div class="proj-mkt">Seattle, Washington</div>
+          <div class="proj-scope">Architecture · Structural · Civil · MEP</div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="images/concept-duplex-la.jpg" alt="Upscale duplex concept, Los Angeles, California"/>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-badge">Concept</div>
+          <div class="proj-type">Duplex · For Sale</div>
+          <div class="proj-name">Two-Unit Infill</div>
+          <div class="proj-mkt">Los Angeles, California</div>
+          <div class="proj-scope">Architecture · Structural · MEP</div>
+        </div>
+      </div>
       <div class="proj-card">
         <div class="proj-img">
           <img src="images/rendering_1.jpg" alt="8 Maple Drive"
@@ -1150,9 +1267,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>15 minutes.<br>We'll scope your<br>project <em>live.</em></h2>
         <p class="lead">Bring us an address and a rough program. We'll map the permit path, flag the risks, and tell you exactly what a fixed-fee engagement looks like.</p>
         <div class="cta-trust">
-          <span>No pitch - just a real conversation</span>
           <span>We research your parcel before the call</span>
           <span>Fixed-fee proposal within 24 hours if you'd like to proceed</span>
+          <span>Most engagements run $35K and up</span>
           <span>No obligation to engage</span>
         </div>
       </div>
