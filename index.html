@@ -294,19 +294,7 @@
       .pain-card { flex-direction: row; gap: 14px; align-items: flex-start; }
     }
 
-    /* ─── SOLUTION ───────────────────────────────────────────── */
-    .sol-sec { background: var(--bg); }
-    .sol-layout {
-      display: grid; grid-template-columns: 1fr 2fr;
-      gap: 28px; align-items: start; margin-bottom: 32px;
-    }
-    .sol-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 12px; }
-    .sol-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .sol-stack-label {
-      font-size: .63rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
-      color: var(--teal); display: block; margin-bottom: 12px;
-    }
-    .sol-card-stack { display: flex; flex-direction: column; gap: 12px; }
+    /* ─── WHY VS IS BETTER (merged How We Work + What We Do) ──── */
     .disc-card {
       background: var(--white); border: 1px solid var(--border);
       border-radius: var(--r); padding: 20px 18px;
@@ -323,10 +311,10 @@
     }
     .disc-card h4 { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
     .disc-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
-    @media (max-width: 680px) {
-      .sol-layout { grid-template-columns: 1fr; }
-      .sol-layout .sol-img-wrap { order: -1; }
-    }
+    .why-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 52px; }
+    .why-scope-label { font-size: .82rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-lt); display: block; margin-bottom: 8px; }
+    .why-scope-intro { font-size: .95rem; color: rgba(255,255,255,.62); line-height: 1.7; max-width: 780px; margin-bottom: 32px; }
+    @media (max-width: 680px) { .why-cards { grid-template-columns: 1fr; } }
 
     .permits-box {
       background: var(--white); border: 1px solid var(--border);
@@ -892,71 +880,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ SOLUTION ══ -->
-<section class="sec sol-sec" id="solution">
-  <div class="container">
-    <div class="sec-hd">
-      <span class="eyebrow">How We Work</span>
-      <h2>Every discipline drafting your set at the same time.</h2>
-      <p>Architecture, structural, civil, and MEP on one fixed fee, with one team on the hook for the whole set.</p>
-    </div>
-
-    <div class="sol-layout">
-
-      <!-- Left 1/3: innovation cards -->
-      <div>
-        <span class="sol-stack-label">What makes us fast</span>
-        <div class="sol-card-stack">
-          <div class="disc-card">
-            <div class="disc-ico">🤖</div>
-            <div>
-              <h4>Technology</h4>
-              <p>AI checks the code, pre-screens the permit, and reviews the set as it comes together. What eats a day at a traditional firm, our tools do in minutes.</p>
-            </div>
-          </div>
-          <div class="disc-card">
-            <div class="disc-ico">🏢</div>
-            <div>
-              <h4>The Bench</h4>
-              <p>Architecture, structural, civil, and MEP all in-house, with a deep offshore production bench behind them. More hands on your set, not a longer wait.</p>
-            </div>
-          </div>
-          <div class="disc-card">
-            <div class="disc-ico">⚡</div>
-            <div>
-              <h4>Process</h4>
-              <p>We resolve the design in one working session - a day or two, not two months of revisions. We design to make the project pencil, and we decide fast. Then every discipline drafts at once.</p>
-            </div>
-          </div>
-          <div class="disc-card">
-            <div class="disc-ico">✈️</div>
-            <div>
-              <h4>Attitude</h4>
-              <p>We own the outcome. If it takes a red-eye to your jurisdiction to move the project forward, we book it. Fixed fee means our incentives are always yours.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right 2/3: photo -->
-      <div class="sol-img-wrap">
-        <img src="images/team-whiteboard.jpg"
-             alt="Six design professionals collaborating on a shared whiteboard"/>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ SCOPE ══ -->
+<!-- ══════════════════════════════════════ WHY (merged) ══ -->
 <section class="sec meth-sec" id="method">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">What We Do</span>
-      <h2>From parcel to permit - and all the way to bid.</h2>
-      <p>We make the design calls that move the number, and we make them in days, not months. Then one team carries the project through engineering, permitting, and pre-construction.</p>
+      <span class="eyebrow">Why Velocity Studio is Better</span>
+      <h2>Cutting-edge professionals of every discipline design and draft your project in parallel.</h2>
+      <p>One team of licensed architects and engineers, with AI and a deep production bench behind them. We can take a project from raw feasibility through permit and into bid, and we move fastest right where it counts - getting you to a permit-ready set.</p>
     </div>
+
+    <div class="sec-img">
+      <img src="images/team-whiteboard.jpg" alt="Velocity Studio's licensed architects and engineers reviewing a project together on screen"/>
+    </div>
+
+    <div class="why-cards">
+      <div class="disc-card">
+        <div class="disc-ico">🤖</div>
+        <div>
+          <h4>Code, walked to exhaustion</h4>
+          <p>Our AI walks every prevailing code from every authority and stakeholder and aggregates everything code can prescribe about your building. We lock it into a basis of design in a couple of days - the research that takes a traditional architect weeks.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">✏️</div>
+        <div>
+          <h4>A choreographed design process</h4>
+          <p>Code can't prescribe the layout or the look and feel. Our team resolves those with a tightly choreographed process - fast, and aimed at making the project pencil, not at endless revision rounds.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">⚡</div>
+        <div>
+          <h4>Every discipline in parallel</h4>
+          <p>Architecture, structural, civil, and MEP are all in-house, backed by a deep production bench. Once the design is set, every licensed professional develops it to permit at the same time, on one fixed fee.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">✈️</div>
+        <div>
+          <h4>We own the outcome</h4>
+          <p>If we underperform, we eat the risk. If moving your project forward takes a red-eye to your jurisdiction, we book it. Fixed fee means our incentives are always yours.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="why-scope-label">Everything, from feasibility to bid</span>
+    <p class="why-scope-intro">Most clients come to us once they know roughly what their parcel yields and have run their pro forma. We pick it up there and carry it to permit and bid - but we can also start at raw feasibility, testing whether a site pencils better as, say, 90 townhomes or 60 duplexes.</p>
 
     <div class="scope-grid">
 
