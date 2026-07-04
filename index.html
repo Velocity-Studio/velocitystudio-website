@@ -369,9 +369,9 @@
     .gal-img { aspect-ratio: 3/2; border-radius: var(--rlg); overflow: hidden; background: #1C2820; box-shadow: var(--sh); }
     .gal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .gal-cap { display: block; padding: 14px 4px 0; font-style: italic; font-weight: 400; font-size: .95rem; color: var(--muted); text-align: center; }
-    .gallery::before, .gallery::after { content: ''; position: absolute; top: 0; bottom: 0; width: 9%; z-index: 3; pointer-events: none; }
-    .gallery::before { left: 0; background: linear-gradient(90deg, var(--white), rgba(255,255,255,0)); }
-    .gallery::after { right: 0; background: linear-gradient(270deg, var(--white), rgba(255,255,255,0)); }
+    .gallery::before, .gallery::after { content: ''; position: absolute; top: 0; bottom: 0; width: 8%; z-index: 3; pointer-events: none; background: rgba(255,255,255,0.6); }
+    .gallery::before { left: 0; }
+    .gallery::after { right: 0; }
     .gal-nav { position: absolute; top: 45%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.95); border: 1px solid var(--border); box-shadow: var(--sh); font-size: 1.5rem; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; transition: all .2s; }
     .gal-nav:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
     .gal-prev { left: 6px; }
@@ -1135,23 +1135,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 
-<!-- ── Project carousel (arrows + 4s auto-advance) ── -->
+<!-- ── Project carousel (arrows + 4s auto-advance, seamless loop) ── -->
 <script>
 (function () {
   var track = document.getElementById('galTrack');
   if (!track) return;
-  function step() {
-    var s = track.querySelector('.gal-slide');
-    return s ? s.getBoundingClientRect().width + 18 : 620;
+  var initial = track.querySelectorAll('.gal-slide');
+  if (!initial.length) return;
+  var n = initial.length;
+  // clone the first slide onto the end so the forward wrap is seamless
+  var clone = initial[0].cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  track.appendChild(clone);
+  function slides() { return track.querySelectorAll('.gal-slide'); }
+  function go(idx, smooth) {
+    var s = slides()[idx];
+    if (!s) return;
+    var left = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+    track.scrollTo({ left: left, behavior: smooth ? 'smooth' : 'auto' });
+  }
+  function nearest() {
+    var sl = slides(), c = track.scrollLeft + track.clientWidth / 2, best = 0, bd = Infinity;
+    for (var k = 0; k < sl.length; k++) {
+      var d = Math.abs(sl[k].offsetLeft + sl[k].offsetWidth / 2 - c);
+      if (d < bd) { bd = d; best = k; }
+    }
+    return best;
   }
   function next() {
-    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: step(), behavior: 'smooth' });
-    }
+    var i = nearest() + 1;
+    go(i, true);
+    if (i >= n) setTimeout(function () { go(0, false); }, 620); // clone -> real first, invisibly
   }
-  function prev() { track.scrollBy({ left: -step(), behavior: 'smooth' }); }
+  function prev() {
+    var i = nearest();
+    if (i <= 0) { go(n, false); requestAnimationFrame(function () { go(n - 1, true); }); }
+    else go(i - 1, true);
+  }
   var pn = document.querySelector('.gal-prev'), nx = document.querySelector('.gal-next');
   var timer = null;
   function start() { stop(); timer = setInterval(next, 4000); }
@@ -1161,6 +1181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   track.addEventListener('mouseenter', stop);
   track.addEventListener('mouseleave', start);
   track.addEventListener('touchstart', stop, { passive: true });
+  go(0, false);
   start();
 })();
 </script>
