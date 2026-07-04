@@ -129,29 +129,35 @@ module.exports = async (req, res) => {
   if (b.utm_campaign) custom[F.utm_campaign] = b.utm_campaign;
   if (b.utm_content) custom[F.utm_content] = b.utm_content;
 
+  const diag = { tokenPresent: !!PD_TOKEN, resendConfigured: !!RESEND_KEY, hasRaw, tier };
   try {
     const search = await pd('GET', '/v1/persons/search?term=' + encodeURIComponent(email) + '&fields=email&exact_match=true');
+    diag.searchStatus = search.status;
     const items = (search.json && search.json.data && search.json.data.items) || [];
     let personId = items.length ? items[0].item.id : null;
 
     if (personId) {
       const upd = Object.assign({}, custom);
       if (b.phone) upd.phone = [{ value: b.phone, primary: true }];
-      await pd('PUT', '/v1/persons/' + personId, upd);
+      const u = await pd('PUT', '/v1/persons/' + personId, upd);
+      diag.updateStatus = u.status;
     } else {
       const create = await pd('POST', '/v1/persons', Object.assign({
         name: b.name || email,
         email: [{ value: email, primary: true }],
       }, b.phone ? { phone: [{ value: b.phone, primary: true }] } : {}, custom));
+      diag.createStatus = create.status;
       personId = create.json && create.json.data ? create.json.data.id : null;
     }
+    diag.personId = personId;
 
     if (personId) {
       await pd('PUT', '/v1/persons/' + personId, { [F.external_id]: String(personId) });
     }
 
-    // Rich intake -> Pipedrive Note + email to Richman.
-    if (hasRaw && personId) {
+    // Rich intake (home form): write a Pipedrive Note if the person write succeeded,
+    // and email Richman REGARDLESS of Pipedrive so a lead is never silently lost.
+    if (hasRaw) {
       const wf = wellFormed(b);
       const rows = [
         ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (wf ? '' : ' - NEEDS MORE INFO')],
@@ -160,22 +166,30 @@ module.exports = async (req, res) => {
         ['Address', b.address], ['Scope', b.scope],
         ['Source', [b.utm_source, b.utm_medium, b.utm_campaign, b.utm_content].filter(Boolean).join(' / ') || 'direct'],
       ];
-      const noteHtml = '<b>Website lead form</b><br>' + rows.map((r) => '<b>' + esc(r[0]) + ':</b> ' + esc(r[1])).join('<br>');
-      await pd('POST', '/v1/notes', { person_id: personId, content: noteHtml });
-
+      if (personId) {
+        const noteHtml = '<b>Website lead form</b><br>' + rows.map((r) => '<b>' + esc(r[0]) + ':</b> ' + esc(r[1])).join('<br>');
+        const nt = await pd('POST', '/v1/notes', { person_id: personId, content: noteHtml });
+        diag.noteStatus = nt.status;
+      }
+      const crmLine = personId
+        ? 'Pipedrive person #' + personId + '.'
+        : 'WARNING: the Pipedrive write FAILED (search ' + diag.searchStatus + ' / create ' + diag.createStatus + ') - PIPEDRIVE_TOKEN is probably not set for this environment. The lead is captured in this email only.';
       const subj = 'New lead [' + (tier || '?').toUpperCase() + ']: ' + (b.name || email) + ' - ' + (b.address || '');
-      await sendEmail(subj,
+      const emailRes = await sendEmail(subj,
         '<h2 style="margin:0 0 8px">New website lead - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (wf ? '' : ' &middot; needs more info') + '</h2>'
         + '<table cellpadding="4" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">'
         + rows.slice(1).map((r) => '<tr><td style="color:#6B6560">' + esc(r[0]) + '</td><td><b>' + esc(r[1]) + '</b></td></tr>').join('')
-        + '</table><p style="font-family:Arial,sans-serif;font-size:13px;color:#6B6560">Pipedrive person #' + personId + '. Reply within one business day.</p>');
+        + '</table><p style="font-family:Arial,sans-serif;font-size:13px;color:#6B6560">' + esc(crmLine) + ' Reply within one business day.</p>');
+      diag.email = emailRes.skipped ? 'skipped(no RESEND_API_KEY)' : (emailRes.error ? 'error' : (emailRes.status || 'sent'));
     }
 
+    console.log('lead-capture', JSON.stringify(diag));
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({ ok: true, person_id: personId, tier: tier, score: scored.score }));
+    return res.end(JSON.stringify({ ok: true, person_id: personId, tier, score: scored.score, diag }));
   } catch (e) {
+    console.error('lead-capture error', String(e), JSON.stringify(diag));
     res.statusCode = 500;
-    return res.end(JSON.stringify({ ok: false, error: String(e) }));
+    return res.end(JSON.stringify({ ok: false, error: String(e), diag }));
   }
 };
