@@ -443,6 +443,8 @@
     .roi-card { background: #232320; border: 1px solid rgba(255,255,255,.08); border-top: 3px solid var(--muted); border-radius: var(--rlg); overflow: hidden; }
     .roi-row { display: flex; flex-direction: column; justify-content: center; padding: 9px 16px; }
     .roi-card .roi-row + .roi-row { border-top: 1px solid rgba(255,255,255,.06); }
+    .roi-legend { border-top: 3px solid transparent; }
+    .roi-legend .roi-row + .roi-row { border-top: 1px solid transparent; }
     .r-head  { min-height: 132px; justify-content: flex-end; padding-bottom: 16px; }
     .r-cost  { min-height: 56px; }
     .g-row   { min-height: 34px; justify-content: flex-end; }
@@ -474,7 +476,7 @@
     .roi-home .roi-v-big, .roi-home .roi-vsaved { color: #E6B84A; }
     .roi-duplex { border-top-color: #8DB63C; }
     .roi-duplex .roi-v-big, .roi-duplex .roi-vsaved { color: #B4D66A; }
-    .roi-fourplex { border-top-color: #3DAA84; box-shadow: 0 0 0 1px rgba(61,170,132,.35), 0 10px 44px rgba(45,139,110,.28); }
+    .roi-fourplex { border-color: rgba(61,170,132,.5); border-top-color: #3DAA84; box-shadow: 0 8px 40px rgba(45,139,110,.30); }
     .roi-fourplex .roi-v-big, .roi-fourplex .roi-vsaved { color: #5BE0B0; }
     .roi-qual { max-width: 760px; margin: 40px auto 0; text-align: center; font-size: .96rem; color: rgba(255,255,255,.66); line-height: 1.7; }
     .roi-illus { text-align: center; font-size: .72rem; color: rgba(255,255,255,.32); font-style: italic; margin-top: 14px; }
@@ -874,15 +876,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </defs>
         <line x1="100" y1="240" x2="882" y2="240" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
         <polygon points="882,240 872,235 872,245" fill="rgba(255,255,255,.35)"/>
-        <path d="M150,237 C 280,232 300,224 383,210 C 500,192 540,182 617,156 C 720,120 780,112 850,62" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="150" cy="237" r="8" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="150" y="221" fill="#E8776B" font-size="15.5" font-weight="800" text-anchor="middle">$2-4K</text>
-        <circle cx="383" cy="210" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="383" y="194" fill="#E6B84A" font-size="15.5" font-weight="800" text-anchor="middle">$15-40K</text>
-        <circle cx="617" cy="156" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="617" y="140" fill="#B4D66A" font-size="15.5" font-weight="800" text-anchor="middle">$40-110K</text>
-        <circle cx="850" cy="62" r="9.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="850" y="46" fill="#5BE0B0" font-size="17" font-weight="800" text-anchor="end">$75-250K</text>
+        <path d="M150,235 C 250,231 300,185 383,161 C 470,140 545,138 617,120 C 710,96 775,92 850,64" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="150" cy="235" r="8" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" text-anchor="middle">$2-4K</text>
+        <circle cx="383" cy="161" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="383" y="145" fill="#E6B84A" font-size="15.5" font-weight="800" text-anchor="middle">$25-65K</text>
+        <circle cx="617" cy="120" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="617" y="104" fill="#B4D66A" font-size="15.5" font-weight="800" text-anchor="middle">$40-95K</text>
+        <circle cx="850" cy="64" r="9.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" text-anchor="end">$65-140K</text>
         <g font-size="14.5" font-weight="700" text-anchor="middle">
           <text x="150" y="264" fill="#E8776B">New ADU</text>
           <text x="383" y="264" fill="#E6B84A">New home</text>
@@ -921,10 +923,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="roi-row g-row"></div>
           <div class="roi-row sp-typ"><span class="roi-vt">2-3 mo</span></div>
           <div class="roi-row sp-ours"><span class="roi-vo">~1 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">1-2 mo</span></div>
+          <div class="roi-row sp-saved"><span class="roi-vsaved">1-2 mo saved</span></div>
           <div class="roi-row g-row"></div>
           <div class="roi-row op-carry"><span class="roi-v">~$0/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$2K/mo</span></div>
+          <div class="roi-row op-rent"><span class="roi-v">~$2.2K/mo</span></div>
           <div class="roi-row op-exit"><span class="roi-v" style="color:rgba(255,255,255,.4)">n/a</span></div>
           <div class="roi-row r-value roi-payoff">
             <span class="roi-v-big">~$2-4K</span>
@@ -939,17 +941,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New home</span>
             <span class="roi-size">~2,000 sq ft</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$800K</span></div>
+          <div class="roi-row r-cost"><span class="roi-v">~$950K</span></div>
           <div class="roi-row g-row"></div>
           <div class="roi-row sp-typ"><span class="roi-vt">4-6 mo</span></div>
           <div class="roi-row sp-ours"><span class="roi-vo">~2 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">2-4 mo</span></div>
+          <div class="roi-row sp-saved"><span class="roi-vsaved">2-4 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$5K/mo</span></div>
+          <div class="roi-row op-carry"><span class="roi-v">~$7K/mo</span></div>
           <div class="roi-row op-rent"><span class="roi-v">~$5K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$6K/mo</span></div>
+          <div class="roi-row op-exit"><span class="roi-v">~$9K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$15-40K</span>
+            <span class="roi-v-big">~$25-65K</span>
             <span class="roi-note">We start to create real value for larger homes.</span>
           </div>
         </div>
@@ -961,17 +963,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New duplex</span>
             <span class="roi-size">~3,500 sq ft · 2 units</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$1.15M</span></div>
+          <div class="roi-row r-cost"><span class="roi-v">~$1.2M</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">6-9 mo</span></div>
+          <div class="roi-row sp-typ"><span class="roi-vt">5-7 mo</span></div>
           <div class="roi-row sp-ours"><span class="roi-vo">~2.5 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">3.5-6.5 mo</span></div>
+          <div class="roi-row sp-saved"><span class="roi-vsaved">2.5-4.5 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$9K/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$7.5K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$10K/mo</span></div>
+          <div class="roi-row op-carry"><span class="roi-v">~$8K/mo</span></div>
+          <div class="roi-row op-rent"><span class="roi-v">~$7K/mo</span></div>
+          <div class="roi-row op-exit"><span class="roi-v">~$13K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$40-110K</span>
+            <span class="roi-v-big">~$40-95K</span>
             <span class="roi-note">Our bread and butter.</span>
           </div>
         </div>
@@ -983,17 +985,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New fourplex</span>
             <span class="roi-size">~5,000 sq ft · 4 units</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$1.6M</span></div>
+          <div class="roi-row r-cost"><span class="roi-v">~$1.55M</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">8-12 mo</span></div>
+          <div class="roi-row sp-typ"><span class="roi-vt">6-8 mo</span></div>
           <div class="roi-row sp-ours"><span class="roi-vo">~3 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">5-9 mo</span></div>
+          <div class="roi-row sp-saved"><span class="roi-vsaved">3-5 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$13K/mo</span></div>
+          <div class="roi-row op-carry"><span class="roi-v">~$10K/mo</span></div>
           <div class="roi-row op-rent"><span class="roi-v">~$12K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$16K/mo</span></div>
+          <div class="roi-row op-exit"><span class="roi-v">~$18K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$75-250K</span>
+            <span class="roi-v-big">~$65-140K</span>
             <span class="roi-note">This is where we really shine.</span>
           </div>
         </div>
@@ -1002,7 +1004,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <p class="roi-qual">Right fit if you're levered, speed-motivated, and design-decisive. If it's a small, unlevered project - or you'd rather take months to sit with every decision - we're the wrong team, and that's fine.</p>
-    <p class="roi-illus">Illustrative, blending Los Angeles and Seattle construction, carry, and rent figures. Actual numbers vary by market, leverage, and exit.</p>
+    <p class="roi-illus">Illustrative, blended for a mid-range Los Angeles / Seattle infill market. Carry scales with land basis, not unit count - a premium-lot home can carry as much as a fourplex. Our timelines assume a clean site, a decisive owner, and standardized details. Actual figures vary widely by market, leverage, and exit.</p>
   </div>
 </section>
 
