@@ -337,108 +337,6 @@
     .path2-box h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
     .path2-box p { font-size: .88rem; color: var(--muted); line-height: 1.68; margin-bottom: 18px; }
 
-    /* ─── VALUE ──────────────────────────────────────────────── */
-    .val-sec { background: var(--dark); }
-    .val-layout {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
-    }
-    .val-left h2 {
-      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
-      font-weight: 800; color: #fff; line-height: 1.12;
-      letter-spacing: -.022em; margin-bottom: 12px;
-    }
-    .val-left > p { font-size: .88rem; color: rgba(255,255,255,.48); line-height: 1.7; margin-bottom: 24px; }
-
-    /* Compact stats grid  -  lives in left column */
-    .val-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-      border-radius: var(--r); overflow: hidden;
-    }
-    .val-block {
-      background: #232320; padding: 16px 14px;
-      border: 1px solid rgba(255,255,255,.06);
-      transition: background .2s;
-    }
-    .val-block:hover { background: #2a2a26; }
-    .val-stat {
-      font-size: 1.35rem; font-weight: 900; color: var(--gold-lt);
-      line-height: 1; margin-bottom: 4px; letter-spacing: -.02em;
-    }
-    .val-label {
-      font-size: .58rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--teal);
-      display: block; margin-bottom: 5px;
-    }
-    .val-block p { font-size: .73rem; color: rgba(255,255,255,.44); line-height: 1.55; }
-    .val-note { font-size: .68rem; color: rgba(255,255,255,.2); font-style: italic; margin-top: 10px; }
-
-    /* ── Inline cost chart  -  right column ── */
-    .cost-chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 36px;
-      border-bottom: 2px solid rgba(255,255,255,.1);
-    }
-    .cc-bar-col { display: flex; flex-direction: column; align-items: center; }
-    .cc-stacked {
-      width: 160px;
-      display: flex; flex-direction: column-reverse;
-      border-radius: 8px 8px 0 0; overflow: hidden;
-    }
-    .cc-seg {
-      width: 100%; min-height: 22px;
-      display: flex; align-items: center; justify-content: center;
-      padding: 2px 6px;
-      border-top: 1px solid rgba(0,0,0,.22);
-      overflow: hidden; transition: filter .15s;
-    }
-    .cc-seg:hover { filter: brightness(1.18); cursor: default; }
-    .cc-seg:first-child { border-top: none; }
-    .cc-seg-name {
-      font-size: 0.58rem; font-weight: 800;
-      letter-spacing: .07em; text-transform: uppercase;
-      color: rgba(255,255,255,.9); text-align: center;
-      white-space: nowrap; line-height: 1.3;
-    }
-    /* Consultant costs  -  red family */
-    .cc-arch  { background: #C0392B; }
-    .cc-str   { background: #A93226; }
-    .cc-civ   { background: #B03A2E; }
-    .cc-mep   { background: #922B21; }
-    .cc-est   { background: #7B241C; }
-    .cc-bid   { background: #6B1F18; }
-    /* Carrying & overhead  -  gold/amber family */
-    .cc-loan  { background: #6B4C00; }
-    .cc-time  { background: #9A7200; }
-    .cc-coord { background: #C9942B; }
-    .cc-tax   { background: #E6B84A; }
-    /* VS bar */
-    .cc-vs {
-      width: 160px; background: var(--teal);
-      border-radius: 8px 8px 0 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 3px; padding: 10px 8px;
-    }
-    .cc-vs-name {
-      font-size: 1.16rem; font-weight: 800;
-      letter-spacing: .04em; text-transform: uppercase;
-      color: rgba(255,255,255,.9); text-align: center;
-    }
-    .cc-vs-sub {
-      font-size: 0.54rem; color: rgba(255,255,255,.6);
-      text-align: center; line-height: 1.4;
-    }
-    @media (max-width: 860px) {
-      .val-layout { grid-template-columns: 1fr; gap: 36px; }
-      .cost-chart { justify-content: center; }
-    }
-    @media (max-width: 480px) {
-      .val-grid { grid-template-columns: 1fr 1fr; }
-      .cc-stacked, .cc-vs { width: 130px; }
-    }
-
     /* ─── METHOD ─────────────────────────────────────────────── */
     /* Scope / Services section  -  deep forest teal accent background */
     .meth-sec { background: #162F26; }
@@ -532,6 +430,40 @@
     @media (max-width: 720px) { .creds-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 400px) { .creds-grid { grid-template-columns: 1fr; } }
 
+    /* ─── ROI (value scales with project size) ───────────────── */
+    .roi-sec { background: var(--dark); }
+    .roi-sec .eyebrow { color: var(--gold); }
+    .roi-sec .sec-hd h2 { color: #fff; }
+    .roi-sec .sec-hd p { color: rgba(255,255,255,.6); }
+    .roi-curve { max-width: 900px; margin: 0 auto 46px; }
+    .roi-curve svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .roi-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; align-items: stretch; }
+    .roi-card { display: flex; flex-direction: column; background: #232320; border: 1px solid rgba(255,255,255,.08); border-top: 3px solid var(--muted); border-radius: var(--rlg); overflow: hidden; }
+    .roi-head { padding: 18px 18px 14px; }
+    .roi-scenario { display: block; font-size: 1.05rem; font-weight: 800; color: #fff; }
+    .roi-size { display: block; font-size: .76rem; color: rgba(255,255,255,.5); margin-top: 3px; }
+    .roi-cell { padding: 13px 18px; border-top: 1px solid rgba(255,255,255,.07); }
+    .roi-k { display: block; font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.42); margin-bottom: 6px; }
+    .roi-v { display: block; font-size: .92rem; font-weight: 700; color: rgba(255,255,255,.92); }
+    .roi-vs { font-weight: 600; color: rgba(255,255,255,.45); }
+    .roi-line { display: block; font-size: .84rem; color: rgba(255,255,255,.8); line-height: 1.55; }
+    .roi-or { display: block; font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.35); margin: 4px 0; }
+    .roi-payoff { margin-top: auto; border-top: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03); }
+    .roi-v-big { display: block; font-size: 1.45rem; font-weight: 900; letter-spacing: -.01em; }
+    .roi-note { display: block; font-size: .74rem; color: rgba(255,255,255,.5); margin-top: 7px; line-height: 1.45; }
+    .roi-adu { border-top-color: #C0392B; }
+    .roi-adu .roi-v-big { color: #E8776B; }
+    .roi-home { border-top-color: #C9942B; }
+    .roi-home .roi-v-big { color: #E6B84A; }
+    .roi-duplex { border-top-color: #2D8B6E; }
+    .roi-duplex .roi-v-big { color: #3DAA84; }
+    .roi-fourplex { border-top-color: #3DAA84; box-shadow: 0 0 0 1px rgba(61,170,132,.35), 0 10px 44px rgba(45,139,110,.28); }
+    .roi-fourplex .roi-v-big { color: #5BE0B0; }
+    .roi-qual { max-width: 720px; margin: 42px auto 0; text-align: center; font-size: .92rem; color: rgba(255,255,255,.64); line-height: 1.7; }
+    .roi-illus { text-align: center; font-size: .7rem; color: rgba(255,255,255,.3); font-style: italic; margin-top: 14px; }
+    @media (max-width: 860px) { .roi-cards { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .roi-cards { grid-template-columns: 1fr; } }
+
     /* ─── CTA ────────────────────────────────────────────────── */
     .cta-sec { background: var(--dark); }
     .cta-sec .eyebrow { color: var(--teal); }
@@ -597,38 +529,6 @@
     .byright-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .byright-chip { font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 99px; background: var(--white); border: 1px solid var(--border); color: var(--teal-dk); }
     .byright-chip b { color: var(--gold); font-weight: 800; }
-
-    /* ─── SPEED EXAMPLE (value section) ──────────────────────── */
-    .speed-example { margin-top: 44px; background: rgba(255,255,255,.04); border: 1px solid rgba(201,148,43,.28); border-radius: var(--rlg); padding: 28px 30px; }
-    .speed-example .se-eyebrow { font-size: .6rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-lt); display: block; margin-bottom: 12px; }
-    .speed-example h3 { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 14px; }
-    .speed-example p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.72; margin-bottom: 10px; }
-    .speed-example p b { color: rgba(255,255,255,.92); font-weight: 700; }
-    .speed-example .se-kicker { color: var(--gold-lt); font-weight: 700; font-style: italic; }
-    .speed-example .se-fine { font-size: .68rem; color: rgba(255,255,255,.3); font-style: italic; margin-top: 10px; margin-bottom: 0; }
-
-    /* ─── COST FIT + ALLEY ───────────────────────────────────── */
-    .fit-sec { background: var(--white); }
-    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
-    .fit-copy h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; line-height: 1.16; letter-spacing: -.02em; margin-bottom: 16px; }
-    .fit-copy > p { color: var(--muted); font-size: .92rem; line-height: 1.74; margin-bottom: 14px; }
-    .fit-copy p b { color: var(--dark); }
-    .fit-floor { margin-top: 18px; padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); font-size: .86rem; color: var(--dark); font-weight: 600; line-height: 1.5; }
-    .fit-floor span { color: var(--teal); font-weight: 800; }
-    .alley-label { font-size: .63rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 14px; }
-    .alley-list { display: flex; flex-direction: column; gap: 12px; }
-    .alley-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; display: flex; gap: 13px; align-items: flex-start; }
-    .alley-item .ai-ico { color: var(--teal); font-weight: 800; flex-shrink: 0; }
-    .alley-item p { font-size: .86rem; color: var(--dark); line-height: 1.55; margin: 0; }
-    .alley-note { font-size: .84rem; color: var(--muted); margin-top: 16px; }
-    .alley-note a { color: var(--teal); font-weight: 700; }
-    .fit-graph { background: var(--card); border: 1px solid var(--border); border-radius: var(--rlg); padding: 18px 20px 12px; box-shadow: var(--sh); align-self: stretch; }
-    .fit-graph svg { width: 100%; height: auto; display: block; font-family: 'Inter', sans-serif; }
-    .fit-graph .cap { font-size: .76rem; color: var(--muted); line-height: 1.5; margin-top: 8px; }
-    .alley-band { margin-top: 48px; }
-    .alley-list-h { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 14px; }
-    @media (max-width: 820px) { .fit-grid { grid-template-columns: 1fr; gap: 32px; } .alley-list-h { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .alley-list-h { grid-template-columns: 1fr; } }
 
     /* ─── PROJECT CONCEPT BADGE ──────────────────────────────── */
     .proj-badge { display: inline-block; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); background: rgba(201,148,43,.12); border: 1px solid rgba(201,148,43,.3); padding: 2px 8px; border-radius: 99px; margin-bottom: 7px; }
@@ -938,175 +838,159 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ VALUE ══ -->
-<section class="sec val-sec">
+<!-- ══════════════════════════════════════ ROI (value scales with size) ══ -->
+<section class="sec roi-sec" id="fit">
   <div class="container">
-    <div class="val-layout">
+    <div class="sec-hd">
+      <span class="eyebrow eyebrow-gold">What speed is worth</span>
+      <h2>The bigger the project, the more our speed is worth.</h2>
+      <p>Two things grow with the size of a project: what a month of delay costs you, and how far ahead of a fragmented team we finish. They multiply. On an ADU that's noise; on a duplex or fourplex, it's real money.</p>
+    </div>
 
-      <!-- Left 1/3: headline + compact stats -->
-      <div class="val-left">
-        <span class="eyebrow eyebrow-gold">What Speed Is Worth</span>
-        <h2>The fee pays for itself in carry you never spend.</h2>
-        <p>Every month before you submit is a month you carry the deal with nothing coming in. We compress the design and engineering that eats those months, so on anything with a loan running, the fee is a rounding error against what the wait costs.</p>
-        <div class="val-grid">
-          <div class="val-block">
-            <div class="val-stat">~1 Month</div>
-            <span class="val-label">To Permit-Ready</span>
-            <p>vs. the three to four months separate firms take to finish the drawings. The city's review clock is its own thing - that part we don't control.</p>
-          </div>
-          <div class="val-block">
-            <div class="val-stat">Carry</div>
-            <span class="val-label">You Stop Paying</span>
-            <p>Every month we cut is loan interest, taxes, and insurance you keep.</p>
-          </div>
-          <div class="val-block">
-            <div class="val-stat">Fixed</div>
-            <span class="val-label">Quoted Up Front</span>
-            <p>We price it before we start. The number is the number.</p>
-          </div>
-          <div class="val-block">
-            <div class="val-stat">One Team</div>
-            <span class="val-label">Nobody to Chase</span>
-            <p>Every discipline on one schedule. No date lost to a hand-off.</p>
-          </div>
+    <div class="roi-curve">
+      <svg viewBox="0 0 920 300" role="img" aria-label="The value Velocity Studio creates through speed rises steeply with project size: minimal for an ADU, sizable for a home, large for a duplex, and largest for a fourplex.">
+        <defs>
+          <linearGradient id="roiGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C0392B"/>
+            <stop offset="35%" stop-color="#C9942B"/>
+            <stop offset="68%" stop-color="#2D8B6E"/>
+            <stop offset="100%" stop-color="#5BE0B0"/>
+          </linearGradient>
+        </defs>
+        <text x="100" y="30" fill="rgba(255,255,255,.4)" font-size="11" font-weight="800" letter-spacing="1.5">VALUE WE CREATE THROUGH SPEED</text>
+        <line x1="100" y1="240" x2="882" y2="240" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+        <polygon points="882,240 872,235 872,245" fill="rgba(255,255,255,.35)"/>
+        <path d="M150,237 C 280,232 300,224 383,210 C 500,192 540,182 617,156 C 720,120 780,112 850,62" fill="none" stroke="url(#roiGrad)" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="150" cy="237" r="7" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="150" y="223" fill="#E8776B" font-size="12.5" font-weight="800" text-anchor="middle">$2-4K</text>
+        <circle cx="383" cy="210" r="7" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="383" y="196" fill="#E6B84A" font-size="12.5" font-weight="800" text-anchor="middle">$15-40K</text>
+        <circle cx="617" cy="156" r="7.5" fill="#2D8B6E" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="617" y="142" fill="#3DAA84" font-size="12.5" font-weight="800" text-anchor="middle">$40-110K</text>
+        <circle cx="850" cy="62" r="8.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="850" y="48" fill="#5BE0B0" font-size="13.5" font-weight="800" text-anchor="end">$75-250K</text>
+        <g font-size="12" font-weight="700" text-anchor="middle">
+          <text x="150" y="262" fill="#E8776B">New ADU</text>
+          <text x="383" y="262" fill="#E6B84A">New home</text>
+          <text x="617" y="262" fill="#3DAA84">New duplex</text>
+          <text x="850" y="262" fill="#5BE0B0">New fourplex</text>
+        </g>
+        <text x="490" y="288" fill="rgba(255,255,255,.35)" font-size="10.5" font-weight="800" letter-spacing="2" text-anchor="middle">PROJECT SIZE  →</text>
+      </svg>
+    </div>
+
+    <div class="roi-cards">
+
+      <div class="roi-card roi-adu">
+        <div class="roi-head">
+          <span class="roi-scenario">New ADU</span>
+          <span class="roi-size">~450 sq ft</span>
         </div>
-        <p class="val-note">Illustrative. Actual results vary by market, loan terms, and exit strategy.</p>
-      </div>
-
-      <!-- Right 2/3: cost chart -->
-      <div class="cost-chart">
-
-        <!-- Left bar: fragmented vendor stack (column-reverse: first child = bottom) -->
-        <div class="cc-bar-col">
-          <div class="cc-stacked">
-            <!-- Consultant costs  -  red family, bottom of stack -->
-            <div class="cc-seg cc-arch" style="height:70px"><span class="cc-seg-name">Architect</span></div>
-            <div class="cc-seg cc-str"  style="height:40px"><span class="cc-seg-name">Structural</span></div>
-            <div class="cc-seg cc-civ"  style="height:28px"><span class="cc-seg-name">Civil</span></div>
-            <div class="cc-seg cc-mep"  style="height:28px"><span class="cc-seg-name">MEP</span></div>
-            <div class="cc-seg cc-est"  style="height:22px"><span class="cc-seg-name">Estimator</span></div>
-            <div class="cc-seg cc-bid"  style="height:22px"><span class="cc-seg-name">Bid Mgr</span></div>
-            <!-- Carrying & overhead  -  gold family, top of stack -->
-            <div class="cc-seg cc-loan"  style="height:80px"><span class="cc-seg-name">Loan Interest</span></div>
-            <div class="cc-seg cc-time"  style="height:85px"><span class="cc-seg-name">Personal Time</span></div>
-            <div class="cc-seg cc-coord" style="height:30px"><span class="cc-seg-name">Coordination</span></div>
-            <div class="cc-seg cc-tax"   style="height:26px"><span class="cc-seg-name">Property Taxes</span></div>
-          </div>
+        <div class="roi-cell">
+          <span class="roi-k">Construction cost</span>
+          <span class="roi-v">~$250K</span>
         </div>
-
-        <!-- Right bar: Velocity Studio -->
-        <div class="cc-bar-col">
-          <div class="cc-vs" style="height:129px">
-            <span class="cc-vs-name">Velocity Studio</span>
-            <span class="cc-vs-sub">All disciplines.<br>One contract.</span>
-          </div>
+        <div class="roi-cell">
+          <span class="roi-k">Design + permit set</span>
+          <span class="roi-v">~1 mo <span class="roi-vs">vs 2-3 mo typical</span></span>
         </div>
+        <div class="roi-cell">
+          <span class="roi-k">A month of delay costs</span>
+          <span class="roi-line">Carry ~$0/mo</span>
+          <span class="roi-line">Rent forgone ~$2K/mo</span>
+        </div>
+        <div class="roi-cell roi-payoff">
+          <span class="roi-k">Value we create through speed</span>
+          <span class="roi-v-big">~$2-4K</span>
+          <span class="roi-note">~1-2 months saved. Honestly, we're overkill here - hire a smaller shop.</span>
+        </div>
+      </div>
 
+      <div class="roi-card roi-home">
+        <div class="roi-head">
+          <span class="roi-scenario">New home</span>
+          <span class="roi-size">~2,000 sq ft</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Construction cost</span>
+          <span class="roi-v">~$800K</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Design + permit set</span>
+          <span class="roi-v">~2 mo <span class="roi-vs">vs 4-6 mo typical</span></span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">A month of delay costs</span>
+          <span class="roi-line">Carry ~$5K/mo</span>
+          <span class="roi-or">then either</span>
+          <span class="roi-line">Rent forgone ~$5K/mo</span>
+          <span class="roi-line">or exit deferred ~$6K/mo</span>
+        </div>
+        <div class="roi-cell roi-payoff">
+          <span class="roi-k">Value we create through speed</span>
+          <span class="roi-v-big">~$15-40K</span>
+          <span class="roi-note">~2-4 months saved.</span>
+        </div>
+      </div>
+
+      <div class="roi-card roi-duplex">
+        <div class="roi-head">
+          <span class="roi-scenario">New duplex</span>
+          <span class="roi-size">~3,500 sq ft · 2 units</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Construction cost</span>
+          <span class="roi-v">~$1.15M</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Design + permit set</span>
+          <span class="roi-v">~2.5 mo <span class="roi-vs">vs 6-9 mo typical</span></span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">A month of delay costs</span>
+          <span class="roi-line">Carry ~$9K/mo</span>
+          <span class="roi-or">then either</span>
+          <span class="roi-line">Rent forgone ~$7.5K/mo</span>
+          <span class="roi-line">or exit deferred ~$10K/mo</span>
+        </div>
+        <div class="roi-cell roi-payoff">
+          <span class="roi-k">Value we create through speed</span>
+          <span class="roi-v-big">~$40-110K</span>
+          <span class="roi-note">~4-6 months saved.</span>
+        </div>
+      </div>
+
+      <div class="roi-card roi-fourplex">
+        <div class="roi-head">
+          <span class="roi-scenario">New fourplex</span>
+          <span class="roi-size">~5,000 sq ft · 4 units</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Construction cost</span>
+          <span class="roi-v">~$1.6M</span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">Design + permit set</span>
+          <span class="roi-v">~3 mo <span class="roi-vs">vs 8-12 mo typical</span></span>
+        </div>
+        <div class="roi-cell">
+          <span class="roi-k">A month of delay costs</span>
+          <span class="roi-line">Carry ~$13K/mo</span>
+          <span class="roi-or">then either</span>
+          <span class="roi-line">Rent forgone ~$12K/mo</span>
+          <span class="roi-line">or exit deferred ~$16K/mo</span>
+        </div>
+        <div class="roi-cell roi-payoff">
+          <span class="roi-k">Value we create through speed</span>
+          <span class="roi-v-big">~$75-250K</span>
+          <span class="roi-note">~5-9 months saved. This is our wheelhouse.</span>
+        </div>
       </div>
 
     </div>
 
-    <!-- Value of speed: sweet-spot worked example -->
-    <div class="speed-example">
-      <span class="se-eyebrow">What three months is worth</span>
-      <h3>A 4,200 sq ft duplex in Los Angeles.</h3>
-      <p>A typical firm quotes around <b>$45K</b> and takes about <b>four months</b> to get it to a permit-ready set. We quote around <b>$50K</b> and get there in about <b>one</b> - ready to submit three months sooner.</p>
-      <p>That is roughly <b>$5K more to take three months of carry off the deal.</b> On a project bleeding even $10-15K a month in loan interest, taxes, and insurance, that's <b>$30-45K you never spend</b> - before you count a sale or a lease-up that lands sooner.</p>
-      <p class="se-kicker">The extra fee isn't a cost. It's the cheapest month of carry in the whole deal.</p>
-      <p class="se-fine">Illustrative. Actual figures vary by market, loan terms, and exit strategy.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ COST FIT + ALLEY ══ -->
-<section class="sec fit-sec" id="fit">
-  <div class="container">
-    <div class="fit-grid">
-      <div class="fit-copy">
-        <span class="eyebrow">Where we fit</span>
-        <h2>Worth it the moment a project needs the full engineering stack.</h2>
-        <p>We staff more licensed professionals per project than most firms - architecture, structural, civil, MEP, landscape, and interiors, all in-house. On a small job that is overkill, and we will not be your cheapest bid.</p>
-        <p>The moment a project needs every discipline, the math flips. One team runs them all at once, so we come in faster and cheaper than a string of separate consultants. <b>And the bigger the project, the wider that gap gets.</b></p>
-        <div class="fit-floor">Most engagements run <span>$35K and up</span> - the point where one in-house A&amp;E team clearly beats stitching it together yourself.</div>
-      </div>
-      <div class="fit-graph">
-        <svg viewBox="0 0 900 500" role="img" aria-label="Fee versus project scope: a traditional team starts cheaper but rises steeply; Velocity Studio starts higher but stays flatter, crossing around a new-house-sized job near 35 thousand dollars.">
-          <!-- zone backgrounds -->
-          <rect x="90" y="55" width="385" height="375" fill="rgba(192,57,43,0.06)"/>
-          <rect x="475" y="55" width="385" height="375" fill="rgba(45,139,110,0.09)"/>
-          <!-- horizontal gridlines -->
-          <g stroke="#E0DAD0" stroke-width="1">
-            <line x1="90" y1="55" x2="860" y2="55"/>
-            <line x1="90" y1="148.8" x2="860" y2="148.8"/>
-            <line x1="90" y1="242.5" x2="860" y2="242.5"/>
-            <line x1="90" y1="336.3" x2="860" y2="336.3"/>
-          </g>
-          <!-- axes -->
-          <line x1="90" y1="50" x2="90" y2="430" stroke="#6B6560" stroke-width="1.5"/>
-          <line x1="90" y1="430" x2="872" y2="430" stroke="#6B6560" stroke-width="1.5"/>
-          <polygon points="872,430 862,425 862,435" fill="#6B6560"/>
-          <!-- y labels -->
-          <g fill="#6B6560" font-size="12" text-anchor="end">
-            <text x="82" y="44" font-weight="800" font-size="10" letter-spacing="1">FEE · $K</text>
-            <text x="82" y="59">80</text>
-            <text x="82" y="152.8">60</text>
-            <text x="82" y="246.5">40</text>
-            <text x="82" y="340.3">20</text>
-            <text x="82" y="433">0</text>
-          </g>
-          <!-- zone labels -->
-          <text x="150" y="86" fill="#C0392B" font-size="12.5" font-weight="800" letter-spacing="1">YOU PAY A LITTLE MORE</text>
-          <text x="150" y="103" fill="#6B6560" font-size="11.5">Speed can't compound yet</text>
-          <text x="505" y="74" fill="#1F6451" font-size="12.5" font-weight="800" letter-spacing="1">WE PULL AHEAD</text>
-          <text x="505" y="91" fill="#6B6560" font-size="11.5">More work per dollar, and faster</text>
-          <!-- crossover marker -->
-          <line x1="475" y1="120" x2="475" y2="430" stroke="#1F6451" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.55"/>
-          <!-- lines -->
-          <polyline points="90,392.5 860,139.4" fill="none" stroke="#C0392B" stroke-width="3"/>
-          <polyline points="90,289.4 860,242.5" fill="none" stroke="#2D8B6E" stroke-width="3.5"/>
-          <!-- crossover dot + label -->
-          <circle cx="475" cy="266" r="6.5" fill="#C9942B" stroke="#fff" stroke-width="2"/>
-          <text x="491" y="261" fill="#1F6451" font-size="15" font-weight="800">≈ $35K</text>
-          <text x="491" y="277" fill="#6B6560" font-size="11.5">a new house</text>
-          <!-- line end labels -->
-          <text x="852" y="129" fill="#C0392B" font-size="13.5" font-weight="800" text-anchor="end">Separate firms</text>
-          <text x="852" y="144" fill="#6B6560" font-size="10.5" text-anchor="end">optimized in isolation</text>
-          <text x="852" y="228" fill="#2D8B6E" font-size="13.5" font-weight="800" text-anchor="end">Velocity Studio</text>
-          <text x="852" y="243" fill="#6B6560" font-size="10.5" text-anchor="end">one team, offshore + AI leverage</text>
-          <!-- x ticks -->
-          <g stroke="#6B6560" stroke-width="1">
-            <line x1="136" y1="430" x2="136" y2="436"/>
-            <line x1="259" y1="430" x2="259" y2="436"/>
-            <line x1="383" y1="430" x2="383" y2="436"/>
-            <line x1="475" y1="430" x2="475" y2="436"/>
-            <line x1="629" y1="430" x2="629" y2="436"/>
-            <line x1="783" y1="430" x2="783" y2="436"/>
-          </g>
-          <!-- x tick labels -->
-          <g fill="#6B6560" font-size="11.5" text-anchor="middle">
-            <text x="136" y="450">Garage<tspan x="136" dy="13">conversion</tspan></text>
-            <text x="259" y="450">Backyard<tspan x="259" dy="13">ADU</tspan></text>
-            <text x="383" y="450">New<tspan x="383" dy="13">bungalow</tspan></text>
-            <text x="475" y="450" fill="#1F6451" font-weight="800">New house</text>
-            <text x="629" y="450">New<tspan x="629" dy="13">duplex</tspan></text>
-            <text x="783" y="450">Small<tspan x="783" dy="13">multi-family</tspan></text>
-          </g>
-          <text x="475" y="490" fill="#6B6560" font-size="11" font-weight="800" letter-spacing="2" text-anchor="middle">PROJECT SCOPE  →</text>
-        </svg>
-        <p class="cap">Illustrative. For the same project, a conventional team of separate firms starts cheaper but climbs steeply; we start higher and stay flatter. Past a new-house-sized job, you get more work per dollar - and it lands faster.</p>
-      </div>
-    </div>
-
-    <div class="alley-band">
-      <span class="alley-label">Right up our alley</span>
-      <div class="alley-list-h">
-        <div class="alley-item"><span class="ai-ico">→</span><p>Tear down a single-family home and put up two duplexes - ten bedrooms across the lot.</p></div>
-        <div class="alley-item"><span class="ai-ico">→</span><p>Add four two-bedroom units behind an existing California fourplex.</p></div>
-        <div class="alley-item"><span class="ai-ico">→</span><p>Build a 3,000 sq ft spec home for sale in a high-end neighborhood.</p></div>
-        <div class="alley-item"><span class="ai-ico">→</span><p>Take a raw parcel for a small ground-up development to a permit-ready set.</p></div>
-      </div>
-      <p class="alley-note">Not sure you fit? <a href="#contact">Send us the parcel</a> and we'll tell you straight.</p>
-    </div>
+    <p class="roi-qual">Right fit if you're levered, speed-motivated, and design-decisive. If it's a small, unlevered project - or you'd rather take months to sit with every decision - we're the wrong team, and that's fine.</p>
+    <p class="roi-illus">Illustrative, blending Los Angeles and Seattle construction, carry, and rent figures. Actual numbers vary by market, leverage, and exit.</p>
   </div>
 </section>
 
