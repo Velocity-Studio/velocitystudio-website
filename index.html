@@ -359,66 +359,25 @@
     .proof-sub { font-size: .88rem; font-weight: 700; color: var(--dark); margin: 44px 0 16px; }
     .proof-sub:first-of-type { margin-top: 0; }
 
-    /* Nationwide two-column */
-    .pw-nation-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 56px; align-items: center; margin-bottom: 64px;
-    }
-    .pw-nation-h2 {
-      font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800;
-      letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 18px; color: var(--dark);
-    }
-    .pw-nation-h2 span { color: var(--teal); }
-    .pw-nation-p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
-    .j-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
-    .pw-sub-block { margin-top: 26px; }
-    .pw-sub-label {
-      font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 10px;
-    }
-    .j-tag {
-      font-size: .69rem; font-weight: 600; padding: 5px 11px; border-radius: 99px;
-      background: rgba(45,139,110,0.08); border: 1px solid rgba(45,139,110,0.22);
-      color: var(--teal);
-    }
-    .j-tag-permit {
-      font-size: .69rem; font-weight: 600; padding: 5px 11px; border-radius: 99px;
-      background: rgba(201,148,43,0.10); border: 1px solid rgba(201,148,43,0.28);
-      color: var(--gold);
-    }
-    .pw-map-wrap {
-      background: #F0EDE6; border-radius: 12px; padding: 16px;
-      border: 1px solid var(--border);
-    }
-    .pw-map-wrap svg { width: 100%; display: block; }
-    .pw-map-legend { display: flex; gap: 20px; margin-top: 12px; justify-content: center; }
-    .pw-leg-item { display: flex; align-items: center; gap: 6px; font-size: .7rem; color: var(--muted); }
-    .pw-leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-    .pw-leg-lead   { background: rgba(45,139,110,0.45); border: 1px solid rgba(45,139,110,0.7); }
-    .pw-leg-active { background: #2D8B6E; border: 1px solid #1F6B52; }
-    @media (max-width: 860px) { .pw-nation-grid { grid-template-columns: 1fr; gap: 36px; } }
-
-    /* Project cards  -  light bg */
-    .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .proj-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-    .proj-img { aspect-ratio: 4/3; background: #1C2820; overflow: hidden; }
-    .proj-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .proj-img .img-placeholder { height: 100%; border-radius: 0; min-height: 140px; }
-    .proj-meta { padding: 16px 16px 18px; }
-    .proj-type { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 3px; }
-    .proj-name { font-size: .92rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
-    .proj-mkt  { font-size: .8rem; color: var(--muted); margin-bottom: 8px; }
-    .proj-scope { font-size: .7rem; font-weight: 600; color: var(--muted); }
-    @media (max-width: 720px) { .proj-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 440px) { .proj-grid { grid-template-columns: 1fr; } }
-
-    /* Hard permits  -  light bg */
-    .hard-box {
-      background: linear-gradient(135deg, #FDF9F0, #FAF5EA);
-      border: 1px solid rgba(201,148,43,.2);
-      border-radius: var(--rlg); padding: 28px 24px;
-    }
-    .hard-box p { font-size: .88rem; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    /* Project carousel */
+    .gallery { position: relative; }
+    .gal-track { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 14px; -webkit-overflow-scrolling: touch; }
+    .gal-track::-webkit-scrollbar { height: 8px; }
+    .gal-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    .gal-slide { flex: 0 0 auto; width: min(620px, 84%); scroll-snap-align: center; }
+    .gal-img { aspect-ratio: 3/2; border-radius: var(--rlg); overflow: hidden; background: #1C2820; box-shadow: var(--sh); }
+    .gal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gal-slide figcaption { display: flex; flex-direction: column; gap: 2px; padding: 14px 4px 0; }
+    .gal-type { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); }
+    .gal-name { font-size: 1.02rem; font-weight: 800; color: var(--dark); }
+    .gal-meta { font-size: .82rem; color: var(--muted); }
+    .gal-nav { position: absolute; top: 42%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.95); border: 1px solid var(--border); box-shadow: var(--sh); font-size: 1.5rem; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .gal-nav:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .gal-prev { left: -10px; }
+    .gal-next { right: -10px; }
+    .proof-locs { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-top: 28px; max-width: 900px; }
+    .proof-locs b { color: var(--dark); font-weight: 700; }
+    @media (max-width: 700px) { .gal-nav { display: none; } .gal-slide { width: 86%; } }
 
     /* Credentials  -  light bg */
     .creds-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 720px; margin: 0 auto; }
@@ -546,9 +505,6 @@
     .byright-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .byright-chip { font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 99px; background: var(--white); border: 1px solid var(--border); color: var(--teal-dk); }
     .byright-chip b { color: var(--gold); font-weight: 800; }
-
-    /* ─── PROJECT CONCEPT BADGE ──────────────────────────────── */
-    .proj-badge { display: inline-block; font-size: .56rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); background: rgba(201,148,43,.12); border: 1px solid rgba(201,148,43,.3); padding: 2px 8px; border-radius: 99px; margin-bottom: 7px; }
 
     /* ─── AUDIENCE PING-PONG ─────────────────────────────────── */
     .audience-sec { background: var(--bg); }
@@ -1012,155 +968,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec proof-sec" id="proof">
   <div class="container">
 
-    <!-- ── Nationwide headline + D3 map ── -->
-    <div class="pw-nation-grid">
-      <div>
-        <span class="eyebrow">Coverage</span>
-        <h2 class="pw-nation-h2">You pick the address.<br><span>We handle the permit.</span></h2>
-        <p class="pw-nation-p">Send us the site. We read the local code, map the permit path, and build the whole submittal, wherever it is.</p>
-
-        <div class="pw-sub-block">
-          <p class="pw-sub-label">Recent location experience</p>
-          <div class="j-cloud">
-            <span class="j-tag">Los Angeles, CA</span>
-            <span class="j-tag">North Caldwell, NJ</span>
-            <span class="j-tag">Maui, HI</span>
-            <span class="j-tag">Lake Tahoe, NV</span>
-            <span class="j-tag">Miami, FL</span>
-            <span class="j-tag">Austin, TX</span>
-            <span class="j-tag">Fairfield County, CT</span>
-            <span class="j-tag">Raleigh, NC</span>
-            <span class="j-tag">Portland, OR</span>
-            <span class="j-tag">Salt Lake City, UT</span>
-            <span class="j-tag">Boston, MA</span>
-            <span class="j-tag">Princeton, NJ</span>
-            <span class="j-tag">San Diego, CA</span>
-            <span class="j-tag">Atlanta, GA</span>
-            <span class="j-tag">Boise, ID</span>
-            <span class="j-tag">Virginia</span>
-            <span class="j-tag">Colorado</span>
-          </div>
-        </div>
-
-        <div class="pw-sub-block">
-          <p class="pw-sub-label">Permit types we handle</p>
-          <div class="j-cloud">
-            <span class="j-tag-permit">Building Permit</span>
-            <span class="j-tag-permit">Zoning / CUP</span>
-            <span class="j-tag-permit">Rezoning / PUD</span>
-            <span class="j-tag-permit">Grading &amp; Earthwork</span>
-            <span class="j-tag-permit">Stormwater / NPDES</span>
-            <span class="j-tag-permit">Fire &amp; Life Safety</span>
-            <span class="j-tag-permit">Historic Preservation</span>
-            <span class="j-tag-permit">Special Management Area (SMA)</span>
-            <span class="j-tag-permit">Wetlands &amp; Flood Hazard</span>
-            <span class="j-tag-permit">HVHZ / Hurricane Design</span>
-            <span class="j-tag-permit">Post-Fire Rebuild Compliance</span>
-            <span class="j-tag-permit">Title 24 / Energy Compliance</span>
-            <span class="j-tag-permit">Coastal Development</span>
-            <span class="j-tag-permit">Cultural Resources Review</span>
-            <span class="j-tag-permit">Public Works Approval</span>
-            <span class="j-tag-permit">HOA Architectural Review</span>
-            <span class="j-tag-permit">Hillside / Slope Review</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="pw-map-wrap">
-          <svg id="us-map" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet"></svg>
-          <div class="pw-map-legend">
-            <span class="pw-leg-item"><span class="pw-leg-dot pw-leg-lead"></span>Service Area</span>
-            <span class="pw-leg-item"><span class="pw-leg-dot pw-leg-active"></span>Active Project</span>
-          </div>
-        </div>
-      </div>
+    <div class="sec-hd">
+      <span class="eyebrow">Recent work</span>
+      <h2>We designed and engineered every one of these.</h2>
+      <p>Houses, gut renovations, and small multifamily - each taken end to end, from design through a stamped permit set, in the country's higher-end markets.</p>
     </div>
 
-    <!-- ── Project range ── -->
-    <p class="proof-sub">Multi-family infill and spec homes for builders who move - where speed to a permit-ready set is the whole game.</p>
-    <div class="proj-grid">
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/concept-fourplex-oxnard.jpg" alt="Fourplex infill concept, Oxnard, California"/>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-badge">Concept</div>
-          <div class="proj-type">Fourplex · Infill</div>
-          <div class="proj-name">Four 2-Bed Units</div>
-          <div class="proj-mkt">Oxnard, California</div>
-          <div class="proj-scope">Architecture · Structural · Civil · MEP</div>
-        </div>
+    <div class="gallery">
+      <button class="gal-nav gal-prev" type="button" aria-label="Previous project">&#8249;</button>
+      <div class="gal-track" id="galTrack">
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/palisades-ca-house-1800.jpg" alt="New house rendering in Palisades, California" loading="lazy"/></div>
+          <figcaption><span class="gal-type">House</span><span class="gal-name">Palisades, California</span><span class="gal-meta">1,800 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/tenafly-nj-house-10200.jpg" alt="Large new house rendering in Tenafly, New Jersey" loading="lazy"/></div>
+          <figcaption><span class="gal-type">House</span><span class="gal-name">Tenafly, New Jersey</span><span class="gal-meta">10,200 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/cambridge-ma-duplex-5600.jpg" alt="Duplex rendering in Cambridge, Massachusetts" loading="lazy"/></div>
+          <figcaption><span class="gal-type">Duplex</span><span class="gal-name">Cambridge, Massachusetts</span><span class="gal-meta">5,600 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/nashville-tn-house-7000.jpg" alt="Large new house rendering in Nashville, Tennessee" loading="lazy"/></div>
+          <figcaption><span class="gal-type">House</span><span class="gal-name">Nashville, Tennessee</span><span class="gal-meta">7,000 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/maui-hi-house-3800.jpg" alt="New house rendering in Maui, Hawaii" loading="lazy"/></div>
+          <figcaption><span class="gal-type">House</span><span class="gal-name">Maui, Hawaii</span><span class="gal-meta">3,800 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/gulfport-fl-house-3200.jpg" alt="New house rendering in Gulfport, Florida" loading="lazy"/></div>
+          <figcaption><span class="gal-type">House</span><span class="gal-name">Gulfport, Florida</span><span class="gal-meta">3,200 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/caldwell-nj-gutreno-3600.jpg" alt="Gut-renovation rendering in Caldwell, New Jersey" loading="lazy"/></div>
+          <figcaption><span class="gal-type">Gut renovation</span><span class="gal-name">Caldwell, New Jersey</span><span class="gal-meta">3,600 sq ft · design, engineering &amp; permitting</span></figcaption>
+        </figure>
       </div>
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/concept-fourplex-seattle.jpg" alt="Middle-housing fourplex concept, Seattle, Washington"/>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-badge">Concept</div>
-          <div class="proj-type">Middle Housing · Fourplex</div>
-          <div class="proj-name">By-Right Fourplex</div>
-          <div class="proj-mkt">Seattle, Washington</div>
-          <div class="proj-scope">Architecture · Structural · Civil · MEP</div>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/concept-duplex-la.jpg" alt="Upscale duplex concept, Los Angeles, California"/>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-badge">Concept</div>
-          <div class="proj-type">Duplex · For Sale</div>
-          <div class="proj-name">Two-Unit Infill</div>
-          <div class="proj-mkt">Los Angeles, California</div>
-          <div class="proj-scope">Architecture · Structural · MEP</div>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/rendering_1.jpg" alt="8 Maple Drive"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="img-placeholder" style="display:none; height:100%; border-radius:0; min-height:140px; background:linear-gradient(135deg,#1C2820,#243830);">
-            <div class="img-label"><span>🏠</span>Custom Residential · NJ</div>
-          </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-type">Custom Residential</div>
-          <div class="proj-name">8 Maple Drive</div>
-          <div class="proj-mkt">North Caldwell, New Jersey</div>
-          <div class="proj-scope">Architecture · Structural · MEP · Civil</div>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/rendering_2.jpg" alt="261 Orange Road"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="img-placeholder" style="display:none; height:100%; border-radius:0; min-height:140px; background:linear-gradient(135deg,#201C20,#302030);">
-            <div class="img-label"><span>🏠</span>Custom Residential · CA</div>
-          </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-type">Custom Residential</div>
-          <div class="proj-name">261 Orange Road</div>
-          <div class="proj-mkt">California</div>
-          <div class="proj-scope">Architecture · Structural · Civil</div>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-img">
-          <img src="images/rendering_3.jpg" alt="Maui"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="img-placeholder" style="display:none; height:100%; border-radius:0; min-height:140px; background:linear-gradient(135deg,#1C2018,#283028);">
-            <div class="img-label"><span>🌊</span>Custom Residential · HI</div>
-          </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-type">Custom Residential</div>
-          <div class="proj-name">5157 Lower Honoapiilani</div>
-          <div class="proj-mkt">Maui, Hawaii</div>
-          <div class="proj-scope">Architecture · Structural · MEP · SMA</div>
-        </div>
-      </div>
+      <button class="gal-nav gal-next" type="button" aria-label="Next project">&#8250;</button>
     </div>
+
+    <p class="proof-locs">Recent work in <b>Palisades, CA</b> · <b>Cambridge, MA</b> · <b>Tenafly, NJ</b> · <b>Nashville, TN</b> · <b>Maui, HI</b> · <b>Gulfport, FL</b> · <b>Caldwell, NJ</b>. We work nationwide, and we're the strongest fit where design and engineering carry a premium.</p>
 
     <!-- ── Licensed professionals ── -->
     <p class="proof-sub" style="margin-top:44px;">Licensed professionals on every permit set.</p>
@@ -1289,145 +1138,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 
-<!-- ── D3 + TopoJSON US map (Proof / Nationwide section) ── -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+<!-- ── Project carousel arrows ── -->
 <script>
-(function() {
-  const leads = [
-    // ACTIVE PROJECTS
-    { name:"Peter Evins",      city:"LA County, CA",        lat:34.05, lon:-118.24, active:true  },
-    { name:"William Fang",     city:"Austin, TX",            lat:30.27, lon:-97.74,  active:true  },
-    { name:"David Fallow",     city:"Portland, OR",          lat:45.52, lon:-122.68, active:true  },
-    { name:"Jose Aquino",      city:"Southern CA",           lat:34.10, lon:-117.30, active:true  },
-    { name:"John McCann",      city:"Miami, FL",             lat:25.77, lon:-80.19,  active:true  },
-    { name:"Manish Lulla",     city:"Fairfield County, CT",  lat:41.07, lon:-73.47,  active:true  },
-    { name:"Tom LaMont",       city:"Salt Lake City, UT",    lat:40.76, lon:-111.89, active:true  },
-    { name:"Dr. Steve Raj",    city:"Raleigh, NC",           lat:35.78, lon:-78.64,  active:true  },
-    { name:"Paul Fonbelle",    city:"Boston, MA",            lat:42.36, lon:-71.06,  active:true  },
-    // SERVICE AREA / INBOUND LEADS
-    { name:"Jesus Barros",     city:"Miami, FL",             lat:25.82, lon:-80.28,  active:false },
-    { name:"Ron Friedson",     city:"Northeast (TBD)",       lat:40.71, lon:-74.01,  active:false },
-    { name:"Samuel",           city:"Atlanta, GA",           lat:33.75, lon:-84.39,  active:false },
-    { name:"Mike",             city:"Miami, FL",             lat:25.90, lon:-80.12,  active:false },
-    { name:"Corey S",          city:"Gulf Coast, FL",        lat:27.95, lon:-82.46,  active:false },
-    { name:"Juan C",           city:"Durham, NC",            lat:35.99, lon:-78.90,  active:false },
-    { name:"Robert Elliott",   city:"Boise, ID",             lat:43.62, lon:-116.20, active:false },
-    { name:"Doug Ledson",      city:"Raleigh, NC",           lat:35.70, lon:-78.75,  active:false },
-    { name:"Vijay Chikkava",   city:"Virginia",              lat:37.54, lon:-77.43,  active:false },
-    { name:"Trent Macdonald",  city:"Colorado",              lat:39.74, lon:-104.98, active:false },
-    { name:"Luis Aguilar",     city:"Los Angeles, CA",       lat:34.15, lon:-118.35, active:false },
-    { name:"David Greenberg",  city:"Yucca Valley, CA",      lat:34.11, lon:-116.43, active:false },
-    { name:"Kamlesh Barvalia", city:"Princeton, NJ",         lat:40.36, lon:-74.66,  active:false },
-    { name:"Gabriel Bustos",   city:"San Diego, CA",         lat:32.72, lon:-117.16, active:false },
-    { name:"Sam Nasser",       city:"Lancaster County, SC",  lat:34.72, lon:-80.77,  active:false },
-    { name:"PJ Berijs",        city:"Los Angeles, CA",       lat:34.20, lon:-118.15, active:false },
-    { name:"Vivian Hoang",     city:"Sacramento, CA",        lat:38.58, lon:-121.49, active:false },
-    { name:"John Cramer",      city:"Long Island, NY",       lat:40.79, lon:-73.13,  active:false },
-    { name:"Jesse LoRe",       city:"SW Florida",            lat:26.97, lon:-82.05,  active:false },
-    { name:"Velocity Studio",  city:"Seattle, WA",           lat:47.60, lon:-122.33, active:false },
-    { name:"Velocity Studio",  city:"Las Vegas, NV",         lat:36.17, lon:-115.14, active:false },
-    { name:"Velocity Studio",  city:"Phoenix, AZ",           lat:33.45, lon:-112.07, active:false },
-    { name:"Velocity Studio",  city:"Albuquerque, NM",       lat:35.08, lon:-106.65, active:false },
-    { name:"Velocity Studio",  city:"Chicago, IL",           lat:41.88, lon:-87.63,  active:false },
-    { name:"Velocity Studio",  city:"Minneapolis, MN",       lat:44.98, lon:-93.27,  active:false },
-    { name:"Velocity Studio",  city:"Detroit, MI",           lat:42.33, lon:-83.05,  active:false },
-    { name:"Velocity Studio",  city:"Columbus, OH",          lat:39.96, lon:-82.99,  active:false },
-    { name:"Velocity Studio",  city:"Philadelphia, PA",      lat:39.95, lon:-75.16,  active:false },
-    { name:"Velocity Studio",  city:"Baltimore, MD",         lat:39.29, lon:-76.61,  active:false },
-    { name:"Velocity Studio",  city:"Nashville, TN",         lat:36.17, lon:-86.78,  active:false },
-    { name:"Velocity Studio",  city:"Kansas City, MO",       lat:39.10, lon:-94.58,  active:false },
-    { name:"Velocity Studio",  city:"New Orleans, LA",       lat:29.95, lon:-90.07,  active:false },
-    { name:"Velocity Studio",  city:"Honolulu, HI",          lat:21.31, lon:-157.86, active:false },
-    { name:"Velocity Studio",  city:"Billings, MT",          lat:45.78, lon:-108.50, active:false },
-    { name:"Velocity Studio",  city:"Omaha, NE",             lat:41.26, lon:-95.94,  active:false },
-    { name:"Velocity Studio",  city:"Oklahoma City, OK",     lat:35.47, lon:-97.52,  active:false },
-    { name:"Velocity Studio",  city:"Memphis, TN",           lat:35.15, lon:-90.05,  active:false },
-    { name:"Velocity Studio",  city:"Louisville, KY",        lat:38.25, lon:-85.76,  active:false },
-    { name:"Velocity Studio",  city:"Pittsburgh, PA",        lat:40.44, lon:-79.99,  active:false },
-  ];
-
-  const COLOR_LEAD    = 'rgba(45,139,110,0.50)';
-  const COLOR_LEAD_B  = 'rgba(45,139,110,0.80)';
-  const COLOR_ACTIVE  = '#2D8B6E';
-  const COLOR_ACTIVE_B = '#1F6B52';
-  const COLOR_STATE   = '#D8D4CC';
-  const COLOR_BORDER  = '#BEB9B0';
-
-  const svgEl = document.getElementById('us-map');
-  if (!svgEl) return;
-
-  const width = 960, height = 600;
-  const projection = d3.geoAlbersUsa().scale(1280).translate([width / 2, height / 2]);
-  const path = d3.geoPath().projection(projection);
-  const svg  = d3.select(svgEl);
-
-  fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
-    .then(r => r.json())
-    .then(us => {
-      const states = topojson.feature(us, us.objects.states);
-
-      svg.append('g')
-        .selectAll('path')
-        .data(states.features)
-        .join('path')
-        .attr('fill', COLOR_STATE)
-        .attr('stroke', COLOR_BORDER)
-        .attr('stroke-width', 0.8)
-        .attr('d', path);
-
-      svg.append('path')
-        .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
-        .attr('fill', 'none')
-        .attr('stroke', COLOR_BORDER)
-        .attr('stroke-width', 0.5)
-        .attr('d', path);
-
-      const sorted = [...leads].sort((a, b) => a.active - b.active);
-
-      const tooltip = d3.select('body').append('div')
-        .style('position', 'fixed')
-        .style('background', 'rgba(28,28,28,.95)')
-        .style('border', '1px solid rgba(45,139,110,.5)')
-        .style('border-radius', '8px')
-        .style('padding', '8px 12px')
-        .style('font-size', '.78rem')
-        .style('color', 'rgba(255,255,255,.9)')
-        .style('pointer-events', 'none')
-        .style('opacity', 0)
-        .style('transition', 'opacity .15s')
-        .style('z-index', '9999')
-        .style('white-space', 'nowrap');
-
-      svg.selectAll('circle')
-        .data(sorted)
-        .join('circle')
-        .each(function(d) {
-          const proj = projection([d.lon, d.lat]);
-          if (!proj) return;
-          d3.select(this)
-            .attr('cx', proj[0])
-            .attr('cy', proj[1])
-            .attr('r', d.active ? 6 : 4.5)
-            .attr('fill',   d.active ? COLOR_ACTIVE  : COLOR_LEAD)
-            .attr('stroke', d.active ? COLOR_ACTIVE_B : COLOR_LEAD_B)
-            .attr('stroke-width', d.active ? 1.5 : 1)
-            .style('cursor', 'pointer')
-            .on('mouseover', function(event) {
-              tooltip.html(d.name + '<br><span style="color:rgba(255,255,255,.5)">' + d.city + '</span>')
-                .style('opacity', 1);
-              d3.select(this).attr('r', d.active ? 8 : 6.5);
-            })
-            .on('mousemove', function(event) {
-              tooltip.style('left', (event.clientX + 14) + 'px').style('top', (event.clientY - 30) + 'px');
-            })
-            .on('mouseleave', function() {
-              tooltip.style('opacity', 0);
-              d3.select(this).attr('r', d.active ? 6 : 4.5);
-            });
-        });
-    })
-    .catch(err => console.warn('Map load failed:', err));
+(function () {
+  var track = document.getElementById('galTrack');
+  if (!track) return;
+  function step() {
+    var s = track.querySelector('.gal-slide');
+    return s ? s.getBoundingClientRect().width + 18 : 620;
+  }
+  var prev = document.querySelector('.gal-prev');
+  var next = document.querySelector('.gal-next');
+  if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
 })();
 </script>
 
