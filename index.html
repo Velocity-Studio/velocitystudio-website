@@ -356,7 +356,7 @@
     /* ─── PROOF / NATIONWIDE ─────────────────────────────────── */
     .proof-sec { background: var(--white); }
     .proof-sec .eyebrow { color: var(--teal); }
-    .proof-sub { font-size: .88rem; font-weight: 700; color: var(--dark); margin: 44px 0 16px; }
+    .proof-sub { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin: 44px 0 18px; text-align: center; }
     .proof-sub:first-of-type { margin-top: 0; }
 
     /* Project carousel */
@@ -364,20 +364,15 @@
     .gal-track { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 14px; -webkit-overflow-scrolling: touch; }
     .gal-track::-webkit-scrollbar { height: 8px; }
     .gal-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-    .gal-slide { flex: 0 0 auto; width: min(620px, 84%); scroll-snap-align: center; }
+    .gal-slide { flex: 0 0 auto; width: min(900px, 90%); scroll-snap-align: start; }
     .gal-img { aspect-ratio: 3/2; border-radius: var(--rlg); overflow: hidden; background: #1C2820; box-shadow: var(--sh); }
     .gal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gal-slide figcaption { display: flex; flex-direction: column; gap: 2px; padding: 14px 4px 0; }
-    .gal-type { font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); }
-    .gal-name { font-size: 1.02rem; font-weight: 800; color: var(--dark); }
-    .gal-meta { font-size: .82rem; color: var(--muted); }
-    .gal-nav { position: absolute; top: 42%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.95); border: 1px solid var(--border); box-shadow: var(--sh); font-size: 1.5rem; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .gal-cap { display: block; padding: 14px 4px 0; font-style: italic; font-weight: 400; font-size: .95rem; color: var(--muted); }
+    .gal-nav { position: absolute; top: 45%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.95); border: 1px solid var(--border); box-shadow: var(--sh); font-size: 1.5rem; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; transition: all .2s; }
     .gal-nav:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
     .gal-prev { left: -10px; }
     .gal-next { right: -10px; }
-    .proof-locs { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-top: 28px; max-width: 900px; }
-    .proof-locs b { color: var(--dark); font-weight: 700; }
-    @media (max-width: 700px) { .gal-nav { display: none; } .gal-slide { width: 86%; } }
+    @media (max-width: 700px) { .gal-nav { display: none; } .gal-slide { width: 88%; } }
 
     /* Credentials  -  light bg */
     .creds-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 720px; margin: 0 auto; }
@@ -970,46 +965,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="sec-hd">
       <span class="eyebrow">Recent work</span>
-      <h2>We designed and engineered every one of these.</h2>
-      <p>Houses, gut renovations, and small multifamily - each taken end to end, from design through a stamped permit set, in the country's higher-end markets.</p>
+      <h2>Design, engineering, and permitting across the U.S.</h2>
+      <p>California, Hawaii, Florida, New Jersey, Massachusetts, Tennessee, and everywhere else slow A&amp;E can drag down ROI by tens of thousands of dollars.</p>
     </div>
 
     <div class="gallery">
       <button class="gal-nav gal-prev" type="button" aria-label="Previous project">&#8249;</button>
       <div class="gal-track" id="galTrack">
         <figure class="gal-slide">
-          <div class="gal-img"><img src="images/projects/palisades-ca-house-1800.jpg" alt="New house rendering in Palisades, California" loading="lazy"/></div>
-          <figcaption><span class="gal-type">House</span><span class="gal-name">Palisades, California</span><span class="gal-meta">1,800 sq ft · design, engineering &amp; permitting</span></figcaption>
-        </figure>
-        <figure class="gal-slide">
-          <div class="gal-img"><img src="images/projects/tenafly-nj-house-10200.jpg" alt="Large new house rendering in Tenafly, New Jersey" loading="lazy"/></div>
-          <figcaption><span class="gal-type">House</span><span class="gal-name">Tenafly, New Jersey</span><span class="gal-meta">10,200 sq ft · design, engineering &amp; permitting</span></figcaption>
+          <div class="gal-img"><img src="images/projects/maui-hi-house-3800.jpg" alt="New house rendering in Maui, Hawaii" loading="lazy"/></div>
+          <figcaption class="gal-cap">Maui, HI - house - 3,800 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
           <div class="gal-img"><img src="images/projects/cambridge-ma-duplex-5600.jpg" alt="Duplex rendering in Cambridge, Massachusetts" loading="lazy"/></div>
-          <figcaption><span class="gal-type">Duplex</span><span class="gal-name">Cambridge, Massachusetts</span><span class="gal-meta">5,600 sq ft · design, engineering &amp; permitting</span></figcaption>
+          <figcaption class="gal-cap">Cambridge, MA - duplex - 5,600 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/palisades-ca-house-1800.jpg" alt="New house rendering in Palisades, California" loading="lazy"/></div>
+          <figcaption class="gal-cap">Palisades, CA - house - 1,800 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/tenafly-nj-house-10200.jpg" alt="Large new house rendering in Tenafly, New Jersey" loading="lazy"/></div>
+          <figcaption class="gal-cap">Tenafly, NJ - house - 10,200 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
           <div class="gal-img"><img src="images/projects/nashville-tn-house-7000.jpg" alt="Large new house rendering in Nashville, Tennessee" loading="lazy"/></div>
-          <figcaption><span class="gal-type">House</span><span class="gal-name">Nashville, Tennessee</span><span class="gal-meta">7,000 sq ft · design, engineering &amp; permitting</span></figcaption>
-        </figure>
-        <figure class="gal-slide">
-          <div class="gal-img"><img src="images/projects/maui-hi-house-3800.jpg" alt="New house rendering in Maui, Hawaii" loading="lazy"/></div>
-          <figcaption><span class="gal-type">House</span><span class="gal-name">Maui, Hawaii</span><span class="gal-meta">3,800 sq ft · design, engineering &amp; permitting</span></figcaption>
+          <figcaption class="gal-cap">Nashville, TN - house - 7,000 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
           <div class="gal-img"><img src="images/projects/gulfport-fl-house-3200.jpg" alt="New house rendering in Gulfport, Florida" loading="lazy"/></div>
-          <figcaption><span class="gal-type">House</span><span class="gal-name">Gulfport, Florida</span><span class="gal-meta">3,200 sq ft · design, engineering &amp; permitting</span></figcaption>
+          <figcaption class="gal-cap">Gulfport, FL - house - 3,200 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
           <div class="gal-img"><img src="images/projects/caldwell-nj-gutreno-3600.jpg" alt="Gut-renovation rendering in Caldwell, New Jersey" loading="lazy"/></div>
-          <figcaption><span class="gal-type">Gut renovation</span><span class="gal-name">Caldwell, New Jersey</span><span class="gal-meta">3,600 sq ft · design, engineering &amp; permitting</span></figcaption>
+          <figcaption class="gal-cap">Caldwell, NJ - gut renovation - 3,600 sq ft</figcaption>
         </figure>
       </div>
       <button class="gal-nav gal-next" type="button" aria-label="Next project">&#8250;</button>
     </div>
-
-    <p class="proof-locs">Recent work in <b>Palisades, CA</b> · <b>Cambridge, MA</b> · <b>Tenafly, NJ</b> · <b>Nashville, TN</b> · <b>Maui, HI</b> · <b>Gulfport, FL</b> · <b>Caldwell, NJ</b>. We work nationwide, and we're the strongest fit where design and engineering carry a premium.</p>
 
     <!-- ── Licensed professionals ── -->
     <p class="proof-sub" style="margin-top:44px;">Licensed professionals on every permit set.</p>
@@ -1027,10 +1020,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="cred-card">
         <div class="cred-name">Bryan Scott</div>
         <div class="cred-role">Architect &amp; Ops</div>
-        <div class="cred-badge">Licensed Architect<br>Tahoe / Nevada markets</div>
+        <div class="cred-badge">Licensed Architect</div>
       </div>
     </div>
-    <p class="cred-note">These licensed professionals lead a team of dozens of architects, engineers, and technicians spanning every discipline and jurisdiction - and no permit set leaves without one of their stamps.</p>
+    <p class="cred-note">These licensed professionals lead a team of architects, engineers, and technicians spanning every discipline and jurisdiction - and no permit set leaves without one of their stamps.</p>
 
   </div>
 </section>
@@ -1138,7 +1131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 
-<!-- ── Project carousel arrows ── -->
+<!-- ── Project carousel (arrows + 4s auto-advance) ── -->
 <script>
 (function () {
   var track = document.getElementById('galTrack');
@@ -1147,10 +1140,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var s = track.querySelector('.gal-slide');
     return s ? s.getBoundingClientRect().width + 18 : 620;
   }
-  var prev = document.querySelector('.gal-prev');
-  var next = document.querySelector('.gal-next');
-  if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-  if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  function next() {
+    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+  }
+  function prev() { track.scrollBy({ left: -step(), behavior: 'smooth' }); }
+  var pn = document.querySelector('.gal-prev'), nx = document.querySelector('.gal-next');
+  var timer = null;
+  function start() { stop(); timer = setInterval(next, 4000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  if (pn) pn.addEventListener('click', function () { prev(); start(); });
+  if (nx) nx.addEventListener('click', function () { next(); start(); });
+  track.addEventListener('mouseenter', stop);
+  track.addEventListener('mouseleave', start);
+  track.addEventListener('touchstart', stop, { passive: true });
+  start();
 })();
 </script>
 
