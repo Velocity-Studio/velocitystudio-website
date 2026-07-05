@@ -438,6 +438,27 @@
     .roi-fourplex .roi-v-big, .roi-fourplex .roi-vsaved { color: #5BE0B0; }
     .roi-qual { max-width: 760px; margin: 40px auto 0; text-align: center; font-size: .96rem; color: rgba(255,255,255,.66); line-height: 1.7; }
     .roi-illus { text-align: center; font-size: .72rem; color: rgba(255,255,255,.32); font-style: italic; margin-top: 14px; }
+    /* ROI mobile: 2x2 self-contained cards + larger graph text */
+    @media (max-width: 640px) {
+      .rc-val { font-size: 27px; }
+      .rc-x { font-size: 25px; }
+      .roi-matrix-wrap { overflow: visible; }
+      .roi-matrix { grid-template-columns: 1fr 1fr; gap: 12px; min-width: 0; }
+      .roi-legend { display: none; }
+      .roi-card .g-row { display: none; }
+      .roi-card .roi-row { min-height: 0; padding: 10px 12px; }
+      .roi-card .r-head { min-height: 0; padding: 14px 12px 12px; }
+      .roi-ico { height: 42px; }
+      .roi-ico svg { height: 40px; }
+      .roi-scenario { font-size: .98rem; }
+      .roi-size { font-size: .72rem; }
+      .roi-card .roi-row[data-k]::before { content: attr(data-k); display: block; font-size: .58rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.42); margin-bottom: 3px; }
+      .roi-v, .roi-vo { font-size: .9rem; }
+      .roi-vt { font-size: .84rem; }
+      .roi-vsaved { font-size: 1rem; }
+      .roi-v-big { font-size: 1.2rem; }
+      .roi-note { font-size: .72rem; }
+    }
 
     /* ─── QUALIFYING FORM (CTA) ──────────────────────────────── */
     .qual-card { background: #fff; border-radius: 16px; padding: 30px 26px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
@@ -591,7 +612,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
         <span class="nav-logo-text" style="display:none">Velocity <span>Studio</span></span>
       </a>
-      <a href="#contact" class="btn btn-teal" style="padding:10px 20px;font-size:.85rem;min-height:44px;">Book a Discovery Call</a>
+      <a href="#contact" class="btn btn-teal" style="padding:10px 20px;font-size:.85rem;min-height:44px;">Get your scope &amp; fee</a>
     </div>
   </div>
 </nav>
@@ -606,7 +627,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1>Great design that makes the deal <em>pencil</em>.</h1>
         <p class="hero-sub">Architecture, structural, civil, MEP, and permitting under one roof - and a stamped permit set in about a month, so you stop paying carry on a project that isn't moving.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn btn-teal btn-lg">Book a Discovery Call <span class="arr">→</span></a>
+          <a href="#contact" class="btn btn-teal btn-lg">Get your scope &amp; fee <span class="arr">→</span></a>
         </div>
         <p class="hero-micro">We respond within one business day · No commitment required</p>
       </div>
@@ -871,14 +892,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <polygon points="882,240 872,235 872,245" fill="rgba(255,255,255,.35)"/>
         <path d="M150,235 C 260,232 320,222 383,205 C 480,184 545,172 617,150 C 720,122 790,100 850,64" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
         <circle cx="150" cy="235" r="8" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" text-anchor="middle">+$2-4K</text>
+        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$2-4K</text>
         <circle cx="383" cy="205" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="383" y="189" fill="#E6B84A" font-size="15.5" font-weight="800" text-anchor="middle">+$25-65K</text>
+        <text x="383" y="189" fill="#E6B84A" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$25-65K</text>
         <circle cx="617" cy="150" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="617" y="134" fill="#B4D66A" font-size="15.5" font-weight="800" text-anchor="middle">+$40-95K</text>
+        <text x="617" y="134" fill="#B4D66A" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$40-95K</text>
         <circle cx="850" cy="64" r="9.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" text-anchor="end">+$65-140K</text>
-        <g font-size="14.5" font-weight="700" text-anchor="middle">
+        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" class="rc-val" text-anchor="end">+$65-140K</text>
+        <g class="rc-x" font-size="14.5" font-weight="700" text-anchor="middle">
           <text x="150" y="264" fill="#E8776B">New ADU</text>
           <text x="383" y="264" fill="#E6B84A">New home</text>
           <text x="617" y="264" fill="#B4D66A">New duplex</text>
@@ -893,15 +914,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Legend column -->
         <div class="roi-legend">
           <div class="roi-row r-head"></div>
-          <div class="roi-row r-cost"><span class="lbl">Construction cost</span></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="lbl">Construction cost</span></div>
           <div class="roi-row g-row"><span class="glbl">Speed to submit permit</span></div>
-          <div class="roi-row sp-typ"><span class="lbl-sm">Typical A&amp;E</span></div>
-          <div class="roi-row sp-ours"><span class="lbl-sm">Velocity Studio</span></div>
-          <div class="roi-row sp-saved"><span class="lbl">Months saved</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="lbl-sm">Typical A&amp;E</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="lbl-sm">Velocity Studio</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="lbl">Months saved</span></div>
           <div class="roi-row g-row"><span class="glbl">A month of delay costs</span></div>
-          <div class="roi-row op-carry"><span class="lbl-sm">Carry</span></div>
-          <div class="roi-row op-rent"><span class="lbl-sm">Rent forgone</span></div>
-          <div class="roi-row op-exit"><span class="lbl-sm">or exit deferred</span></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="lbl-sm">Carry</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="lbl-sm">Rent forgone</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="lbl-sm">or exit deferred</span></div>
           <div class="roi-row r-value"><span class="lbl">Value we create through speed</span></div>
         </div>
 
@@ -912,16 +933,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New ADU</span>
             <span class="roi-size">~450 sq ft</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$250K</span></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$250K</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">2-3 mo</span></div>
-          <div class="roi-row sp-ours"><span class="roi-vo">~1 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">1-2 mo saved</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">2-3 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~1 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">1-2 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$0/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$2.2K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v" style="color:rgba(255,255,255,.4)">n/a</span></div>
-          <div class="roi-row r-value roi-payoff">
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$0/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$2.2K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v" style="color:rgba(255,255,255,.4)">n/a</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
             <span class="roi-v-big">+$2-4K</span>
             <span class="roi-note">We're overkill - hire a smaller shop.</span>
           </div>
@@ -934,16 +955,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New home</span>
             <span class="roi-size">~2,000 sq ft</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$950K</span></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$950K</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">4-6 mo</span></div>
-          <div class="roi-row sp-ours"><span class="roi-vo">~2 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">2-4 mo saved</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">4-6 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~2 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">2-4 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$7K/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$5K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$9K/mo</span></div>
-          <div class="roi-row r-value roi-payoff">
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$7K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$5K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$9K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
             <span class="roi-v-big">+$25-65K</span>
             <span class="roi-note">We start to create real value for larger homes.</span>
           </div>
@@ -956,16 +977,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New duplex</span>
             <span class="roi-size">~3,500 sq ft · 2 units</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$1.2M</span></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$1.2M</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">5-7 mo</span></div>
-          <div class="roi-row sp-ours"><span class="roi-vo">~2.5 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">2.5-4.5 mo saved</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">5-7 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~2.5 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">2.5-4.5 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$8K/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$7K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$13K/mo</span></div>
-          <div class="roi-row r-value roi-payoff">
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$8K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$7K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$13K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
             <span class="roi-v-big">+$40-95K</span>
             <span class="roi-note">Our bread and butter.</span>
           </div>
@@ -978,16 +999,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="roi-scenario">New fourplex</span>
             <span class="roi-size">~5,000 sq ft · 4 units</span>
           </div>
-          <div class="roi-row r-cost"><span class="roi-v">~$1.55M</span></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$1.55M</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row sp-typ"><span class="roi-vt">6-8 mo</span></div>
-          <div class="roi-row sp-ours"><span class="roi-vo">~3 mo</span></div>
-          <div class="roi-row sp-saved"><span class="roi-vsaved">3-5 mo saved</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">6-8 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~3 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">3-5 mo saved</span></div>
           <div class="roi-row g-row"></div>
-          <div class="roi-row op-carry"><span class="roi-v">~$10K/mo</span></div>
-          <div class="roi-row op-rent"><span class="roi-v">~$12K/mo</span></div>
-          <div class="roi-row op-exit"><span class="roi-v">~$18K/mo</span></div>
-          <div class="roi-row r-value roi-payoff">
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$10K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$12K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$18K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
             <span class="roi-v-big">+$65-140K</span>
             <span class="roi-note">This is where we really shine.</span>
           </div>
@@ -1291,7 +1312,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="footer-tagline">Preconstruction at the speed of your capital.</div>
       </div>
       <nav class="footer-links">
-        <a href="#contact">Book a Discovery Call</a>
+        <a href="#contact">Get your scope &amp; fee</a>
       </nav>
     </div>
     <p class="footer-creds">Velocity Studio Architecture and Engineering, Inc. · Licensed Architects &amp; PE · Operating across the United States</p>
