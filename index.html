@@ -413,9 +413,9 @@
     .op-exit { min-height: 46px; }
     .r-value { min-height: 124px; justify-content: flex-start; padding-top: 15px; }
     .roi-legend .roi-row { align-items: flex-end; text-align: right; padding: 9px 4px 9px 0; }
-    .roi-legend .lbl { font-size: .84rem; font-weight: 700; color: rgba(255,255,255,.6); line-height: 1.35; }
-    .roi-legend .glbl { font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
-    .roi-legend .lbl-sm { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.5); line-height: 1.3; }
+    .roi-legend .lbl { font-size: .95rem; font-weight: 700; color: rgba(255,255,255,.6); line-height: 1.35; }
+    .roi-legend .glbl { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+    .roi-legend .lbl-sm { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.5); line-height: 1.3; }
     .roi-head { align-items: center; text-align: center; gap: 8px; }
     .roi-ico { height: 52px; display: flex; align-items: flex-end; }
     .roi-ico svg { height: 50px; width: auto; display: block; }
@@ -456,6 +456,9 @@
     .qual-field textarea { resize: vertical; min-height: 78px; line-height: 1.5; }
     .qual-field input::placeholder, .qual-field textarea::placeholder { color: rgba(28,28,28,.32); }
     .qual-field input:focus, .qual-field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
+    .qual-field select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
+    .qual-field select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
+    .qual-field select:required:invalid { color: rgba(28,28,28,.42); }
     .qual-options { display: flex; flex-direction: column; gap: 6px; }
     .qual-options-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     @media (max-width: 420px) { .qual-options-2col { grid-template-columns: 1fr; } }
@@ -479,7 +482,7 @@
       display: grid;
       grid-template-columns: 1fr 1.4fr;
       gap: 64px;
-      align-items: center;
+      align-items: start;
       max-width: 1080px;
       margin: 0 auto;
     }
@@ -864,15 +867,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </defs>
         <line x1="100" y1="240" x2="882" y2="240" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
         <polygon points="882,240 872,235 872,245" fill="rgba(255,255,255,.35)"/>
-        <path d="M150,235 C 250,231 300,185 383,161 C 470,140 545,138 617,120 C 710,96 775,92 850,64" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M150,235 C 260,232 320,222 383,205 C 480,184 545,172 617,150 C 720,122 790,100 850,64" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
         <circle cx="150" cy="235" r="8" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" text-anchor="middle">$2-4K</text>
-        <circle cx="383" cy="161" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="383" y="145" fill="#E6B84A" font-size="15.5" font-weight="800" text-anchor="middle">$25-65K</text>
-        <circle cx="617" cy="120" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="617" y="104" fill="#B4D66A" font-size="15.5" font-weight="800" text-anchor="middle">$40-95K</text>
+        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" text-anchor="middle">+$2-4K</text>
+        <circle cx="383" cy="205" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="383" y="189" fill="#E6B84A" font-size="15.5" font-weight="800" text-anchor="middle">+$25-65K</text>
+        <circle cx="617" cy="150" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="617" y="134" fill="#B4D66A" font-size="15.5" font-weight="800" text-anchor="middle">+$40-95K</text>
         <circle cx="850" cy="64" r="9.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
-        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" text-anchor="end">$65-140K</text>
+        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" text-anchor="end">+$65-140K</text>
         <g font-size="14.5" font-weight="700" text-anchor="middle">
           <text x="150" y="264" fill="#E8776B">New ADU</text>
           <text x="383" y="264" fill="#E6B84A">New home</text>
@@ -917,7 +920,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="roi-row op-rent"><span class="roi-v">~$2.2K/mo</span></div>
           <div class="roi-row op-exit"><span class="roi-v" style="color:rgba(255,255,255,.4)">n/a</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$2-4K</span>
+            <span class="roi-v-big">+$2-4K</span>
             <span class="roi-note">We're overkill - hire a smaller shop.</span>
           </div>
         </div>
@@ -939,7 +942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="roi-row op-rent"><span class="roi-v">~$5K/mo</span></div>
           <div class="roi-row op-exit"><span class="roi-v">~$9K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$25-65K</span>
+            <span class="roi-v-big">+$25-65K</span>
             <span class="roi-note">We start to create real value for larger homes.</span>
           </div>
         </div>
@@ -961,7 +964,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="roi-row op-rent"><span class="roi-v">~$7K/mo</span></div>
           <div class="roi-row op-exit"><span class="roi-v">~$13K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$40-95K</span>
+            <span class="roi-v-big">+$40-95K</span>
             <span class="roi-note">Our bread and butter.</span>
           </div>
         </div>
@@ -983,7 +986,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="roi-row op-rent"><span class="roi-v">~$12K/mo</span></div>
           <div class="roi-row op-exit"><span class="roi-v">~$18K/mo</span></div>
           <div class="roi-row r-value roi-payoff">
-            <span class="roi-v-big">~$65-140K</span>
+            <span class="roi-v-big">+$65-140K</span>
             <span class="roi-note">This is where we really shine.</span>
           </div>
         </div>
@@ -1105,50 +1108,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input id="qf-phone" type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required />
               </div>
             </div>
-            <fieldset class="qual-field" style="border:0;padding:0;margin:0;">
-              <legend class="qual-label">Which best describes you?</legend>
-              <div class="qual-options qual-options-2col">
-                <label class="qual-opt"><input type="radio" name="role" value="pure_developer" required><span>Developer</span></label>
-                <label class="qual-opt"><input type="radio" name="role" value="developer_gc"><span>Developer + GC</span></label>
-                <label class="qual-opt"><input type="radio" name="role" value="pure_gc"><span>General contractor</span></label>
-                <label class="qual-opt"><input type="radio" name="role" value="architect_engineer"><span>Architect / Engineer</span></label>
-                <label class="qual-opt"><input type="radio" name="role" value="homeowner"><span>Homeowner</span></label>
-                <label class="qual-opt"><input type="radio" name="role" value="other"><span>Other</span></label>
-              </div>
-            </fieldset>
-            <fieldset class="qual-field" style="border:0;padding:0;margin:0;">
-              <legend class="qual-label">Size of the project?</legend>
-              <div class="qual-size-group">
-                <div class="qual-group-label">Residential</div>
-                <div class="qual-options">
-                  <label class="qual-opt"><input type="radio" name="size" value="res_addition_adu" required><span>Addition / alteration / ADU</span></label>
-                  <label class="qual-opt"><input type="radio" name="size" value="res_new_1u"><span>New construction (1 unit)</span></label>
-                  <label class="qual-opt"><input type="radio" name="size" value="res_2_4u"><span>2 - 4 units</span></label>
-                  <label class="qual-opt"><input type="radio" name="size" value="res_5_9u"><span>5 - 9 units</span></label>
-                  <label class="qual-opt"><input type="radio" name="size" value="res_10_plus_u"><span>10+ units</span></label>
-                </div>
-              </div>
-              <div class="qual-size-group">
-                <div class="qual-group-label">Commercial</div>
-                <div class="qual-options">
-                  <label class="qual-opt"><input type="radio" name="size" value="com_lt_10k"><span>Under 10,000 sq ft</span></label>
-                  <label class="qual-opt"><input type="radio" name="size" value="com_gt_10k"><span>Over 10,000 sq ft</span></label>
-                </div>
-              </div>
-            </fieldset>
-            <fieldset class="qual-field" style="border:0;padding:0;margin:0;">
-              <legend class="qual-label">How soon to permit?</legend>
-              <div class="qual-options">
-                <label class="qual-opt"><input type="radio" name="urgency" value="behind_0_1" required><span>ASAP - already behind schedule</span></label>
-                <label class="qual-opt"><input type="radio" name="urgency" value="fast_1_3"><span>Fast - 1 to 3 months</span></label>
-                <label class="qual-opt"><input type="radio" name="urgency" value="regular_3_6"><span>Regular - 3 to 6 months</span></label>
-                <label class="qual-opt"><input type="radio" name="urgency" value="slow_6_12"><span>Slower - 6 to 12 months</span></label>
-                <label class="qual-opt"><input type="radio" name="urgency" value="brainstorm"><span>Just exploring - no timeline yet</span></label>
-              </div>
-            </fieldset>
             <div class="qual-field">
-              <label class="qual-label" for="qf-address">Project address</label>
-              <input id="qf-address" type="text" name="address" autocomplete="street-address" placeholder="38 Maple Court, Princeton, NJ 08540" required />
+              <label class="qual-label" for="qf-role">Which best describes you?</label>
+              <select id="qf-role" name="role" required>
+                <option value="" disabled selected>Select which best describes you</option>
+                <option value="pure_developer">Developer</option>
+                <option value="developer_gc">Developer + GC</option>
+                <option value="pure_gc">General contractor</option>
+                <option value="architect_engineer">Architect / Engineer</option>
+                <option value="homeowner">Homeowner</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="qual-field">
+              <label class="qual-label" for="qf-size">Size of the project?</label>
+              <select id="qf-size" name="size" required>
+                <option value="" disabled selected>Select project size</option>
+                <optgroup label="Residential">
+                  <option value="res_addition_adu">Addition / alteration / ADU</option>
+                  <option value="res_new_1u">New construction (1 unit)</option>
+                  <option value="res_2_4u">2 - 4 units</option>
+                  <option value="res_5_9u">5 - 9 units</option>
+                  <option value="res_10_plus_u">10+ units</option>
+                </optgroup>
+                <optgroup label="Commercial">
+                  <option value="com_lt_10k">Under 10,000 sq ft</option>
+                  <option value="com_gt_10k">Over 10,000 sq ft</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="qual-field">
+              <label class="qual-label" for="qf-urgency">How soon to permit?</label>
+              <select id="qf-urgency" name="urgency" required>
+                <option value="" disabled selected>Select your timeline</option>
+                <option value="behind_0_1">ASAP - already behind schedule</option>
+                <option value="fast_1_3">Fast - 1 to 3 months</option>
+                <option value="regular_3_6">Regular - 3 to 6 months</option>
+                <option value="slow_6_12">Slower - 6 to 12 months</option>
+                <option value="brainstorm">Just exploring - no timeline yet</option>
+              </select>
+            </div>
+            <div class="qual-field">
+              <label class="qual-label" for="qf-street">Project address</label>
+              <input id="qf-street" type="text" name="street" autocomplete="address-line1" placeholder="Street address" required />
+            </div>
+            <div class="qual-field-row">
+              <div class="qual-field"><input type="text" name="city" autocomplete="address-level2" placeholder="City" aria-label="City" required /></div>
+              <div class="qual-field"><input type="text" name="state" autocomplete="address-level1" placeholder="State" aria-label="State" required /></div>
             </div>
             <div class="qual-field">
               <label class="qual-label" for="qf-scope">One-line project scope</label>
@@ -1192,7 +1198,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var qualForm = document.getElementById('qualForm');
     if (!qualForm) return;
     var bar = document.getElementById('qualProgress');
-    var PF = ['name','email','phone','role','size','urgency','address','scope'];
+    var PF = ['name','email','phone','role','size','urgency','street','city','state','scope'];
     function progress() {
       var fd = new FormData(qualForm);
       var f = PF.filter(function (k) { return (fd.get(k) || '').trim() !== ''; }).length;
@@ -1204,12 +1210,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     qualForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var fd = new FormData(qualForm);
+      var street = (fd.get('street')||'').trim(), city = (fd.get('city')||'').trim(), state = (fd.get('state')||'').trim();
       var d = {
         name: (fd.get('name')||'').trim(), email: (fd.get('email')||'').trim(), phone: (fd.get('phone')||'').trim(),
         role: fd.get('role'), size: fd.get('size'), urgency: fd.get('urgency'),
-        address: (fd.get('address')||'').trim(), scope: (fd.get('scope')||'').trim()
+        address: [street, city, state].filter(Boolean).join(', '), scope: (fd.get('scope')||'').trim()
       };
-      if (!d.name || !d.email || !d.phone || !d.role || !d.size || !d.urgency || !d.address || !d.scope) { qualForm.reportValidity(); return; }
+      if (!d.name || !d.email || !d.phone || !d.role || !d.size || !d.urgency || !street || !city || !state || !d.scope) { qualForm.reportValidity(); return; }
       var score = leadScore(d), tier = leadTier(d);
 
       if (typeof fbq === 'function') fbq('track', 'Lead', { value: score, currency: 'USD', content_name: tier, content_category: d.role, project_size: d.size });
@@ -1281,9 +1288,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#contact">Book a Discovery Call</a>
       </nav>
     </div>
-    <p class="footer-creds">Velocity Studio LLC · Licensed Architects &amp; PE · Operating across the United States</p>
+    <p class="footer-creds">Velocity Studio Architecture and Engineering, Inc. · Licensed Architects &amp; PE · Operating across the United States</p>
     <div class="footer-bottom">
-      <span>© 2026 Velocity Studio LLC</span>
+      <span>© 2026 Velocity Studio Architecture and Engineering, Inc.</span>
     </div>
   </div>
 </footer>
