@@ -458,7 +458,9 @@
     .qual-field input:focus, .qual-field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
     .qual-field select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
     .qual-field select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
-    .qual-field select:required:invalid { color: rgba(28,28,28,.42); }
+    .qual-field select:required:invalid { color: rgba(28,28,28,.55); }
+    .qual-field select option { color: var(--dark); }
+    .qual-field select option[value=""] { color: rgba(28,28,28,.55); }
     .qual-options { display: flex; flex-direction: column; gap: 6px; }
     .qual-options-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     @media (max-width: 420px) { .qual-options-2col { grid-template-columns: 1fr; } }
@@ -1029,7 +1031,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <figcaption class="gal-cap">Tenafly, NJ - new build - 10,200 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
-          <div class="gal-img"><img src="images/projects/nashville-tn-house-7000.jpg" alt="Large new house rendering in Nashville, Tennessee" loading="lazy"/></div>
+          <div class="gal-img"><img src="images/projects/nashville-tn-newbuild-7000.jpg" alt="New build exterior rendering in Nashville, Tennessee" loading="lazy"/></div>
+          <figcaption class="gal-cap">Nashville, TN - new build - 7,000 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/nashville-tn-house-7000.jpg" alt="New build interior rendering in Nashville, Tennessee" loading="lazy"/></div>
           <figcaption class="gal-cap">Nashville, TN - new build - 7,000 sq ft</figcaption>
         </figure>
         <figure class="gal-slide">
