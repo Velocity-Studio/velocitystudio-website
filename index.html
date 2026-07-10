@@ -1103,99 +1103,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Left: copy -->
       <div class="cta-text">
         <span class="eyebrow">Start here</span>
-        <h2>Tell us about<br>your <em>project.</em></h2>
-        <p class="lead">We'll research your parcel and reply within one business day with a rough scope, fee, and timeline. Prefer to talk it through? You can grab a live time the moment you submit.</p>
+        <h2>Book a call about<br>your <em>project.</em></h2>
+        <p class="lead">15 minutes with Richman. We'll research your parcel before we meet and come back prepared with a rough scope, fee, and timeline.</p>
         <div class="cta-trust">
-          <span>We research your parcel before we reply</span>
-          <span>Rough scope, fee, and timeline within one business day</span>
+          <span>We research your parcel before the call</span>
+          <span>Rough scope, fee, and timeline ready to discuss</span>
           <span>Most engagements run $35K and up - a full licensed stack, priced for projects that need one</span>
           <span>No obligation</span>
         </div>
       </div>
 
-      <!-- Right: qualifying form (default) -> confirmation + Calendly (after submit) -->
+      <!-- Right: Calendly inline widget -->
       <div>
-        <div class="qual-card" id="ctaFormCard">
-          <span class="qual-eyebrow">60 seconds</span>
-          <h3 class="qual-title">Get your scope, fee &amp; timeline</h3>
-          <p class="qual-sub">A few details so we can research the parcel and come back prepared.</p>
-          <div class="qual-progress"><div class="qual-progress-bar" id="qualProgress"></div></div>
-          <form class="qual-form" id="qualForm" novalidate>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-name">Name</label>
-              <input id="qf-name" type="text" name="name" autocomplete="name" placeholder="Jordan Rivera" required />
-            </div>
-            <div class="qual-field-row">
-              <div class="qual-field">
-                <label class="qual-label" for="qf-email">Email</label>
-                <input id="qf-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
-              </div>
-              <div class="qual-field">
-                <label class="qual-label" for="qf-phone">Phone</label>
-                <input id="qf-phone" type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required />
-              </div>
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-role">Which best describes you?</label>
-              <select id="qf-role" name="role" required>
-                <option value="" disabled selected>Select which best describes you</option>
-                <option value="pure_developer">Developer</option>
-                <option value="developer_gc">Developer + GC</option>
-                <option value="pure_gc">General contractor</option>
-                <option value="architect_engineer">Architect / Engineer</option>
-                <option value="homeowner">Homeowner</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-size">Size of the project?</label>
-              <select id="qf-size" name="size" required>
-                <option value="" disabled selected>Select project size</option>
-                <optgroup label="Residential">
-                  <option value="res_addition_adu">Addition / alteration / ADU</option>
-                  <option value="res_new_1u">New construction (1 unit)</option>
-                  <option value="res_2_4u">2 - 4 units</option>
-                  <option value="res_5_9u">5 - 9 units</option>
-                  <option value="res_10_plus_u">10+ units</option>
-                </optgroup>
-                <optgroup label="Commercial">
-                  <option value="com_lt_10k">Under 10,000 sq ft</option>
-                  <option value="com_gt_10k">Over 10,000 sq ft</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-urgency">How soon to permit?</label>
-              <select id="qf-urgency" name="urgency" required>
-                <option value="" disabled selected>Select your timeline</option>
-                <option value="behind_0_1">ASAP - already behind schedule</option>
-                <option value="fast_1_3">Fast - 1 to 3 months</option>
-                <option value="regular_3_6">Regular - 3 to 6 months</option>
-                <option value="slow_6_12">Slower - 6 to 12 months</option>
-                <option value="brainstorm">Just exploring - no timeline yet</option>
-              </select>
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-street">Project address</label>
-              <input id="qf-street" type="text" name="street" autocomplete="address-line1" placeholder="Street address" required />
-            </div>
-            <div class="qual-field-row">
-              <div class="qual-field"><input type="text" name="city" autocomplete="address-level2" placeholder="City" aria-label="City" required /></div>
-              <div class="qual-field"><input type="text" name="state" autocomplete="address-level1" placeholder="State" aria-label="State" required /></div>
-            </div>
-            <div class="qual-field">
-              <label class="qual-label" for="qf-scope">One-line project scope</label>
-              <textarea id="qf-scope" name="scope" rows="3" placeholder="Tear down a 1,600 sf single-family and build an all-electric 3,200 sf duplex with roof decks and a detached two-car garage." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-teal btn-lg btn-full qual-submit">Send it over <span class="arr">→</span></button>
-            <p class="qual-footnote">We reply within one business day · No obligation</p>
-          </form>
-        </div>
-
-        <div class="qual-card qual-hidden" id="ctaConfirmCard">
-          <span class="qual-eyebrow">Got it</span>
-          <h3 class="qual-title">Thanks - we'll be in touch within one business day.</h3>
-          <p class="qual-sub">We'll research your parcel and reply in writing with a rough scope, fee, and timeline. If you'd rather talk it through sooner, grab a time with Richman below.</p>
+        <div class="qual-card">
+          <span class="qual-eyebrow">15 minutes</span>
+          <h3 class="qual-title">Pick a time that works</h3>
+          <p class="qual-sub">We'll ask a few quick questions about your project when you book.</p>
           <div class="calendly-inline-widget" id="ctaCalWidget"
                data-url="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1"
                style="min-width:280px;height:640px;min-height:640px;"></div>
@@ -1205,83 +1128,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
-<script>
-  // ─── Qualifying form (home CTA): score, capture, reveal Calendly ───
-  // Weights mirror api/lead-capture.js, which recomputes the score authoritatively.
-  var QW = {
-    role:    { pure_developer:30, developer_gc:30, pure_gc:22, architect_engineer:28, homeowner:10, other:5 },
-    size:    { res_addition_adu:4, res_new_1u:20, res_2_4u:32, res_5_9u:34, res_10_plus_u:30, com_lt_10k:20, com_gt_10k:24 },
-    urgency: { behind_0_1:12, fast_1_3:10, regular_3_6:6, slow_6_12:2, brainstorm:0 }
-  };
-  function leadScore(d) { return (QW.role[d.role]||0) + (QW.size[d.size]||0) + (QW.urgency[d.urgency]||0); }
-  function leadTier(d) {
-    var s = leadScore(d);
-    if (d.size === 'res_addition_adu' || d.role === 'other') return s >= 34 ? 'mid' : 'low'; // ADU / other never "high"
-    if (s >= 58) return 'high';
-    if (s >= 34) return 'mid';
-    return 'low';
-  }
-  (function () {
-    var qualForm = document.getElementById('qualForm');
-    if (!qualForm) return;
-    var bar = document.getElementById('qualProgress');
-    var PF = ['name','email','phone','role','size','urgency','street','city','state','scope'];
-    function progress() {
-      var fd = new FormData(qualForm);
-      var f = PF.filter(function (k) { return (fd.get(k) || '').trim() !== ''; }).length;
-      if (bar) bar.style.width = (f / PF.length * 100) + '%';
-    }
-    qualForm.addEventListener('input', progress);
-    qualForm.addEventListener('change', progress);
-
-    qualForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fd = new FormData(qualForm);
-      var street = (fd.get('street')||'').trim(), city = (fd.get('city')||'').trim(), state = (fd.get('state')||'').trim();
-      var d = {
-        name: (fd.get('name')||'').trim(), email: (fd.get('email')||'').trim(), phone: (fd.get('phone')||'').trim(),
-        role: fd.get('role'), size: fd.get('size'), urgency: fd.get('urgency'),
-        address: [street, city, state].filter(Boolean).join(', '), scope: (fd.get('scope')||'').trim()
-      };
-      if (!d.name || !d.email || !d.phone || !d.role || !d.size || !d.urgency || !street || !city || !state || !d.scope) { qualForm.reportValidity(); return; }
-      var score = leadScore(d), tier = leadTier(d);
-
-      if (typeof fbq === 'function') fbq('track', 'Lead', { value: score, currency: 'USD', content_name: tier, content_category: d.role, project_size: d.size });
-      if (typeof gtag === 'function') gtag('event', 'qualifying_form_submit', { lead_score: score, lead_tier: tier, role: d.role, project_size: d.size, urgency: d.urgency });
-
-      var getCookie = function (n) { return (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || ''; };
-      var fbc = getCookie('_fbc');
-      if (!fbc) { var fid = new URLSearchParams(location.search).get('fbclid'); if (fid) fbc = 'fb.1.' + Date.now() + '.' + fid; }
-      var attr = window.vsAttribution ? window.vsAttribution() : {};
-      fetch('/api/lead-capture', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-        body: JSON.stringify({
-          name: d.name, email: d.email, phone: d.phone, role: d.role, size: d.size, urgency: d.urgency,
-          address: d.address, scope: d.scope, lead_quality: tier, lead_score: score,
-          fbp: getCookie('_fbp'), fbc: fbc, lead_created_at: String(Math.floor(Date.now() / 1000)),
-          utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '', utm_content: attr.utm_content || ''
-        })
-      }).catch(function () {});
-
-      var calUrl = 'https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1'
-        + '&name=' + encodeURIComponent(d.name) + '&email=' + encodeURIComponent(d.email)
-        + '&a1=' + encodeURIComponent(d.address) + '&a2=' + encodeURIComponent(d.scope)
-        + '&utm_source=' + encodeURIComponent(attr.utm_source || 'home_form')
-        + '&utm_medium=' + encodeURIComponent(attr.utm_medium || ('score_' + tier))
-        + '&utm_content=' + encodeURIComponent(attr.utm_content || (d.role + '|' + d.size))
-        + '&utm_term=' + encodeURIComponent('score_' + tier + '|' + d.role + '|' + d.size + '|' + d.urgency);
-      var cw = document.getElementById('ctaCalWidget');
-      if (cw) { cw.dataset.url = calUrl; if (window.Calendly && Calendly.initInlineWidget) { cw.innerHTML = ''; Calendly.initInlineWidget({ url: calUrl, parentElement: cw }); } }
-
-      document.getElementById('ctaFormCard').classList.add('qual-hidden');
-      var cc = document.getElementById('ctaConfirmCard');
-      cc.classList.remove('qual-hidden'); cc.classList.add('qual-fade-in');
-      setTimeout(function () { cc.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
-    });
-  })();
-</script>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
+  // Pass UTM params from the page URL through to the Calendly widget.
+  (function () {
+    var attr = window.vsAttribution ? window.vsAttribution() : {};
+    var params = new URLSearchParams(location.search);
+    var utms = {
+      utm_source:   attr.utm_source   || params.get('utm_source')   || '',
+      utm_medium:   attr.utm_medium   || params.get('utm_medium')   || '',
+      utm_campaign: attr.utm_campaign || params.get('utm_campaign') || '',
+      utm_content:  attr.utm_content  || params.get('utm_content')  || '',
+    };
+    var hasUtm = Object.values(utms).some(function (v) { return v; });
+    if (hasUtm) {
+      var cw = document.getElementById('ctaCalWidget');
+      if (cw) {
+        var extra = Object.keys(utms).filter(function (k) { return utms[k]; })
+          .map(function (k) { return k + '=' + encodeURIComponent(utms[k]); }).join('&');
+        cw.dataset.url = cw.dataset.url + '&' + extra;
+      }
+    }
+  })();
+
   // Auto-resize the Calendly inline widget to its content height,
   // eliminating internal scrolling on mobile.
   // Also fires a Meta Pixel 'Schedule' conversion event when a booking is completed.
@@ -1295,9 +1164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
     if (e.data.event === 'calendly.event_scheduled') {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Schedule');
-      }
+      if (typeof fbq === 'function') fbq('track', 'Schedule');
     }
   });
 </script>
