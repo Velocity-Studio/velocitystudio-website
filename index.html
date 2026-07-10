@@ -1164,7 +1164,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
     if (e.data.event === 'calendly.event_scheduled') {
-      if (typeof fbq === 'function') fbq('track', 'Schedule');
+      if (typeof fbq === 'function') {
+        fbq('track', 'Schedule');
+        fbq('track', 'Lead');
+      }
+      if (typeof gtag === 'function') gtag('event', 'calendly_booking_completed');
+      // Backfill fbp/fbc onto the Pipedrive Person so CAPI has full match signal.
+      var inviteeUri = e.data.payload && e.data.payload.invitee && e.data.payload.invitee.uri;
+      if (inviteeUri) {
+        var getCookie = function (n) { return (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || ''; };
+        var fbp = getCookie('_fbp');
+        var fbc = getCookie('_fbc');
+        if (!fbc) { var fid = new URLSearchParams(location.search).get('fbclid'); if (fid) fbc = 'fb.1.' + Date.now() + '.' + fid; }
+        var attr = window.vsAttribution ? window.vsAttribution() : {};
+        fetch('/api/attribution', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+          body: JSON.stringify({
+            invitee_uri: inviteeUri, fbp: fbp, fbc: fbc,
+            utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '',
+            utm_campaign: attr.utm_campaign || '', utm_content: attr.utm_content || '',
+          })
+        }).catch(function () {});
+      }
     }
   });
 </script>

@@ -126,8 +126,9 @@ module.exports = async (req, res) => {
   const email = (person.email && person.email[0] && person.email[0].value) || '';
   const phone = (person.phone && person.phone[0] && person.phone[0].value) || '';
 
-  // Spec filtering: only send Meta-attributable leads (fbp or fbc present).
-  if (!fbp && !fbc) { res.statusCode = 200; return res.end(JSON.stringify({ ok: true, skipped: 'not meta-attributable' })); }
+  // Send for all leads. When fbp/fbc are absent (Calendly-originated leads),
+  // CAPI falls back to email/phone matching. The /api/attribution endpoint
+  // attempts to backfill fbp/fbc onto the Person shortly after booking.
 
   // Build user_data.
   const user_data = {};
