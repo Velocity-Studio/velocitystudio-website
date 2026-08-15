@@ -40,8 +40,18 @@ const D = {
   utm_medium:   '9d73b4d3f363783ac293fb07d8565581dff9bbe8',
   utm_campaign: '4c3ed4f23bda7bcf3fc6d64fa1a1b699d87f6f96',
   utm_content:  'b36f49b59395ce423975d33fc9e75d1f16ad5d36',
+  resolved_outcome: 'b8d4eca216e7dd51d1110a9c2ff3c9ef63666bc4',
 };
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+
+// Lead-scoring Person fields (see src/utils/pipedrive.js SCORING_FIELDS in the
+// secretary repo — kept in sync manually since this is a separate deploy).
+// initial_quality_score: 1-10, hand-entered right after the discovery call.
+// lead_value_score: $ value meant to drive the CAPI event value below, once a
+// webhook computes it from initial_quality_score via the convex lookup table —
+// NOT wired yet, pending calibration against confirmed real outcomes.
+P.initial_quality_score = '68ff1c1b8c0625001376b6208be2cd59bf96445f';
+P.lead_value_score      = 'f8a7f35786ffa4c51c6d5b488129dcfd6e8e188d';
 
 const sha = (v) => crypto.createHash('sha256').update(String(v).trim().toLowerCase()).digest('hex');
 
