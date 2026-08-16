@@ -163,23 +163,31 @@ async function sendCapiEvent(eventName, value, person) {
 async function handlePersonEvent(current, previous, res) {
   const currScore = current[P.initial_quality_score];
   const prevScore = previous[P.initial_quality_score];
+  console.log('[pd-meta-webhook] person event. id=%s currScore=%o prevScore=%o keys=%s',
+    current.id, currScore, prevScore, Object.keys(current).slice(0, 40).join(','));
+
   if (currScore == null || String(currScore) === String(prevScore)) {
+    console.log('[pd-meta-webhook] skip: no quality-score change');
     res.statusCode = 200;
     return res.end(JSON.stringify({ ok: true, skipped: 'no quality-score change' }));
   }
 
   const value = scoreToValue(currScore);
   if (value == null) {
+    console.log('[pd-meta-webhook] skip: unparseable score', currScore);
     res.statusCode = 200;
     return res.end(JSON.stringify({ ok: true, skipped: 'unparseable score: ' + currScore }));
   }
+  console.log('[pd-meta-webhook] computed value=%d for score=%s, sending LeadQualityScored', value, currScore);
 
   // Write lead_value_score first — this PUT will itself trigger another
   // person.updated webhook call, but that call won't touch
   // initial_quality_score, so the guard above makes it a no-op. No loop.
-  await pd('PUT', '/v1/persons/' + current.id, { [P.lead_value_score]: value });
+  const putResult = await pd('PUT', '/v1/persons/' + current.id, { [P.lead_value_score]: value });
+  console.log('[pd-meta-webhook] lead_value_score PUT result:', JSON.stringify(putResult).slice(0, 300));
 
   const result = await sendCapiEvent('LeadQualityScored', value, current);
+  console.log('[pd-meta-webhook] CAPI send result:', JSON.stringify(result).slice(0, 500));
   res.statusCode = result.ok ? 200 : 502;
   return res.end(JSON.stringify({ ok: result.ok, event: 'LeadQualityScored', value, meta: result.meta }));
 }
@@ -198,6 +206,10 @@ async function handleDealEvent(current, previous, res) {
   else if (becameLost)        { eventName = 'LeadQualityScored'; } // value forced to 0 below
   else if (enteredTerms)      { eventName = 'TermsAgreed';   needsPersonValue = true; }
   else if (enteredQualified)  { eventName = 'QualifiedLead'; needsPersonValue = true; }
+
+  console.log('[pd-meta-webhook] deal event. id=%s stage %s->%s status %s->%s outcome %s->%s decided=%s',
+    current.id, previous.stage_id, current.stage_id, previous.status, current.status,
+    previous[D.resolved_outcome], current[D.resolved_outcome], eventName);
 
   if (!eventName) {
     res.statusCode = 200;
@@ -260,6 +272,9 @@ module.exports = async (req, res) => {
   const current = b.current || b.data || {};
   const previous = b.previous || {};
   const object = (b.meta && b.meta.object) || (typeof b.event === 'string' ? b.event.split('.')[1] : null);
+
+  console.log('[pd-meta-webhook] received. object=%s event=%s test_code_set=%s meta=%o',
+    object, b.event, !!TEST_CODE, b.meta);
 
   try {
     if (object === 'person') return await handlePersonEvent(current, previous, res);
