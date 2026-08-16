@@ -168,7 +168,7 @@ module.exports = async (req, res) => {
       ];
       if (personId) {
         const noteHtml = '<b>Website lead form</b><br>' + rows.map((r) => '<b>' + esc(r[0]) + ':</b> ' + esc(r[1])).join('<br>');
-        const nt = await pd('POST', '/v1/notes', { person_id: personId, content: noteHtml });
+        const nt = await pd('POST', '/v1/notes', { person_id: personId, content: noteHtml, pinned_to_person_flag: 1 });
         diag.noteStatus = nt.status;
       }
       const crmLine = personId
