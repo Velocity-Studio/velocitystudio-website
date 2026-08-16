@@ -154,8 +154,12 @@ async function sendCapiEvent(eventName, value, person) {
   };
   if (TEST_CODE) payload.test_event_code = TEST_CODE;
 
+  console.log('[pd-meta-webhook] sending to PIXEL_ID=%s test_event_code=%s payload=%s',
+    PIXEL_ID, JSON.stringify(TEST_CODE), JSON.stringify(payload));
+
   const sent = await metaSend(payload);
   let metaJson = {}; try { metaJson = JSON.parse(sent.body); } catch {}
+  console.log('[pd-meta-webhook] raw meta response status=%s body=%s', sent.status, sent.body);
   return { ok: sent.status === 200 && metaJson.events_received >= 1, status: sent.status, meta: metaJson };
 }
 
