@@ -3,8 +3,22 @@
 //   Person: initial_quality_score set/changed  -> LeadQualityScored (computed value)
 //   Deal:   enters Active SQL (stage 4)        -> QualifiedLead     (computed value, falls back to flat)
 //   Deal:   enters Terms Agreed (stage 10)      -> TermsAgreed       (computed value, falls back to flat)
-//   Deal:   resolved_outcome set to a lost reason -> LeadQualityScored (value corrected to $0)
+//   Deal:   resolved_outcome set to a DISQUALIFYING reason -> LeadDisqualified (value corrected to $0)
+//   Deal:   resolved_outcome set to a FROZEN reason        -> nothing sent (see below)
 //   Deal:   status changes to "won"             -> Purchase          (actual deal value)
+//
+// resolved_outcome splits into two kinds, and only one of them should ever
+// correct Meta's estimate down to $0:
+//   DISQUALIFIED (the lead is confirmed dead — sending $0 is honest, new
+//     information): price_too_high, flaked_no_response, poor_fit,
+//     project_died_unrelated, went_competitor.
+//   FROZEN (the lead just isn't being pursued RIGHT NOW, but nothing about
+//     its true value is actually known to have changed — sending $0 here
+//     would be false information, not a correction): timeline_mismatch,
+//     not_ready_yet. These fire no CAPI event at all; Meta keeps whichever
+//     value it was last given until the deal genuinely resolves one way or
+//     the other (including possibly reopening later and eventually winning
+//     or being disqualified for real).
 //
 // "Computed value" = lookup(initial_quality_score) via SCORE_VALUE_TABLE below.
 // Falls back to the old flat QL_VALUE/AGREED_VALUE constants only when a lead
@@ -58,11 +72,14 @@ const D = {
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
 // Resolved Outcome enum option ids (Pipedrive stores enum values by numeric id).
+// See the file-header comment for the reasoning behind this split.
 const RESOLVED_OUTCOME = {
   SIGNED_WON: 39,
-  // 40-46 are the various lost reasons — any of them means "we now know the
-  // true value was lower than our estimate," so they're all handled the same way.
-  LOST: new Set([40, 41, 42, 43, 44, 45, 46]),
+  // price_too_high, flaked_no_response, poor_fit, project_died_unrelated, went_competitor
+  DISQUALIFIED: new Set([40, 41, 43, 44, 45]),
+  // timeline_mismatch, not_ready_yet — deliberately NOT in DISQUALIFIED: these
+  // pause the deal without telling Meta anything new about its true value.
+  FROZEN: new Set([42, 46]),
 };
 
 // Score -> $ value, calibrated against confirmed real outcomes (Aug 2026).
@@ -202,22 +219,24 @@ async function handleDealEvent(current, previous, res) {
   const enteredTerms     = current.stage_id === TERMS_STAGE_ID && previous.stage_id !== TERMS_STAGE_ID;
   const becameWon        = current.status === 'won' && previous.status !== 'won';
   const outcomeChanged   = String(current[D.resolved_outcome]) !== String(previous[D.resolved_outcome]);
-  const becameLost       = outcomeChanged && RESOLVED_OUTCOME.LOST.has(Number(current[D.resolved_outcome]));
+  const becameDisqualified = outcomeChanged && RESOLVED_OUTCOME.DISQUALIFIED.has(Number(current[D.resolved_outcome]));
+  const becameFrozen       = outcomeChanged && RESOLVED_OUTCOME.FROZEN.has(Number(current[D.resolved_outcome]));
 
   let eventName = null;
   let needsPersonValue = false; // true when value should come from lead_value_score
-  if (becameWon)              { eventName = 'Purchase'; }
-  else if (becameLost)        { eventName = 'LeadQualityScored'; } // value forced to 0 below
-  else if (enteredTerms)      { eventName = 'TermsAgreed';   needsPersonValue = true; }
-  else if (enteredQualified)  { eventName = 'QualifiedLead'; needsPersonValue = true; }
+  if (becameWon)               { eventName = 'Purchase'; }
+  else if (becameDisqualified) { eventName = 'LeadDisqualified'; } // value forced to 0 below
+  else if (becameFrozen)       { /* frozen: paused, not disproven — send nothing */ }
+  else if (enteredTerms)       { eventName = 'TermsAgreed';   needsPersonValue = true; }
+  else if (enteredQualified)   { eventName = 'QualifiedLead'; needsPersonValue = true; }
 
-  console.log('[pd-meta-webhook] deal event. id=%s stage %s->%s status %s->%s outcome %s->%s decided=%s',
+  console.log('[pd-meta-webhook] deal event. id=%s stage %s->%s status %s->%s outcome %s->%s decided=%s frozen=%s',
     current.id, previous.stage_id, current.stage_id, previous.status, current.status,
-    previous[D.resolved_outcome], current[D.resolved_outcome], eventName);
+    previous[D.resolved_outcome], current[D.resolved_outcome], eventName, becameFrozen);
 
   if (!eventName) {
     res.statusCode = 200;
-    return res.end(JSON.stringify({ ok: true, skipped: 'no trigger' }));
+    return res.end(JSON.stringify({ ok: true, skipped: becameFrozen ? 'frozen outcome — no Meta correction sent' : 'no trigger' }));
   }
 
   // Idempotency: skip if this event already sent for this deal.
@@ -244,8 +263,8 @@ async function handleDealEvent(current, previous, res) {
   let value;
   if (eventName === 'Purchase') {
     value = Number(current.value || 0);
-  } else if (eventName === 'LeadQualityScored') {
-    value = 0; // resolved lost — correct the estimate down to its known final value
+  } else if (eventName === 'LeadDisqualified') {
+    value = 0; // confirmed dead — correct the estimate down to its known final value
     await pd('PUT', '/v1/persons/' + pid, { [P.lead_value_score]: value });
   } else if (needsPersonValue) {
     const scored = person[P.lead_value_score];
