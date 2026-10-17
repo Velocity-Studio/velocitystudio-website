@@ -329,7 +329,8 @@
     .qual-hidden { display: none !important; }
     .qual-fade-in { animation: qualFade .4s ease forwards; }
     @keyframes qualFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .calendly-inline-widget { display: block; min-width: 280px; height: 660px; }
+    .cal-slot { display: block; min-width: 280px; height: 660px; }
+    .cal-slot iframe { width: 100%; height: 100%; border: 0; }
     .headstart ul { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 18px; }
     .headstart li { font-size: .95rem; line-height: 1.55; padding-left: 26px; position: relative; }
     .headstart li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
@@ -871,7 +872,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="qual-eyebrow">Step 2 of 2 · You are on the fast track</span>
           <h3 class="qual-title">Pick a time.</h3>
           <p class="qual-sub">Before we meet, we will look up your parcel and your city's ADU rules. On the call you will get a track, a price, and a start date.</p>
-          <div id="qualCalWidget" class="calendly-inline-widget"></div>
+          <div id="qualCalWidget" class="cal-slot"></div>
         </div>
 
         <!-- Pass, after booking: head start on intake -->
