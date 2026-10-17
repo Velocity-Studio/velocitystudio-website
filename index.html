@@ -51,11 +51,14 @@
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: #F0EDE6; color: #1C1C1C;
-      overflow-x: hidden; line-height: 1.6;
+      overflow-x: hidden; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     ul, ol { list-style: none; }
+    button { font-family: inherit; }
+    fieldset { border: 0; min-width: 0; }
 
     /* ─── TOKENS ─────────────────────────────────────────────── */
     :root {
@@ -64,6 +67,7 @@
       --dark:    #1C1C1C;
       --teal:    #2D8B6E;
       --teal-dk: #1F6451;
+      --teal-lt: #5BE0B0;
       --gold:    #C9942B;
       --gold-lt: #E6B84A;
       --white:   #FFFFFF;
@@ -74,39 +78,39 @@
     }
 
     /* ─── UTILITIES ──────────────────────────────────────────── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 22px; }
     .narrow { max-width: 820px; margin-left: auto; margin-right: auto; }
     .eyebrow {
-      font-size: .8rem; font-weight: 700; letter-spacing: .16em;
-      text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 12px;
     }
     .divider { height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); }
     .ph {
       display: inline-block; background: rgba(201,148,43,.14); color: #8A5F10;
       border: 1px dashed var(--gold); border-radius: 6px; padding: 0 6px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .82em; font-weight: 600; line-height: 1.6; white-space: normal;
+      font-size: .8em; font-weight: 600; line-height: 1.6; white-space: normal;
     }
     .ph-box {
       display: flex; align-items: center; justify-content: center; text-align: center;
       background: repeating-linear-gradient(45deg, rgba(201,148,43,.06) 0 12px, rgba(201,148,43,.12) 12px 24px);
       border: 2px dashed var(--gold); border-radius: var(--r); color: #8A5F10;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .82rem; font-weight: 600; padding: 18px; line-height: 1.5;
+      font-size: .78rem; font-weight: 600; padding: 16px; line-height: 1.5;
     }
 
     /* ─── BUTTONS ────────────────────────────────────────────── */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 26px; border-radius: 8px; font-weight: 700;
-      font-size: .92rem; cursor: pointer; transition: all .22s;
-      border: none; font-family: inherit; min-height: 52px; text-align: center;
+      padding: 14px 26px; border-radius: 10px; font-weight: 700;
+      font-size: .95rem; cursor: pointer; transition: all .22s;
+      border: none; min-height: 52px; text-align: center; line-height: 1.25;
     }
     .btn-teal  { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
     .btn-teal:hover { background: var(--teal-dk); transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border); }
-    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
-    .btn-lg { padding: 17px 34px; font-size: 1rem; }
+    .btn-ghost { background: transparent; color: var(--dark); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-lg { padding: 18px 32px; font-size: 1.05rem; }
     .btn-full { width: 100%; }
     .arr { transition: transform .2s; }
     .btn:hover .arr { transform: translateX(4px); }
@@ -130,233 +134,296 @@
     @media (max-width: 860px) { .nav-links { display: none; } }
     @media (max-width: 400px) { .nav .btn { padding: 9px 12px; font-size: .78rem; } }
 
+    /* ─── SECTIONS ───────────────────────────────────────────── */
+    .sec { padding: 76px 0; }
+    .sec-white { background: var(--white); }
+    .sec-dark { background: var(--dark); color: #fff; }
+    .sec-forest { background: #162F26; color: #fff; }
+    .sec-hd { max-width: 780px; margin: 0 auto 36px; text-align: center; }
+    .sec-hd h2 {
+      font-size: clamp(1.9rem, 4.4vw, 2.7rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 12px;
+    }
+    .sec-hd p { color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+    .sec-dark .sec-hd p, .sec-forest .sec-hd p { color: rgba(255,255,255,.7); }
+    .sec-dark .eyebrow, .sec-forest .eyebrow { color: var(--teal-lt); }
+    @media (max-width: 600px) { .sec { padding: 56px 0; } .sec-hd { text-align: left; margin-bottom: 26px; } }
+
+    /* "More detail" disclosures: the long copy lives here */
+    .more { margin-top: 22px; border-top: 1px solid var(--border); }
+    .sec-dark .more, .sec-forest .more { border-top-color: rgba(255,255,255,.12); }
+    .more > summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 16px 0; font-weight: 700; font-size: 1rem; color: var(--teal);
+    }
+    .sec-dark .more > summary, .sec-forest .more > summary { color: var(--teal-lt); }
+    .more > summary::-webkit-details-marker { display: none; }
+    .more > summary::after { content: '+'; font-size: 1.5rem; font-weight: 300; line-height: 1; flex-shrink: 0; }
+    .more[open] > summary::after { content: '–'; }
+    .more-body { padding: 0 0 10px; font-size: .98rem; line-height: 1.7; }
+    .more-body h4 { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+    .more-body h4:first-child { margin-top: 0; }
+    .sec-dark .more-body h4, .sec-forest .more-body h4 { color: rgba(255,255,255,.55); }
+    .sec-dark .more-body, .sec-forest .more-body { color: rgba(255,255,255,.82); }
+    .more-body p + p { margin-top: 10px; }
+    .more-body ul li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+    .more-body ul li::before { content: '–'; position: absolute; left: 0; color: var(--gold); font-weight: 800; }
+
     /* ─── HERO ───────────────────────────────────────────────── */
-    .hero { background: var(--dark); padding: 118px 0 72px; position: relative; overflow: hidden; }
+    .hero { background: var(--dark); padding: 112px 0 56px; position: relative; overflow: hidden; color: #fff; }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 55% 80% at 0% 50%, rgba(45,139,110,.22) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.1) 0%, transparent 55%);
+        radial-gradient(ellipse 60% 70% at 0% 40%, rgba(45,139,110,.26) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.12) 0%, transparent 55%);
     }
-    .hero-grid { display: grid; grid-template-columns: 55fr 45fr; gap: 52px; align-items: center; position: relative; z-index: 1; }
+    .hero-grid { display: grid; grid-template-columns: 56fr 44fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
     .hero h1 {
-      font-size: clamp(2.1rem, 4.8vw, 3.6rem);
-      font-weight: 900; line-height: 1.06; letter-spacing: -.028em;
-      color: #fff; margin-bottom: 20px;
+      font-size: clamp(2.4rem, 7.4vw, 4rem);
+      font-weight: 900; line-height: 1.02; letter-spacing: -.03em; margin-bottom: 22px;
     }
     .hero h1 em {
       font-style: normal;
       background: linear-gradient(90deg, var(--gold-lt), var(--gold));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-sub { font-size: clamp(1rem, 2vw, 1.18rem); color: rgba(255,255,255,.82); line-height: 1.6; margin-bottom: 10px; max-width: 540px; font-weight: 500; }
-    .hero-sub2 { font-size: clamp(.92rem, 1.8vw, 1.02rem); color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 30px; max-width: 540px; }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-    .hero-micro { font-size: .78rem; color: rgba(255,255,255,.42); line-height: 1.6; max-width: 520px; }
-    .hero-box {
-      aspect-ratio: 4/3; border-radius: var(--r); overflow: hidden;
-      box-shadow: 0 24px 72px rgba(0,0,0,.55); background: #F8F5EF; position: relative;
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .fact {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 99px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.9);
     }
+    .fact b { color: var(--teal-lt); font-weight: 800; }
+    .hero-sub { font-size: clamp(1.02rem, 2.4vw, 1.2rem); color: rgba(255,255,255,.72); line-height: 1.55; margin-bottom: 26px; max-width: 520px; }
+    .hero-ctas { margin-bottom: 14px; }
+    .hero-micro { font-size: .84rem; color: rgba(255,255,255,.48); line-height: 1.55; max-width: 480px; }
+    .hero-box { aspect-ratio: 4/3; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 72px rgba(0,0,0,.55); background: #F8F5EF; position: relative; }
     .hero-box .ph-box { position: absolute; inset: 0; border-radius: var(--r); }
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-      .hero { padding: 100px 0 52px; }
-      .hero-box { max-width: 480px; }
-    }
-    @media (max-width: 480px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero { padding: 96px 0 44px; }
+      .hero-box { aspect-ratio: 16/9; max-width: 520px; }
       .hero-ctas .btn { width: 100%; }
     }
 
     /* ─── PROOF STRIP ────────────────────────────────────────── */
-    .proof { background: var(--white); border-bottom: 1px solid var(--border); padding: 22px 0; }
-    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .proof-item { display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; line-height: 1.45; color: var(--dark); font-weight: 500; }
-    .proof-item::before { content: '✓'; color: var(--teal); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .proof { background: var(--white); border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .proof-item { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; line-height: 1.4; font-weight: 600; }
+    .proof-item::before { content: '✓'; color: var(--teal); font-weight: 800; flex-shrink: 0; }
     @media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .proof-grid { grid-template-columns: 1fr; gap: 12px; } }
+    @media (max-width: 520px) { .proof-grid { grid-template-columns: 1fr; gap: 10px; } .proof-item { font-size: .88rem; } }
 
-    /* ─── SECTIONS ───────────────────────────────────────────── */
-    .sec { padding: 84px 0; }
-    .sec-white { background: var(--white); }
-    .sec-hd { text-align: center; max-width: 760px; margin: 0 auto 48px; }
-    .sec-hd h2 {
-      font-size: clamp(1.7rem, 3.6vw, 2.5rem);
-      font-weight: 800; line-height: 1.12; letter-spacing: -.022em; margin-bottom: 14px;
+    /* ─── PRICE + SPEED SCALE ────────────────────────────────── */
+    .scale-sec .sec-hd h2 { font-size: clamp(1.8rem, 4.2vw, 2.6rem); }
+    .legend { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: center; margin: 0 auto 30px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.8); }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .legend .l5 i { background: var(--teal-lt); box-shadow: 0 0 12px var(--teal-lt); }
+    .legend .l10 i { background: var(--gold-lt); box-shadow: 0 0 12px var(--gold-lt); }
+    .rail { position: relative; max-width: 700px; margin: 0 auto; padding-left: 46px; }
+    .rail::before {
+      content: ''; position: absolute; left: 16px; top: 18px; bottom: 18px; width: 4px; border-radius: 4px;
+      background: linear-gradient(180deg, var(--teal-lt) 0%, var(--teal) 30%, var(--gold) 70%, var(--gold-lt) 100%);
+      box-shadow: 0 0 22px rgba(91,224,176,.35), 0 0 22px rgba(230,184,74,.3);
     }
-    .sec-hd p { color: var(--muted); font-size: 1.02rem; line-height: 1.7; }
-    h3.sub { font-size: 1.18rem; font-weight: 800; letter-spacing: -.012em; margin-bottom: 14px; color: var(--dark); }
-    .body { font-size: .98rem; color: var(--dark); line-height: 1.75; }
-    .body-muted { font-size: .98rem; color: var(--muted); line-height: 1.75; }
-    @media (max-width: 600px) { .sec { padding: 60px 0; } }
+    .tier { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .tier:last-child { border-bottom: 0; }
+    .tier::before {
+      content: ''; position: absolute; left: -36px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%;
+      background: var(--dot); box-shadow: 0 0 0 4px rgba(255,255,255,.1), 0 0 16px var(--dot);
+    }
+    .t5 { --dot: var(--teal-lt); } .t10 { --dot: var(--gold-lt); }
+    .tier-name { font-weight: 800; font-size: 1.08rem; color: #fff; line-height: 1.25; }
+    .tier-size { font-size: .9rem; color: rgba(255,255,255,.6); }
+    .tier-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; grid-row: 1 / span 2; grid-column: 2; }
+    .tier-price { font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em; color: #fff; line-height: 1; white-space: nowrap; }
+    .tier-days { display: inline-flex; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; color: var(--dark); background: var(--dot); white-space: nowrap; }
+    .tier-adders { padding: 10px 0 14px; font-size: .9rem; color: rgba(255,255,255,.62); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .tier-adders b { color: #fff; }
+    .scale-notes { max-width: 700px; margin: 26px auto 0; font-size: .98rem; color: rgba(255,255,255,.78); line-height: 1.65; }
+    .scale-notes p + p { margin-top: 8px; }
+    .scale-sec .more { max-width: 700px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 480px) { .tier-price { font-size: 1.35rem; white-space: normal; max-width: 150px; line-height: 1.1; } .tier-name { font-size: 1rem; } }
 
-    /* ─── WHAT YOU GET ───────────────────────────────────────── */
-    .inout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .inout-col { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 28px 26px; }
-    .inout-col.in { border-top: 4px solid var(--teal); }
-    .inout-col.out { border-top: 4px solid var(--gold); }
-    .inout-col h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -.01em; }
-    .list { display: flex; flex-direction: column; gap: 10px; }
-    .list li { font-size: .98rem; line-height: 1.55; padding-left: 26px; position: relative; color: var(--dark); }
-    .list li::before { position: absolute; left: 0; top: 0; font-weight: 800; }
-    .list-in li::before { content: '✓'; color: var(--teal); }
-    .list-out li::before { content: '–'; color: var(--gold); }
-    .addons { margin-top: 24px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 26px; }
-    .addons h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; }
-    .approval { margin-top: 24px; background: var(--dark); color: #fff; border-radius: var(--r); padding: 30px 28px; }
-    .approval h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; color: var(--gold-lt); letter-spacing: -.01em; }
-    .approval p { font-size: .98rem; line-height: 1.75; color: rgba(255,255,255,.78); }
-    @media (max-width: 760px) { .inout { grid-template-columns: 1fr; } }
+    /* ─── WHAT YOU GET: sheet grid ───────────────────────────── */
+    .sheets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .sheet {
+      position: relative; background: #fff; border: 1px solid var(--border); border-radius: 6px;
+      padding: 16px 14px 24px; min-height: 104px; box-shadow: var(--sh);
+      font-size: .95rem; font-weight: 700; line-height: 1.3; color: var(--dark);
+      display: flex; align-items: flex-start;
+    }
+    .sheet::after { content: ''; position: absolute; top: -1px; right: -1px; width: 0; height: 0; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent var(--white) transparent transparent; filter: drop-shadow(-1px 1px 1px rgba(0,0,0,.08)); }
+    .sheet::before { content: ''; position: absolute; left: 12px; right: 12px; bottom: 9px; height: 7px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .sheet i { font-style: normal; display: block; font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px; }
+    .sheet.stamp { background: var(--card); border-color: rgba(45,139,110,.5); }
+    .sheet.stamp i { color: var(--gold); }
+    .not-line { margin-top: 22px; font-size: .98rem; line-height: 1.6; color: var(--dark); }
+    .not-line b { font-weight: 800; }
+    @media (max-width: 700px) { .sheets { grid-template-columns: 1fr 1fr; gap: 10px; } .sheet { min-height: 94px; font-size: .9rem; padding: 14px 12px 22px; } }
 
-    /* ─── HOW IT WORKS ───────────────────────────────────────── */
-    .how-before { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 26px 28px; margin-bottom: 36px; }
-    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-    .how-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--sh); }
-    .how-card header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .how-card header h3 { font-size: 1.08rem; font-weight: 800; }
-    .how-card header span { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); white-space: nowrap; }
-    .tbl { width: 100%; border-collapse: collapse; }
-    .tbl th, .tbl td { text-align: left; padding: 14px 18px; vertical-align: top; font-size: .98rem; line-height: 1.55; }
-    .tbl th { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--border); background: var(--card); }
+    /* ─── PROCESS: four-step timeline ────────────────────────── */
+    .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 10px; }
+    .steps::before { content: ''; position: absolute; top: 27px; left: 10%; right: 10%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--teal-lt), var(--teal) 40%, var(--gold)); }
+    .step { position: relative; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%; background: var(--dark); color: #fff;
+      font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+      border: 4px solid var(--bg); box-shadow: 0 0 0 3px var(--teal); margin-bottom: 16px; position: relative; z-index: 1;
+    }
+    .step-when { font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+    .step h3 { font-size: 1.22rem; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; margin-bottom: 8px; }
+    .step p { font-size: .98rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 860px) {
+      .steps { grid-template-columns: 1fr; gap: 0; }
+      .steps::before { top: 10px; bottom: 10px; left: 26.5px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--teal-lt), var(--teal) 40%, var(--gold)); }
+      .step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding-bottom: 30px; }
+      .step:last-child { padding-bottom: 4px; }
+      .step-num { margin: 0; }
+    }
+    .tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .tbl th, .tbl td { text-align: left; padding: 12px 14px; vertical-align: top; font-size: .95rem; line-height: 1.5; }
+    .tbl th { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--border); background: var(--card); }
     .tbl tbody tr + tr td { border-top: 1px solid var(--border); }
     .tbl td:first-child { font-weight: 800; color: var(--teal-dk); white-space: nowrap; width: 1%; }
-    .how-after { margin-top: 36px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 26px 28px; }
-    @media (max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }
 
-    /* ─── STARTING POINTS ────────────────────────────────────── */
-    .start-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 32px 30px; box-shadow: var(--sh); }
-    .start-block + .start-block { margin-top: 24px; }
-    .start-block h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 12px; }
-    .start-block p { font-size: .98rem; line-height: 1.75; color: var(--dark); }
-    .start-block p + p { margin-top: 12px; }
-    .layouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 22px 0 14px; }
+    /* ─── STARTING POINTS: tabs ──────────────────────────────── */
+    .tabs { display: flex; gap: 6px; background: var(--bg); padding: 6px; border-radius: 14px; margin: 0 auto 26px; max-width: 720px; }
+    .tab { flex: 1; border: 0; background: transparent; padding: 12px 10px; border-radius: 10px; font-weight: 700; font-size: .95rem; color: var(--muted); cursor: pointer; transition: all .2s; line-height: 1.2; }
+    .tab[aria-selected="true"] { background: var(--dark); color: #fff; box-shadow: var(--sh); }
+    .panel { display: none; }
+    .panel.on { display: block; animation: qualFade .3s ease; }
+    .panel-lead { font-size: 1.08rem; line-height: 1.6; max-width: 760px; margin: 0 auto 22px; text-align: center; }
+    .layouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .lay { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
     .lay-thumb { aspect-ratio: 4/3; border-bottom: 1px solid var(--border); padding: 10px; background: var(--white); }
-    .lay-thumb .ph-box { height: 100%; font-size: .72rem; padding: 10px; }
-    .lay-body { padding: 14px 16px 16px; }
-    .lay-body h4 { font-size: .98rem; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
-    .lay-body dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .84rem; line-height: 1.45; }
+    .lay-thumb .ph-box { height: 100%; font-size: .7rem; padding: 10px; }
+    .lay-body { padding: 12px 14px 14px; }
+    .lay-body h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; line-height: 1.25; }
+    .lay-body dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: .82rem; line-height: 1.4; }
     .lay-body dt { color: var(--muted); }
-    .lay-body dd { color: var(--dark); font-weight: 600; }
-    .steps { counter-reset: s; display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
-    .steps li { counter-increment: s; position: relative; padding-left: 40px; font-size: .98rem; line-height: 1.6; }
-    .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: .86rem; display: flex; align-items: center; justify-content: center; }
-    @media (max-width: 860px) { .layouts { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .layouts { grid-template-columns: 1fr; } .start-block { padding: 24px 20px; } }
-
-    /* ─── PRICING ────────────────────────────────────────────── */
-    .price-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--sh); }
-    .price-card .tbl td:first-child { white-space: normal; width: auto; color: var(--dark); }
-    .price-card .tbl td:last-child, .price-card .tbl th:last-child { text-align: right; white-space: nowrap; font-weight: 800; }
-    .price-card .tbl td:last-child { color: var(--teal-dk); }
-    .price-notes { padding: 22px 24px; border-top: 1px solid var(--border); background: var(--card); font-size: .98rem; line-height: 1.7; }
-    .price-notes p + p { margin-top: 10px; }
-    .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    @media (max-width: 520px) { .tbl th, .tbl td { padding: 12px 12px; } }
-    /* Stacked pricing rows on phones. Same .98rem size as the in/out list. */
-    @media (max-width: 600px) {
-      .price-card .tbl thead { display: none; }
-      .price-card .tbl tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 13px 16px; }
-      .price-card .tbl td { display: block; padding: 0; border: 0 !important; }
-      .price-card .tbl td:first-child { grid-column: 1 / -1; font-weight: 800; }
-      .price-card .tbl td:nth-child(2) { color: var(--muted); }
-      .price-card .tbl tbody tr + tr { border-top: 1px solid var(--border); }
+    .lay-body dd { font-weight: 600; }
+    .swipe-hint { display: none; font-size: .8rem; color: var(--muted); margin-top: 8px; }
+    @media (max-width: 860px) {
+      .layouts { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 2px 22px 10px; margin: 0 -22px; -webkit-overflow-scrolling: touch; }
+      .layouts::-webkit-scrollbar { display: none; }
+      .lay { flex: 0 0 78%; max-width: 300px; scroll-snap-align: start; }
+      .swipe-hint { display: block; }
+      .panel-lead { text-align: left; }
+      .tab { font-size: .84rem; padding: 11px 6px; }
     }
+    .mini-steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 900px; margin: 0 auto; }
+    .mini-steps li { counter-increment: s; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 16px 18px 58px; position: relative; font-size: .98rem; line-height: 1.5; }
+    .mini-steps li::before { content: counter(s); position: absolute; left: 16px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; }
+    .mini-steps b { display: block; font-weight: 800; margin-bottom: 3px; }
+    @media (max-width: 760px) { .mini-steps { grid-template-columns: 1fr; } }
 
-    /* ─── FIT ────────────────────────────────────────────────── */
-    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .fit-col { border-radius: var(--r); padding: 28px 26px; border: 1px solid var(--border); background: var(--white); }
-    .fit-col.yes { border-top: 4px solid var(--teal); }
-    .fit-col.no { border-top: 4px solid #B5473A; }
-    .fit-col h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 16px; }
-    .list-no li::before { content: '✕'; color: #B5473A; }
-    .fit-note { margin-top: 22px; text-align: center; font-size: .98rem; color: var(--muted); line-height: 1.7; }
-    @media (max-width: 760px) { .fit { grid-template-columns: 1fr; } }
+    /* ─── FIT: yes / no ──────────────────────────────────────── */
+    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .fit-col { border-radius: var(--r); padding: 24px 22px; background: var(--white); border: 1px solid var(--border); }
+    .fit-col.yes { border-top: 5px solid var(--teal); }
+    .fit-col.no { border-top: 5px solid #B5473A; }
+    .fit-col h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; }
+    .fit-col li { font-size: 1rem; line-height: 1.5; padding-left: 28px; position: relative; margin-bottom: 10px; }
+    .fit-col li::before { position: absolute; left: 0; top: 0; font-weight: 800; }
+    .fit-col.yes li::before { content: '✓'; color: var(--teal); }
+    .fit-col.no li::before { content: '✕'; color: #B5473A; }
+    .fit-note { margin-top: 18px; font-size: .98rem; color: var(--muted); line-height: 1.6; text-align: center; }
+    @media (max-width: 700px) { .fit { grid-template-columns: 1fr; } .fit-note { text-align: left; } }
 
-    /* ─── BIO ────────────────────────────────────────────────── */
-    .bio { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; }
+    /* ─── WHO ────────────────────────────────────────────────── */
+    .bio { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; max-width: 880px; margin: 0 auto; }
     .bio-photo { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; background: var(--card); box-shadow: var(--sh); }
     .bio-photo .ph-box { height: 100%; border-radius: var(--r); }
-    .bio-name { font-size: 1.3rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 4px; }
-    .bio-title { font-size: .95rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-    .bio blockquote { font-size: 1.08rem; line-height: 1.75; color: var(--dark); border-left: 3px solid var(--teal); padding-left: 20px; margin-bottom: 22px; }
-    @media (max-width: 760px) { .bio { grid-template-columns: 1fr; gap: 24px; } .bio-photo { max-width: 300px; } }
+    .bio-name { font-size: 1.35rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 4px; }
+    .bio-title { font-size: .95rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    .bio blockquote { font-size: 1.12rem; line-height: 1.6; border-left: 3px solid var(--teal); padding-left: 18px; }
+    .who-more { max-width: 880px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 700px) { .bio { grid-template-columns: 120px 1fr; gap: 18px; align-items: start; } .bio blockquote { grid-column: 1 / -1; } .bio-title { margin-bottom: 0; } }
 
-    /* ─── DAILY EMAIL ────────────────────────────────────────── */
-    .daily { background: var(--dark); }
-    .daily .sec-hd h2 { color: #fff; }
-    .daily .sec-hd p { color: rgba(255,255,255,.72); font-size: 1.06rem; }
-    .daily .sec-hd { margin-bottom: 0; }
-    .daily .eyebrow { color: var(--gold-lt); }
+    /* ─── DAILY EMAIL: mock inbox card ───────────────────────── */
+    .mail { background: #fff; color: var(--dark); border-radius: 14px; max-width: 520px; margin: 0 auto; box-shadow: 0 16px 50px rgba(0,0,0,.4); overflow: hidden; }
+    .mail-hd { padding: 14px 18px; border-bottom: 1px solid var(--border); }
+    .mail-meta { font-size: .78rem; color: var(--muted); display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .mail-subj { font-weight: 800; font-size: 1.02rem; }
+    .mail-body { padding: 6px 18px 16px; }
+    .mail-row { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .95rem; line-height: 1.5; }
+    .mail-row:last-child { border-bottom: 0; }
+    .mail-row b { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); padding-top: 3px; }
+    .mail-sample { text-align: center; font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    @media (max-width: 420px) { .mail-row { grid-template-columns: 1fr; gap: 2px; } }
 
     /* ─── FAQ ────────────────────────────────────────────────── */
-    .faq { display: flex; flex-direction: column; gap: 10px; }
+    .faq { display: flex; flex-direction: column; gap: 8px; }
     .faq details { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); }
-    .faq summary { list-style: none; cursor: pointer; padding: 18px 54px 18px 22px; font-weight: 700; font-size: 1.02rem; line-height: 1.4; position: relative; }
+    .faq summary { list-style: none; cursor: pointer; padding: 16px 50px 16px 20px; font-weight: 700; font-size: 1rem; line-height: 1.35; position: relative; }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 300; color: var(--teal); line-height: 1; }
+    .faq summary::after { content: '+'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 300; color: var(--teal); line-height: 1; }
     .faq details[open] summary::after { content: '–'; }
-    .faq details p { padding: 0 22px 20px; font-size: .98rem; line-height: 1.7; color: var(--dark); }
+    .faq details p { padding: 0 20px 18px; font-size: .98rem; line-height: 1.65; }
 
-    /* ─── QUALIFY FORM ───────────────────────────────────────── */
-    .qualify { background: var(--dark); }
-    .qualify .eyebrow { color: var(--teal); }
-    .q-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px; align-items: start; max-width: 1080px; margin: 0 auto; }
-    .q-text h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 800; letter-spacing: -.022em; line-height: 1.1; margin-bottom: 18px; color: #fff; }
-    .q-text .lead { font-size: 1rem; color: rgba(255,255,255,.66); line-height: 1.75; margin-bottom: 28px; }
-    .q-trust { display: flex; flex-direction: column; gap: 11px; font-size: .86rem; font-weight: 600; color: rgba(255,255,255,.5); }
+    /* ─── QUALIFY FORM (3 short steps) ───────────────────────── */
+    .qualify .eyebrow { color: var(--teal-lt); }
+    .q-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; max-width: 1060px; margin: 0 auto; }
+    .q-text h2 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.08; margin-bottom: 16px; }
+    .q-text .lead { font-size: 1.05rem; color: rgba(255,255,255,.7); line-height: 1.6; margin-bottom: 22px; }
+    .q-trust { display: flex; flex-direction: column; gap: 10px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.55); }
     .q-trust span { display: flex; align-items: flex-start; gap: 9px; }
-    .q-trust span::before { content: "✓"; color: var(--teal); font-weight: 800; }
-    .qual-card { background: #fff; border-radius: 16px; padding: 30px 26px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
-    .qual-eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px; }
-    .qual-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -.018em; color: var(--dark); margin-bottom: 6px; line-height: 1.15; }
-    .qual-sub { font-size: .92rem; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
-    .qual-progress { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 22px; }
-    .qual-progress-bar { height: 100%; width: 0%; background: var(--teal); transition: width .3s ease; }
-    .qual-form { display: flex; flex-direction: column; gap: 20px; }
+    .q-trust span::before { content: "✓"; color: var(--teal-lt); font-weight: 800; }
+    .qual-card { background: #fff; color: var(--dark); border-radius: 16px; padding: 26px 22px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
+    .qual-eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 8px; }
+    .qual-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; line-height: 1.15; }
+    .qual-sub { font-size: .95rem; color: var(--muted); line-height: 1.55; margin-bottom: 18px; }
+    .qual-progress { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 22px; }
+    .qual-progress-bar { height: 100%; width: 33%; background: var(--teal); transition: width .3s ease; }
+    .qstep { display: none; flex-direction: column; gap: 18px; }
+    .qstep.on { display: flex; animation: qualFade .3s ease; }
     .qual-field { display: block; }
-    .qual-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .qual-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 480px) { .qual-field-row { grid-template-columns: 1fr; } }
-    .qual-label { display: block; font-size: .98rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); letter-spacing: -.012em; }
-    .qual-label small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; margin-top: 2px; }
+    .qual-label { display: block; font-size: 1.02rem; font-weight: 700; margin-bottom: 9px; letter-spacing: -.012em; line-height: 1.3; }
+    .qual-label small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; margin-top: 2px; }
     .qual-field input[type="text"], .qual-field input[type="email"], .qual-field input[type="tel"], .qual-field textarea {
-      width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
-    .qual-field textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+      width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
+    .qual-field textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
     .qual-field input::placeholder, .qual-field textarea::placeholder { color: rgba(28,28,28,.36); }
     .qual-field input:focus, .qual-field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
-    .qual-options { display: flex; flex-direction: column; gap: 6px; }
-    .qual-options-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .qual-options-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-    @media (max-width: 420px) { .qual-options-2col, .qual-options-3col { grid-template-columns: 1fr; } }
-    .qual-opt { display: flex; align-items: center; gap: 10px; padding: 10px 13px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all .15s; font-size: .9rem; color: var(--dark); line-height: 1.3; background: #fff; }
+    .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .opts-3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 420px) { .opts-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .opts-long { grid-template-columns: 1fr; } }
+    .qual-opt { display: flex; align-items: center; gap: 10px; padding: 12px 13px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all .15s; font-size: .95rem; line-height: 1.25; background: #fff; }
     .qual-opt:hover { border-color: var(--teal); background: rgba(45,139,110,.04); }
     .qual-opt input { accent-color: var(--teal); margin: 0; flex-shrink: 0; }
     .qual-opt:has(input:checked) { border-color: var(--teal); background: rgba(45,139,110,.07); box-shadow: 0 0 0 1px var(--teal) inset; }
-    .qual-submit { margin-top: 4px; }
-    .qual-footnote { font-size: .76rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
-    .qual-error { display: none; font-size: .86rem; color: #B5473A; background: #FBEDEB; border: 1px solid #F0C9C3; border-radius: 8px; padding: 10px 12px; }
+    .qual-nav { display: flex; gap: 10px; margin-top: 4px; }
+    .qual-nav .btn-ghost { flex: 0 0 auto; }
+    .qual-nav .btn-teal { flex: 1; }
+    .qual-footnote { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .qual-error { display: none; font-size: .88rem; color: #B5473A; background: #FBEDEB; border: 1px solid #F0C9C3; border-radius: 8px; padding: 10px 12px; }
     .qual-error.show { display: block; }
     .qual-hidden { display: none !important; }
     .qual-fade-in { animation: qualFade .4s ease forwards; }
     @keyframes qualFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .cal-slot { display: block; min-width: 280px; height: 660px; }
     .cal-slot iframe { width: 100%; height: 100%; border: 0; }
-    .headstart ul { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 18px; }
-    .headstart li { font-size: .95rem; line-height: 1.55; padding-left: 26px; position: relative; }
+    .headstart ul { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 16px; }
+    .headstart li { font-size: .95rem; line-height: 1.5; padding-left: 24px; position: relative; }
     .headstart li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
-    @media (max-width: 860px) { .q-grid { grid-template-columns: 1fr; gap: 32px; } }
+    @media (max-width: 860px) { .q-grid { grid-template-columns: 1fr; gap: 26px; } }
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
-    .footer { background: #141414; padding: 44px 0 32px; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
-    .footer-brand-name { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .footer { background: #141414; padding: 40px 0 28px; color: #fff; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 28px; }
+    .footer-brand-name { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
     .footer-brand-name span { color: var(--teal); }
-    .footer-tagline { font-size: .86rem; color: rgba(255,255,255,.5); line-height: 1.65; max-width: 560px; }
+    .footer-tagline { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.6; max-width: 560px; }
     .footer-tagline a { color: var(--gold-lt); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
-    .footer-links a { font-size: .84rem; color: rgba(255,255,255,.5); font-weight: 500; transition: color .2s; }
-    .footer-links a:hover { color: var(--teal); }
-    .footer-bottom { margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-    .footer-bottom span { font-size: .74rem; color: rgba(255,255,255,.3); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { font-size: .86rem; color: rgba(255,255,255,.55); font-weight: 500; transition: color .2s; }
+    .footer-links a:hover { color: var(--teal-lt); }
+    .footer-bottom { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: .76rem; color: rgba(255,255,255,.32); }
   </style>
 
   <!-- Meta Pixel -->
@@ -391,9 +458,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="nav-logo-text" style="display:none">Velocity <span>Studio</span></span>
       </a>
       <div class="nav-links">
-        <a href="#what">What you get</a>
+        <a href="#pricing">Price and speed</a>
         <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#start">Starting points</a>
         <a href="#faq">FAQ</a>
       </div>
       <a href="#qualify" class="btn btn-teal">See if you qualify</a>
@@ -407,8 +474,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-grid">
       <div>
         <h1>Permit-ready ADU plans in <em>5 business days.</em></h1>
-        <p class="hero-sub">Stamped by a California licensed architect. Engineered. Title 24 included. From $6,000.</p>
-        <p class="hero-sub2">Simple new homes and renovations in 10 business days, from $13,000.</p>
+        <div class="hero-facts">
+          <span class="fact"><b>From $6,000</b></span>
+          <span class="fact">Stamped by a California architect</span>
+          <span class="fact">Engineered</span>
+          <span class="fact">Title 24 included</span>
+        </div>
+        <p class="hero-sub">Simple new homes and renovations in 10 business days, from $13,000.</p>
         <div class="hero-ctas">
           <a href="#qualify" class="btn btn-teal btn-lg">See if your project qualifies. Takes 2 minutes. <span class="arr">→</span></a>
         </div>
@@ -436,34 +508,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════ 3. WHAT YOU GET ══ -->
+<!-- ══════════════════════════════════════ 3. PRICE + SPEED ══ -->
+<section class="sec sec-forest scale-sec" id="pricing">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">Price and speed</span>
+      <h2>From $6,000 and 5 days for a small ADU to $20,000 and 10 days for a large home.</h2>
+      <p>Flat prices by size. No hourly billing. Half on deposit, half on delivery.</p>
+    </div>
+    <div class="legend">
+      <span class="l5"><i></i> 5 business days: ADUs</span>
+      <span class="l10"><i></i> 10 business days: homes, renovations, conversions</span>
+    </div>
+
+    <div class="rail">
+      <div class="tier t5">
+        <div class="tier-name">ADU or JADU</div><div class="tier-size">up to 600 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$6,000</div><span class="tier-days">5 days</span></div>
+      </div>
+      <div class="tier t10">
+        <div class="tier-name">Garage conversion</div><div class="tier-size">any size</div>
+        <div class="tier-right"><div class="tier-price">$7,000</div><span class="tier-days">10 days</span></div>
+      </div>
+      <div class="tier t5">
+        <div class="tier-name">ADU</div><div class="tier-size">601 to 900 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$7,500</div><span class="tier-days">5 days</span></div>
+      </div>
+      <div class="tier t5">
+        <div class="tier-name">ADU</div><div class="tier-size">901 to 1,200 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$9,000</div><span class="tier-days">5 days</span></div>
+      </div>
+      <div class="tier-adders">ADU adders: two-story <b>+$1,500</b>, attached to the house <b>+$1,000</b>.</div>
+      <div class="tier t10">
+        <div class="tier-name">Interior renovation or addition</div><div class="tier-size">quoted by scope</div>
+        <div class="tier-right"><div class="tier-price">$13,000 to $16,000</div><span class="tier-days">10 days</span></div>
+      </div>
+      <div class="tier t10">
+        <div class="tier-name">New home or duplex</div><div class="tier-size">1,500 to 2,000 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$15,000</div><span class="tier-days">10 days</span></div>
+      </div>
+      <div class="tier t10">
+        <div class="tier-name">New home or duplex</div><div class="tier-size">2,001 to 3,000 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$17,500</div><span class="tier-days">10 days</span></div>
+      </div>
+      <div class="tier t10">
+        <div class="tier-name">New home or duplex</div><div class="tier-size">3,001 to 4,000 sq ft</div>
+        <div class="tier-right"><div class="tier-price">$20,000</div><span class="tier-days">10 days</span></div>
+      </div>
+    </div>
+
+    <div class="scale-notes">
+      <p>Title 24 is included. Survey, soils, and city fees are paid by you to those providers; we tell you on the call whether your project needs them.</p>
+      <p>Approvals that must happen before the building permit (coastal, hillside review, design review, HOA, historic) are scoped and quoted separately, from $8,000 per approval.</p>
+    </div>
+
+    <details class="more">
+      <summary>Add-ons and the approval-first cases</summary>
+      <div class="more-body">
+        <h4>Add-ons</h4>
+        <ul>
+          <li>We file the application in our name and manage the portal for you: $2,500</li>
+          <li>Design changes you ask for after sign-off: quoted per change before we start</li>
+        </ul>
+        <h4>If your project needs an approval before the building permit</h4>
+        <p>Some projects need a hearing or a review board before the city will accept a building permit application: hillside development review, a coastal development permit, design review, an HOA architectural committee, or a historic certificate of appropriateness. We handle those, but they are a different kind of work. We scope the agency, the submittal, and the meetings first, then quote it, usually $8,000 or more per approval. Once the approval is in hand, your permit set goes through the fast track like everyone else's. We check your parcel before our call and tell you if this applies to you.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 4. WHAT YOU GET ══ -->
 <section class="sec sec-white" id="what">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">What you get</span>
-      <h2>Everything the city needs to issue your permit.</h2>
+      <h2>Everything the city needs to issue your permit. One stamped set.</h2>
     </div>
-
-    <div class="inout">
-      <div class="inout-col in">
-        <h3>In the set</h3>
-        <ul class="list list-in">
-          <li>Cover sheet, general notes, and code summary</li>
-          <li>Site plan</li>
-          <li>Floor plan and roof plan</li>
-          <li>Exterior elevations and building sections</li>
-          <li>Door, window, and finish schedules</li>
-          <li>Structural plans, details, and calculations</li>
-          <li>Plumbing, electrical, and mechanical plan sheets</li>
-          <li>Title 24 energy report and CALGreen checklist</li>
-          <li>Architect's stamp on every set, structural engineer's stamp when the city requires it</li>
-          <li>Responses to plan check comments until the permit issues</li>
-          <li>A PDF package sized and named for your city's portal</li>
-        </ul>
-      </div>
-      <div class="inout-col out">
-        <h3>Not in the set</h3>
-        <ul class="list list-out">
+    <div class="sheets">
+      <div class="sheet"><span><i>Sheet</i>Cover, general notes, code summary</span></div>
+      <div class="sheet"><span><i>Sheet</i>Site plan</span></div>
+      <div class="sheet"><span><i>Sheets</i>Floor plan and roof plan</span></div>
+      <div class="sheet"><span><i>Sheets</i>Elevations and building sections</span></div>
+      <div class="sheet"><span><i>Sheet</i>Door, window, finish schedules</span></div>
+      <div class="sheet"><span><i>Sheets + calcs</i>Structural plans and details</span></div>
+      <div class="sheet"><span><i>Sheets</i>Plumbing, electrical, mechanical</span></div>
+      <div class="sheet"><span><i>Reports</i>Title 24 energy and CALGreen checklist</span></div>
+      <div class="sheet stamp"><span><i>Every set</i>Architect's stamp, engineer's stamp when the city requires it</span></div>
+      <div class="sheet stamp"><span><i>Until it issues</i>Responses to plan check comments</span></div>
+      <div class="sheet stamp"><span><i>Delivery</i>A PDF package sized and named for your city's portal</span></div>
+    </div>
+    <p class="not-line"><b>Not in the set:</b> survey, soils report, civil grading plan, fire sprinkler design, utility will-serve letters, city fees, and the license for a stock plan you bring.</p>
+    <details class="more">
+      <summary>What those exclusions usually cost, and who provides them</summary>
+      <div class="more-body">
+        <ul>
           <li>Boundary or topographic survey (we tell you if you need one; usually $1,500 to $4,000)</li>
           <li>Soils report (rare for an ADU; required on some hillside lots)</li>
           <li>Civil grading and drainage plan</li>
@@ -473,40 +611,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Stock plan license if you bring a plan from a plan website</li>
         </ul>
       </div>
-    </div>
-
-    <div class="addons">
-      <h3>Add-ons</h3>
-      <ul class="list list-in">
-        <li>We file the application in our name and manage the portal for you: $2,500</li>
-        <li>Design changes you ask for after sign-off: quoted per change before we start</li>
-      </ul>
-    </div>
-
-    <div class="approval">
-      <h3>If your project needs an approval before the building permit</h3>
-      <p>Some projects need a hearing or a review board before the city will accept a building permit application: hillside development review, a coastal development permit, design review, an HOA architectural committee, or a historic certificate of appropriateness. We handle those, but they are a different kind of work. We scope the agency, the submittal, and the meetings first, then quote it, usually $8,000 or more per approval. Once the approval is in hand, your permit set goes through the fast track like everyone else's. We check your parcel before our call and tell you if this applies to you.</p>
-    </div>
+    </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 4. HOW IT WORKS ══ -->
+<!-- ══════════════════════════════════════ 5. HOW IT WORKS ══ -->
 <section class="sec" id="how">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">How it works, day by day</span>
-      <h2>Five business days for an ADU. Ten for a home or a renovation.</h2>
-      <p>The schedule works because nothing is invented on your job. You start from a layout we have already built and engineered, you tell us how to change it, and the team does the rest at once instead of one discipline after another.</p>
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps. One live session. Then every discipline at once.</h2>
+      <p>Nothing is invented on your job. You start from a layout we have already built and engineered, you tell us how to change it, and the team does the rest in parallel instead of one discipline after another.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-when">Before the clock starts</div>
+          <h3>A 15-minute call, then intake</h3>
+          <p>We research your parcel before the call and give you a track and an exact price. You send address, photos, your starting layout, and the 50% deposit. Day 1 is the next business day.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-when">Day 1</div>
+          <h3>Lock the layout, live</h3>
+          <p>60 to 90 minutes on a shared screen. We move rooms, windows, and doors until you sign off. You send one written list of changes and we lock the plan.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-when">Days 2 to 4, or 2 to 9</div>
+          <h3>Every discipline in parallel</h3>
+          <p>Architectural, structural, plumbing, electrical, mechanical, and energy drawn at the same time. The engineer reviews and stamps. We plan-check it against your city's list.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-when">Day 5 or Day 10</div>
+          <h3>Stamped set delivered</h3>
+          <p>You get the PDF set and a 20-minute walkthrough of how to submit it. Final 50% due. When the city sends comments, we answer within 3 business days until the permit issues.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="how-before">
-      <h3 class="sub">Before the clock starts</h3>
-      <p class="body">Book a 15-minute call. We research your parcel before it, so on the call we can tell you which track you are on and the exact price. Then you finish intake (address, photos, your starting layout, bedrooms and bathrooms, a few preferences) and pay the 50% deposit. Day 1 is the next business day.</p>
-    </div>
-
-    <div class="how-grid">
-      <div class="how-card">
-        <header><h3>ADU</h3><span>5 business days</span></header>
+    <details class="more">
+      <summary>Day by day, for an ADU and for a home or renovation</summary>
+      <div class="more-body">
+        <h4>ADU, 5 business days</h4>
         <table class="tbl">
           <thead><tr><th>Day</th><th>What happens</th></tr></thead>
           <tbody>
@@ -517,9 +672,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tr><td>5</td><td>You receive the stamped PDF set and a 20-minute walkthrough of how to submit it. Final 50% due.</td></tr>
           </tbody>
         </table>
-      </div>
-      <div class="how-card">
-        <header><h3>New home or renovation</h3><span>10 business days</span></header>
+        <h4>New home or renovation, 10 business days</h4>
         <table class="tbl">
           <thead><tr><th>Day</th><th>What happens</th></tr></thead>
           <tbody>
@@ -530,27 +683,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tr><td>10</td><td>Stamped set delivered with your submittal walkthrough. Final 50% due.</td></tr>
           </tbody>
         </table>
+        <h4>After submittal</h4>
+        <p>The city reviews. State law gives them 60 days on an ADU, and most take all of it. When comments come back, we answer within 3 business days and keep going until the permit issues.</p>
       </div>
-    </div>
-
-    <div class="how-after">
-      <h3 class="sub">After submittal</h3>
-      <p class="body">The city reviews. State law gives them 60 days on an ADU, and most take all of it. When comments come back, we answer within 3 business days and keep going until the permit issues.</p>
-    </div>
+    </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 5. STARTING POINTS ══ -->
+<!-- ══════════════════════════════════════ 6. STARTING POINTS ══ -->
 <section class="sec sec-white" id="start">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Pick your starting point</span>
-      <h2>Three kinds of projects. Three ways to start.</h2>
+      <h2>Start from one of our layouts, a plan you bring, or a scan of your house.</h2>
     </div>
 
-    <div class="start-block">
-      <h3>Detached ADU or JADU</h3>
-      <p>Pick the layout that matches what you want. There are only so many ways to arrange a small building, so choose by shape and we make it fit your lot and your city's rules on Day 1.</p>
+    <div class="tabs" role="tablist" aria-label="Project type">
+      <button class="tab" role="tab" aria-selected="true" data-panel="p-adu">Detached ADU or JADU</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="p-home">New home or duplex</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="p-reno">Renovation or conversion</button>
+    </div>
+
+    <div class="panel on" id="p-adu" role="tabpanel">
+      <p class="panel-lead">Pick the layout that matches what you want. There are only so many ways to arrange a small building, so choose by shape and we make it fit your lot and your city's rules on Day 1.</p>
       <div class="layouts">
         <div class="lay">
           <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
@@ -583,63 +738,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
         </div>
       </div>
+      <p class="swipe-hint">Swipe for more layouts →</p>
     </div>
 
-    <div class="start-block">
-      <h3>Simple new home or duplex</h3>
-      <p>Bring any plan you like. A plan you bought online, a house you walked through, a sketch on paper. We trace it into our drawing system and adapt it to your lot in the layout session, moving rooms when the lot asks for it. If you bring a plan from a plan website, buy the CAD or PDF license and send it to us. That is the version we can legally trace, and it is what lets us keep the 10-day schedule.</p>
-      <p>Do not have a plan yet? Tell us your lot and we will send a short list of plans that fit it.</p>
+    <div class="panel" id="p-home" role="tabpanel">
+      <p class="panel-lead">Bring any plan you like. A plan you bought online, a house you walked through, a sketch on paper. We trace it into our drawing system and fit it to your lot in the layout session.</p>
+      <details class="more" style="max-width:760px;margin-left:auto;margin-right:auto">
+        <summary>Plans from a plan website, and what if you have no plan yet</summary>
+        <div class="more-body">
+          <p>If you bring a plan from a plan website, buy the CAD or PDF license and send it to us. That is the version we can legally trace, and it is what lets us keep the 10-day schedule. In the layout session we adapt it to your lot, moving rooms when the lot asks for it.</p>
+          <p>Do not have a plan yet? Tell us your lot and we will send a short list of plans that fit it.</p>
+        </div>
+      </details>
     </div>
 
-    <div class="start-block">
-      <h3>Renovation, addition, or garage conversion</h3>
-      <p>The first thing we need is an accurate picture of the building as it stands. You capture it yourself in about an hour, before Day 1:</p>
-      <ol class="steps">
-        <li>Walk the outside and take 8 photos with the Hover app. It produces exterior dimensions.</li>
-        <li>Scan each floor with an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
-        <li>Record a 5-minute walkthrough video naming each room.</li>
+    <div class="panel" id="p-reno" role="tabpanel">
+      <p class="panel-lead">First we need an accurate picture of the building as it stands. You capture it yourself in about an hour, before Day 1.</p>
+      <ol class="mini-steps">
+        <li><b>8 photos outside</b>With the Hover app. It produces exterior dimensions.</li>
+        <li><b>Scan each floor</b>With an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
+        <li><b>5-minute video</b>Walk through naming each room.</li>
       </ol>
-      <p>We reconcile the three into a model and your layout session happens on top of it. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ 6. PRICING ══ -->
-<section class="sec" id="pricing">
-  <div class="container narrow">
-    <div class="sec-hd">
-      <span class="eyebrow">Pricing</span>
-      <h2>Flat prices by size. No hourly billing.</h2>
-    </div>
-    <div class="price-card">
-      <div class="tbl-wrap">
-        <table class="tbl">
-          <thead><tr><th>Project</th><th>Size</th><th>Price</th></tr></thead>
-          <tbody>
-            <tr><td>ADU or JADU</td><td>up to 600 sq ft</td><td>$6,000</td></tr>
-            <tr><td>ADU</td><td>601 to 900 sq ft</td><td>$7,500</td></tr>
-            <tr><td>ADU</td><td>901 to 1,200 sq ft</td><td>$9,000</td></tr>
-            <tr><td>ADU, two-story</td><td>any size above</td><td>add $1,500</td></tr>
-            <tr><td>ADU, attached to the house</td><td>any size above</td><td>add $1,000</td></tr>
-            <tr><td>Garage conversion</td><td>any</td><td>$7,000</td></tr>
-            <tr><td>Interior renovation or addition</td><td>quoted by scope</td><td>$13,000 to $16,000</td></tr>
-            <tr><td>New home or duplex</td><td>1,500 to 2,000 sq ft</td><td>$15,000</td></tr>
-            <tr><td>New home or duplex</td><td>2,001 to 3,000 sq ft</td><td>$17,500</td></tr>
-            <tr><td>New home or duplex</td><td>3,001 to 4,000 sq ft</td><td>$20,000</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="price-notes">
-        <p>Half on deposit, half on delivery. Title 24 is included. Survey, soils, and city fees are paid by you to those providers; we tell you on the call whether your project needs them.</p>
-        <p>Approvals that must happen before the building permit (coastal, hillside review, design review, HOA, historic) are scoped and quoted separately, from $8,000 per approval.</p>
-      </div>
+      <p class="panel-lead" style="margin-top:18px;font-size:.98rem">We reconcile the three into a model and your layout session happens on top of it. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════ 7. IS IT A FIT ══ -->
-<section class="sec sec-white" id="fit">
-  <div class="container">
+<section class="sec" id="fit">
+  <div class="container narrow">
     <div class="sec-hd">
       <span class="eyebrow">Is it a fit</span>
       <h2>Fast track works for most lots in California. Not all.</h2>
@@ -647,18 +774,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fit">
       <div class="fit-col yes">
         <h3>Works when</h3>
-        <ul class="list list-in">
+        <ul>
           <li>You own the property or are in contract on it</li>
           <li>You want to submit to the city within the next month</li>
-          <li>Your project is one of the three types above</li>
-          <li>Your city accepts the building permit application directly, with no hearing first</li>
-          <li>You can make decisions in one sitting and give us one list of changes</li>
+          <li>It is an ADU, a simple home, or a renovation</li>
+          <li>Your city takes the permit application directly, no hearing first</li>
+          <li>You can decide in one sitting and send one list of changes</li>
         </ul>
       </div>
       <div class="fit-col no">
         <h3>Does not work when</h3>
-        <ul class="list list-no">
-          <li>A board, commission, or HOA has to approve the design before the city will take the application</li>
+        <ul>
+          <li>A board, commission, or HOA must approve the design first</li>
           <li>You want a design from scratch with open-ended revisions</li>
           <li>You need someone to build it, not just draw it</li>
           <li>The project is outside California</li>
@@ -670,7 +797,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════════════ 8. WHO DOES THE WORK ══ -->
-<section class="sec" id="who">
+<section class="sec sec-white" id="who">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Who does the work</span>
@@ -681,21 +808,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
         <div class="bio-title">Licensed architect, California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
-        <blockquote>I review and stamp every set that leaves this office. Your project architect draws it, works with you in the layout session, and sends your daily update. A California licensed structural engineer reviews and stamps the structural sheets when your city requires it. You will meet your project architect on Day 1.</blockquote>
-        <p class="body-muted">We have been drawing for permit in California since 2025, on everything from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. The fast track exists because most ADUs and simple homes do not need that kind of effort. They need someone who has done it many times and does not make you wait.</p>
       </div>
+      <blockquote>I review and stamp every set that leaves this office. Your project architect draws it, works with you in the layout session, and sends your daily update. You will meet them on Day 1.</blockquote>
     </div>
+    <details class="more who-more">
+      <summary>Engineering, and what we have drawn before</summary>
+      <div class="more-body">
+        <p>A California licensed structural engineer reviews and stamps the structural sheets when your city requires it.</p>
+        <p>We have been drawing for permit in California since 2025, on everything from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. The fast track exists because most ADUs and simple homes do not need that kind of effort. They need someone who has done it many times and does not make you wait.</p>
+      </div>
+    </details>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════ 9. DAILY EMAIL ══ -->
-<section class="sec daily" id="updates">
+<section class="sec sec-dark" id="updates">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">What you will hear from us</span>
       <h2>An email every business day until your set is delivered.</h2>
-      <p>Each one says what was done today, what happens tomorrow, and whether we need anything from you. You will never wonder where your project is. After submittal, you get an email every time the city moves and every time we respond.</p>
+      <p>What was done today, what happens tomorrow, and whether we need anything from you. After submittal, one every time the city moves and every time we respond.</p>
     </div>
+    <div class="mail" aria-label="Sample daily update email">
+      <div class="mail-hd">
+        <div class="mail-meta"><span>Your project architect</span><span>Today, 5:12 PM</span></div>
+        <div class="mail-subj">Day 3 of 5: sheets drawn in parallel</div>
+      </div>
+      <div class="mail-body">
+        <div class="mail-row"><b>Done today</b><span>Architectural, structural, and MEP sheets drawn.</span></div>
+        <div class="mail-row"><b>Tomorrow</b><span>Engineer review and stamp. Internal plan check against your city's list.</span></div>
+        <div class="mail-row"><b>Need from you</b><span>Nothing.</span></div>
+      </div>
+    </div>
+    <p class="mail-sample">Sample. Yours arrives every business day.</p>
   </div>
 </section>
 
@@ -704,7 +849,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container narrow">
     <div class="sec-hd">
       <span class="eyebrow">FAQ</span>
-      <h2>Questions people ask before they book.</h2>
+      <h2>Five days does not include the city's review. The price is the whole price for the set.</h2>
     </div>
     <div class="faq">
       <details>
@@ -760,7 +905,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════════════════════════════════ 11. QUALIFY AND BOOK ══ -->
-<section class="sec qualify" id="qualify">
+<section class="sec sec-dark qualify" id="qualify">
   <div class="container">
     <div class="q-grid">
 
@@ -776,109 +921,117 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div>
-        <!-- Form card -->
+        <!-- Form card: three short steps -->
         <div class="qual-card" id="qualFormCard">
-          <span class="qual-eyebrow">Step 1 of 2</span>
+          <span class="qual-eyebrow" id="qualStepLabel">Step 1 of 3 · The property</span>
           <h3 class="qual-title">Tell us about the project</h3>
-          <p class="qual-sub">Ten quick questions. Then pick a time.</p>
+          <p class="qual-sub">Ten quick questions in three short steps. Then pick a time.</p>
           <div class="qual-progress"><div class="qual-progress-bar" id="qualProgress"></div></div>
-          <form class="qual-form" id="qualForm" novalidate>
+          <form id="qualForm" novalidate>
 
-            <div class="qual-field">
-              <label class="qual-label" for="qf-address">Property address</label>
-              <input id="qf-address" type="text" name="address" autocomplete="street-address" placeholder="Street, city, ZIP" required />
-            </div>
-
-            <div class="qual-field">
-              <span class="qual-label">Do you own this property?</span>
-              <div class="qual-options-3col">
-                <label class="qual-opt"><input type="radio" name="owns" value="yes" required /> Yes</label>
-                <label class="qual-opt"><input type="radio" name="owns" value="in_contract" /> In contract</label>
-                <label class="qual-opt"><input type="radio" name="owns" value="no" /> No</label>
+            <fieldset class="qstep on" data-step="1">
+              <div class="qual-field">
+                <label class="qual-label" for="qf-address">Property address</label>
+                <input id="qf-address" type="text" name="address" autocomplete="street-address" placeholder="Street, city, ZIP" required />
               </div>
-            </div>
-
-            <div class="qual-field">
-              <span class="qual-label">What are you building?</span>
-              <div class="qual-options-2col">
-                <label class="qual-opt"><input type="radio" name="project_type" value="detached_adu" required /> Detached ADU or JADU</label>
-                <label class="qual-opt"><input type="radio" name="project_type" value="attached_adu" /> Attached ADU</label>
-                <label class="qual-opt"><input type="radio" name="project_type" value="garage_conversion" /> Garage conversion</label>
-                <label class="qual-opt"><input type="radio" name="project_type" value="renovation_addition" /> Interior renovation or addition</label>
-                <label class="qual-opt"><input type="radio" name="project_type" value="new_home_duplex" /> New home or duplex</label>
-                <label class="qual-opt"><input type="radio" name="project_type" value="other" /> Something else</label>
+              <div class="qual-field">
+                <span class="qual-label">Do you own this property?</span>
+                <div class="opts opts-3">
+                  <label class="qual-opt"><input type="radio" name="owns" value="yes" required /> Yes</label>
+                  <label class="qual-opt"><input type="radio" name="owns" value="in_contract" /> In contract</label>
+                  <label class="qual-opt"><input type="radio" name="owns" value="no" /> No</label>
+                </div>
               </div>
-            </div>
-
-            <div class="qual-field">
-              <label class="qual-label" for="qf-size">Roughly how big? <small>Square feet, or bedrooms and bathrooms</small></label>
-              <input id="qf-size" type="text" name="size_text" placeholder="e.g. 800 sq ft, or 2 bed 1 bath" required />
-            </div>
-
-            <div class="qual-field">
-              <span class="qual-label">When do you want to submit to the city?</span>
-              <div class="qual-options-2col">
-                <label class="qual-opt"><input type="radio" name="timing" value="within_2_weeks" required /> Within 2 weeks</label>
-                <label class="qual-opt"><input type="radio" name="timing" value="within_month" /> Within a month</label>
-                <label class="qual-opt"><input type="radio" name="timing" value="1_3_months" /> 1 to 3 months</label>
-                <label class="qual-opt"><input type="radio" name="timing" value="not_sure" /> Not sure</label>
+              <div class="qual-field">
+                <span class="qual-label">What are you building?</span>
+                <div class="opts opts-long">
+                  <label class="qual-opt"><input type="radio" name="project_type" value="detached_adu" required /> Detached ADU or JADU</label>
+                  <label class="qual-opt"><input type="radio" name="project_type" value="attached_adu" /> Attached ADU</label>
+                  <label class="qual-opt"><input type="radio" name="project_type" value="garage_conversion" /> Garage conversion</label>
+                  <label class="qual-opt"><input type="radio" name="project_type" value="renovation_addition" /> Interior renovation or addition</label>
+                  <label class="qual-opt"><input type="radio" name="project_type" value="new_home_duplex" /> New home or duplex</label>
+                  <label class="qual-opt"><input type="radio" name="project_type" value="other" /> Something else</label>
+                </div>
               </div>
-            </div>
-
-            <div class="qual-field">
-              <span class="qual-label">What is driving the timing?</span>
-              <div class="qual-options-2col">
-                <label class="qual-opt"><input type="radio" name="reason" value="contractor_waiting" required /> Contractor is waiting</label>
-                <label class="qual-opt"><input type="radio" name="reason" value="moving_in" /> Someone is moving in</label>
-                <label class="qual-opt"><input type="radio" name="reason" value="loan_sale_deadline" /> Loan or sale deadline</label>
-                <label class="qual-opt"><input type="radio" name="reason" value="fire_rebuild" /> Fire rebuild</label>
-                <label class="qual-opt"><input type="radio" name="reason" value="no_deadline" /> No deadline yet</label>
+              <div class="qual-field">
+                <label class="qual-label" for="qf-size">Roughly how big? <small>Square feet, or bedrooms and bathrooms</small></label>
+                <input id="qf-size" type="text" name="size_text" placeholder="e.g. 800 sq ft, or 2 bed 1 bath" required />
               </div>
-            </div>
+              <div class="qual-error" id="qualError1">Please answer every question in this step.</div>
+              <div class="qual-nav"><button type="button" class="btn btn-teal" data-next="2">Next: timing <span class="arr">→</span></button></div>
+            </fieldset>
 
-            <div class="qual-field">
-              <span class="qual-label">Do you have a contractor?</span>
-              <div class="qual-options-3col">
-                <label class="qual-opt"><input type="radio" name="contractor" value="chosen" required /> Chosen</label>
-                <label class="qual-opt"><input type="radio" name="contractor" value="getting_bids" /> Getting bids</label>
-                <label class="qual-opt"><input type="radio" name="contractor" value="not_yet" /> Not yet</label>
+            <fieldset class="qstep" data-step="2">
+              <div class="qual-field">
+                <span class="qual-label">When do you want to submit to the city?</span>
+                <div class="opts">
+                  <label class="qual-opt"><input type="radio" name="timing" value="within_2_weeks" required /> Within 2 weeks</label>
+                  <label class="qual-opt"><input type="radio" name="timing" value="within_month" /> Within a month</label>
+                  <label class="qual-opt"><input type="radio" name="timing" value="1_3_months" /> 1 to 3 months</label>
+                  <label class="qual-opt"><input type="radio" name="timing" value="not_sure" /> Not sure</label>
+                </div>
               </div>
-            </div>
-
-            <div class="qual-field">
-              <label class="qual-label" for="qf-quotes">Has anyone else quoted this? <small>Optional</small></label>
-              <textarea id="qf-quotes" name="other_quotes" rows="2" placeholder="Who, how much, how long"></textarea>
-            </div>
-
-            <div class="qual-field">
-              <span class="qual-label">Is the property in an HOA, or has anyone told you it needs planning or design review?</span>
-              <div class="qual-options-2col">
-                <label class="qual-opt"><input type="radio" name="review" value="no" required /> No</label>
-                <label class="qual-opt"><input type="radio" name="review" value="hoa" /> HOA</label>
-                <label class="qual-opt"><input type="radio" name="review" value="planning_review" /> Planning review</label>
-                <label class="qual-opt"><input type="radio" name="review" value="not_sure" /> Not sure</label>
+              <div class="qual-field">
+                <span class="qual-label">What is driving the timing?</span>
+                <div class="opts opts-long">
+                  <label class="qual-opt"><input type="radio" name="reason" value="contractor_waiting" required /> Contractor is waiting</label>
+                  <label class="qual-opt"><input type="radio" name="reason" value="moving_in" /> Someone is moving in</label>
+                  <label class="qual-opt"><input type="radio" name="reason" value="loan_sale_deadline" /> Loan or sale deadline</label>
+                  <label class="qual-opt"><input type="radio" name="reason" value="fire_rebuild" /> Fire rebuild</label>
+                  <label class="qual-opt"><input type="radio" name="reason" value="no_deadline" /> No deadline yet</label>
+                </div>
               </div>
-            </div>
+              <div class="qual-field">
+                <span class="qual-label">Do you have a contractor?</span>
+                <div class="opts opts-3">
+                  <label class="qual-opt"><input type="radio" name="contractor" value="chosen" required /> Chosen</label>
+                  <label class="qual-opt"><input type="radio" name="contractor" value="getting_bids" /> Getting bids</label>
+                  <label class="qual-opt"><input type="radio" name="contractor" value="not_yet" /> Not yet</label>
+                </div>
+              </div>
+              <div class="qual-field">
+                <label class="qual-label" for="qf-quotes">Has anyone else quoted this? <small>Optional</small></label>
+                <textarea id="qf-quotes" name="other_quotes" rows="2" placeholder="Who, how much, how long"></textarea>
+              </div>
+              <div class="qual-field">
+                <span class="qual-label">Is the property in an HOA, or has anyone told you it needs planning or design review?</span>
+                <div class="opts">
+                  <label class="qual-opt"><input type="radio" name="review" value="no" required /> No</label>
+                  <label class="qual-opt"><input type="radio" name="review" value="hoa" /> HOA</label>
+                  <label class="qual-opt"><input type="radio" name="review" value="planning_review" /> Planning review</label>
+                  <label class="qual-opt"><input type="radio" name="review" value="not_sure" /> Not sure</label>
+                </div>
+              </div>
+              <div class="qual-error" id="qualError2">Please answer every question in this step.</div>
+              <div class="qual-nav">
+                <button type="button" class="btn btn-ghost" data-back="1">Back</button>
+                <button type="button" class="btn btn-teal" data-next="3">Next: contact <span class="arr">→</span></button>
+              </div>
+            </fieldset>
 
-            <div class="qual-field">
-              <label class="qual-label" for="qf-name">Name, email, phone</label>
-              <input id="qf-name" type="text" name="name" autocomplete="name" placeholder="Full name" required />
-            </div>
-            <div class="qual-field-row">
-              <div class="qual-field"><input type="email" name="email" autocomplete="email" placeholder="Email" aria-label="Email" required /></div>
-              <div class="qual-field"><input type="tel" name="phone" autocomplete="tel" placeholder="Phone" aria-label="Phone" required /></div>
-            </div>
+            <fieldset class="qstep" data-step="3">
+              <div class="qual-field">
+                <label class="qual-label" for="qf-name">Name, email, phone</label>
+                <input id="qf-name" type="text" name="name" autocomplete="name" placeholder="Full name" required />
+              </div>
+              <div class="qual-field-row">
+                <div class="qual-field"><input type="email" name="email" autocomplete="email" placeholder="Email" aria-label="Email" required /></div>
+                <div class="qual-field"><input type="tel" name="phone" autocomplete="tel" placeholder="Phone" aria-label="Phone" required /></div>
+              </div>
+              <div class="qual-error" id="qualError3">Please add your name, a valid email, and a phone number.</div>
+              <div class="qual-nav">
+                <button type="button" class="btn btn-ghost" data-back="2">Back</button>
+                <button type="submit" class="btn btn-teal btn-lg">See if I qualify <span class="arr">→</span></button>
+              </div>
+              <p class="qual-footnote">No obligation. We do not share your information.</p>
+            </fieldset>
 
-            <div class="qual-error" id="qualError">Please answer every question above so we can tell you which track you are on.</div>
-
-            <button type="submit" class="btn btn-teal btn-lg btn-full qual-submit">See if I qualify <span class="arr">→</span></button>
-            <p class="qual-footnote">No obligation. We do not share your information.</p>
           </form>
         </div>
 
         <!-- Pass: calendar -->
         <div class="qual-card qual-hidden" id="qualPassCard">
-          <span class="qual-eyebrow">Step 2 of 2 · You are on the fast track</span>
+          <span class="qual-eyebrow">You are on the fast track</span>
           <h3 class="qual-title">Pick a time.</h3>
           <p class="qual-sub">Before we meet, we will look up your parcel and your city's ADU rules. On the call you will get a track, a price, and a start date.</p>
           <div id="qualCalWidget" class="cal-slot"></div>
@@ -933,20 +1086,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   var CAL_URL = 'https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1';
   var TYPE_LABEL = { detached_adu: 'Detached ADU or JADU', attached_adu: 'Attached ADU', garage_conversion: 'Garage conversion', renovation_addition: 'Interior renovation or addition', new_home_duplex: 'New home or duplex', other: 'Something else' };
+  var STEP_LABEL = { 1: 'Step 1 of 3 · The property', 2: 'Step 2 of 3 · Timing', 3: 'Step 3 of 3 · How to reach you' };
 
   (function () {
     var form = document.getElementById('qualForm');
     if (!form) return;
     var bar = document.getElementById('qualProgress');
-    var errBox = document.getElementById('qualError');
-    var REQ = ['address', 'owns', 'project_type', 'size_text', 'timing', 'reason', 'contractor', 'review', 'name', 'email', 'phone'];
-    function progress() {
-      var fd = new FormData(form);
-      var f = REQ.filter(function (k) { return ((fd.get(k) || '') + '').trim() !== ''; }).length;
-      if (bar) bar.style.width = (f / REQ.length * 100) + '%';
+    var stepLabel = document.getElementById('qualStepLabel');
+    var STEP_FIELDS = { 1: ['address', 'owns', 'project_type', 'size_text'], 2: ['timing', 'reason', 'contractor', 'review'], 3: ['name', 'email', 'phone'] };
+    var ALL = ['address', 'owns', 'project_type', 'size_text', 'timing', 'reason', 'contractor', 'other_quotes', 'review', 'name', 'email', 'phone'];
+
+    function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
+    function missingIn(step) { return STEP_FIELDS[step].filter(function (k) { return !val(k); }); }
+    function showStep(n) {
+      form.querySelectorAll('.qstep').forEach(function (fs) { fs.classList.toggle('on', fs.dataset.step === String(n)); });
+      if (bar) bar.style.width = (n / 3 * 100) + '%';
+      if (stepLabel) stepLabel.textContent = STEP_LABEL[n];
+      document.getElementById('qualFormCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    form.addEventListener('input', progress);
-    form.addEventListener('change', progress);
+    function flagError(step, missing) {
+      var box = document.getElementById('qualError' + step);
+      if (box) box.classList.toggle('show', missing.length > 0);
+      if (missing.length) {
+        var first = form.querySelector('[name="' + missing[0] + '"]');
+        if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    }
+    form.querySelectorAll('[data-next]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var cur = parseInt(b.closest('.qstep').dataset.step, 10);
+        var miss = missingIn(cur);
+        flagError(cur, miss);
+        if (!miss.length) showStep(parseInt(b.dataset.next, 10));
+      });
+    });
+    form.querySelectorAll('[data-back]').forEach(function (b) {
+      b.addEventListener('click', function () { showStep(parseInt(b.dataset.back, 10)); });
+    });
 
     function getCookie(n) { return (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || ''; }
 
@@ -979,19 +1155,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var fd = new FormData(form);
       var d = {};
-      ['address', 'owns', 'project_type', 'size_text', 'timing', 'reason', 'contractor', 'other_quotes', 'review', 'name', 'email', 'phone'].forEach(function (k) {
-        d[k] = ((fd.get(k) || '') + '').trim();
-      });
-      var missing = REQ.filter(function (k) { return !d[k]; });
-      if (missing.length || d.email.indexOf('@') < 0) {
-        errBox.classList.add('show');
-        var first = form.querySelector('[name="' + (missing[0] || 'email') + '"]');
-        if (first) { first.focus(); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        return;
+      ALL.forEach(function (k) { d[k] = val(k); });
+      // Validate every step; jump back to the first incomplete one.
+      for (var s = 1; s <= 3; s++) {
+        var miss = missingIn(s);
+        if (s === 3 && d.email.indexOf('@') < 0 && miss.indexOf('email') < 0) miss.push('email');
+        if (miss.length) { showStep(s); flagError(s, miss); return; }
       }
-      errBox.classList.remove('show');
+      flagError(3, []);
 
       var pass = ftPass(d), score = ftScore(d), tier = ftTier(d);
 
@@ -1064,6 +1236,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     });
   })();
+
+  // ─── Starting-point tabs ───
+  (function () {
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+        document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('on', p.id === t.dataset.panel); });
+        if (typeof gtag === 'function') gtag('event', 'starting_point_tab', { panel: t.dataset.panel });
+      });
+    });
+  })();
 </script>
 <div class="divider"></div>
 
@@ -1076,15 +1260,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="footer-tagline">Velocity Studio Architecture and Engineering, Inc. Licensed architects and engineers. Permit sets for ADUs, renovations, and simple homes across California. Developers and larger projects: see our <a href="/developers">developer page</a>.</p>
       </div>
       <nav class="footer-links">
-        <a href="#pricing">Pricing</a>
+        <a href="#pricing">Price and speed</a>
         <a href="#faq">FAQ</a>
         <a href="#qualify">See if you qualify</a>
         <a href="/developers">Developers</a>
       </nav>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Velocity Studio Architecture and Engineering, Inc.</span>
-    </div>
+    <div class="footer-bottom">© 2026 Velocity Studio Architecture and Engineering, Inc.</div>
   </div>
 </footer>
 
