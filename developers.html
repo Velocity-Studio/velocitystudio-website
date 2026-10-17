@@ -18,8 +18,9 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Velocity Studio - Pre-Construction for Repeat Developers</title>
-  <meta name="description" content="A licensed architecture and engineering firm for developers who run their own build team and close 5+ projects a year. Design, permits, estimates, bid packages — one team." />
+  <title>Velocity Studio - Design, Engineering &amp; Fast Permits for Developers</title>
+  <meta name="description" content="Architecture, structural, civil, MEP, and permitting under one roof. We design for your return and get developers to a stamped permit set in about a month." />
+  <link rel="canonical" href="https://velocitystud.io/developers" />
   <meta name="facebook-domain-verification" content="5hs64bmxb8djrx764110p5zv5598g4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,7 +45,7 @@
   </script>
 
   <style>
-    /* ─── RESET ─────────────────────────────────────────────── */
+    /* ─── RESET ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -64,28 +65,36 @@
       --teal-dk: #1F6451;
       --gold:    #C9942B;
       --gold-lt: #E6B84A;
+      --brown:   #7A5230;
       --white:   #FFFFFF;
       --border:  #E0DAD0;
       --muted:   #6B6560;
       --r:       12px;
       --rlg:     20px;
       --sh:      0 4px 24px rgba(28,28,28,.08);
+      --shlg:    0 12px 48px rgba(28,28,28,.16);
     }
 
     /* ─── UTILITIES ──────────────────────────────────────────── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     .eyebrow {
-      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      font-size: .82rem; font-weight: 700; letter-spacing: .16em;
       text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px;
     }
+    .eyebrow-gold { color: var(--gold); }
     .pill {
       display: inline-flex; align-items: center;
-      font-size: .7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
       background: rgba(45,139,110,.1); color: var(--teal);
-      padding: 5px 13px; border-radius: 100px;
-      border: 1px solid rgba(45,139,110,.2); margin: 3px 3px 3px 0;
+      padding: 5px 12px; border-radius: 100px;
+      border: 1px solid rgba(45,139,110,.2); margin: 3px;
     }
-    .divider { height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold), #7A5230); }
+    .pill-gold {
+      background: rgba(201,148,43,.12); color: var(--gold);
+      border-color: rgba(201,148,43,.25);
+    }
+    .pill-lg { font-size: .76rem; padding: 7px 16px; }
+    .divider { height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold), var(--brown)); }
 
     /* ─── BUTTONS ────────────────────────────────────────────── */
     .btn {
@@ -94,37 +103,87 @@
       font-size: .9rem; cursor: pointer; transition: all .22s;
       border: none; font-family: inherit; min-height: 52px; white-space: nowrap;
     }
-    .btn-teal { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
+    .btn-teal  { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
     .btn-teal:hover { background: var(--teal-dk); transform: translateY(-2px); }
+    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.28); }
+    .btn-ghost:hover { background: rgba(255,255,255,.18); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-gold-ghost { background: rgba(201,148,43,.1); color: var(--gold); border: 1.5px solid rgba(201,148,43,.3); }
+    .btn-gold-ghost:hover { background: rgba(201,148,43,.18); transform: translateY(-2px); }
     .btn-lg { padding: 17px 34px; font-size: .98rem; }
+    .btn-full { width: 100%; justify-content: center; }
     .arr { transition: transform .2s; }
     .btn:hover .arr { transform: translateX(4px); }
+
+    /* ─── IMAGE PLACEHOLDER ──────────────────────────────────── */
+    /* Used where real AI-generated images will drop in later */
+    .img-placeholder {
+      width: 100%; border-radius: var(--rlg); overflow: hidden;
+      position: relative; background: #1a2820;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .img-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-placeholder .img-label {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.28); text-align: center; padding: 16px; gap: 6px;
+      pointer-events: none;
+    }
+    .img-placeholder .img-label span { font-size: 1.8rem; opacity: .4; }
 
     /* ─── NAV ────────────────────────────────────────────────── */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 300;
       padding: 6px 0;
-      background: rgba(240,237,230,.92); backdrop-filter: blur(20px);
+      background: rgba(240,237,230,.9); backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(224,218,208,.4);
       transition: all .3s;
     }
     .nav.scrolled { padding: 5px 0; background: rgba(240,237,230,.97); box-shadow: 0 2px 24px rgba(28,28,28,.1); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 48px; width: auto; display: block; }
     .nav-logo-text { font-size: 1.08rem; font-weight: 800; letter-spacing: -.02em; }
     .nav-logo-text span { color: var(--teal); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: .86rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all .3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mob-menu {
+      display: flex; position: fixed; inset: 0; z-index: 299;
+      background: var(--bg); padding: 86px 28px 36px;
+      flex-direction: column; gap: 4px;
+      transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+    }
+    .mob-menu.open { transform: translateX(0); }
+    .mob-menu a {
+      font-size: 1.2rem; font-weight: 600; color: var(--dark);
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+    }
+    .mob-menu a:hover { color: var(--teal); }
+    .mob-cta { margin-top: 28px; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links, .nav-right .btn-outline { display: none; }
+    }
 
     /* ─── HERO ───────────────────────────────────────────────── */
     .hero { background: #1C1C1C; padding: 106px 0 72px; position: relative; overflow: hidden; }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 55% 80% at 0% 50%, rgba(45,139,110,.18) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.09) 0%, transparent 55%);
+        radial-gradient(ellipse 55% 80% at 0% 50%, rgba(45,139,110,.2) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.1) 0%, transparent 55%);
     }
     .hero-grid {
       display: grid; grid-template-columns: 55fr 45fr;
-      gap: 56px; align-items: center; position: relative; z-index: 1;
+      gap: 52px; align-items: center; position: relative; z-index: 1;
     }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 8px;
@@ -135,9 +194,9 @@
       margin-bottom: 22px;
     }
     .hero h1 {
-      font-size: clamp(2rem, 4.4vw, 3.3rem);
+      font-size: clamp(2rem, 4.6vw, 3.5rem);
       font-weight: 900; line-height: 1.07; letter-spacing: -.028em;
-      color: #fff; margin-bottom: 20px;
+      color: #fff; margin-bottom: 18px;
     }
     .hero h1 em {
       font-style: normal;
@@ -145,162 +204,335 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .hero-sub {
-      font-size: clamp(.88rem, 1.8vw, 1rem); color: rgba(255,255,255,.62);
-      line-height: 1.72; margin-bottom: 24px; max-width: 520px;
+      font-size: clamp(.9rem, 1.9vw, 1.05rem); color: rgba(255,255,255,.62);
+      line-height: 1.7; margin-bottom: 32px; max-width: 500px;
     }
-    .hero-pills { display: flex; flex-wrap: wrap; margin-bottom: 32px; }
-    .hero-pill {
-      font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      color: rgba(255,255,255,.55); background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.14);
-      padding: 5px 12px; border-radius: 100px; margin: 3px 3px 3px 0;
-    }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
-    .hero-micro { font-size: .74rem; color: rgba(255,255,255,.3); letter-spacing: .03em; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .hero-micro { font-size: .75rem; color: rgba(255,255,255,.32); letter-spacing: .04em; }
 
-    /* Hero right panel */
-    .hero-panel {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--rlg); overflow: hidden;
+    /* Hero video box */
+    .hero-box {
+      aspect-ratio: 1/1; border-radius: var(--rlg); overflow: hidden;
+      box-shadow: 0 24px 72px rgba(0,0,0,.55); background: #0c1a12;
     }
-    .hero-panel video { width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1; }
+    .hero-box video { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; gap: 36px; }
       .hero { padding: 94px 0 56px; }
       .hero-sub { max-width: 100%; }
-      .hero-panel { max-width: 480px; }
+      .hero-box { max-width: 440px; margin: 0 auto; }
     }
     @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
     }
 
+    /* ─── PROOF STRIP ────────────────────────────────────────── */
+    .strip { background: #111; padding: 15px 0; overflow: hidden; }
+    .strip-track {
+      display: flex; gap: 52px; align-items: center;
+      animation: ticker 62s linear infinite; white-space: nowrap; width: max-content;
+    }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    .strip-item {
+      flex-shrink: 0; font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.36);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .strip-item::before { content: '◆'; color: var(--gold); font-size: .46rem; }
+
     /* ─── SECTIONS ───────────────────────────────────────────── */
-    .sec { padding: 84px 0; }
-    .sec-hd { text-align: center; max-width: 680px; margin: 0 auto 48px; }
+    .sec { padding: 88px 0; }
+    .sec-sm { padding: 64px 0; }
+    .sec-hd { text-align: center; max-width: 700px; margin: 0 auto 52px; }
     .sec-hd h2 {
-      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      font-size: clamp(1.65rem, 3.6vw, 2.55rem);
       font-weight: 800; line-height: 1.12; letter-spacing: -.022em; margin-bottom: 12px;
     }
-    .sec-hd p { color: var(--muted); font-size: .95rem; line-height: 1.7; }
+    .sec-hd p { color: var(--muted); font-size: .98rem; line-height: 1.7; }
+
+    /* Section image strip (full-width image above content) */
+    .sec-img {
+      width: 100%; border-radius: var(--rlg); overflow: hidden; margin-bottom: 44px;
+      box-shadow: var(--sh);
+    }
+    .sec-img img { width: 100%; display: block; max-height: 360px; object-fit: cover; }
+    .sec-img .img-placeholder { min-height: 240px; border-radius: var(--rlg); }
 
     /* ─── PAIN ───────────────────────────────────────────────── */
     .pain-sec { background: var(--white); }
-    .pain-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: start;
+    .pain-sec .eyebrow { color: #C0392B; }
+    .pain-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+      align-items: start;
     }
-    .pain-image { order: -1; }
-    .pain-image img {
-      width: 100%; border-radius: var(--r);
-      object-fit: cover; display: block;
+    .pain-img-wrap {
+      width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 12px;
     }
-    .pain-cards { display: flex; flex-direction: column; gap: 16px; }
+    .pain-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pain-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
     .pain-card {
       background: var(--white); border: 1px solid var(--border);
-      border-top: 3px solid #C0392B;
-      border-radius: var(--r); padding: 22px 22px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border-radius: var(--r); padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
       transition: transform .2s, box-shadow .2s;
     }
     .pain-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
-    .pain-card h3 {
-      font-size: .78rem; font-weight: 800; letter-spacing: .12em;
-      text-transform: uppercase; color: #C0392B; margin-bottom: 8px;
-    }
-    .pain-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
-    @media (max-width: 720px) {
-      .pain-split { grid-template-columns: 1fr; }
-      .pain-image { order: 1; }
-    }
-
-    /* ─── WHY VS ─────────────────────────────────────────────── */
-    .why-sec { background: var(--bg); }
-    .why-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: start;
-    }
-    .why-cards { display: flex; flex-direction: column; gap: 16px; }
-    .why-image img {
-      width: 100%; border-radius: var(--r);
-      object-fit: cover; display: block;
-    }
-    .why-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 22px 20px;
-      display: flex; gap: 16px; align-items: flex-start;
-      box-shadow: 0 2px 10px rgba(0,0,0,.04);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .why-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
-    .why-ico {
-      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
-      background: rgba(45,139,110,.1); border: 1px solid rgba(45,139,110,.18);
+    .pain-icon {
+      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+      background: #FFF0EF; border: 1px solid #FFCFCC;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem;
     }
-    .why-card h4 {
-      font-size: .72rem; font-weight: 800; letter-spacing: .13em;
-      text-transform: uppercase; color: var(--teal); margin-bottom: 6px;
-    }
-    .why-card p { font-size: .84rem; color: var(--muted); line-height: 1.65; }
-    @media (max-width: 720px) {
-      .why-split { grid-template-columns: 1fr; }
+    .pain-card h3 { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #C0392B; margin-bottom: 4px; }
+    .pain-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 680px) {
+      .pain-layout { grid-template-columns: 1fr; }
+      .pain-card { flex-direction: row; gap: 14px; align-items: flex-start; }
     }
 
-    /* ─── PROOF ──────────────────────────────────────────────── */
-    .proof-sec { background: #162F26; }
-    .proof-inner {
-      max-width: 820px; margin: 0 auto; text-align: center;
+    /* ─── WHY VS IS BETTER (merged How We Work + What We Do) ──── */
+    .disc-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px 18px;
+      display: flex; gap: 13px; align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
     }
-    .quote-mark {
-      font-size: 4rem; line-height: 1; color: var(--teal);
-      opacity: .5; margin-bottom: 8px; font-family: Georgia, serif;
+    .disc-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+    .disc-ico {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: rgba(45,139,110,.1); border: 1px solid rgba(45,139,110,.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
     }
-    .quote-text {
-      font-size: clamp(1rem, 2.2vw, 1.22rem);
-      color: rgba(255,255,255,.88); line-height: 1.72;
-      font-weight: 400; font-style: italic;
-      margin-bottom: 28px;
+    .disc-card h4 { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+    .disc-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+    .why-scope-row { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: stretch; margin-bottom: 22px; }
+    .why-scope-img { border-radius: var(--rlg); overflow: hidden; box-shadow: var(--sh); min-height: 340px; }
+    .why-scope-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .why-scope-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-top: 3px solid var(--gold); border-radius: var(--rlg); padding: 26px 28px; }
+    .why-scope-card > .lbl { font-size: .6rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-lt); display: block; margin-bottom: 18px; }
+    .why-phase + .why-phase { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.10); }
+    .why-phase h4 { font-size: .95rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .why-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    @media (max-width: 820px) { .why-scope-row { grid-template-columns: 1fr; } .why-scope-img { min-height: 240px; order: -1; } }
+    @media (max-width: 680px) { .why-cards { grid-template-columns: 1fr; } }
+
+    .permits-box {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--rlg); padding: 28px 24px; margin-bottom: 14px;
     }
-    .quote-attr {
-      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--gold-lt);
+    .permits-box h3 { font-size: .92rem; font-weight: 800; margin-bottom: 14px; }
+    .pills-row { display: flex; flex-wrap: wrap; }
+
+    .path2-box {
+      background: linear-gradient(135deg, rgba(201,148,43,.07), rgba(122,82,48,.07));
+      border: 1px solid rgba(201,148,43,.22);
+      border-radius: var(--rlg); padding: 28px 24px;
     }
-    .quote-attr span {
-      display: block; margin-top: 4px;
-      font-size: .68rem; font-weight: 500; letter-spacing: .06em;
-      color: rgba(255,255,255,.38); text-transform: none;
+    .path2-box h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .path2-box p { font-size: .88rem; color: var(--muted); line-height: 1.68; margin-bottom: 18px; }
+
+    /* ─── METHOD ─────────────────────────────────────────────── */
+    /* Scope / Services section  -  deep forest teal accent background */
+    .meth-sec { background: #162F26; }
+    .meth-sec .eyebrow { color: #5BBFA0; }
+    .meth-sec .sec-hd h2 { color: #fff; }
+    .meth-sec .sec-hd p { color: rgba(255,255,255,0.55); }
+    .scope-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .scope-list li {
+      font-size: .83rem; color: rgba(255,255,255,0.68); line-height: 1.4;
+      padding-left: 16px; position: relative;
     }
+    .scope-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: #3DAA84; font-size: .7rem; top: 2px;
+    }
+
+    /* ─── PROOF / NATIONWIDE ─────────────────────────────────── */
+    .proof-sec { background: var(--white); }
+    .proof-sec .eyebrow { color: var(--teal); }
+    .proof-sub { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin: 44px 0 18px; text-align: center; }
+    .proof-sub:first-of-type { margin-top: 0; }
+
+    /* Project carousel - centered slide with faded peeks each side */
+    .gallery { position: relative; }
+    .gal-track { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 0 14px; -webkit-overflow-scrolling: touch; }
+    .gal-track::before, .gal-track::after { content: ''; flex: 0 0 7%; }
+    .gal-track::-webkit-scrollbar { height: 8px; }
+    .gal-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    .gal-slide { flex: 0 0 86%; scroll-snap-align: center; }
+    .gal-img { aspect-ratio: 3/2; border-radius: var(--rlg); overflow: hidden; background: #1C2820; box-shadow: var(--sh); }
+    .gal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gal-cap { display: block; padding: 14px 4px 0; font-style: italic; font-weight: 400; font-size: .95rem; color: var(--muted); text-align: center; }
+    .gallery::before, .gallery::after { content: ''; position: absolute; top: 0; bottom: 0; width: 7%; z-index: 3; pointer-events: none; background: rgba(255,255,255,0.6); }
+    .gallery::before { left: 0; }
+    .gallery::after { right: 0; }
+    .gal-nav { position: absolute; top: 45%; transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; background: rgba(255,255,255,.95); border: 1px solid var(--border); box-shadow: var(--sh); font-size: 1.5rem; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .gal-nav:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .gal-prev { left: 6px; }
+    .gal-next { right: 6px; }
+    @media (max-width: 700px) { .gal-nav { display: none; } .gal-slide { flex-basis: 84%; } }
+
+    /* Credentials  -  light bg */
+    .creds-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 720px; margin: 0 auto; }
+    .cred-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 16px; text-align: center; }
+    .cred-name { font-size: .86rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .cred-role { font-size: .74rem; color: var(--teal); font-weight: 600; margin-bottom: 5px; }
+    .cred-badge { font-size: .7rem; color: var(--muted); line-height: 1.5; }
+    .cred-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 14px; font-style: italic; }
+    @media (max-width: 720px) { .creds-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 400px) { .creds-grid { grid-template-columns: 1fr; } }
+
+    /* ─── ROI (value scales with project size) ───────────────── */
+    .roi-sec { background: var(--dark); }
+    .roi-sec .eyebrow { color: var(--gold); }
+    .roi-sec .sec-hd h2 { color: #fff; }
+    .roi-sec .sec-hd p { color: rgba(255,255,255,.66); font-size: 1.04rem; }
+    .roi-curve { max-width: 900px; margin: 0 auto 40px; }
+    .roi-curve svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .roi-matrix-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+    .roi-matrix { display: grid; grid-template-columns: 176px repeat(4, minmax(140px,1fr)); gap: 12px; min-width: 720px; align-items: stretch; }
+    .roi-legend, .roi-card { display: flex; flex-direction: column; }
+    .roi-card { background: #232320; border: 1px solid rgba(255,255,255,.08); border-top: 3px solid var(--muted); border-radius: var(--rlg); overflow: hidden; }
+    .roi-row { display: flex; flex-direction: column; justify-content: center; padding: 9px 16px; }
+    .roi-card .roi-row + .roi-row { border-top: 1px solid rgba(255,255,255,.06); }
+    .roi-legend { border-top: 3px solid transparent; }
+    .roi-legend .roi-row + .roi-row { border-top: 1px solid transparent; }
+    .r-head  { min-height: 132px; justify-content: flex-end; padding-bottom: 16px; }
+    .r-cost  { min-height: 56px; }
+    .g-row   { min-height: 34px; justify-content: flex-end; }
+    .roi-card .g-row { background: rgba(255,255,255,.02); }
+    .sp-typ, .sp-ours { min-height: 42px; }
+    .sp-saved { min-height: 50px; }
+    .op-carry, .op-rent { min-height: 40px; }
+    .op-exit { min-height: 46px; }
+    .r-value { min-height: 124px; justify-content: flex-start; padding-top: 15px; }
+    .roi-legend .roi-row { align-items: flex-end; text-align: right; padding: 9px 4px 9px 0; }
+    .roi-legend .lbl { font-size: .95rem; font-weight: 700; color: rgba(255,255,255,.6); line-height: 1.35; }
+    .roi-legend .glbl { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+    .roi-legend .lbl-sm { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.5); line-height: 1.3; }
+    .roi-head { align-items: center; text-align: center; gap: 8px; }
+    .roi-ico { height: 52px; display: flex; align-items: flex-end; }
+    .roi-ico svg { height: 50px; width: auto; display: block; }
+    .roi-scenario { font-size: 1.16rem; font-weight: 800; color: #fff; line-height: 1.1; }
+    .roi-size { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .roi-vt { font-size: .98rem; font-weight: 600; color: rgba(255,255,255,.5); }
+    .roi-vo { font-size: 1.06rem; font-weight: 700; color: #fff; }
+    .roi-vsaved { font-size: 1.16rem; font-weight: 800; }
+    .roi-v { font-size: 1.02rem; font-weight: 700; color: rgba(255,255,255,.9); }
+    .roi-payoff { background: rgba(255,255,255,.04); }
+    .roi-v-big { font-size: 1.62rem; font-weight: 900; letter-spacing: -.01em; line-height: 1.05; }
+    .roi-note { font-size: .82rem; color: rgba(255,255,255,.58); margin-top: 8px; line-height: 1.4; }
+    .roi-adu { border-top-color: #C0392B; }
+    .roi-adu .roi-v-big, .roi-adu .roi-vsaved { color: #E8776B; }
+    .roi-home { border-top-color: #C9942B; }
+    .roi-home .roi-v-big, .roi-home .roi-vsaved { color: #E6B84A; }
+    .roi-duplex { border-top-color: #8DB63C; }
+    .roi-duplex .roi-v-big, .roi-duplex .roi-vsaved { color: #B4D66A; }
+    .roi-fourplex { border-color: rgba(61,170,132,.5); border-top-color: #3DAA84; box-shadow: 0 8px 40px rgba(45,139,110,.30); }
+    .roi-fourplex .roi-v-big, .roi-fourplex .roi-vsaved { color: #5BE0B0; }
+    .roi-qual { max-width: 760px; margin: 40px auto 0; text-align: center; font-size: .96rem; color: rgba(255,255,255,.66); line-height: 1.7; }
+    .roi-illus { text-align: center; font-size: .72rem; color: rgba(255,255,255,.32); font-style: italic; margin-top: 14px; }
+    /* ROI mobile: 2x2 self-contained cards + larger graph text */
+    @media (max-width: 640px) {
+      .rc-val { font-size: 27px; }
+      .rc-x { font-size: 25px; }
+      .roi-matrix-wrap { overflow: visible; }
+      .roi-matrix { grid-template-columns: 1fr 1fr; gap: 12px; min-width: 0; }
+      .roi-legend { display: none; }
+      .roi-card .g-row { display: none; }
+      .roi-card .roi-row { min-height: 0; padding: 10px 12px; }
+      .roi-card .r-head { min-height: 0; padding: 14px 12px 12px; }
+      .roi-ico { height: 42px; }
+      .roi-ico svg { height: 40px; }
+      .roi-scenario { font-size: .98rem; }
+      .roi-size { font-size: .72rem; }
+      .roi-card .roi-row[data-k]::before { content: attr(data-k); display: block; font-size: .58rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.42); margin-bottom: 3px; }
+      .roi-v, .roi-vo { font-size: .9rem; }
+      .roi-vt { font-size: .84rem; }
+      .roi-vsaved { font-size: 1rem; }
+      .roi-v-big { font-size: 1.2rem; }
+      .roi-note { font-size: .72rem; }
+    }
+
+    /* ─── QUALIFYING FORM (CTA) ──────────────────────────────── */
+    .qual-card { background: #fff; border-radius: 16px; padding: 30px 26px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
+    .qual-eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px; }
+    .qual-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -.018em; color: var(--dark); margin-bottom: 6px; line-height: 1.15; }
+    .qual-sub { font-size: .88rem; color: var(--muted); line-height: 1.55; margin-bottom: 22px; }
+    .qual-progress { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 22px; }
+    .qual-progress-bar { height: 100%; width: 0%; background: var(--teal); transition: width .3s ease; }
+    .qual-form { display: flex; flex-direction: column; gap: 16px; }
+    .qual-field { display: block; }
+    .qual-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .qual-field-row { grid-template-columns: 1fr; } }
+    .qual-label { display: block; font-size: .98rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); letter-spacing: -.012em; }
+    .qual-field input[type="text"], .qual-field input[type="email"], .qual-field input[type="tel"], .qual-field textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
+    .qual-field textarea { resize: vertical; min-height: 78px; line-height: 1.5; }
+    .qual-field input::placeholder, .qual-field textarea::placeholder { color: rgba(28,28,28,.32); }
+    .qual-field input:focus, .qual-field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
+    .qual-field select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
+    .qual-field select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
+    .qual-field select:required:invalid { color: rgba(28,28,28,.55); }
+    .qual-field select option { color: var(--dark); }
+    .qual-field select option[value=""] { color: rgba(28,28,28,.55); }
+    .qual-options { display: flex; flex-direction: column; gap: 6px; }
+    .qual-options-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    @media (max-width: 420px) { .qual-options-2col { grid-template-columns: 1fr; } }
+    .qual-opt { display: flex; align-items: center; gap: 10px; padding: 10px 13px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all .15s; font-size: .88rem; color: var(--dark); line-height: 1.3; background: #fff; }
+    .qual-opt:hover { border-color: var(--teal); background: rgba(45,139,110,.04); }
+    .qual-opt input { accent-color: var(--teal); margin: 0; flex-shrink: 0; }
+    .qual-opt:has(input:checked) { border-color: var(--teal); background: rgba(45,139,110,.07); box-shadow: 0 0 0 1px var(--teal) inset; }
+    .qual-size-group { margin-bottom: 12px; }
+    .qual-size-group:last-child { margin-bottom: 0; }
+    .qual-group-label { font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .qual-submit { margin-top: 8px; }
+    .qual-footnote { font-size: .72rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .qual-hidden { display: none !important; }
+    .qual-fade-in { animation: qualFade .4s ease forwards; }
+    @keyframes qualFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ─── CTA ────────────────────────────────────────────────── */
     .cta-sec { background: var(--dark); }
+    .cta-sec .eyebrow { color: var(--teal); }
     .cta-grid {
-      display: grid; grid-template-columns: 1fr 1.4fr;
-      gap: 64px; align-items: center; max-width: 1040px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+      max-width: 1080px;
+      margin: 0 auto;
     }
-    .cta-text .eyebrow { color: var(--teal); }
+    .cta-text { padding-top: 12px; }
     .cta-text h2 {
-      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
       font-weight: 800; letter-spacing: -.022em;
-      line-height: 1.08; margin-bottom: 16px; color: #fff;
+      line-height: 1.08; margin-bottom: 18px; color: #fff;
     }
     .cta-text h2 em { font-style: normal; color: var(--teal); }
     .cta-text .lead {
-      font-size: .94rem; color: rgba(255,255,255,.52);
-      line-height: 1.75; margin-bottom: 28px; max-width: 380px;
+      font-size: .97rem; color: rgba(255,255,255,.52);
+      line-height: 1.75; margin-bottom: 32px; max-width: 360px;
     }
     .cta-trust {
-      display: flex; flex-direction: column; gap: 10px;
-      font-size: .81rem; font-weight: 600;
+      display: flex; flex-direction: column; gap: 11px;
+      font-size: .82rem; font-weight: 600;
       color: rgba(255,255,255,.44); margin-bottom: 0;
     }
-    .cta-trust span { display: flex; align-items: flex-start; gap: 9px; line-height: 1.5; }
-    .cta-trust span::before { content: "✓"; color: var(--teal); font-weight: 800; font-size: .88rem; flex-shrink: 0; margin-top: 1px; }
-    .cta-micro {
-      margin-top: 20px; font-size: .7rem;
-      color: rgba(255,255,255,.2); font-style: italic; line-height: 1.5;
+    .cta-trust span { display: flex; align-items: center; gap: 9px; }
+    .cta-trust span::before {
+      content: "✓"; color: var(--teal);
+      font-weight: 800; font-size: .88rem;
     }
+
+    /* Calendly embed card */
     .cal-card {
       background: #fff; border-radius: 16px; overflow: hidden;
       box-shadow: 0 8px 40px rgba(0,0,0,.32);
@@ -312,17 +544,42 @@
     }
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
-    .footer {
-      background: var(--dark); padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,.06);
+    .footer { background: var(--dark); padding: 44px 0 32px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
+    .footer-brand-name { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .footer-brand-name span { color: var(--teal); }
+    .footer-tagline { font-size: .8rem; color: rgba(255,255,255,.38); line-height: 1.6; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { font-size: .8rem; color: rgba(255,255,255,.42); font-weight: 500; transition: color .2s; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-bottom {
+      margin-top: 24px; padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
     }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
+    .footer-bottom span { font-size: .72rem; color: rgba(255,255,255,.22); }
+    .footer-creds { font-size: .74rem; color: rgba(255,255,255,.26); margin-top: 24px; }
+
+    /* ─── BY-RIGHT LAW CHIPS (used in the infill ping-pong row) ─ */
+    .byright-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .byright-chip { font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 99px; background: var(--white); border: 1px solid var(--border); color: var(--teal-dk); }
+    .byright-chip b { color: var(--gold); font-weight: 800; }
+
+    /* ─── AUDIENCE PING-PONG ─────────────────────────────────── */
+    .audience-sec { background: var(--bg); }
+    .pp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .pp-row + .pp-row { margin-top: 60px; }
+    .pp-flip .pp-media { order: -1; }
+    .pp-media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--rlg); box-shadow: var(--sh); display: block; }
+    .pp-text h3 { font-size: clamp(1.4rem, 2.7vw, 2rem); font-weight: 800; color: var(--teal-dk); letter-spacing: -.02em; line-height: 1.12; margin-bottom: 16px; }
+    .pp-text p { font-size: 1.02rem; color: var(--muted); line-height: 1.75; margin-bottom: 18px; }
+    .pp-text p:last-child { margin-bottom: 0; }
+    .pp-text .byright-chips { margin-top: 2px; }
+    @media (max-width: 820px) {
+      .pp-row { grid-template-columns: 1fr; gap: 22px; }
+      .pp-row + .pp-row { margin-top: 44px; }
+      .pp-media { order: -1; }
     }
-    .footer-brand { font-size: .9rem; font-weight: 800; color: #fff; }
-    .footer-brand span { color: var(--teal); }
-    .footer-legal { font-size: .72rem; color: rgba(255,255,255,.24); }
   </style>
 
   <!-- Meta Pixel -->
@@ -352,14 +609,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav class="nav" id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="/developers" class="nav-logo" aria-label="Velocity Studio">
-        <img src="images/VS_Logo.png" alt="Velocity Studio"
+      <a href="/developers" aria-label="Velocity Studio">
+        <img src="images/VS_Logo.png" alt="Velocity Studio" style="height:52px;width:auto"
              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
         <span class="nav-logo-text" style="display:none">Velocity <span>Studio</span></span>
       </a>
-      <a href="#contact" class="btn btn-teal" style="padding:10px 20px;font-size:.85rem;min-height:44px;">
-        Book a Discovery Call
-      </a>
+      <a href="#contact" class="btn btn-teal" style="padding:10px 20px;font-size:.85rem;min-height:44px;">Get your scope &amp; fee</a>
     </div>
   </div>
 </nav>
@@ -370,30 +625,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-grid">
 
       <div>
-        <h1>Stop losing months<br>per deal <em>to slow A&amp;E.</em></h1>
-        <p class="hero-sub">Velocity Studio Architecture & Engineering, Inc. is a precon firm for developers who run their own build team on 5+ projects a year.</p>
-        <p class="hero-sub">We compress your deal cycle by months - design, engineering, permits, estimates, bid packages, and more, all in-house in parallel.</p>
-
-
-        <div class="hero-pills">
-          <span class="hero-pill">Architecture</span>
-          <span class="hero-pill">Structural Engineering</span>
-          <span class="hero-pill">Civil Engineering</span>
-          <span class="hero-pill">MEP Engineering</span>
-          <span class="hero-pill">Landscape</span>
-          <span class="hero-pill">Interiors</span>
-        </div>
-
+        <h1>Your A&amp;E team for <em>lightning-fast</em> permits.</h1>
+        <p class="hero-sub">Better, faster, cheaper preconstruction - built to shave months off real estate developers' timelines and accelerate capital velocity.</p>
+        <div class="hero-tag">⚡ Architecture · Structural · Civil · MEP</div>
         <div class="hero-ctas">
-          <a href="#contact" class="btn btn-teal btn-lg">Book a Discovery Call <span class="arr">→</span></a>
+          <a href="#contact" class="btn btn-teal btn-lg">Get your scope &amp; fee <span class="arr">→</span></a>
         </div>
-        <p class="hero-micro">15-minute call &nbsp;·&nbsp; No commitment required &nbsp;·&nbsp; Fixed-fee proposal within 24 hours</p>
+        <p class="hero-micro">We respond within one business day · No commitment required</p>
       </div>
 
-      <div class="hero-panel">
-        <video autoplay loop muted playsinline>
-          <source src="VS_Ad01_1X1_web.mp4" type="video/mp4">
-        </video>
+      <!-- Hero video -->
+      <div>
+        <div class="hero-box">
+          <video autoplay muted loop playsinline>
+            <source src="hero.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
 
     </div>
@@ -401,94 +648,452 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 <div class="divider"></div>
 
+<!-- ══════════════════════════════════════ STRIP ══ -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Duplex Infill</span>
+    <span class="strip-item">Los Angeles, CA</span>
+    <span class="strip-item">SB 9 Lot Split</span>
+    <span class="strip-item">Fourplex · Middle Housing</span>
+    <span class="strip-item">Seattle, WA</span>
+    <span class="strip-item">By-Right Multifamily</span>
+    <span class="strip-item">Custom Single-Family</span>
+    <span class="strip-item">Austin, TX</span>
+    <span class="strip-item">Building Permit</span>
+    <span class="strip-item">Repeated High-End Plan</span>
+    <span class="strip-item">Miami, FL</span>
+    <span class="strip-item">Title 24 · Energy</span>
+    <span class="strip-item">Two-on-a-Lot</span>
+    <span class="strip-item">Oxnard, CA</span>
+    <span class="strip-item">Zoning · CUP</span>
+    <span class="strip-item">ADU Cluster</span>
+    <span class="strip-item">Portland, OR</span>
+    <span class="strip-item">Structural · Civil · MEP</span>
+    <span class="strip-item">Duplex Infill</span>
+    <span class="strip-item">Los Angeles, CA</span>
+    <span class="strip-item">SB 9 Lot Split</span>
+    <span class="strip-item">Fourplex · Middle Housing</span>
+    <span class="strip-item">Seattle, WA</span>
+    <span class="strip-item">By-Right Multifamily</span>
+    <span class="strip-item">Custom Single-Family</span>
+    <span class="strip-item">Austin, TX</span>
+    <span class="strip-item">Building Permit</span>
+    <span class="strip-item">Repeated High-End Plan</span>
+    <span class="strip-item">Miami, FL</span>
+    <span class="strip-item">Title 24 · Energy</span>
+    <span class="strip-item">Two-on-a-Lot</span>
+    <span class="strip-item">Oxnard, CA</span>
+    <span class="strip-item">Zoning · CUP</span>
+    <span class="strip-item">ADU Cluster</span>
+    <span class="strip-item">Portland, OR</span>
+    <span class="strip-item">Structural · Civil · MEP</span>
+  </div>
+</div>
+
 <!-- ══════════════════════════════════════ PAIN ══ -->
 <section class="sec pain-sec">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow" style="color:#C0392B;">Sound familiar?</span>
-      <h2>Your deal machine runs well - except your A&amp;E team doesn't keep up</h2>
-      <p>You've got access to capital - your lenders love you. Your realtor sends you enough opportunities. You've built a great team of trusted subs. But on every project, you're still chasing architects and engineers who move at their own pace.</p>
+      <span class="eyebrow">The problem we solve</span>
+      <h2>Other A&amp;E teams are slow to design and engineer for permit.</h2>
+      <p>Your current design team works slowly, expensively, and with too little technology and coordination, which adds carry and reduces ROI by months per project.</p>
     </div>
 
-    <div class="pain-split">
-      <div class="pain-cards">
-        <div class="pain-card">
-          <h3>Wasting time - and your carry.</h3>
-          <p>They deliver when they're ready. Structural and civil are worse — slower per unit of scope than any other discipline on your team. Every extra week is carry you're absorbing with no recourse.</p>
-        </div>
-        <div class="pain-card">
-          <h3>Every permit is its own headache</h3>
-          <p>Even in the same region, each AHJ has its own hoops to jump. And the same team who aced the last process is missing critical risks now - they rely on anecdotes, not a well-oiled research process. </p>
-        </div>
-        <div class="pain-card">
-          <h3>Nobody owns the process but you</h3>
-          <p>Architect, structural, civil, and MEP point fingers about schedule delays. So you have to own the coordination — on every project, every time, in addition to everything else you're running.</p>
-        </div>
+    <div class="pain-layout">
+      <div class="pain-img-wrap">
+        <img src="images/permits-painful.jpg"
+             alt="The painful permit process  -  miscommunication loops between design team, permit official, utility coordination and contractor"/>
       </div>
-      <div class="pain-image">
-        <img src="images/permits-painful.jpg" alt="The path to a permit — architects, structural engineers, and building officials as obstacles"/>
+
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">📆</div>
+          <div>
+            <h3>Misaligned calendars, unclear boundaries</h3>
+            <p>Architect, structural, civil, and MEP have their own workloads and priorities, so team cycles take weeks, and they often punt scope back to one another.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🐢</div>
+          <div>
+            <h3>Slow, and in no hurry</h3>
+            <p>Each firm runs on expensive senior hours and little technology, so they are backlogged and slow, no matter how well you support them.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">💸</div>
+          <div>
+            <h3>Costs compound</h3>
+            <p>These factors inflate design and engineering timelines by 3X - and every lost month is extra carry, and lost cashflow (if renting) or ROIC (if selling), for you.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ WHY VS ══ -->
-<section class="sec why-sec">
+<!-- ══════════════════════════════════════ AUDIENCE (PING-PONG) ══ -->
+<section class="sec audience-sec" id="who">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">Why Velocity Studio</span>
-      <h2>We're built for developers who need preconstruction to move at the speed of their capital.</h2>
+      <span class="eyebrow">Who we build for</span>
+      <h2>We're built to accelerate exactly these projects.</h2>
+      <p>Three different situations, one job: one senior team takes you to a permit-ready set fast, instead of four firms waiting on each other.</p>
     </div>
 
-    <div class="why-split">
-      <div class="why-cards">
-        <div class="why-card">
-          <div class="why-ico">🏢</div>
-          <div>
-            <h4>Every license. One team.</h4>
-            <p>Our core team of licensed designers (architects, interiors, landscape) and engineers (structural, civil, MEP) are backed by drafters executing all disciplines in parallel. We're already assembled. Same full team, every time.</p>
-          </div>
-        </div>
-        <div class="why-card">
-          <div class="why-ico">⚡</div>
-          <div>
-            <h4>Designed in parallel. Drafted in parallel.</h4>
-            <p>We work side-by-side, all day, to achieve zero latency between discipline handoffs. And we loop you in relentlessly so we lose no schedule to decisionmaking. Then our drafters take over all disciplines in parallel.</p>
-          </div>
-        </div>
-        <div class="why-card">
-          <div class="why-ico">🤖</div>
-          <div>
-            <h4>AI-assisted delivery.</h4>
-            <p>We don't just "ask AI". Our software engineers build robust code checks, permit pre-screening, drawing review — our tools run in minutes what takes a traditional team a week.</p>
-          </div>
-        </div>
-        <div class="why-card">
-          <div class="why-ico">📋</div>
-          <div>
-            <h4>We don't stop at the permit.</h4>
-            <p>Takeoffs, cost estimates, bid packages, scope documents — from the same BIM design models to reduce re-work. Your subs get briefed faster. Bids come in tighter.</p>
-          </div>
+    <!-- Row 1: text left, image right -->
+    <div class="pp-row">
+      <div class="pp-text">
+        <h3>Multi-family infill</h3>
+        <p>The zoning opened up. Now you just need a team fast enough to use it. A wave of new laws clears duplexes, triplexes, and fourplexes by right - approved over the counter, no discretionary hearing. The entitlement used to be the bottleneck; now it's finding an A&amp;E team that can move as fast as the law lets you.</p>
+        <p>Send us the parcel and we'll tell you how many units you can build by right, often before we get on the phone. Then one team takes it from upzoned lot to a permit-ready set - architecture, structural, civil, and MEP - so you reach submittal in weeks and start selling or renting that much sooner.</p>
+        <div class="byright-chips">
+          <span class="byright-chip">California <b>SB 9</b></span>
+          <span class="byright-chip">California <b>SB 423</b></span>
+          <span class="byright-chip">Washington <b>HB 1110</b></span>
+          <span class="byright-chip">Oregon <b>HB 2001</b></span>
+          <span class="byright-chip">Florida <b>Live Local</b></span>
+          <span class="byright-chip">Massachusetts <b>MBTA Communities</b></span>
+          <span class="byright-chip">Austin <b>HOME</b></span>
         </div>
       </div>
-      <div class="why-image">
-        <img src="images/team-whiteboard.jpg" alt="Velocity Studio team collaborating around a screen"/>
+      <div class="pp-media">
+        <img src="images/audience-infill.jpg" alt="A single-family lot upzoned for a three-story multi-family building"/>
       </div>
     </div>
+
+    <!-- Row 2: image left, text right -->
+    <div class="pp-row pp-flip">
+      <div class="pp-text">
+        <h3>Repeat home builders</h3>
+        <p>You already know the plans that sell. You don't need a designer to reinvent them - you need an A&amp;E team that adapts a proven plan to the next lot in the high-end neighborhoods you build in, and gets it permit-ready fast. We fit your validated design to the new site and its code, then carry it through structural, civil, and MEP to a stamped set.</p>
+        <p>You keep building your model. We keep the drawings and the plan-check comments from being what slows you down.</p>
+      </div>
+      <div class="pp-media">
+        <img src="images/audience-builders.jpg" alt="A proven home design being set onto a new high-end lot"/>
+      </div>
+    </div>
+
+    <!-- Row 3: text left, image right -->
+    <div class="pp-row">
+      <div class="pp-text">
+        <h3>Design partners</h3>
+        <p>You own the design. We own everything after it. Hand us your settled layouts and we take them all the way to a permit-ready set for your jurisdiction - structural, civil, MEP, energy, and the full permit submittal - so your team keeps designing and selling instead of chasing engineers and answering plan-check comments.</p>
+        <p>Your name stays on the design. Ours goes on the stamps that get it approved.</p>
+      </div>
+      <div class="pp-media">
+        <img src="images/audience-partners.jpg" alt="A designer handing settled floor plans to an engineering team"/>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ WHY (merged) ══ -->
+<section class="sec meth-sec" id="method">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">The Velocity Studio Difference</span>
+      <h2>Every discipline, in parallel. One cutting-edge team. One contract.</h2>
+      <p>One team of licensed architects and engineers, backed by AI and a deep production bench, taking your project from feasibility through permit and into bid.</p>
+    </div>
+
+    <!-- Image + full-scope card -->
+    <div class="why-scope-row">
+      <div class="why-scope-card">
+        <span class="lbl">Everything, from feasibility to bid</span>
+        <div class="why-phase">
+          <h4>Phase 1 · Design</h4>
+          <ul class="scope-list">
+            <li>Feasibility &amp; site analysis</li>
+            <li>Space planning, look &amp; feel</li>
+            <li>Architecture, SD through permit-ready CDs</li>
+            <li>Structural, civil &amp; MEP engineering</li>
+            <li>Landscape &amp; interior design</li>
+          </ul>
+        </div>
+        <div class="why-phase">
+          <h4>Phase 2 · Permitting</h4>
+          <ul class="scope-list">
+            <li>Building, zoning &amp; use permits</li>
+            <li>Grading, earthwork &amp; stormwater (NPDES)</li>
+            <li>Fire, life-safety &amp; energy compliance</li>
+            <li>Historic, cultural &amp; coastal / environmental review</li>
+            <li>Public works &amp; agency approvals</li>
+          </ul>
+        </div>
+        <div class="why-phase">
+          <h4>Phase 3 · Pre-Construction</h4>
+          <ul class="scope-list">
+            <li>BIM quantity take-offs</li>
+            <li>Basis-of-design cost estimates</li>
+            <li>Bid packages &amp; bid leveling</li>
+            <li>Contracting support &amp; renderings</li>
+          </ul>
+        </div>
+      </div>
+      <div class="why-scope-img">
+        <img src="images/team-whiteboard.jpg" alt="Velocity Studio's licensed architects and engineers reviewing a project together on screen"/>
+      </div>
+    </div>
+
+    <!-- Differentiator cards -->
+    <div class="why-cards">
+      <div class="disc-card">
+        <div class="disc-ico">🤖</div>
+        <div>
+          <h4>BIM, Automation, &amp; AI</h4>
+          <p>Our team uses Revit with heavy automations to produce work faster. We use trees of AI agents to exhaustively walk all prevailing codes and collect all prescribed requirements into a Basis of Design. We can do in 1-2 days what takes other architects 1-2 weeks.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">✏️</div>
+        <div>
+          <h4>Fast-tracked design process</h4>
+          <p>Our team solves space layouts and look-and-feel selections in one marathon day each. We leanly work through design options and lock in the winner. We don't want revision rounds, and neither do you.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">⚡</div>
+        <div>
+          <h4>Every discipline in parallel</h4>
+          <p>Architecture, structural, civil, and MEP are all in-house, backed by a deep production bench. Once the design is set, every licensed professional develops it to permit at the same time, on one fixed fee.</p>
+        </div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-ico">✈️</div>
+        <div>
+          <h4>We own the outcome</h4>
+          <p>If we underperform, we eat the risk. If moving your project forward takes a red-eye to your jurisdiction, we book it. Fixed fee means our incentives are always yours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ ROI (value scales with size) ══ -->
+<section class="sec roi-sec" id="fit">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow eyebrow-gold">What speed is worth</span>
+      <h2>The bigger the project, the more value our speed creates.</h2>
+      <p>Bigger projects have higher opportunity costs, and slower A&amp;E delivery... which is why Velocity Studio creates massive value for developers of larger homes and 2-to-6-unit multifamily infill (but we're overkill for an ADU).</p>
+    </div>
+
+    <div class="roi-curve">
+      <svg viewBox="0 0 920 278" role="img" aria-label="The value Velocity Studio creates through speed rises steeply with project size: minimal for an ADU, sizable for a home, large for a duplex, and largest for a fourplex.">
+        <defs>
+          <linearGradient id="roiGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C0392B"/>
+            <stop offset="33%" stop-color="#C9942B"/>
+            <stop offset="63%" stop-color="#8DB63C"/>
+            <stop offset="100%" stop-color="#5BE0B0"/>
+          </linearGradient>
+        </defs>
+        <line x1="100" y1="240" x2="882" y2="240" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+        <polygon points="882,240 872,235 872,245" fill="rgba(255,255,255,.35)"/>
+        <path d="M150,235 C 260,232 320,222 383,205 C 480,184 545,172 617,150 C 720,122 790,100 850,64" fill="none" stroke="url(#roiGrad)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="150" cy="235" r="8" fill="#C0392B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="150" y="219" fill="#E8776B" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$2-4K</text>
+        <circle cx="383" cy="205" r="8" fill="#C9942B" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="383" y="189" fill="#E6B84A" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$25-65K</text>
+        <circle cx="617" cy="150" r="8.5" fill="#8DB63C" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="617" y="134" fill="#B4D66A" font-size="15.5" font-weight="800" class="rc-val" text-anchor="middle">+$40-95K</text>
+        <circle cx="850" cy="64" r="9.5" fill="#3DAA84" stroke="#1C1C1C" stroke-width="2.5"/>
+        <text x="850" y="48" fill="#5BE0B0" font-size="17" font-weight="800" class="rc-val" text-anchor="end">+$65-140K</text>
+        <g class="rc-x" font-size="14.5" font-weight="700" text-anchor="middle">
+          <text x="150" y="264" fill="#E8776B">New ADU</text>
+          <text x="383" y="264" fill="#E6B84A">New home</text>
+          <text x="617" y="264" fill="#B4D66A">New duplex</text>
+          <text x="850" y="264" fill="#5BE0B0">New fourplex</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="roi-matrix-wrap">
+      <div class="roi-matrix">
+
+        <!-- Legend column -->
+        <div class="roi-legend">
+          <div class="roi-row r-head"></div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="lbl">Construction cost</span></div>
+          <div class="roi-row g-row"><span class="glbl">Speed to submit permit</span></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="lbl-sm">Typical A&amp;E</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="lbl-sm">Velocity Studio</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="lbl">Months saved</span></div>
+          <div class="roi-row g-row"><span class="glbl">A month of delay costs</span></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="lbl-sm">Carry</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="lbl-sm">Rent forgone</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="lbl-sm">or exit deferred</span></div>
+          <div class="roi-row r-value"><span class="lbl">Value we create through speed</span></div>
+        </div>
+
+        <!-- ADU -->
+        <div class="roi-card roi-adu">
+          <div class="roi-row r-head roi-head">
+            <div class="roi-ico"><svg viewBox="0 0 80 56" aria-hidden="true"><g fill="#B9B5AE"><polygon points="28,36 40,27 52,36" fill="#8F8A82"/><rect x="30" y="36" width="20" height="16"/><rect x="33" y="43" width="6" height="9" fill="#4A4842"/><rect x="42" y="40" width="6" height="6" fill="#4A4842"/></g></svg></div>
+            <span class="roi-scenario">New ADU</span>
+            <span class="roi-size">~450 sq ft</span>
+          </div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$250K</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">2-3 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~1 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">1-2 mo saved</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$0/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$2.2K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v" style="color:rgba(255,255,255,.4)">n/a</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
+            <span class="roi-v-big">+$2-4K</span>
+            <span class="roi-note">We're overkill - hire a smaller shop.</span>
+          </div>
+        </div>
+
+        <!-- Home -->
+        <div class="roi-card roi-home">
+          <div class="roi-row r-head roi-head">
+            <div class="roi-ico"><svg viewBox="0 0 80 56" aria-hidden="true"><g fill="#B9B5AE"><polygon points="22,28 40,15 58,28" fill="#8F8A82"/><rect x="25" y="28" width="30" height="24"/><rect x="36" y="40" width="7" height="12" fill="#4A4842"/><rect x="28" y="32" width="7" height="6" fill="#4A4842"/><rect x="45" y="32" width="7" height="6" fill="#4A4842"/></g></svg></div>
+            <span class="roi-scenario">New home</span>
+            <span class="roi-size">~2,000 sq ft</span>
+          </div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$950K</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">4-6 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~2 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">2-4 mo saved</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$7K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$5K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$9K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
+            <span class="roi-v-big">+$25-65K</span>
+            <span class="roi-note">We start to create real value for larger homes.</span>
+          </div>
+        </div>
+
+        <!-- Duplex -->
+        <div class="roi-card roi-duplex">
+          <div class="roi-row r-head roi-head">
+            <div class="roi-ico"><svg viewBox="0 0 80 56" aria-hidden="true"><g fill="#B9B5AE"><polygon points="14,27 28,16 42,27" fill="#8F8A82"/><polygon points="38,27 52,16 66,27" fill="#8F8A82"/><rect x="16" y="27" width="48" height="25"/><rect x="39.25" y="27" width="1.5" height="25" fill="#232320"/><rect x="21" y="40" width="7" height="12" fill="#4A4842"/><rect x="52" y="40" width="7" height="12" fill="#4A4842"/><rect x="21" y="31" width="7" height="6" fill="#4A4842"/><rect x="52" y="31" width="7" height="6" fill="#4A4842"/></g></svg></div>
+            <span class="roi-scenario">New duplex</span>
+            <span class="roi-size">~3,500 sq ft · 2 units</span>
+          </div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$1.2M</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">5-7 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~2.5 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">2.5-4.5 mo saved</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$8K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$7K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$13K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
+            <span class="roi-v-big">+$40-95K</span>
+            <span class="roi-note">Our bread and butter.</span>
+          </div>
+        </div>
+
+        <!-- Fourplex -->
+        <div class="roi-card roi-fourplex">
+          <div class="roi-row r-head roi-head">
+            <div class="roi-ico"><svg viewBox="0 0 80 56" aria-hidden="true"><g fill="#B9B5AE"><rect x="8" y="14" width="64" height="4" fill="#8F8A82"/><rect x="10" y="18" width="60" height="34"/><rect x="39.25" y="18" width="1.5" height="34" fill="#232320"/><rect x="10" y="34" width="60" height="1.5" fill="#232320"/><rect x="16" y="23" width="9" height="7" fill="#4A4842"/><rect x="46" y="23" width="9" height="7" fill="#4A4842"/><rect x="16" y="40" width="9" height="7" fill="#4A4842"/><rect x="46" y="40" width="9" height="7" fill="#4A4842"/></g></svg></div>
+            <span class="roi-scenario">New fourplex</span>
+            <span class="roi-size">~5,000 sq ft · 4 units</span>
+          </div>
+          <div class="roi-row r-cost" data-k="Construction cost"><span class="roi-v">~$1.55M</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row sp-typ" data-k="Typical A&amp;E"><span class="roi-vt">6-8 mo</span></div>
+          <div class="roi-row sp-ours" data-k="Velocity Studio"><span class="roi-vo">~3 mo</span></div>
+          <div class="roi-row sp-saved" data-k="Months saved"><span class="roi-vsaved">3-5 mo saved</span></div>
+          <div class="roi-row g-row"></div>
+          <div class="roi-row op-carry" data-k="Carry"><span class="roi-v">~$10K/mo</span></div>
+          <div class="roi-row op-rent" data-k="Rent forgone"><span class="roi-v">~$12K/mo</span></div>
+          <div class="roi-row op-exit" data-k="or exit deferred"><span class="roi-v">~$18K/mo</span></div>
+          <div class="roi-row r-value roi-payoff" data-k="Value we create through speed">
+            <span class="roi-v-big">+$65-140K</span>
+            <span class="roi-note">This is where we really shine.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="roi-qual">Right fit if you're levered, speed-motivated, and design-decisive. If it's a small, unlevered project - or you'd rather take months to sit with every decision - we're the wrong team, and that's fine.</p>
+    <p class="roi-illus">Illustrative, blended for a mid-range Los Angeles / Seattle infill market. Carry scales with land basis, not unit count - a premium-lot home can carry as much as a fourplex. Our timelines assume a clean site, a decisive owner, and standardized details. Actual figures vary widely by market, leverage, and exit.</p>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════ PROOF ══ -->
-<section class="sec proof-sec">
+<section class="sec proof-sec" id="proof">
   <div class="container">
-    <div class="proof-inner">
-      <div class="quote-mark">"</div>
-      <p class="quote-text">We build in five states, with tons of noteworthy architects and designers, and none of them can do what you do. We get the same quality, at lightning speed. And because you do takeoffs, bid packages, and project management, it lets us take on at least 2 new projects a year.</p>
-      <div class="quote-attr">
-        Principal, residential development firm
-        <span>10 homes per year &nbsp;·&nbsp; $3M–$12M exit per project</span>
+
+    <div class="sec-hd">
+      <span class="eyebrow">Recent work</span>
+      <h2>Design, engineering, and permitting across the U.S.</h2>
+      <p>California, Hawaii, Florida, New Jersey, Massachusetts, Tennessee, and everywhere else slow A&amp;E can drag down ROI by tens of thousands of dollars.</p>
+    </div>
+
+    <div class="gallery">
+      <button class="gal-nav gal-prev" type="button" aria-label="Previous project">&#8249;</button>
+      <div class="gal-track" id="galTrack">
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/maui-hi-house-3800.jpg" alt="New house rendering in Maui, Hawaii" loading="lazy"/></div>
+          <figcaption class="gal-cap">Maui, HI - renovation / addition - 3,800 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/cambridge-ma-duplex-5600.jpg" alt="Duplex rendering in Cambridge, Massachusetts" loading="lazy"/></div>
+          <figcaption class="gal-cap">Cambridge, MA - duplex - 5,600 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/palisades-ca-house-1800.jpg" alt="New house rendering in Palisades, California" loading="lazy"/></div>
+          <figcaption class="gal-cap">Palisades, CA - fire rebuild - 1,800 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/tenafly-nj-house-10200.jpg" alt="Large new house rendering in Tenafly, New Jersey" loading="lazy"/></div>
+          <figcaption class="gal-cap">Tenafly, NJ - new build - 10,200 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/nashville-tn-newbuild-7000.jpg" alt="New build exterior rendering in Nashville, Tennessee" loading="lazy"/></div>
+          <figcaption class="gal-cap">Nashville, TN - new build - 7,000 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/nashville-tn-house-7000.jpg" alt="New build interior rendering in Nashville, Tennessee" loading="lazy"/></div>
+          <figcaption class="gal-cap">Nashville, TN - new build - 7,000 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/gulfport-fl-house-3200.jpg" alt="New house rendering in Gulfport, Florida" loading="lazy"/></div>
+          <figcaption class="gal-cap">Gulfport, FL - new build - 3,200 sq ft</figcaption>
+        </figure>
+        <figure class="gal-slide">
+          <div class="gal-img"><img src="images/projects/caldwell-nj-gutreno-3600.jpg" alt="Gut-renovation rendering in Caldwell, New Jersey" loading="lazy"/></div>
+          <figcaption class="gal-cap">Caldwell, NJ - gut renovation - 3,600 sq ft</figcaption>
+        </figure>
+      </div>
+      <button class="gal-nav gal-next" type="button" aria-label="Next project">&#8250;</button>
+    </div>
+
+    <!-- ── Licensed professionals ── -->
+    <p class="proof-sub" style="margin-top:44px;">Licensed professionals on every permit set.</p>
+    <div class="creds-grid">
+      <div class="cred-card">
+        <div class="cred-name">Richman Neumann</div>
+        <div class="cred-role">Founder &amp; Principal</div>
+        <div class="cred-badge">AIA · LEED AP BD+C<br>Licensed Architect</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-name">Himanshu Patel</div>
+        <div class="cred-role">Structural &amp; Civil</div>
+        <div class="cred-badge">PE  -  California<br>Licensed Engineer</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-name">Bryan Scott</div>
+        <div class="cred-role">Architect &amp; Ops</div>
+        <div class="cred-badge">Licensed Architect</div>
       </div>
     </div>
+    <p class="cred-note">These licensed professionals lead a team of architects, engineers, and technicians spanning every discipline and jurisdiction - and no permit set leaves without one of their stamps.</p>
+
   </div>
 </section>
 
@@ -497,46 +1102,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="cta-grid">
 
+      <!-- Left: copy -->
       <div class="cta-text">
-        <span class="eyebrow">Book a Discovery Call</span>
-        <h2>Scope our <em>first project</em> together.</h2>
-        <p class="lead">Book 15 minutes. Walk us through an upcoming project. We'll tell you whether Velocity Studio can cut months off your deal cycle.</p>
+        <span class="eyebrow">Start here</span>
+        <h2>Book a call about<br>your <em>project.</em></h2>
+        <p class="lead">15 minutes with Richman. We'll research your parcel before we meet and come back prepared with a rough scope, fee, and timeline.</p>
         <div class="cta-trust">
-          <span>No cost or obligation to move forward</span>
-          <span>We can research your parcel and jurisdiction before the call</span>
-          <span>Honesty first - we only want partners we can serve well</span>
-          <span>Fixed-fee proposal within 24 hours if desired</span>
+          <span>We research your parcel before the call</span>
+          <span>Rough scope, fee, and timeline ready to discuss</span>
+          <span>Most engagements run $35K and up - a full licensed stack, priced for projects that need one</span>
+          <span>No obligation</span>
         </div>
-        <p class="cta-micro">Fixed-fee, project-specific pricing. Paid in installments.</p>
       </div>
 
-      <div class="cal-card">
-        <div class="calendly-inline-widget"
-             data-url="https://calendly.com/richman-neumann-velocitystud/velocity-studio-15-minute-discovery-call?hide_gdpr_banner=1"
-             style="min-width:280px;height:700px;min-height:700px;"></div>
+      <!-- Right: Calendly inline widget -->
+      <div>
+        <div class="qual-card">
+          <span class="qual-eyebrow">15 minutes</span>
+          <h3 class="qual-title">Pick a time that works</h3>
+          <p class="qual-sub">We'll ask a few quick questions about your project when you book.</p>
+          <div class="calendly-inline-widget" id="ctaCalWidget"
+               data-url="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1"
+               style="min-width:280px;height:640px;min-height:640px;"></div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
-<script>
-  // Carry ad-click attribution into the Calendly embed so bookings keep their UTMs.
-  (function () {
-    try {
-      var a = window.vsAttribution ? window.vsAttribution() : {};
-      var w = document.querySelector('.calendly-inline-widget');
-      if (w && a.utm_source) {
-        var u = new URL(w.getAttribute('data-url'));
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
-          if (a[k]) u.searchParams.set(k, a[k]);
-        });
-        w.setAttribute('data-url', u.toString());
-      }
-    } catch (e) {}
-  })();
-</script>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
+  // Pass UTM params from the page URL through to the Calendly widget.
+  (function () {
+    var attr = window.vsAttribution ? window.vsAttribution() : {};
+    var params = new URLSearchParams(location.search);
+    var utms = {
+      utm_source:   attr.utm_source   || params.get('utm_source')   || '',
+      utm_medium:   attr.utm_medium   || params.get('utm_medium')   || '',
+      utm_campaign: attr.utm_campaign || params.get('utm_campaign') || '',
+      utm_content:  attr.utm_content  || params.get('utm_content')  || '',
+    };
+    var hasUtm = Object.values(utms).some(function (v) { return v; });
+    if (hasUtm) {
+      var cw = document.getElementById('ctaCalWidget');
+      if (cw) {
+        var extra = Object.keys(utms).filter(function (k) { return utms[k]; })
+          .map(function (k) { return k + '=' + encodeURIComponent(utms[k]); }).join('&');
+        cw.dataset.url = cw.dataset.url + '&' + extra;
+      }
+    }
+  })();
+
+  // Auto-resize the Calendly inline widget to its content height,
+  // eliminating internal scrolling on mobile.
+  // Also fires a Meta Pixel 'Schedule' conversion event when a booking is completed.
   window.addEventListener('message', function(e) {
     if (!e.data) return;
     if (e.data.event === 'calendly.page_height') {
@@ -549,7 +1168,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.data.event === 'calendly.event_scheduled') {
       if (typeof fbq === 'function') {
         fbq('track', 'Schedule');
+        fbq('track', 'Lead');
         fbq('trackCustom', 'DeveloperPageSchedule');
+      }
+      if (typeof gtag === 'function') gtag('event', 'calendly_booking_completed');
+      // Backfill fbp/fbc onto the Pipedrive Person so CAPI has full match signal.
+      var inviteeUri = e.data.payload && e.data.payload.invitee && e.data.payload.invitee.uri;
+      if (inviteeUri) {
+        var getCookie = function (n) { return (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || ''; };
+        var fbp = getCookie('_fbp');
+        var fbc = getCookie('_fbc');
+        if (!fbc) { var fid = new URLSearchParams(location.search).get('fbclid'); if (fid) fbc = 'fb.1.' + Date.now() + '.' + fid; }
+        var attr = window.vsAttribution ? window.vsAttribution() : {};
+        fetch('/api/attribution', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+          body: JSON.stringify({
+            invitee_uri: inviteeUri, fbp: fbp, fbc: fbc,
+            utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '',
+            utm_campaign: attr.utm_campaign || '', utm_content: attr.utm_content || '',
+          })
+        }).catch(function () {});
       }
     }
   });
@@ -560,8 +1198,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-brand">Velocity <span>Studio</span></div>
-      <span class="footer-legal">© 2026 Velocity Studio LLC &nbsp;·&nbsp; Licensed Architects &amp; PE &nbsp;·&nbsp; Operating across the United States</span>
+      <div>
+        <div class="footer-brand-name">Velocity <span>Studio</span></div>
+        <div class="footer-tagline">Preconstruction at the speed of your capital.</div>
+      </div>
+      <nav class="footer-links">
+        <a href="#contact">Get your scope &amp; fee</a>
+        <a href="/">Homeowners: ADU and home permit sets</a>
+      </nav>
+    </div>
+    <p class="footer-creds">Velocity Studio Architecture and Engineering, Inc. · Licensed Architects &amp; PE · Operating across the United States</p>
+    <div class="footer-bottom">
+      <span>© 2026 Velocity Studio Architecture and Engineering, Inc.</span>
     </div>
   </div>
 </footer>
@@ -569,6 +1217,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mobMenu');
+  if (ham && mob) {
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('active');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    ham.classList.remove('active'); mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  }
+</script>
+
+
+<!-- ── Project carousel (arrows + 4s auto-advance, seamless loop) ── -->
+<script>
+(function () {
+  var track = document.getElementById('galTrack');
+  if (!track) return;
+  var initial = track.querySelectorAll('.gal-slide');
+  if (!initial.length) return;
+  var n = initial.length;
+  // clone the first slide onto the end so the forward wrap is seamless
+  var clone = initial[0].cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  track.appendChild(clone);
+  function slides() { return track.querySelectorAll('.gal-slide'); }
+  function go(idx, smooth) {
+    var s = slides()[idx];
+    if (!s) return;
+    var left = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+    if (smooth) {
+      track.scrollTo({ left: left, behavior: 'smooth' });
+    } else {
+      // true teleport - override CSS scroll-behavior:smooth so the wrap is invisible
+      var sb = track.style.scrollBehavior;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = left;
+      track.style.scrollBehavior = sb;
+    }
+  }
+  function nearest() {
+    var sl = slides(), c = track.scrollLeft + track.clientWidth / 2, best = 0, bd = Infinity;
+    for (var k = 0; k < sl.length; k++) {
+      var d = Math.abs(sl[k].offsetLeft + sl[k].offsetWidth / 2 - c);
+      if (d < bd) { bd = d; best = k; }
+    }
+    return best;
+  }
+  function next() {
+    var i = nearest() + 1;
+    go(i, true);
+    if (i >= n) setTimeout(function () { go(0, false); }, 620); // clone -> real first, invisibly
+  }
+  function prev() {
+    var i = nearest();
+    if (i <= 0) { go(n, false); requestAnimationFrame(function () { go(n - 1, true); }); }
+    else go(i - 1, true);
+  }
+  var pn = document.querySelector('.gal-prev'), nx = document.querySelector('.gal-next');
+  var timer = null;
+  function start() { stop(); timer = setInterval(next, 5000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  if (pn) pn.addEventListener('click', function () { prev(); start(); });
+  if (nx) nx.addEventListener('click', function () { next(); start(); });
+  track.addEventListener('mouseenter', stop);
+  track.addEventListener('mouseleave', start);
+  track.addEventListener('touchstart', stop, { passive: true });
+  go(0, false);
+  start();
+})();
 </script>
 
 </body>
