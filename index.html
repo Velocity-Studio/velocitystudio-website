@@ -24,7 +24,7 @@
   <meta name="facebook-domain-verification" content="5hs64bmxb8djrx764110p5zv5598g4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <!-- Ad-click attribution capture (utm_*): persist last paid-touch through the funnel -->
   <script>
   (function () {
@@ -48,12 +48,7 @@
     /* ─── RESET ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: #F0EDE6; color: #1C1C1C;
-      overflow-x: hidden; line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #F0EDE6; color: #1C1C1C; overflow-x: hidden; line-height: 1.5; -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     ul, ol { list-style: none; }
@@ -62,67 +57,33 @@
 
     /* ─── TOKENS ─────────────────────────────────────────────── */
     :root {
-      --bg:      #F0EDE6;
-      --card:    #F8F5EF;
-      --dark:    #1C1C1C;
-      --teal:    #2D8B6E;
-      --teal-dk: #1F6451;
-      --teal-lt: #5BE0B0;
-      --gold:    #C9942B;
-      --gold-lt: #E6B84A;
-      --white:   #FFFFFF;
-      --border:  #E0DAD0;
-      --muted:   #6B6560;
-      --r:       12px;
-      --sh:      0 4px 24px rgba(28,28,28,.08);
+      --bg: #F0EDE6; --card: #F8F5EF; --dark: #1C1C1C;
+      --teal: #2D8B6E; --teal-dk: #1F6451; --teal-lt: #5BE0B0;
+      --gold: #C9942B; --gold-lt: #E6B84A;
+      --white: #FFFFFF; --border: #E0DAD0; --muted: #6B6560;
+      --r: 12px; --sh: 0 4px 24px rgba(28,28,28,.08);
     }
 
     /* ─── UTILITIES ──────────────────────────────────────────── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 22px; }
-    .narrow { max-width: 820px; margin-left: auto; margin-right: auto; }
-    .eyebrow {
-      font-size: .78rem; font-weight: 700; letter-spacing: .16em;
-      text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 12px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 22px; }
+    .narrow { max-width: 780px; margin-left: auto; margin-right: auto; }
+    .eyebrow { font-size: .76rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 12px; }
     .divider { height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); }
-    .ph {
-      display: inline-block; background: rgba(201,148,43,.14); color: #8A5F10;
-      border: 1px dashed var(--gold); border-radius: 6px; padding: 0 6px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .8em; font-weight: 600; line-height: 1.6; white-space: normal;
-    }
-    .ph-box {
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      background: repeating-linear-gradient(45deg, rgba(201,148,43,.06) 0 12px, rgba(201,148,43,.12) 12px 24px);
-      border: 2px dashed var(--gold); border-radius: var(--r); color: #8A5F10;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .78rem; font-weight: 600; padding: 16px; line-height: 1.5;
-    }
+    .ph { display: inline-block; background: rgba(201,148,43,.14); color: #8A5F10; border: 1px dashed var(--gold); border-radius: 6px; padding: 0 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8em; font-weight: 600; line-height: 1.6; white-space: normal; }
+    .ph-box { display: flex; align-items: center; justify-content: center; text-align: center; background: repeating-linear-gradient(45deg, rgba(201,148,43,.06) 0 12px, rgba(201,148,43,.12) 12px 24px); border: 2px dashed var(--gold); border-radius: var(--r); color: #8A5F10; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .76rem; font-weight: 600; padding: 16px; line-height: 1.5; }
 
     /* ─── BUTTONS ────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 26px; border-radius: 10px; font-weight: 700;
-      font-size: .95rem; cursor: pointer; transition: all .22s;
-      border: none; min-height: 52px; text-align: center; line-height: 1.25;
-    }
-    .btn-teal  { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 10px; font-weight: 700; font-size: .95rem; cursor: pointer; transition: all .22s; border: none; min-height: 52px; text-align: center; line-height: 1.25; }
+    .btn-teal { background: var(--teal); color: #fff; box-shadow: 0 4px 18px rgba(45,139,110,.3); }
     .btn-teal:hover { background: var(--teal-dk); transform: translateY(-2px); }
     .btn-ghost { background: transparent; color: var(--dark); border: 1.5px solid var(--border); }
     .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
     .btn-lg { padding: 18px 32px; font-size: 1.05rem; }
-    .btn-full { width: 100%; }
     .arr { transition: transform .2s; }
     .btn:hover .arr { transform: translateX(4px); }
 
     /* ─── NAV ────────────────────────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      padding: 6px 0;
-      background: rgba(240,237,230,.9); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(224,218,208,.4);
-      transition: all .3s;
-    }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; padding: 6px 0; background: rgba(240,237,230,.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(224,218,208,.4); transition: all .3s; }
     .nav.scrolled { padding: 5px 0; background: rgba(240,237,230,.97); box-shadow: 0 2px 24px rgba(28,28,28,.1); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .nav-logo-text { font-size: 1.08rem; font-weight: 800; letter-spacing: -.02em; }
@@ -135,33 +96,27 @@
     @media (max-width: 400px) { .nav .btn { padding: 9px 12px; font-size: .78rem; } }
 
     /* ─── SECTIONS ───────────────────────────────────────────── */
-    .sec { padding: 76px 0; }
+    .sec { padding: 72px 0; }
     .sec-white { background: var(--white); }
     .sec-dark { background: var(--dark); color: #fff; }
     .sec-forest { background: #162F26; color: #fff; }
-    .sec-hd { max-width: 780px; margin: 0 auto 36px; text-align: center; }
-    .sec-hd h2 {
-      font-size: clamp(1.9rem, 4.4vw, 2.7rem);
-      font-weight: 800; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 12px;
-    }
-    .sec-hd p { color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+    .sec-hd { max-width: 760px; margin: 0 auto 32px; text-align: center; }
+    .sec-hd h2 { font-size: clamp(1.85rem, 4.6vw, 2.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 10px; }
+    .sec-hd p { color: var(--muted); font-size: 1.05rem; line-height: 1.55; }
     .sec-dark .sec-hd p, .sec-forest .sec-hd p { color: rgba(255,255,255,.7); }
     .sec-dark .eyebrow, .sec-forest .eyebrow { color: var(--teal-lt); }
-    @media (max-width: 600px) { .sec { padding: 56px 0; } .sec-hd { text-align: left; margin-bottom: 26px; } }
+    @media (max-width: 600px) { .sec { padding: 54px 0; } .sec-hd { text-align: left; margin-bottom: 24px; } }
 
-    /* "More detail" disclosures: the long copy lives here */
-    .more { margin-top: 22px; border-top: 1px solid var(--border); }
+    /* "More detail" disclosures */
+    .more { margin-top: 20px; border-top: 1px solid var(--border); }
     .sec-dark .more, .sec-forest .more { border-top-color: rgba(255,255,255,.12); }
-    .more > summary {
-      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      padding: 16px 0; font-weight: 700; font-size: 1rem; color: var(--teal);
-    }
+    .more > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; font-weight: 700; font-size: .98rem; color: var(--teal); }
     .sec-dark .more > summary, .sec-forest .more > summary { color: var(--teal-lt); }
     .more > summary::-webkit-details-marker { display: none; }
     .more > summary::after { content: '+'; font-size: 1.5rem; font-weight: 300; line-height: 1; flex-shrink: 0; }
     .more[open] > summary::after { content: '–'; }
-    .more-body { padding: 0 0 10px; font-size: .98rem; line-height: 1.7; }
-    .more-body h4 { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+    .more-body { padding: 0 0 10px; font-size: .96rem; line-height: 1.65; }
+    .more-body h4 { font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
     .more-body h4:first-child { margin-top: 0; }
     .sec-dark .more-body h4, .sec-forest .more-body h4 { color: rgba(255,255,255,.55); }
     .sec-dark .more-body, .sec-forest .more-body { color: rgba(255,255,255,.82); }
@@ -169,225 +124,171 @@
     .more-body ul li { padding-left: 20px; position: relative; margin-bottom: 6px; }
     .more-body ul li::before { content: '–'; position: absolute; left: 0; color: var(--gold); font-weight: 800; }
 
-    /* ─── HERO ───────────────────────────────────────────────── */
-    .hero { background: var(--dark); padding: 112px 0 56px; position: relative; overflow: hidden; color: #fff; }
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 60% 70% at 0% 40%, rgba(45,139,110,.26) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.12) 0%, transparent 55%);
-    }
-    .hero-grid { display: grid; grid-template-columns: 56fr 44fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: clamp(2.4rem, 7.4vw, 4rem);
-      font-weight: 900; line-height: 1.02; letter-spacing: -.03em; margin-bottom: 22px;
-    }
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(90deg, var(--gold-lt), var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    .fact {
-      display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 99px;
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
-      font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.9);
-    }
-    .fact b { color: var(--teal-lt); font-weight: 800; }
-    .hero-sub { font-size: clamp(1.02rem, 2.4vw, 1.2rem); color: rgba(255,255,255,.72); line-height: 1.55; margin-bottom: 26px; max-width: 520px; }
-    .hero-ctas { margin-bottom: 14px; }
-    .hero-micro { font-size: .84rem; color: rgba(255,255,255,.48); line-height: 1.55; max-width: 480px; }
+    /* ─── 1. HERO ────────────────────────────────────────────── */
+    .hero { background: var(--dark); padding: 110px 0 54px; position: relative; overflow: hidden; color: #fff; }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 70% at 0% 40%, rgba(45,139,110,.26) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 100% 20%, rgba(201,148,43,.12) 0%, transparent 55%); }
+    .hero-grid { display: grid; grid-template-columns: 58fr 42fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(2.5rem, 8vw, 4.1rem); font-weight: 900; line-height: 1.02; letter-spacing: -.03em; margin-bottom: 22px; }
+    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold-lt), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .offer { border: 1px solid rgba(255,255,255,.14); border-radius: var(--r); overflow: hidden; margin-bottom: 18px; max-width: 560px; }
+    .offer-row { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; padding: 13px 16px; align-items: baseline; background: rgba(255,255,255,.05); }
+    .offer-row + .offer-row { border-top: 1px solid rgba(255,255,255,.1); }
+    .o-what { font-weight: 800; font-size: 1.02rem; }
+    .o-days { font-weight: 700; color: var(--teal-lt); font-size: .98rem; white-space: nowrap; }
+    .o-price { font-weight: 700; color: rgba(255,255,255,.9); font-size: .98rem; text-align: right; white-space: nowrap; }
+    .hero-sub { font-size: clamp(1rem, 2.4vw, 1.12rem); color: rgba(255,255,255,.75); line-height: 1.5; margin-bottom: 24px; max-width: 540px; }
+    .hero-micro { font-size: .86rem; color: rgba(255,255,255,.5); margin-top: 12px; }
     .hero-box { aspect-ratio: 4/3; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 72px rgba(0,0,0,.55); background: #F8F5EF; position: relative; }
     .hero-box .ph-box { position: absolute; inset: 0; border-radius: var(--r); }
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-      .hero { padding: 96px 0 44px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 26px; }
+      .hero { padding: 94px 0 42px; }
       .hero-box { aspect-ratio: 16/9; max-width: 520px; }
-      .hero-ctas .btn { width: 100%; }
+      .hero .btn { width: 100%; }
+    }
+    @media (max-width: 400px) { .offer-row { gap: 8px; padding: 12px 12px; } .o-what, .o-days, .o-price { font-size: .9rem; } }
+
+    /* ─── 2. COMPARE ─────────────────────────────────────────── */
+    .cmp { max-width: 820px; margin: 0 auto; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--sh); background: #fff; }
+    .cmp-row { display: grid; grid-template-columns: 1.15fr 1fr 1.15fr; gap: 0 14px; padding: 14px 18px; align-items: start; }
+    .cmp-row + .cmp-row { border-top: 1px solid var(--border); }
+    .cmp-head { background: var(--card); padding: 11px 18px; }
+    .cmp-head span { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .cmp-head .us { color: var(--teal); }
+    .cmp-label { font-weight: 700; font-size: .98rem; line-height: 1.35; }
+    .cmp-them { color: var(--muted); font-size: .96rem; line-height: 1.4; }
+    .cmp-us { font-weight: 700; color: var(--teal-dk); font-size: .98rem; line-height: 1.4; }
+    @media (max-width: 600px) {
+      .cmp-row { grid-template-columns: 1fr 1.15fr; padding: 12px 14px; gap: 4px 12px; }
+      .cmp-label { grid-column: 1 / -1; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+      .cmp-head .cmp-label { display: none; }
+      .cmp-head { padding: 10px 14px; }
     }
 
-    /* ─── PROOF STRIP ────────────────────────────────────────── */
-    .proof { background: var(--white); border-bottom: 1px solid var(--border); padding: 18px 0; }
-    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .proof-item { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; line-height: 1.4; font-weight: 600; }
-    .proof-item::before { content: '✓'; color: var(--teal); font-weight: 800; flex-shrink: 0; }
-    @media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .proof-grid { grid-template-columns: 1fr; gap: 10px; } .proof-item { font-size: .88rem; } }
-
-    /* ─── PRICE + SPEED SCALE ────────────────────────────────── */
-    .scale-sec .sec-hd h2 { font-size: clamp(1.8rem, 4.2vw, 2.6rem); }
-    .legend { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: center; margin: 0 auto 30px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.8); }
+    /* ─── 3. PRICE + SPEED SCALE ─────────────────────────────── */
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 0 auto 26px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.8); }
     .legend span { display: inline-flex; align-items: center; gap: 8px; }
     .legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .legend .l5 i { background: var(--teal-lt); box-shadow: 0 0 12px var(--teal-lt); }
     .legend .l10 i { background: var(--gold-lt); box-shadow: 0 0 12px var(--gold-lt); }
-    .rail { position: relative; max-width: 700px; margin: 0 auto; padding-left: 46px; }
-    .rail::before {
-      content: ''; position: absolute; left: 16px; top: 18px; bottom: 18px; width: 4px; border-radius: 4px;
-      background: linear-gradient(180deg, var(--teal-lt) 0%, var(--teal) 30%, var(--gold) 70%, var(--gold-lt) 100%);
-      box-shadow: 0 0 22px rgba(91,224,176,.35), 0 0 22px rgba(230,184,74,.3);
-    }
-    .tier { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .rail { position: relative; max-width: 680px; margin: 0 auto; padding-left: 46px; }
+    .rail::before { content: ''; position: absolute; left: 16px; top: 18px; bottom: 18px; width: 4px; border-radius: 4px; background: linear-gradient(180deg, var(--teal-lt) 0%, var(--teal) 30%, var(--gold) 70%, var(--gold-lt) 100%); box-shadow: 0 0 22px rgba(91,224,176,.35), 0 0 22px rgba(230,184,74,.3); }
+    .tier { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
     .tier:last-child { border-bottom: 0; }
-    .tier::before {
-      content: ''; position: absolute; left: -36px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%;
-      background: var(--dot); box-shadow: 0 0 0 4px rgba(255,255,255,.1), 0 0 16px var(--dot);
-    }
+    .tier::before { content: ''; position: absolute; left: -36px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 0 4px rgba(255,255,255,.1), 0 0 16px var(--dot); }
     .t5 { --dot: var(--teal-lt); } .t10 { --dot: var(--gold-lt); }
-    .tier-name { font-weight: 800; font-size: 1.08rem; color: #fff; line-height: 1.25; }
-    .tier-size { font-size: .9rem; color: rgba(255,255,255,.6); }
+    .tier-name { font-weight: 800; font-size: 1.06rem; color: #fff; line-height: 1.25; }
+    .tier-size { font-size: .88rem; color: rgba(255,255,255,.6); }
     .tier-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; grid-row: 1 / span 2; grid-column: 2; }
-    .tier-price { font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em; color: #fff; line-height: 1; white-space: nowrap; }
-    .tier-days { display: inline-flex; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; color: var(--dark); background: var(--dot); white-space: nowrap; }
-    .tier-adders { padding: 10px 0 14px; font-size: .9rem; color: rgba(255,255,255,.62); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .tier-price { font-size: 1.5rem; font-weight: 900; letter-spacing: -.02em; color: #fff; line-height: 1; white-space: nowrap; }
+    .tier-days { display: inline-flex; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; color: var(--dark); background: var(--dot); white-space: nowrap; }
+    .tier-adders { padding: 10px 0 12px; font-size: .88rem; color: rgba(255,255,255,.62); border-bottom: 1px solid rgba(255,255,255,.08); }
     .tier-adders b { color: #fff; }
-    .scale-notes { max-width: 700px; margin: 26px auto 0; font-size: .98rem; color: rgba(255,255,255,.78); line-height: 1.65; }
-    .scale-notes p + p { margin-top: 8px; }
-    .scale-sec .more { max-width: 700px; margin-left: auto; margin-right: auto; }
-    @media (max-width: 480px) { .tier-price { font-size: 1.35rem; white-space: normal; max-width: 150px; line-height: 1.1; } .tier-name { font-size: 1rem; } }
+    .scale-note { max-width: 680px; margin: 22px auto 0; font-size: .96rem; color: rgba(255,255,255,.75); line-height: 1.55; }
+    .sec-forest .more { max-width: 680px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 480px) { .tier-price { font-size: 1.3rem; white-space: normal; max-width: 150px; line-height: 1.1; } .tier-name { font-size: .98rem; } }
 
-    /* ─── WHAT YOU GET: sheet grid ───────────────────────────── */
-    .sheets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .sheet {
-      position: relative; background: #fff; border: 1px solid var(--border); border-radius: 6px;
-      padding: 16px 14px 24px; min-height: 104px; box-shadow: var(--sh);
-      font-size: .95rem; font-weight: 700; line-height: 1.3; color: var(--dark);
-      display: flex; align-items: flex-start;
-    }
-    .sheet::after { content: ''; position: absolute; top: -1px; right: -1px; width: 0; height: 0; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent var(--white) transparent transparent; filter: drop-shadow(-1px 1px 1px rgba(0,0,0,.08)); }
-    .sheet::before { content: ''; position: absolute; left: 12px; right: 12px; bottom: 9px; height: 7px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .sheet i { font-style: normal; display: block; font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px; }
-    .sheet.stamp { background: var(--card); border-color: rgba(45,139,110,.5); }
-    .sheet.stamp i { color: var(--gold); }
-    .not-line { margin-top: 22px; font-size: .98rem; line-height: 1.6; color: var(--dark); }
-    .not-line b { font-weight: 800; }
-    @media (max-width: 700px) { .sheets { grid-template-columns: 1fr 1fr; gap: 10px; } .sheet { min-height: 94px; font-size: .9rem; padding: 14px 12px 22px; } }
-
-    /* ─── PROCESS: four-step timeline ────────────────────────── */
-    .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 10px; }
-    .steps::before { content: ''; position: absolute; top: 27px; left: 10%; right: 10%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--teal-lt), var(--teal) 40%, var(--gold)); }
+    /* ─── 4. HOW IT WORKS ────────────────────────────────────── */
+    .steps { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 8px; }
+    .steps::before { content: ''; position: absolute; top: 27px; left: 14%; right: 14%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--teal-lt), var(--teal) 50%, var(--gold)); }
     .step { position: relative; }
-    .step-num {
-      width: 56px; height: 56px; border-radius: 50%; background: var(--dark); color: #fff;
-      font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-      border: 4px solid var(--bg); box-shadow: 0 0 0 3px var(--teal); margin-bottom: 16px; position: relative; z-index: 1;
-    }
-    .step-when { font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; border: 4px solid var(--bg); box-shadow: 0 0 0 3px var(--teal); margin-bottom: 14px; position: relative; z-index: 1; }
+    .step-when { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
     .step h3 { font-size: 1.22rem; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; margin-bottom: 8px; }
-    .step p { font-size: .98rem; color: var(--muted); line-height: 1.6; }
+    .step p { font-size: .97rem; color: var(--dark); line-height: 1.55; }
+    .starts { display: flex; flex-direction: column; gap: 6px; margin: 10px 0 8px; }
+    .starts li { font-size: .94rem; font-weight: 600; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px 9px 34px; position: relative; line-height: 1.3; }
+    .starts li::before { content: '→'; position: absolute; left: 12px; color: var(--teal); font-weight: 800; }
+    .step small { display: block; font-size: .86rem; color: var(--muted); margin-top: 6px; line-height: 1.45; }
     @media (max-width: 860px) {
       .steps { grid-template-columns: 1fr; gap: 0; }
-      .steps::before { top: 10px; bottom: 10px; left: 26.5px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--teal-lt), var(--teal) 40%, var(--gold)); }
-      .step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding-bottom: 30px; }
+      .steps::before { top: 10px; bottom: 10px; left: 26.5px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--teal-lt), var(--teal) 50%, var(--gold)); }
+      .step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding-bottom: 28px; }
       .step:last-child { padding-bottom: 4px; }
       .step-num { margin: 0; }
     }
     .tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .tbl th, .tbl td { text-align: left; padding: 12px 14px; vertical-align: top; font-size: .95rem; line-height: 1.5; }
-    .tbl th { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--border); background: var(--card); }
+    .tbl th, .tbl td { text-align: left; padding: 11px 13px; vertical-align: top; font-size: .93rem; line-height: 1.45; }
+    .tbl th { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; border-bottom: 1px solid var(--border); background: var(--card); }
     .tbl tbody tr + tr td { border-top: 1px solid var(--border); }
     .tbl td:first-child { font-weight: 800; color: var(--teal-dk); white-space: nowrap; width: 1%; }
-
-    /* ─── STARTING POINTS: tabs ──────────────────────────────── */
-    .tabs { display: flex; gap: 6px; background: var(--bg); padding: 6px; border-radius: 14px; margin: 0 auto 26px; max-width: 720px; }
-    .tab { flex: 1; border: 0; background: transparent; padding: 12px 10px; border-radius: 10px; font-weight: 700; font-size: .95rem; color: var(--muted); cursor: pointer; transition: all .2s; line-height: 1.2; }
-    .tab[aria-selected="true"] { background: var(--dark); color: #fff; box-shadow: var(--sh); }
-    .panel { display: none; }
-    .panel.on { display: block; animation: qualFade .3s ease; }
-    .panel-lead { font-size: 1.08rem; line-height: 1.6; max-width: 760px; margin: 0 auto 22px; text-align: center; }
-    .layouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .lay { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-    .lay-thumb { aspect-ratio: 4/3; border-bottom: 1px solid var(--border); padding: 10px; background: var(--white); }
-    .lay-thumb .ph-box { height: 100%; font-size: .7rem; padding: 10px; }
-    .lay-body { padding: 12px 14px 14px; }
-    .lay-body h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; line-height: 1.25; }
-    .lay-body dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: .82rem; line-height: 1.4; }
+    .layouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 6px 0 4px; }
+    .lay { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .lay-thumb { aspect-ratio: 4/3; border-bottom: 1px solid var(--border); padding: 8px; }
+    .lay-thumb .ph-box { height: 100%; font-size: .68rem; padding: 8px; }
+    .lay-body { padding: 10px 12px 12px; }
+    .lay-body h5 { font-size: .95rem; font-weight: 800; margin-bottom: 4px; line-height: 1.25; }
+    .lay-body dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; font-size: .78rem; line-height: 1.35; }
     .lay-body dt { color: var(--muted); }
     .lay-body dd { font-weight: 600; }
-    .swipe-hint { display: none; font-size: .8rem; color: var(--muted); margin-top: 8px; }
     @media (max-width: 860px) {
-      .layouts { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 2px 22px 10px; margin: 0 -22px; -webkit-overflow-scrolling: touch; }
+      .layouts { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding: 2px 2px 8px; -webkit-overflow-scrolling: touch; }
       .layouts::-webkit-scrollbar { display: none; }
-      .lay { flex: 0 0 78%; max-width: 300px; scroll-snap-align: start; }
-      .swipe-hint { display: block; }
-      .panel-lead { text-align: left; }
-      .tab { font-size: .84rem; padding: 11px 6px; }
+      .lay { flex: 0 0 72%; max-width: 280px; scroll-snap-align: start; }
     }
-    .mini-steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 900px; margin: 0 auto; }
-    .mini-steps li { counter-increment: s; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 16px 18px 58px; position: relative; font-size: .98rem; line-height: 1.5; }
-    .mini-steps li::before { content: counter(s); position: absolute; left: 16px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; }
-    .mini-steps b { display: block; font-weight: 800; margin-bottom: 3px; }
-    @media (max-width: 760px) { .mini-steps { grid-template-columns: 1fr; } }
 
-    /* ─── FIT: yes / no ──────────────────────────────────────── */
-    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .fit-col { border-radius: var(--r); padding: 24px 22px; background: var(--white); border: 1px solid var(--border); }
-    .fit-col.yes { border-top: 5px solid var(--teal); }
-    .fit-col.no { border-top: 5px solid #B5473A; }
-    .fit-col h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; }
-    .fit-col li { font-size: 1rem; line-height: 1.5; padding-left: 28px; position: relative; margin-bottom: 10px; }
-    .fit-col li::before { position: absolute; left: 0; top: 0; font-weight: 800; }
-    .fit-col.yes li::before { content: '✓'; color: var(--teal); }
-    .fit-col.no li::before { content: '✕'; color: #B5473A; }
-    .fit-note { margin-top: 18px; font-size: .98rem; color: var(--muted); line-height: 1.6; text-align: center; }
-    @media (max-width: 700px) { .fit { grid-template-columns: 1fr; } .fit-note { text-align: left; } }
+    /* ─── 5. ONE SET, EVERY DEPARTMENT ───────────────────────── */
+    .set { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; align-items: start; }
+    .set-col { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 22px 20px; }
+    .set-col h3 { font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+    .depts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .depts li { background: #fff; border: 1px solid var(--border); border-radius: 99px; padding: 8px 14px; font-size: .94rem; font-weight: 700; }
+    .set-col small { display: block; margin-top: 12px; font-size: .84rem; color: var(--muted); }
+    .draw { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+    .draw li { font-size: .96rem; line-height: 1.4; padding-left: 22px; position: relative; font-weight: 600; }
+    .draw li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
+    .draw li.gold::before { content: '★'; color: var(--gold); }
+    .not-line { margin-top: 18px; font-size: .96rem; line-height: 1.55; }
+    .not-line b { font-weight: 800; }
+    @media (max-width: 760px) { .set { grid-template-columns: 1fr; } .draw { grid-template-columns: 1fr; } }
 
-    /* ─── WHO ────────────────────────────────────────────────── */
-    .bio { display: grid; grid-template-columns: 220px 1fr; gap: 10px 32px; align-items: center; max-width: 880px; margin: 0 auto; }
-    .bio-photo { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; background: var(--card); box-shadow: var(--sh); grid-row: 1 / span 2; }
-    .bio blockquote { grid-column: 2; }
-    .bio-photo .ph-box { height: 100%; border-radius: var(--r); }
-    .bio-name { font-size: 1.35rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 4px; }
-    .bio-title { font-size: .95rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-    .bio blockquote { font-size: 1.12rem; line-height: 1.6; border-left: 3px solid var(--teal); padding-left: 18px; margin-top: 4px; }
-    .who-more { max-width: 880px; margin-left: auto; margin-right: auto; }
-    @media (max-width: 700px) { .bio { grid-template-columns: 120px 1fr; gap: 18px; align-items: start; } .bio-photo { grid-row: auto; } .bio blockquote { grid-column: 1 / -1; } .bio-title { margin-bottom: 0; } }
+    /* ─── 6. PROOF ───────────────────────────────────────────── */
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+    .bio { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: center; }
+    .bio-photo { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; background: rgba(255,255,255,.06); }
+    .bio-photo .ph-box { height: 100%; border-radius: var(--r); background: repeating-linear-gradient(45deg, rgba(230,184,74,.08) 0 12px, rgba(230,184,74,.16) 12px 24px); color: var(--gold-lt); }
+    .bio-name { font-size: 1.25rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 4px; }
+    .bio-title { font-size: .9rem; color: rgba(255,255,255,.62); line-height: 1.45; }
+    .bio-quote { grid-column: 1 / -1; font-size: 1.08rem; line-height: 1.55; border-left: 3px solid var(--teal-lt); padding-left: 16px; color: rgba(255,255,255,.9); }
+    .stats { display: flex; flex-direction: column; gap: 10px; }
+    .stat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r); padding: 14px 16px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+    .stat b { font-size: 1.4rem; font-weight: 900; letter-spacing: -.02em; color: var(--teal-lt); line-height: 1; white-space: nowrap; }
+    .stat span { font-size: .94rem; line-height: 1.4; color: rgba(255,255,255,.85); }
+    .daily { margin-top: 14px; font-size: .96rem; line-height: 1.5; color: rgba(255,255,255,.75); }
+    .daily b { color: #fff; }
+    @media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr; gap: 24px; } }
+    @media (max-width: 420px) { .bio { grid-template-columns: 110px 1fr; gap: 14px; } }
 
-    /* ─── DAILY EMAIL: mock inbox card ───────────────────────── */
-    .mail { background: #fff; color: var(--dark); border-radius: 14px; max-width: 520px; margin: 0 auto; box-shadow: 0 16px 50px rgba(0,0,0,.4); overflow: hidden; }
-    .mail-hd { padding: 14px 18px; border-bottom: 1px solid var(--border); }
-    .mail-meta { font-size: .78rem; color: var(--muted); display: flex; justify-content: space-between; margin-bottom: 4px; }
-    .mail-subj { font-weight: 800; font-size: 1.02rem; }
-    .mail-body { padding: 6px 18px 16px; }
-    .mail-row { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .95rem; line-height: 1.5; }
-    .mail-row:last-child { border-bottom: 0; }
-    .mail-row b { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); padding-top: 3px; }
-    .mail-sample { text-align: center; font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 12px; letter-spacing: .06em; text-transform: uppercase; }
-    @media (max-width: 420px) { .mail-row { grid-template-columns: 1fr; gap: 2px; } }
-
-    /* ─── FAQ ────────────────────────────────────────────────── */
+    /* ─── 7. ANSWERS ─────────────────────────────────────────── */
     .faq { display: flex; flex-direction: column; gap: 8px; }
     .faq details { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); }
-    .faq summary { list-style: none; cursor: pointer; padding: 16px 50px 16px 20px; font-weight: 700; font-size: 1rem; line-height: 1.35; position: relative; }
+    .faq summary { list-style: none; cursor: pointer; padding: 15px 48px 15px 18px; font-weight: 700; font-size: 1rem; line-height: 1.35; position: relative; }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: '+'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 300; color: var(--teal); line-height: 1; }
+    .faq summary::after { content: '+'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 300; color: var(--teal); line-height: 1; }
     .faq details[open] summary::after { content: '–'; }
-    .faq details p { padding: 0 20px 18px; font-size: .98rem; line-height: 1.65; }
+    .faq details p { padding: 0 18px 16px; font-size: .96rem; line-height: 1.6; }
 
-    /* ─── QUALIFY FORM (3 short steps) ───────────────────────── */
-    .qualify .eyebrow { color: var(--teal-lt); }
-    .q-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; max-width: 1060px; margin: 0 auto; }
-    .q-text h2 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.08; margin-bottom: 16px; }
-    .q-text .lead { font-size: 1.05rem; color: rgba(255,255,255,.7); line-height: 1.6; margin-bottom: 22px; }
-    .q-trust { display: flex; flex-direction: column; gap: 10px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.55); }
-    .q-trust span { display: flex; align-items: flex-start; gap: 9px; }
-    .q-trust span::before { content: "✓"; color: var(--teal-lt); font-weight: 800; }
-    .qual-card { background: #fff; color: var(--dark); border-radius: 16px; padding: 26px 22px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
+    /* ─── 8. QUALIFY FORM ────────────────────────────────────── */
+    .q-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 44px; align-items: start; max-width: 1040px; margin: 0 auto; }
+    .q-text h2 { font-size: clamp(1.85rem, 4.6vw, 2.6rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.08; margin-bottom: 14px; }
+    .q-text p { font-size: 1.02rem; color: rgba(255,255,255,.75); line-height: 1.55; }
+    .q-text p + p { margin-top: 12px; }
+    .q-text b { color: #fff; }
+    .qual-card { background: #fff; color: var(--dark); border-radius: 16px; padding: 24px 20px; box-shadow: 0 8px 40px rgba(0,0,0,.32); }
     .qual-eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 8px; }
-    .qual-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; line-height: 1.15; }
-    .qual-sub { font-size: .95rem; color: var(--muted); line-height: 1.55; margin-bottom: 18px; }
-    .qual-progress { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 22px; }
+    .qual-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 4px; line-height: 1.15; }
+    .qual-sub { font-size: .94rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
+    .qual-progress { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
     .qual-progress-bar { height: 100%; width: 33%; background: var(--teal); transition: width .3s ease; }
-    .qstep { display: none; flex-direction: column; gap: 18px; }
+    .qstep { display: none; flex-direction: column; gap: 16px; }
     .qstep.on { display: flex; animation: qualFade .3s ease; }
     .qual-field { display: block; }
     .qual-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 480px) { .qual-field-row { grid-template-columns: 1fr; } }
-    .qual-label { display: block; font-size: 1.02rem; font-weight: 700; margin-bottom: 9px; letter-spacing: -.012em; line-height: 1.3; }
+    .qual-label { display: block; font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.012em; line-height: 1.3; }
     .qual-label small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; margin-top: 2px; }
-    .qual-field input[type="text"], .qual-field input[type="email"], .qual-field input[type="tel"], .qual-field textarea {
-      width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
-    .qual-field textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+    .qual-field input[type="text"], .qual-field input[type="email"], .qual-field input[type="tel"], .qual-field textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
+    .qual-field textarea { resize: vertical; min-height: 60px; line-height: 1.5; }
     .qual-field input::placeholder, .qual-field textarea::placeholder { color: rgba(28,28,28,.36); }
     .qual-field input:focus, .qual-field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
     .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -398,10 +299,10 @@
     .qual-opt:hover { border-color: var(--teal); background: rgba(45,139,110,.04); }
     .qual-opt input { accent-color: var(--teal); margin: 0; flex-shrink: 0; }
     .qual-opt:has(input:checked) { border-color: var(--teal); background: rgba(45,139,110,.07); box-shadow: 0 0 0 1px var(--teal) inset; }
-    .qual-nav { display: flex; gap: 10px; margin-top: 4px; }
+    .qual-nav { display: flex; gap: 10px; margin-top: 2px; }
     .qual-nav .btn-ghost { flex: 0 0 auto; }
     .qual-nav .btn-teal { flex: 1; }
-    .qual-footnote { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .qual-footnote { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 10px; line-height: 1.5; }
     .qual-error { display: none; font-size: .88rem; color: #B5473A; background: #FBEDEB; border: 1px solid #F0C9C3; border-radius: 8px; padding: 10px 12px; }
     .qual-error.show { display: block; }
     .qual-hidden { display: none !important; }
@@ -409,22 +310,22 @@
     @keyframes qualFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .cal-slot { display: block; min-width: 280px; height: 660px; }
     .cal-slot iframe { width: 100%; height: 100%; border: 0; }
-    .headstart ul { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 16px; }
+    .headstart ul { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 14px; }
     .headstart li { font-size: .95rem; line-height: 1.5; padding-left: 24px; position: relative; }
     .headstart li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
-    @media (max-width: 860px) { .q-grid { grid-template-columns: 1fr; gap: 26px; } }
+    @media (max-width: 860px) { .q-grid { grid-template-columns: 1fr; gap: 24px; } }
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
-    .footer { background: #141414; padding: 40px 0 28px; color: #fff; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 28px; }
+    .footer { background: #141414; padding: 36px 0 26px; color: #fff; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; }
     .footer-brand-name { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
     .footer-brand-name span { color: var(--teal); }
-    .footer-tagline { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.6; max-width: 560px; }
+    .footer-tagline { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.55; max-width: 560px; }
     .footer-tagline a { color: var(--gold-lt); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
     .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
     .footer-links a { font-size: .86rem; color: rgba(255,255,255,.55); font-weight: 500; transition: color .2s; }
     .footer-links a:hover { color: var(--teal-lt); }
-    .footer-bottom { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: .76rem; color: rgba(255,255,255,.32); }
+    .footer-bottom { margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.08); font-size: .76rem; color: rgba(255,255,255,.32); }
   </style>
 
   <!-- Meta Pixel -->
@@ -461,31 +362,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="nav-links">
         <a href="#pricing">Price and speed</a>
         <a href="#how">How it works</a>
-        <a href="#start">Starting points</a>
-        <a href="#faq">FAQ</a>
+        <a href="#set">What is included</a>
+        <a href="#answers">Answers</a>
       </div>
       <a href="#qualify" class="btn btn-teal">See if you qualify</a>
     </div>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════ 1. HERO ══ -->
+<!-- ══════════════════════════════════════ 1. HERO: what is this ══ -->
 <section class="hero">
   <div class="container">
     <div class="hero-grid">
       <div>
-        <h1>Permit-ready ADU plans in <em>5 business days.</em></h1>
-        <div class="hero-facts">
-          <span class="fact"><b>From $6,000</b></span>
-          <span class="fact">Stamped by a California architect</span>
-          <span class="fact">Engineered</span>
-          <span class="fact">Title 24 included</span>
+        <h1>Permit-ready plans in <em>5 business days.</em></h1>
+        <div class="offer">
+          <div class="offer-row"><span class="o-what">ADU</span><span class="o-days">5 business days</span><span class="o-price">from $6,000</span></div>
+          <div class="offer-row"><span class="o-what">Home or renovation</span><span class="o-days">10 business days</span><span class="o-price">from $13,000</span></div>
         </div>
-        <p class="hero-sub">Simple new homes and renovations in 10 business days, from $13,000.</p>
-        <div class="hero-ctas">
-          <a href="#qualify" class="btn btn-teal btn-lg">See if your project qualifies. Takes 2 minutes. <span class="arr">→</span></a>
-        </div>
-        <p class="hero-micro">Day 1 is the business day after your intake is complete and your deposit is in. Most people finish intake in under an hour.</p>
+        <p class="hero-sub">Stamped by a California licensed architect. Structural, MEP, and Title 24 included.</p>
+        <a href="#qualify" class="btn btn-teal btn-lg">See if your project qualifies <span class="arr">→</span></a>
+        <p class="hero-micro">Two minutes, then a 15-minute call with your exact price.</p>
       </div>
       <div>
         <div class="hero-box">
@@ -497,140 +394,85 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════════ 2. PROOF STRIP ══ -->
-<div class="proof">
+<!-- ══════════════════════════════════════ 2. COMPARE: the pain, and how much better ══ -->
+<section class="sec sec-white" id="why">
   <div class="container">
-    <div class="proof-grid">
-      <div class="proof-item"><span><span class="ph">[PLACEHOLDER: N]</span> permit sets delivered in California since 2025</span></div>
-      <div class="proof-item"><span>Licensed architect, CA license <span class="ph">[PLACEHOLDER: license number]</span></span></div>
-      <div class="proof-item"><span>Plan sets accepted in <span class="ph">[PLACEHOLDER: City, City, City, City]</span> and <span class="ph">[PLACEHOLDER: N]</span> more</span></div>
-      <div class="proof-item"><span>Plan check comments answered within 3 business days</span></div>
+    <div class="sec-hd">
+      <span class="eyebrow">The usual way</span>
+      <h2>Most ADU plans take 4 to 8 weeks and still arrive unfinished.</h2>
+      <p>Meanwhile your contractor, your tenant, or your loan is waiting.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-row cmp-head"><span class="cmp-label"></span><span>What you are usually quoted</span><span class="us">Fast track</span></div>
+      <div class="cmp-row"><span class="cmp-label">Time to a submittable set</span><span class="cmp-them">4 to 8 weeks</span><span class="cmp-us">5 business days</span></div>
+      <div class="cmp-row"><span class="cmp-label">Engineering</span><span class="cmp-them">Separate firm, extra</span><span class="cmp-us">Included and stamped</span></div>
+      <div class="cmp-row"><span class="cmp-label">Title 24 energy report</span><span class="cmp-them">Extra</span><span class="cmp-us">Included</span></div>
+      <div class="cmp-row"><span class="cmp-label">City plan check comments</span><span class="cmp-them">Usually extra</span><span class="cmp-us">Answered within 3 business days, until the permit issues</span></div>
+      <div class="cmp-row"><span class="cmp-label">Price</span><span class="cmp-them">$4,000 and up, before the extras</span><span class="cmp-us">$6,000 flat</span></div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ══════════════════════════════════════ 3. PRICE + SPEED ══ -->
-<section class="sec sec-forest scale-sec" id="pricing">
+<!-- ══════════════════════════════════════ 3. PRICE AND SPEED: for my project ══ -->
+<section class="sec sec-forest" id="pricing">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Price and speed</span>
       <h2>From $6,000 and 5 days for a small ADU to $20,000 and 10 days for a large home.</h2>
-      <p>Flat prices by size. No hourly billing. Half on deposit, half on delivery.</p>
+      <p>Flat prices by size. Half on deposit, half on delivery.</p>
     </div>
     <div class="legend">
       <span class="l5"><i></i> 5 business days: ADUs</span>
       <span class="l10"><i></i> 10 business days: homes, renovations, conversions</span>
     </div>
-
     <div class="rail">
-      <div class="tier t5">
-        <div class="tier-name">ADU or JADU</div><div class="tier-size">up to 600 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$6,000</div><span class="tier-days">5 days</span></div>
-      </div>
-      <div class="tier t10">
-        <div class="tier-name">Garage conversion</div><div class="tier-size">any size</div>
-        <div class="tier-right"><div class="tier-price">$7,000</div><span class="tier-days">10 days</span></div>
-      </div>
-      <div class="tier t5">
-        <div class="tier-name">ADU</div><div class="tier-size">601 to 900 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$7,500</div><span class="tier-days">5 days</span></div>
-      </div>
-      <div class="tier t5">
-        <div class="tier-name">ADU</div><div class="tier-size">901 to 1,200 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$9,000</div><span class="tier-days">5 days</span></div>
-      </div>
+      <div class="tier t5"><div class="tier-name">ADU or JADU</div><div class="tier-size">up to 600 sq ft</div><div class="tier-right"><div class="tier-price">$6,000</div><span class="tier-days">5 days</span></div></div>
+      <div class="tier t10"><div class="tier-name">Garage conversion</div><div class="tier-size">any size</div><div class="tier-right"><div class="tier-price">$7,000</div><span class="tier-days">10 days</span></div></div>
+      <div class="tier t5"><div class="tier-name">ADU</div><div class="tier-size">601 to 900 sq ft</div><div class="tier-right"><div class="tier-price">$7,500</div><span class="tier-days">5 days</span></div></div>
+      <div class="tier t5"><div class="tier-name">ADU</div><div class="tier-size">901 to 1,200 sq ft</div><div class="tier-right"><div class="tier-price">$9,000</div><span class="tier-days">5 days</span></div></div>
       <div class="tier-adders">ADU adders: two-story <b>+$1,500</b>, attached to the house <b>+$1,000</b>.</div>
-      <div class="tier t10">
-        <div class="tier-name">Interior renovation or addition</div><div class="tier-size">quoted by scope</div>
-        <div class="tier-right"><div class="tier-price">$13,000 to $16,000</div><span class="tier-days">10 days</span></div>
-      </div>
-      <div class="tier t10">
-        <div class="tier-name">New home or duplex</div><div class="tier-size">1,500 to 2,000 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$15,000</div><span class="tier-days">10 days</span></div>
-      </div>
-      <div class="tier t10">
-        <div class="tier-name">New home or duplex</div><div class="tier-size">2,001 to 3,000 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$17,500</div><span class="tier-days">10 days</span></div>
-      </div>
-      <div class="tier t10">
-        <div class="tier-name">New home or duplex</div><div class="tier-size">3,001 to 4,000 sq ft</div>
-        <div class="tier-right"><div class="tier-price">$20,000</div><span class="tier-days">10 days</span></div>
-      </div>
+      <div class="tier t10"><div class="tier-name">Interior renovation or addition</div><div class="tier-size">quoted by scope</div><div class="tier-right"><div class="tier-price">$13,000 to $16,000</div><span class="tier-days">10 days</span></div></div>
+      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">1,500 to 2,000 sq ft</div><div class="tier-right"><div class="tier-price">$15,000</div><span class="tier-days">10 days</span></div></div>
+      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">2,001 to 3,000 sq ft</div><div class="tier-right"><div class="tier-price">$17,500</div><span class="tier-days">10 days</span></div></div>
+      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">3,001 to 4,000 sq ft</div><div class="tier-right"><div class="tier-price">$20,000</div><span class="tier-days">10 days</span></div></div>
     </div>
-
-    <div class="scale-notes">
-      <p>Title 24 is included. Survey, soils, and city fees are paid by you to those providers; we tell you on the call whether your project needs them.</p>
-      <p>Approvals that must happen before the building permit (coastal, hillside review, design review, HOA, historic) are scoped and quoted separately, from $8,000 per approval.</p>
-    </div>
-
+    <p class="scale-note">City fees, and a survey or soils report if your lot needs one, are paid by you. We tell you on the call.</p>
     <details class="more">
-      <summary>Add-ons and the approval-first cases</summary>
+      <summary>Add-ons, and approvals that come before the permit</summary>
       <div class="more-body">
         <h4>Add-ons</h4>
         <ul>
-          <li>We file the application in our name and manage the portal for you: $2,500</li>
+          <li>We file the application in our name and manage the city portal for you: $2,500</li>
           <li>Design changes you ask for after sign-off: quoted per change before we start</li>
         </ul>
-        <h4>If your project needs an approval before the building permit</h4>
-        <p>Some projects need a hearing or a review board before the city will accept a building permit application: hillside development review, a coastal development permit, design review, an HOA architectural committee, or a historic certificate of appropriateness. We handle those, but they are a different kind of work. We scope the agency, the submittal, and the meetings first, then quote it, usually $8,000 or more per approval. Once the approval is in hand, your permit set goes through the fast track like everyone else's. We check your parcel before our call and tell you if this applies to you.</p>
+        <h4>Approvals that come before the building permit</h4>
+        <p>Hillside review, coastal permits, design review, HOA committees, and historic reviews happen before the city will take a building permit application. We handle them, scoped first and quoted after, usually $8,000 or more per approval. Once the approval is in hand, your set goes through the fast track like everyone else's. We check your parcel before the call and tell you if this applies to you.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 4. WHAT YOU GET ══ -->
-<section class="sec sec-white" id="what">
-  <div class="container">
-    <div class="sec-hd">
-      <span class="eyebrow">What you get</span>
-      <h2>Everything the city needs to issue your permit. One stamped set.</h2>
-    </div>
-    <div class="sheets">
-      <div class="sheet"><span><i>Sheet</i>Cover, general notes, code summary</span></div>
-      <div class="sheet"><span><i>Sheet</i>Site plan</span></div>
-      <div class="sheet"><span><i>Sheets</i>Floor plan and roof plan</span></div>
-      <div class="sheet"><span><i>Sheets</i>Elevations and building sections</span></div>
-      <div class="sheet"><span><i>Sheet</i>Door, window, finish schedules</span></div>
-      <div class="sheet"><span><i>Sheets + calcs</i>Structural plans and details</span></div>
-      <div class="sheet"><span><i>Sheets</i>Plumbing, electrical, mechanical</span></div>
-      <div class="sheet"><span><i>Reports</i>Title 24 energy and CALGreen checklist</span></div>
-      <div class="sheet stamp"><span><i>Every set</i>Architect's stamp, engineer's stamp when the city requires it</span></div>
-      <div class="sheet stamp"><span><i>Until it issues</i>Responses to plan check comments</span></div>
-      <div class="sheet stamp"><span><i>Delivery</i>A PDF package sized and named for your city's portal</span></div>
-    </div>
-    <p class="not-line"><b>Not in the set:</b> survey, soils report, civil grading plan, fire sprinkler design, utility will-serve letters, city fees, and the license for a stock plan you bring.</p>
-    <details class="more">
-      <summary>What those exclusions usually cost, and who provides them</summary>
-      <div class="more-body">
-        <ul>
-          <li>Boundary or topographic survey (we tell you if you need one; usually $1,500 to $4,000)</li>
-          <li>Soils report (rare for an ADU; required on some hillside lots)</li>
-          <li>Civil grading and drainage plan</li>
-          <li>Fire sprinkler design (deferred submittal by the installer)</li>
-          <li>Utility will-serve letters</li>
-          <li>City plan check, impact, and school fees</li>
-          <li>Stock plan license if you bring a plan from a plan website</li>
-        </ul>
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ 5. HOW IT WORKS ══ -->
+<!-- ══════════════════════════════════════ 4. HOW IT WORKS ══ -->
 <section class="sec" id="how">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">How it works</span>
-      <h2>Four steps. One live session. Then every discipline at once.</h2>
-      <p>Nothing is invented on your job. You start from a layout we have already built and engineered, you tell us how to change it, and the team does the rest in parallel instead of one discipline after another.</p>
+      <h2>Three steps. One live session. Then every discipline at once.</h2>
+      <p>Nothing is drawn from scratch. You start from something that already exists, change it live, and the whole team draws in parallel.</p>
     </div>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div>
-          <div class="step-when">Before the clock starts</div>
+          <div class="step-when">Before Day 1</div>
           <h3>A 15-minute call, then intake</h3>
-          <p>We research your parcel before the call and give you a track and an exact price. You send address, photos, your starting layout, and the 50% deposit. Day 1 is the next business day.</p>
+          <p>We research your parcel first and give you your price on the call. Then you send your address, photos, the deposit, and your starting point:</p>
+          <ul class="starts">
+            <li>Pick one of our six ADU layouts</li>
+            <li>Bring any house plan you like</li>
+            <li>Scan your existing house yourself, in about an hour</li>
+          </ul>
+          <small>Most people finish intake in under an hour. Day 1 is the next business day.</small>
         </div>
       </div>
       <div class="step">
@@ -644,289 +486,197 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="step">
         <div class="step-num">3</div>
         <div>
-          <div class="step-when">Days 2 to 4, or 2 to 9</div>
-          <h3>Every discipline in parallel</h3>
-          <p>Architectural, structural, plumbing, electrical, mechanical, and energy drawn at the same time. The engineer reviews and stamps. We plan-check it against your city's list.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-when">Day 5 or Day 10</div>
-          <h3>Stamped set delivered</h3>
-          <p>You get the PDF set and a 20-minute walkthrough of how to submit it. Final 50% due. When the city sends comments, we answer within 3 business days until the permit issues.</p>
+          <div class="step-when">Days 2 to 5, or 2 to 10</div>
+          <h3>Drawn at once, then delivered</h3>
+          <p>Architectural, structural, MEP, and energy are drawn in parallel and the engineer stamps. You get the PDF set and a 20-minute walkthrough of how to submit it.</p>
+          <small>When the city sends comments, we answer within 3 business days until the permit issues.</small>
         </div>
       </div>
     </div>
 
     <details class="more">
-      <summary>Day by day, for an ADU and for a home or renovation</summary>
+      <summary>The six ADU layouts, how to scan your house, and the day-by-day schedule</summary>
       <div class="more-body">
-        <h4>ADU, 5 business days</h4>
+        <h4>ADU layouts. Choose by shape; we fit it to your lot and your city's rules on Day 1.</h4>
+        <div class="layouts">
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Studio</h5><dl><dt>Size</dt><dd>up to 450 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>One bedroom, kitchen at the end</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>One bedroom, side entry</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Two bedroom</h5><dl><dt>Size</dt><dd>up to 900 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Two-story</h5><dl><dt>Size</dt><dd>up to 1,200 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Attached to the house</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
+        </div>
+        <h4>Bringing a plan</h4>
+        <p>A plan you bought online, a house you walked through, a sketch. If it is from a plan website, buy the CAD or PDF license and send it to us; that is the version we can legally trace. No plan yet? Tell us your lot and we send a short list that fits it.</p>
+        <h4>Scanning your existing house (renovations, additions, conversions)</h4>
+        <ul>
+          <li>Walk the outside and take 8 photos with the Hover app. It produces exterior dimensions.</li>
+          <li>Scan each floor with an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
+          <li>Record a 5-minute walkthrough video naming each room. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></li>
+        </ul>
+        <h4>ADU, day by day</h4>
         <table class="tbl">
           <thead><tr><th>Day</th><th>What happens</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>Your 60 to 90 minute layout session on a shared screen. We move rooms, windows, and doors live until you sign off.</td></tr>
-            <tr><td>2</td><td>You send one written list of changes. We lock the plan. Structural and energy work starts.</td></tr>
+            <tr><td>1</td><td>Layout session on a shared screen until you sign off.</td></tr>
+            <tr><td>2</td><td>Your one written list of changes. Plan locked. Structural and energy start.</td></tr>
             <tr><td>3</td><td>Architectural, structural, and MEP sheets drawn in parallel.</td></tr>
-            <tr><td>4</td><td>Engineer of record reviews and stamps. Internal plan check against your city's list.</td></tr>
-            <tr><td>5</td><td>You receive the stamped PDF set and a 20-minute walkthrough of how to submit it. Final 50% due.</td></tr>
+            <tr><td>4</td><td>Engineer reviews and stamps. Internal plan check against your city's list.</td></tr>
+            <tr><td>5</td><td>Stamped PDF set delivered with your submittal walkthrough. Final 50% due.</td></tr>
           </tbody>
         </table>
-        <h4>New home or renovation, 10 business days</h4>
+        <h4>Home or renovation, day by day</h4>
         <table class="tbl">
           <thead><tr><th>Day</th><th>What happens</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>Layout session. For a new home, we trace the plan you chose and fit it to your lot. For a renovation, we work on top of your scans.</td></tr>
+            <tr><td>1</td><td>Layout session. A new home is traced from your plan and fit to your lot; a renovation is drawn on top of your scans.</td></tr>
             <tr><td>2 to 3</td><td>Your written change list. Plan locked. Structural design begins.</td></tr>
-            <tr><td>4 to 7</td><td>All sheets drawn in parallel: architectural, structural, plumbing, electrical, mechanical, energy.</td></tr>
+            <tr><td>4 to 7</td><td>All sheets drawn in parallel.</td></tr>
             <tr><td>8 to 9</td><td>Engineer reviews and stamps. Internal plan check.</td></tr>
             <tr><td>10</td><td>Stamped set delivered with your submittal walkthrough. Final 50% due.</td></tr>
           </tbody>
         </table>
-        <h4>After submittal</h4>
-        <p>The city reviews. State law gives them 60 days on an ADU, and most take all of it. When comments come back, we answer within 3 business days and keep going until the permit issues.</p>
+        <p>After submittal, the city reviews. State law gives them 60 days on an ADU, and most take all of it.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 6. STARTING POINTS ══ -->
-<section class="sec sec-white" id="start">
+<!-- ══════════════════════════════════════ 5. ONE SET, EVERY DEPARTMENT: will the city take it ══ -->
+<section class="sec sec-white" id="set">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">Pick your starting point</span>
-      <h2>Start from one of our layouts, a plan you bring, or a scan of your house.</h2>
+      <span class="eyebrow">What is included</span>
+      <h2>One stamped set. Every department that has to sign off.</h2>
     </div>
-
-    <div class="tabs" role="tablist" aria-label="Project type">
-      <button class="tab" role="tab" aria-selected="true" data-panel="p-adu">Detached ADU or JADU</button>
-      <button class="tab" role="tab" aria-selected="false" data-panel="p-home">New home or duplex</button>
-      <button class="tab" role="tab" aria-selected="false" data-panel="p-reno">Renovation or conversion</button>
-    </div>
-
-    <div class="panel on" id="p-adu" role="tabpanel">
-      <p class="panel-lead">Pick the layout that matches what you want. There are only so many ways to arrange a small building, so choose by shape and we make it fit your lot and your city's rules on Day 1.</p>
-      <div class="layouts">
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>Studio</h4>
-            <dl><dt>Size</dt><dd>up to 450 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>One bedroom, kitchen at the end</h4>
-            <dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>One bedroom, side entry</h4>
-            <dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>Two bedroom</h4>
-            <dl><dt>Size</dt><dd>up to 900 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>Two-story</h4>
-            <dl><dt>Size</dt><dd>up to 1,200 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-        <div class="lay">
-          <div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div>
-          <div class="lay-body"><h4>Attached to the house</h4>
-            <dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div>
-        </div>
-      </div>
-      <p class="swipe-hint">Swipe for more layouts →</p>
-    </div>
-
-    <div class="panel" id="p-home" role="tabpanel">
-      <p class="panel-lead">Bring any plan you like. A plan you bought online, a house you walked through, a sketch on paper. We trace it into our drawing system and fit it to your lot in the layout session.</p>
-      <details class="more" style="max-width:760px;margin-left:auto;margin-right:auto">
-        <summary>Plans from a plan website, and what if you have no plan yet</summary>
-        <div class="more-body">
-          <p>If you bring a plan from a plan website, buy the CAD or PDF license and send it to us. That is the version we can legally trace, and it is what lets us keep the 10-day schedule. In the layout session we adapt it to your lot, moving rooms when the lot asks for it.</p>
-          <p>Do not have a plan yet? Tell us your lot and we will send a short list of plans that fit it.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="panel" id="p-reno" role="tabpanel">
-      <p class="panel-lead">First we need an accurate picture of the building as it stands. You capture it yourself in about an hour, before Day 1.</p>
-      <ol class="mini-steps">
-        <li><b>8 photos outside</b>With the Hover app. It produces exterior dimensions.</li>
-        <li><b>Scan each floor</b>With an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
-        <li><b>5-minute video</b>Walk through naming each room.</li>
-      </ol>
-      <p class="panel-lead" style="margin-top:18px;font-size:.98rem">We reconcile the three into a model and your layout session happens on top of it. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ 7. IS IT A FIT ══ -->
-<section class="sec" id="fit">
-  <div class="container narrow">
-    <div class="sec-hd">
-      <span class="eyebrow">Is it a fit</span>
-      <h2>Fast track works for most lots in California. Not all.</h2>
-    </div>
-    <div class="fit">
-      <div class="fit-col yes">
-        <h3>Works when</h3>
-        <ul>
-          <li>You own the property or are in contract on it</li>
-          <li>You want to submit to the city within the next month</li>
-          <li>It is an ADU, a simple home, or a renovation</li>
-          <li>Your city takes the permit application directly, no hearing first</li>
-          <li>You can decide in one sitting and send one list of changes</li>
+    <div class="set">
+      <div class="set-col">
+        <h3>Who reviews it</h3>
+        <ul class="depts">
+          <li>Building</li><li>Planning and zoning</li><li>Fire</li><li>Public Works</li><li>Grading</li><li>Health</li><li>Urban forestry</li>
         </ul>
+        <small>Which of these review your project depends on your city and your lot. We find out before the call.</small>
       </div>
-      <div class="fit-col no">
-        <h3>Does not work when</h3>
-        <ul>
-          <li>A board, commission, or HOA must approve the design first</li>
-          <li>You want a design from scratch with open-ended revisions</li>
-          <li>You need someone to build it, not just draw it</li>
-          <li>The project is outside California</li>
+      <div class="set-col">
+        <h3>What they get</h3>
+        <ul class="draw">
+          <li>Cover, general notes, code summary</li>
+          <li>Site plan</li>
+          <li>Floor plans and roof plan</li>
+          <li>Elevations and building sections</li>
+          <li>Door, window, and finish schedules</li>
+          <li>Structural plans, details, calculations</li>
+          <li>Plumbing, electrical, mechanical</li>
+          <li>Title 24 energy report and CALGreen</li>
+          <li class="gold">Architect's stamp; engineer's stamp when required</li>
+          <li class="gold">Plan check responses until the permit issues</li>
         </ul>
       </div>
     </div>
-    <p class="fit-note">Steep lots, fire zones, and corner lots are fine. A sloped lot needs a topographic survey before Day 1, and we will tell you if yours does.</p>
+    <p class="not-line"><b>Not included:</b> survey, soils report, civil grading plan, fire sprinkler design, will-serve letters, and city fees. You pay those providers directly, and we tell you on the call if your lot needs any of them.</p>
+    <details class="more">
+      <summary>What those usually cost</summary>
+      <div class="more-body">
+        <ul>
+          <li>Boundary or topographic survey: usually $1,500 to $4,000. A sloped lot needs one before Day 1.</li>
+          <li>Soils report: rare for an ADU; required on some hillside lots.</li>
+          <li>Civil grading and drainage plan: when the city asks for one.</li>
+          <li>Fire sprinkler design: a deferred submittal by the installer.</li>
+          <li>Utility will-serve letters, city plan check, impact, and school fees: paid to the city and utilities.</li>
+          <li>Stock plan license, if you bring a plan from a plan website.</li>
+        </ul>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 8. WHO DOES THE WORK ══ -->
-<section class="sec sec-white" id="who">
+<!-- ══════════════════════════════════════ 6. PROOF: can you do this ══ -->
+<section class="sec sec-dark" id="who">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Who does the work</span>
-      <h2>A licensed architect signs every set.</h2>
+      <h2>A licensed architect stamps every set.</h2>
     </div>
-    <div class="bio">
-      <div class="bio-photo"><div class="ph-box">[PLACEHOLDER: photo of Richman]</div></div>
-      <div>
-        <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
-        <div class="bio-title">Licensed architect, California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
+    <div class="proof-grid">
+      <div class="bio">
+        <div class="bio-photo"><div class="ph-box">[PLACEHOLDER: photo of Richman]</div></div>
+        <div>
+          <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
+          <div class="bio-title">California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
+        </div>
+        <blockquote class="bio-quote">I review and stamp every set that leaves this office. Your project architect draws it, runs your session, and emails you every business day.</blockquote>
       </div>
-      <blockquote>I review and stamp every set that leaves this office. Your project architect draws it, works with you in the layout session, and sends your daily update. You will meet them on Day 1.</blockquote>
+      <div>
+        <div class="stats">
+          <div class="stat"><b><span class="ph">[PLACEHOLDER: N]</span></b><span>permit sets delivered in California since 2025</span></div>
+          <div class="stat"><b><span class="ph">[PLACEHOLDER: N]</span></b><span>cities where our sets have been accepted, including <span class="ph">[PLACEHOLDER: City, City, City, City]</span></span></div>
+          <div class="stat"><b>3 days</b><span>maximum to answer a plan check comment, until the permit issues</span></div>
+        </div>
+        <p class="daily"><b>An email every business day</b> until your set is delivered: what was done, what happens tomorrow, and what we need from you.</p>
+      </div>
     </div>
-    <details class="more who-more">
+    <details class="more">
       <summary>Engineering, and what we have drawn before</summary>
       <div class="more-body">
         <p>A California licensed structural engineer reviews and stamps the structural sheets when your city requires it.</p>
-        <p>We have been drawing for permit in California since 2025, on everything from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. The fast track exists because most ADUs and simple homes do not need that kind of effort. They need someone who has done it many times and does not make you wait.</p>
+        <p>We have been drawing for permit in California since 2025, from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. The fast track exists because most ADUs and simple homes do not need that kind of effort. They need someone who has done it many times and does not make you wait.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 9. DAILY EMAIL ══ -->
-<section class="sec sec-dark" id="updates">
-  <div class="container">
-    <div class="sec-hd">
-      <span class="eyebrow">What you will hear from us</span>
-      <h2>An email every business day until your set is delivered.</h2>
-      <p>What was done today, what happens tomorrow, and whether we need anything from you. After submittal, one every time the city moves and every time we respond.</p>
-    </div>
-    <div class="mail" aria-label="Sample daily update email">
-      <div class="mail-hd">
-        <div class="mail-meta"><span>Your project architect</span><span>Today, 5:12 PM</span></div>
-        <div class="mail-subj">Day 3 of 5: sheets drawn in parallel</div>
-      </div>
-      <div class="mail-body">
-        <div class="mail-row"><b>Done today</b><span>Architectural, structural, and MEP sheets drawn.</span></div>
-        <div class="mail-row"><b>Tomorrow</b><span>Engineer review and stamp. Internal plan check against your city's list.</span></div>
-        <div class="mail-row"><b>Need from you</b><span>Nothing.</span></div>
-      </div>
-    </div>
-    <p class="mail-sample">Sample. Yours arrives every business day.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ 10. FAQ ══ -->
-<section class="sec" id="faq">
+<!-- ══════════════════════════════════════ 7. ANSWERS: remaining objections ══ -->
+<section class="sec" id="answers">
   <div class="container narrow">
     <div class="sec-hd">
-      <span class="eyebrow">FAQ</span>
-      <h2>Five days does not include the city's review. The price is the whole price for the set.</h2>
+      <span class="eyebrow">Straight answers</span>
+      <h2>Six things people ask before they book.</h2>
     </div>
     <div class="faq">
       <details>
-        <summary>How can you do this in 5 days when everyone else quotes 4 to 8 weeks?</summary>
-        <p>Because we do not start from a blank sheet. The ADU layouts are already drawn and engineered. Your session changes them to fit you and your lot. Structural, energy, and MEP are done at the same time by different people instead of one after another. And we gather everything before the clock starts, so no one is waiting on a photo on Day 3.</p>
-      </details>
-      <details>
         <summary>Does 5 days include the city's review?</summary>
-        <p>No. We deliver a set ready to submit in 5 business days. The city then reviews it. State law gives them 60 days on an ADU. When they send comments, we answer within 3 business days and keep answering until the permit issues, at no extra cost, as long as the comments are about the set and not about a change you asked for after submittal.</p>
-      </details>
-      <details>
-        <summary>Why pay $6,000 when my city has free pre-approved ADU plans?</summary>
-        <p>Use them if one fits. Most people find the pre-approved plan is the wrong size, the wrong shape for their lot, or still needs a site plan, an energy report, structural adaptation, and someone to carry it through plan check. We start from a layout that fits you and finish all of that in the same five days.</p>
-      </details>
-      <details>
-        <summary>I saw ADU plans online for $4,000. Why are you more?</summary>
-        <p>Those are usually drafting only, with no engineer, no energy report, and a 4 to 6 week wait. Ours is the complete stamped set in a week. If the cheaper option works for your timeline, take it.</p>
+        <p>No. You get a submittable set in 5 business days. The city then has up to 60 days on an ADU. We answer their comments within 3 business days until the permit issues, at no extra cost.</p>
       </details>
       <details>
         <summary>Is the price the whole price?</summary>
-        <p>For the drawing set, yes. You will pay the city's fees directly. If your lot needs a survey or a soils report, you pay that provider directly, and we tell you on the call whether you need one.</p>
+        <p>For the drawing set, yes. You pay the city's fees directly, and a survey or soils report if your lot needs one. We tell you on the call.</p>
       </details>
       <details>
-        <summary>Who draws my plans?</summary>
-        <p>A project architect on our team, with me reviewing and stamping. You meet them on Day 1 and they are the person who emails you every day.</p>
+        <summary>Why not my city's free pre-approved ADU plans?</summary>
+        <p>Use them if one fits. Most people find the size or shape is wrong, or that the plan still needs a site plan, an energy report, structural work, and someone to carry it through plan check. We do all of that in the same five days.</p>
       </details>
       <details>
         <summary>Can I change things?</summary>
-        <p>Yes. The Day 1 session is where most of that happens, live, on a shared screen. Then you send one written list of changes and we lock the plan. After that, changes are quoted per change, because every change after lock moves the delivery date.</p>
+        <p>Yes: live on Day 1, then one written list. After the plan is locked, changes are quoted per change, because each one moves the delivery date.</p>
       </details>
       <details>
         <summary>What if my project turns out not to be simple?</summary>
-        <p>We find that out before you pay. We research your parcel before the call. If your city requires a hearing first, or your lot has a problem that puts it off the fast track, we say so on the call and quote it the regular way, or tell you who else to talk to.</p>
+        <p>We find out before you pay. If your city needs a hearing first or your lot has a problem, we say so on the call and quote it the regular way, or tell you who else to talk to.</p>
       </details>
       <details>
-        <summary>What do I need to have ready?</summary>
-        <p>Your address, photos of the lot and any existing building, which layout you like, how many bedrooms and bathrooms, and your deposit. For renovations, the Hover photos, the room scans, and the walkthrough video. Most people finish in under an hour.</p>
-      </details>
-      <details>
-        <summary>Do you build it or find me a contractor?</summary>
+        <summary>Do you build it, or find me a contractor?</summary>
         <p>No. We draw and engineer for permit. If you want a bid package your contractors can price from the same set, ask on the call.</p>
-      </details>
-      <details>
-        <summary>Do you work outside California?</summary>
-        <p>Not on the fast track. Our regular practice takes projects in other states.</p>
-      </details>
-      <details>
-        <summary>Will it look like a box?</summary>
-        <p>Look at the layouts. They are straightforward because that is what permits fast and builds cheap. Exterior finishes, roof form, windows, and trim are yours to choose in the session.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 11. QUALIFY AND BOOK ══ -->
-<section class="sec sec-dark qualify" id="qualify">
+<!-- ══════════════════════════════════════ 8. QUALIFY AND BOOK ══ -->
+<section class="sec sec-forest" id="qualify">
   <div class="container">
     <div class="q-grid">
-
       <div class="q-text">
         <span class="eyebrow">Qualify and book</span>
         <h2>Two minutes to find out if you are on the fast track.</h2>
-        <p class="lead">Answer these and pick a 15-minute call. We research your parcel before we meet, so on the call you get a yes or no and your exact price.</p>
-        <div class="q-trust">
-          <span>We research your parcel before the call</span>
-          <span>A track, a price, and a start date on the call</span>
-          <span>15 minutes. No obligation.</span>
-        </div>
+        <p>It works for most California lots: <b>you own it or are in contract</b>, <b>you want to submit within a month</b>, and <b>no board or HOA has to approve the design first</b>. Steep lots, fire zones, and corner lots are fine.</p>
+        <p>Answer these, then pick a 15-minute call. We research your parcel before we meet, so on the call you get a yes or no and your exact price.</p>
       </div>
 
       <div>
-        <!-- Form card: three short steps -->
         <div class="qual-card" id="qualFormCard">
           <span class="qual-eyebrow" id="qualStepLabel">Step 1 of 3 · The property</span>
           <h3 class="qual-title">Tell us about the project</h3>
-          <p class="qual-sub">Ten quick questions in three short steps. Then pick a time.</p>
+          <p class="qual-sub">Three short steps. Then pick a time.</p>
           <div class="qual-progress"><div class="qual-progress-bar" id="qualProgress"></div></div>
           <form id="qualForm" novalidate>
 
@@ -1030,7 +780,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </form>
         </div>
 
-        <!-- Pass: calendar -->
         <div class="qual-card qual-hidden" id="qualPassCard">
           <span class="qual-eyebrow">You are on the fast track</span>
           <h3 class="qual-title">Pick a time.</h3>
@@ -1038,7 +787,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="qualCalWidget" class="cal-slot"></div>
         </div>
 
-        <!-- Pass, after booking: head start on intake -->
         <div class="qual-card qual-hidden headstart" id="qualBookedCard">
           <span class="qual-eyebrow">Booked</span>
           <h3 class="qual-title">Get a head start on intake</h3>
@@ -1051,7 +799,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="qual-footnote" style="text-align:left">Your confirmation email from Calendly has the call details.</p>
         </div>
 
-        <!-- No pass: email path -->
         <div class="qual-card qual-hidden" id="qualNoPassCard">
           <span class="qual-eyebrow">Thanks</span>
           <h3 class="qual-title">Sounds like you are earlier than our fast track is built for.</h3>
@@ -1060,7 +807,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="qual-footnote" style="text-align:left"><span class="ph">[PLACEHOLDER: the getting-ready guide and its automated email do not exist yet. Nothing is sent on submit; the lead is captured in Pipedrive and emailed to Richman.]</span></p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1158,7 +904,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       e.preventDefault();
       var d = {};
       ALL.forEach(function (k) { d[k] = val(k); });
-      // Validate every step; jump back to the first incomplete one.
       for (var s = 1; s <= 3; s++) {
         var miss = missingIn(s);
         if (s === 3 && d.email.indexOf('@') < 0 && miss.indexOf('email') < 0) miss.push('email');
@@ -1237,18 +982,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     });
   })();
-
-  // ─── Starting-point tabs ───
-  (function () {
-    var tabs = document.querySelectorAll('.tab');
-    tabs.forEach(function (t) {
-      t.addEventListener('click', function () {
-        tabs.forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
-        document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('on', p.id === t.dataset.panel); });
-        if (typeof gtag === 'function') gtag('event', 'starting_point_tab', { panel: t.dataset.panel });
-      });
-    });
-  })();
 </script>
 <div class="divider"></div>
 
@@ -1262,7 +995,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <nav class="footer-links">
         <a href="#pricing">Price and speed</a>
-        <a href="#faq">FAQ</a>
+        <a href="#answers">Answers</a>
         <a href="#qualify">See if you qualify</a>
         <a href="/developers">Developers</a>
       </nav>
