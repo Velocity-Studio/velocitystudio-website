@@ -346,6 +346,56 @@
     .bio-line { font-size: 1rem; line-height: 1.55; color: rgba(255,255,255,.85); margin-top: 10px; }
     .sec-dark .bio { max-width: 760px; margin: 0 auto; }
     @media (max-width: 420px) { .sec-dark .bio { grid-template-columns: 100px 1fr; } }
+
+    /* draft 5: hero spectrum */
+    .spec { max-width: 560px; margin: 0 0 18px; }
+    .spec-ends { display: flex; justify-content: space-between; gap: 16px; }
+    .spec-end b { display: block; font-size: 1.02rem; font-weight: 800; line-height: 1.2; }
+    .spec-end span { display: block; font-size: .9rem; color: var(--teal-lt); font-weight: 700; margin-top: 2px; }
+    .spec-end.right { text-align: right; }
+    .spec-end.right span { color: var(--gold-lt); }
+    .spec-bar { position: relative; height: 6px; border-radius: 6px; margin: 12px 0 10px; background: linear-gradient(90deg, var(--teal-lt), var(--teal) 35%, var(--gold) 70%, var(--gold-lt)); box-shadow: 0 0 18px rgba(91,224,176,.35), 0 0 18px rgba(230,184,74,.3); }
+    .spec-bar::before, .spec-bar::after { content: ''; position: absolute; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
+    .spec-bar::before { left: 0; background: var(--teal-lt); }
+    .spec-bar::after { right: 0; background: var(--gold-lt); }
+    .spec-cap { font-size: .9rem; color: rgba(255,255,255,.6); }
+    /* draft 5: pain costs */
+    .costs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 980px; margin: 0 auto; }
+    .cost { background: var(--card); border: 1px solid var(--border); border-left: 5px solid #B5473A; border-radius: var(--r); padding: 20px 20px 18px; }
+    .cost h3 { font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #B5473A; margin-bottom: 8px; }
+    .cost p { font-size: 1rem; line-height: 1.5; }
+    .bridge { max-width: 820px; margin: 22px auto 0; text-align: center; font-size: 1.1rem; line-height: 1.5; background: rgba(45,139,110,.08); border: 1px solid rgba(45,139,110,.25); border-radius: var(--r); padding: 16px 20px; }
+    .bridge b { color: var(--teal-dk); }
+    @media (max-width: 760px) { .costs { grid-template-columns: 1fr; } .bridge { text-align: left; font-size: 1.02rem; } }
+    /* draft 5: price groups */
+    .groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .group { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+    .group header { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); }
+    .group h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.01em; }
+    .gdays { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--teal-lt); color: var(--dark); white-space: nowrap; }
+    .grow { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: baseline; padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .gsz { font-weight: 800; font-size: .98rem; }
+    .gsq { font-size: .88rem; color: rgba(255,255,255,.6); }
+    .gpr { font-weight: 900; font-size: 1.15rem; letter-spacing: -.01em; white-space: nowrap; }
+    .gfoot { padding: 12px 18px 14px; font-size: .86rem; color: rgba(255,255,255,.62); margin-top: auto; }
+    @media (max-width: 860px) { .groups { grid-template-columns: 1fr; } }
+    @media (max-width: 420px) { .grow { grid-template-columns: 1fr auto; row-gap: 0; } .gsz { grid-row: 1; grid-column: 1; } .gpr { grid-row: 1; grid-column: 2; } .gsq { grid-row: 2; grid-column: 1 / -1; } }
+    /* draft 5: included */
+    @media (min-width: 761px) { .set { grid-template-columns: 1.4fr 1fr; } }
+    .set-col.you { border-left: 5px solid #B5473A; }
+    .draw.no li::before { content: '–'; color: #B5473A; }
+    .draw.no { grid-template-columns: 1fr; }
+    /* draft 5: journey */
+    .journey { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .stop { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; position: relative; }
+    .stop-img { aspect-ratio: 16/10; padding: 8px; }
+    .stop-img .ph-box { height: 100%; font-size: .7rem; padding: 10px; }
+    .stop-num { position: absolute; top: 14px; left: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px var(--teal); }
+    .stop-when { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); padding: 10px 16px 0; }
+    .stop h3 { font-size: 1.08rem; font-weight: 800; letter-spacing: -.012em; line-height: 1.25; padding: 6px 16px 6px; }
+    .stop p { font-size: .94rem; line-height: 1.5; color: var(--dark); padding: 0 16px 16px; }
+    @media (max-width: 960px) { .journey { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .journey { grid-template-columns: 1fr; } }
   </style>
 
   <!-- Meta Pixel -->
@@ -396,14 +446,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-grid">
       <div>
         <h1>Permit-ready plans in <em>days, not months.</em></h1>
-        <div class="offer">
-          <div class="offer-row"><span class="o-what">ADU</span><span class="o-days">5 business days</span><span class="o-price">from $6,000</span></div>
-          <div class="offer-row"><span class="o-what">Remodel or addition</span><span class="o-days">10 business days</span><span class="o-price">from $13,000</span></div>
-          <div class="offer-row"><span class="o-what">New home</span><span class="o-days">10 business days</span><span class="o-price">from $15,000</span></div>
+        <div class="spec" aria-label="Project range">
+          <div class="spec-ends">
+            <div class="spec-end"><b>500 sq ft ADU</b><span>5 business days · $6,000</span></div>
+            <div class="spec-end right"><b>4,000 sq ft house</b><span>10 business days · $20,000</span></div>
+          </div>
+          <div class="spec-bar"></div>
+          <p class="spec-cap">Everything in between, priced by size. Remodels and additions too.</p>
         </div>
         <p class="hero-sub">Stamped by a California licensed architect. Structural, MEP, and Title 24 included.</p>
         <a href="#qualify" class="btn btn-teal btn-lg">See if your project qualifies <span class="arr">→</span></a>
-        <p class="hero-micro">Two minutes, then a 15-minute call with your exact price.</p>
+        <p class="hero-micro">A short form, then a 15-minute call with your exact price.</p>
       </div>
       <div>
         <div class="hero-box">
@@ -415,49 +468,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════════ 2. COMPARE: the pain, and how much better ══ -->
+<!-- ══════════════════════════════════════ 2. PAIN ══ -->
 <section class="sec sec-white" id="why">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">Why projects stall</span>
-      <h2>The drawings are usually the slowest part of the whole project.</h2>
-      <p>A remodel waits weeks to be measured. A house plan sits with a drafter for months.</p>
+      <span class="eyebrow">The usual experience</span>
+      <h2>Drawings are slow because nobody is working only on yours.</h2>
+      <p>Architects and engineers juggle a dozen projects at once. Yours waits its turn.</p>
     </div>
-    <div class="cmp">
-      <div class="cmp-row cmp-head"><span class="cmp-label"></span><span>The usual way</span><span class="us">Fast track</span></div>
-      <div class="cmp-row"><span class="cmp-label">Time to a submittable set</span><span class="cmp-them">Weeks for an ADU. Months for a house or remodel.</span><span class="cmp-us">5 or 10 business days</span></div>
-      <div class="cmp-row"><span class="cmp-label">Measuring the existing house</span><span class="cmp-them">Someone comes out, eventually</span><span class="cmp-us">You scan it in an hour, before Day 1</span></div>
-      <div class="cmp-row"><span class="cmp-label">Structural, MEP, Title 24</span><span class="cmp-them">Separate firms, extra, waited on</span><span class="cmp-us">Included, drawn in parallel, stamped</span></div>
-      <div class="cmp-row"><span class="cmp-label">Revisions</span><span class="cmp-them">Open-ended, weeks per round</span><span class="cmp-us">One live session, one list, locked</span></div>
-      <div class="cmp-row"><span class="cmp-label">City plan check comments</span><span class="cmp-them">Usually extra</span><span class="cmp-us">Answered within 3 business days until the permit issues</span></div>
+    <div class="costs">
+      <div class="cost">
+        <h3>Time</h3>
+        <p>Days for a reply. Weeks for a round of drawings. Months to a permit.</p>
+      </div>
+      <div class="cost">
+        <h3>Money</h3>
+        <p>Engineering, energy, and revisions billed after the quote. Your contractor and your loan wait with the meter running.</p>
+      </div>
+      <div class="cost">
+        <h3>Your sanity</h3>
+        <p>You are in the dark and doing the chasing. When plan check comments land, the architect has moved on.</p>
+      </div>
     </div>
+    <p class="bridge">Fast track is the opposite: <b>one production architect on your project, and only yours</b>, from the day you contact us until the set is out the door.</p>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 3. PRICE AND SPEED: for my project ══ -->
+<!-- ══════════════════════════════════════ 3. PRICE AND SPEED ══ -->
 <section class="sec sec-forest" id="pricing">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Price and speed</span>
-      <h2>From $6,000 and 5 days for a small ADU to $20,000 and 10 days for a large home.</h2>
-      <p>Flat prices by size. Half on deposit, half on delivery.</p>
+      <h2>Flat prices. Fixed days. Find your size.</h2>
+      <p>Half on deposit, half on delivery.</p>
     </div>
-    <div class="legend">
-      <span class="l5"><i></i> 5 business days</span>
-      <span class="l10"><i></i> 10 business days</span>
+    <div class="groups">
+      <div class="group">
+        <header><h3>ADU</h3><span class="gdays">5 business days</span></header>
+        <div class="grow"><span class="gsz">Small</span><span class="gsq">up to 600 sq ft</span><span class="gpr">$6,000</span></div>
+        <div class="grow"><span class="gsz">Medium</span><span class="gsq">601 to 900 sq ft</span><span class="gpr">$7,500</span></div>
+        <div class="grow"><span class="gsz">Large</span><span class="gsq">901 to 1,200 sq ft</span><span class="gpr">$9,000</span></div>
+        <div class="gfoot">Two-story +$1,500. Attached to the house +$1,000.</div>
+      </div>
+      <div class="group">
+        <header><h3>Remodel or addition</h3><span class="gdays">10 business days</span></header>
+        <div class="grow"><span class="gsz">Garage conversion</span><span class="gsq">any size</span><span class="gpr">$7,000</span></div>
+        <div class="grow"><span class="gsz">Remodel</span><span class="gsq">by scope</span><span class="gpr">$13,000 to $16,000</span></div>
+        <div class="gfoot">Scope is confirmed on the call, before you pay.</div>
+      </div>
+      <div class="group">
+        <header><h3>New home or duplex</h3><span class="gdays">10 business days</span></header>
+        <div class="grow"><span class="gsz">Small</span><span class="gsq">1,500 to 2,000 sq ft</span><span class="gpr">$15,000</span></div>
+        <div class="grow"><span class="gsz">Medium</span><span class="gsq">2,001 to 3,000 sq ft</span><span class="gpr">$17,500</span></div>
+        <div class="grow"><span class="gsz">Large</span><span class="gsq">3,001 to 4,000 sq ft</span><span class="gpr">$20,000</span></div>
+        <div class="gfoot">Your own design or a plan you bring. No templates required.</div>
+      </div>
     </div>
-    <div class="rail">
-      <div class="tier t5"><div class="tier-name">ADU or JADU</div><div class="tier-size">up to 600 sq ft</div><div class="tier-right"><div class="tier-price">$6,000</div><span class="tier-days">5 days</span></div></div>
-      <div class="tier t10"><div class="tier-name">Garage conversion</div><div class="tier-size">any size</div><div class="tier-right"><div class="tier-price">$7,000</div><span class="tier-days">10 days</span></div></div>
-      <div class="tier t5"><div class="tier-name">ADU</div><div class="tier-size">601 to 900 sq ft</div><div class="tier-right"><div class="tier-price">$7,500</div><span class="tier-days">5 days</span></div></div>
-      <div class="tier t5"><div class="tier-name">ADU</div><div class="tier-size">901 to 1,200 sq ft</div><div class="tier-right"><div class="tier-price">$9,000</div><span class="tier-days">5 days</span></div></div>
-      <div class="tier-adders">ADU adders: two-story <b>+$1,500</b>, attached to the house <b>+$1,000</b>.</div>
-      <div class="tier t10"><div class="tier-name">Remodel or addition</div><div class="tier-size">quoted by scope</div><div class="tier-right"><div class="tier-price">$13,000 to $16,000</div><span class="tier-days">10 days</span></div></div>
-      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">1,500 to 2,000 sq ft</div><div class="tier-right"><div class="tier-price">$15,000</div><span class="tier-days">10 days</span></div></div>
-      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">2,001 to 3,000 sq ft</div><div class="tier-right"><div class="tier-price">$17,500</div><span class="tier-days">10 days</span></div></div>
-      <div class="tier t10"><div class="tier-name">New home or duplex</div><div class="tier-size">3,001 to 4,000 sq ft</div><div class="tier-right"><div class="tier-price">$20,000</div><span class="tier-days">10 days</span></div></div>
-    </div>
-    <p class="scale-note">City fees, and a survey or soils report if your lot needs one, are paid by you. We tell you on the call.</p>
     <details class="more">
       <summary>Add-ons and pre-permit approvals</summary>
       <div class="more-body">
@@ -473,124 +539,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 4. HOW IT WORKS ══ -->
-<section class="sec" id="how">
-  <div class="container">
-    <div class="sec-hd">
-      <span class="eyebrow">How it works</span>
-      <h2>Three steps. One live session. Then every discipline at once.</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-when">Before Day 1</div>
-          <h3>A 15-minute call, then intake</h3>
-          <p>We research your parcel first and give you your price. You send photos, the deposit, and your starting point. Day 1 is the next business day.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-when">Day 1</div>
-          <h3>Lock the layout, live</h3>
-          <p>60 to 90 minutes on a shared screen until you sign off. One list of changes, then locked.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-when">Days 2 to 5, or 2 to 10</div>
-          <h3>Drawn at once, then delivered</h3>
-          <p>Architectural, structural, MEP, and energy drawn in parallel. The engineer stamps. You get the PDF set and a submittal walkthrough.</p>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="sub-hd">Three ways to start</h3>
-    <div class="starts">
-      <div class="start">
-        <div class="start-img"><div class="ph-box">[PLACEHOLDER: image: ADU layout thumbnails or 3D view]</div></div>
-        <h4>Pick one of our ADU layouts</h4>
-        <p>Already engineered. Fit to your lot on Day 1.</p>
-      </div>
-      <div class="start">
-        <div class="start-img"><div class="ph-box">[PLACEHOLDER: image: stock plan beside our traced version]</div></div>
-        <h4>Bring any house plan</h4>
-        <p>We trace it and adapt it to your lot.</p>
-      </div>
-      <div class="start">
-        <div class="start-img"><div class="ph-box">[PLACEHOLDER: image: phone scan beside the plan drawn from it]</div></div>
-        <h4>Scan your existing house</h4>
-        <p>Eight photos and a phone scan, in about an hour.</p>
-      </div>
-    </div>
-
-    <details class="more">
-      <summary>The six layouts, scanning your house, and the day-by-day</summary>
-      <div class="more-body">
-        <h4>ADU layouts. Choose by shape; we fit it to your lot and your city's rules on Day 1.</h4>
-        <div class="layouts">
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Studio</h5><dl><dt>Size</dt><dd>up to 450 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>One bedroom, kitchen at the end</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>One bedroom, side entry</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Two bedroom</h5><dl><dt>Size</dt><dd>up to 900 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Two-story</h5><dl><dt>Size</dt><dd>up to 1,200 sq ft</dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-          <div class="lay"><div class="lay-thumb"><div class="ph-box">[PLACEHOLDER: plan thumbnail]</div></div><div class="lay-body"><h5>Attached to the house</h5><dl><dt>Size</dt><dd><span class="ph">[PLACEHOLDER: sq ft]</span></dd><dt>Footprint</dt><dd><span class="ph">[PLACEHOLDER: footprint]</span></dd><dt>Narrowest lot</dt><dd><span class="ph">[PLACEHOLDER: lot width]</span></dd></dl></div></div>
-        </div>
-        <h4>Bringing a plan</h4>
-        <p>If it is from a plan website, buy the CAD or PDF license and send it to us; that is the version we can legally trace. No plan yet? Tell us your lot and we send a short list that fits it.</p>
-        <h4>Scanning your existing house</h4>
-        <ul>
-          <li>Walk the outside and take 8 photos with the Hover app. It produces exterior dimensions.</li>
-          <li>Scan each floor with an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
-          <li>Record a 5-minute walkthrough video naming each room. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></li>
-        </ul>
-        <h4>ADU, day by day</h4>
-        <table class="tbl">
-          <thead><tr><th>Day</th><th>What happens</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>Layout session on a shared screen until you sign off.</td></tr>
-            <tr><td>2</td><td>Your one written list of changes. Plan locked. Structural and energy start.</td></tr>
-            <tr><td>3</td><td>Architectural, structural, and MEP sheets drawn in parallel.</td></tr>
-            <tr><td>4</td><td>Engineer reviews and stamps. Internal plan check against your city's list.</td></tr>
-            <tr><td>5</td><td>Stamped PDF set delivered with your submittal walkthrough. Final 50% due.</td></tr>
-          </tbody>
-        </table>
-        <h4>Home or remodel, day by day</h4>
-        <table class="tbl">
-          <thead><tr><th>Day</th><th>What happens</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>Layout session. A new home is traced from your plan and fit to your lot; a remodel is drawn on top of your scans.</td></tr>
-            <tr><td>2 to 3</td><td>Your written change list. Plan locked. Structural design begins.</td></tr>
-            <tr><td>4 to 7</td><td>All sheets drawn in parallel.</td></tr>
-            <tr><td>8 to 9</td><td>Engineer reviews and stamps. Internal plan check.</td></tr>
-            <tr><td>10</td><td>Stamped set delivered with your submittal walkthrough. Final 50% due.</td></tr>
-          </tbody>
-        </table>
-        <p>After submittal, the city reviews. State law gives them 60 days on an ADU, and most take all of it. We answer comments within 3 business days until the permit issues.</p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ 5. ONE SET, EVERY DEPARTMENT: will the city take it ══ -->
+<!-- ══════════════════════════════════════ 4. WHAT IS INCLUDED ══ -->
 <section class="sec sec-white" id="set">
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">What is included</span>
-      <h2>One stamped set. Every department that has to sign off.</h2>
+      <h2>What the price covers, and what it does not.</h2>
     </div>
     <div class="set">
       <div class="set-col">
-        <h3>Who reviews it</h3>
-        <ul class="depts">
-          <li>Building</li><li>Planning and zoning</li><li>Fire</li><li>Public Works</li><li>Grading</li><li>Health</li><li>Urban forestry</li>
-        </ul>
-        <small>Which ones depends on your city and lot.</small>
-      </div>
-      <div class="set-col">
-        <h3>What they get</h3>
+        <h3>We draw and stamp</h3>
         <ul class="draw">
           <li>Cover, notes, code summary</li>
           <li>Site plan</li>
@@ -600,19 +558,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Structural plans and calcs</li>
           <li>Plumbing, electrical, mechanical</li>
           <li>Title 24 and CALGreen</li>
+          <li>Civil grading and drainage plan</li>
+          <li>Portal-ready PDF set</li>
           <li class="gold">Architect's stamp; engineer's when required</li>
           <li class="gold">Plan check responses until it issues</li>
         </ul>
       </div>
+      <div class="set-col you">
+        <h3>You provide</h3>
+        <ul class="draw no">
+          <li>Boundary or topographic survey</li>
+          <li>Soils report</li>
+          <li>Fire sprinkler design, by the installer</li>
+          <li>Utility will-serve letters</li>
+          <li>City plan check and impact fees</li>
+        </ul>
+        <small>Only if your lot or city asks for them. We tell you on the call, and we can point you to surveyors and soils engineers.</small>
+      </div>
     </div>
-    <p class="not-line"><b>Not included:</b> survey, soils report, civil grading plan, fire sprinkler design, will-serve letters, and city fees. Paid by you if your lot needs them.</p>
     <details class="more">
       <summary>What those usually cost</summary>
       <div class="more-body">
         <ul>
-          <li>Boundary or topographic survey: usually $1,500 to $4,000. A sloped lot needs one before Day 1.</li>
+          <li>Boundary or topographic survey: usually $1,500 to $4,000. A sloped lot needs one before we start.</li>
           <li>Soils report: rare for an ADU; required on some hillside lots.</li>
-          <li>Civil grading and drainage plan: when the city asks for one.</li>
           <li>Fire sprinkler design: a deferred submittal by the installer.</li>
           <li>Utility will-serve letters, city plan check, impact, and school fees: paid to the city and utilities.</li>
           <li>Stock plan license, if you bring a plan from a plan website.</li>
@@ -622,7 +591,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 6. PROOF: our work, and who stamps it ══ -->
+<!-- ══════════════════════════════════════ 5. HOW IT WORKS ══ -->
+<section class="sec" id="how">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">How it works</span>
+      <h2>A design and engineering sprint, compressed from weeks into days.</h2>
+    </div>
+    <div class="journey">
+      <div class="stop">
+        <div class="stop-img"><div class="ph-box">[PLACEHOLDER: image: survey sheet and phone LiDAR scan]</div></div>
+        <div class="stop-num">1</div>
+        <div class="stop-when">Before you contact us</div>
+        <h3>Get your inputs in hand</h3>
+        <p>A survey and soils report if your lot needs them, and a scan of any existing structure the design touches. We point you to surveyors, engineers, and scan tutorials. We do not chase them down for you.</p>
+      </div>
+      <div class="stop">
+        <div class="stop-img"><div class="ph-box">[PLACEHOLDER: image: screen-share sketch over the parcel]</div></div>
+        <div class="stop-num">2</div>
+        <div class="stop-when">The day you contact us</div>
+        <h3>Parcel analysis, a call, and a first sketch</h3>
+        <p>Within hours: your path to permit and what the regulatory check found. On the earliest call we share a screen, find the buildable envelope, and sketch the layout until it is yours. A few hours later you have quick plans, elevations, and a 3D view.</p>
+      </div>
+      <div class="stop">
+        <div class="stop-img"><div class="ph-box">[PLACEHOLDER: image: sheet set being built, structural and MEP]</div></div>
+        <div class="stop-num">3</div>
+        <div class="stop-when">A day later</div>
+        <h3>Design locked, every discipline starts</h3>
+        <p>You send revisions within 24 hours and the deposit. We lock the design and start all of it at once: sheets, structural, MEP, Title 24.</p>
+      </div>
+      <div class="stop">
+        <div class="stop-img"><div class="ph-box">[PLACEHOLDER: image: stamped cover sheet]</div></div>
+        <div class="stop-num">4</div>
+        <div class="stop-when">Day 5 for an ADU, Day 10 for a home or remodel</div>
+        <h3>Stamped set, ready to submit</h3>
+        <p>The PDF set and a walkthrough of how to submit it. When the city sends comments, your architect answers within 3 business days until the permit issues.</p>
+      </div>
+    </div>
+    <details class="more">
+      <summary>Getting your inputs ready</summary>
+      <div class="more-body">
+        <h4>Survey and soils report</h4>
+        <p>A sloped lot needs a topographic survey. A hillside lot may need a soils report. We tell you on the call which apply, and who to call.</p>
+        <h4>Scanning an existing house (remodels, additions, conversions, attached ADUs)</h4>
+        <ul>
+          <li>Walk the outside and take 8 photos with the Hover app. It produces exterior dimensions.</li>
+          <li>Scan each floor with an iPhone LiDAR app (<span class="ph">[PLACEHOLDER: app name to confirm]</span>). It produces the interior.</li>
+          <li>Record a 5-minute walkthrough video naming each room. <span class="ph">[PLACEHOLDER: link to the 2-minute how-to video]</span></li>
+        </ul>
+        <h4>Bringing a plan</h4>
+        <p>Anything works: a plan you bought, a house you walked through, a sketch. If it is from a plan website, buy the CAD or PDF license so we can legally trace it.</p>
+        <h4>After submittal</h4>
+        <p>The city reviews. State law gives them 60 days on an ADU, and most take all of it. We answer comments within 3 business days until the permit issues.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 6. PROOF ══ -->
 <section class="sec sec-dark" id="who">
   <div class="container">
     <div class="sec-hd">
@@ -646,46 +672,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
         <div class="bio-title">California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
-        <p class="bio-line">I review and stamp every set. Your project architect draws it, runs your session, and emails you every business day.</p>
+        <p class="bio-line">I review and stamp every set. One production architect works on your project, and only yours, and emails you every business day until it is out the door.</p>
       </div>
     </div>
     <details class="more">
       <summary>Engineering, and where we have drawn</summary>
       <div class="more-body">
         <p>A California licensed structural engineer reviews and stamps the structural sheets when your city requires it.</p>
-        <p>Drawing for permit in California since 2025, from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. Plan sets accepted in <span class="ph">[PLACEHOLDER: City, City, City, City]</span>. Plan check comments answered within 3 business days.</p>
+        <p>Drawing for permit in California since 2025, from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. Plan sets accepted in <span class="ph">[PLACEHOLDER: City, City, City, City]</span>.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 7. ANSWERS: remaining objections ══ -->
+<!-- ══════════════════════════════════════ 7. ANSWERS ══ -->
 <section class="sec" id="answers">
   <div class="container narrow">
     <div class="sec-hd">
       <span class="eyebrow">Straight answers</span>
-      <h2>Six things people ask before they book.</h2>
+      <h2>What people ask before they book.</h2>
     </div>
     <div class="faq">
       <details>
-        <summary>Does 5 days include the city's review?</summary>
-        <p>No. You get a submittable set in 5 business days. The city then has up to 60 days on an ADU. We answer their comments within 3 business days until the permit issues, at no extra cost.</p>
+        <summary>Does the timeline include the city's review?</summary>
+        <p>No. You get a submittable set in 5 or 10 business days. The city then has up to 60 days on an ADU. We answer their comments within 3 business days until the permit issues, at no extra cost.</p>
       </details>
       <details>
         <summary>Is the price the whole price?</summary>
         <p>For the drawing set, yes. You pay the city's fees directly, and a survey or soils report if your lot needs one. We tell you on the call.</p>
       </details>
       <details>
-        <summary>Why not my city's free pre-approved ADU plans?</summary>
-        <p>Use them if one fits. Most people find the size or shape is wrong, or that it still needs a site plan, energy report, structural work, and someone to carry it through plan check. We do all of that in the same five days.</p>
+        <summary>Do I have to pick from your designs?</summary>
+        <p>No. Bring a plan you bought, a house you like, a sketch, or nothing. We sketch it with you on the first call. Templates are there if you want a head start.</p>
       </details>
       <details>
         <summary>Can I change things?</summary>
-        <p>Yes: live on Day 1, then one written list. After the plan is locked, changes are quoted per change, because each one moves the delivery date.</p>
+        <p>Yes: live on the first call, then one round of revisions within 24 hours. After the design is locked, changes are quoted per change, because each one moves the delivery date.</p>
       </details>
       <details>
         <summary>What if my project turns out not to be simple?</summary>
         <p>We find out before you pay. If your city needs a hearing first or your lot has a problem, we say so on the call and quote it the regular way, or tell you who else to talk to.</p>
+      </details>
+      <details>
+        <summary>Why not my city's free pre-approved ADU plans?</summary>
+        <p>Use them if one fits. Most people find the size or shape is wrong, or that it still needs a site plan, energy report, structural work, and someone to carry it through plan check. We do all of that in the same five days.</p>
       </details>
       <details>
         <summary>Do you build it, or find me a contractor?</summary>
@@ -701,15 +731,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="q-grid">
       <div class="q-text">
         <span class="eyebrow">Qualify and book</span>
-        <h2>Two minutes to find out if you are on the fast track.</h2>
+        <h2>Find out if you are on the fast track.</h2>
         <p>Most California lots qualify: <b>you own it or are in contract</b>, <b>you want to submit within a month</b>, and <b>no board or HOA has to approve the design first</b>.</p>
-        <p>We research your parcel before the call and give you a yes or no and your exact price.</p>
+        <p>If you pass, the calendar opens right here. We research your parcel before the call and give you a yes or no and your exact price.</p>
       </div>
       <div>
         <div class="qual-card" id="qualFormCard">
           <span class="qual-eyebrow" id="qualStepLabel">Step 1 of 3 · The property</span>
           <h3 class="qual-title">Tell us about the project</h3>
-          <p class="qual-sub">Three short steps, then pick a time.</p>
+          <p class="qual-sub">A few quick questions, then pick a time.</p>
           <div class="qual-progress"><div class="qual-progress-bar" id="qualProgress"></div></div>
           <form id="qualForm" novalidate>
 
