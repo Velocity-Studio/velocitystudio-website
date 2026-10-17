@@ -252,6 +252,15 @@
     .price-notes p + p { margin-top: 10px; }
     .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     @media (max-width: 520px) { .tbl th, .tbl td { padding: 12px 12px; } }
+    /* Stacked pricing rows on phones. Same .98rem size as the in/out list. */
+    @media (max-width: 600px) {
+      .price-card .tbl thead { display: none; }
+      .price-card .tbl tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 13px 16px; }
+      .price-card .tbl td { display: block; padding: 0; border: 0 !important; }
+      .price-card .tbl td:first-child { grid-column: 1 / -1; font-weight: 800; }
+      .price-card .tbl td:nth-child(2) { color: var(--muted); }
+      .price-card .tbl tbody tr + tr { border-top: 1px solid var(--border); }
+    }
 
     /* ─── FIT ────────────────────────────────────────────────── */
     .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
