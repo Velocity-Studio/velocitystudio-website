@@ -396,6 +396,28 @@
     .stop p { font-size: .94rem; line-height: 1.5; color: var(--dark); padding: 0 16px 16px; }
     @media (max-width: 960px) { .journey { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .journey { grid-template-columns: 1fr; } }
+
+    /* draft 6 */
+    .eyebrow-red { color: #B5473A; }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .pillar { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--teal); border-radius: var(--r); padding: 20px 20px 18px; }
+    .pillar h3 { font-size: 1.05rem; font-weight: 800; letter-spacing: -.012em; line-height: 1.25; margin-bottom: 8px; }
+    .pillar p { font-size: .95rem; line-height: 1.5; color: var(--dark); }
+    .pillar:nth-child(4), .pillar:nth-child(5) { grid-column: span 1; }
+    @media (min-width: 861px) { .pillars { grid-template-columns: repeat(6, 1fr); } .pillar { grid-column: span 2; } .pillar:nth-child(4) { grid-column: 2 / span 2; } .pillar:nth-child(5) { grid-column: 4 / span 2; } }
+    @media (max-width: 860px) { .pillars { grid-template-columns: 1fr; } }
+    .group header { display: block; text-align: center; padding: 18px 16px 14px; border-top: 4px solid var(--teal-lt); background: rgba(255,255,255,.06); }
+    .group h3 { font-size: 1.3rem; }
+    .grange { display: block; font-size: .82rem; color: rgba(255,255,255,.62); margin-top: 4px; }
+    .grow { grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; }
+    .gsz small { display: block; font-size: .84rem; font-weight: 500; color: rgba(255,255,255,.6); margin-top: 1px; }
+    .gdy { font-size: .82rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--teal-lt); white-space: nowrap; }
+    .gpr { font-size: 1.12rem; }
+    @media (max-width: 420px) { .grow { grid-template-columns: 1fr auto; } .gsz { grid-row: 1; grid-column: 1; } .gpr { grid-row: 1; grid-column: 2; } .gdy { grid-row: 2; grid-column: 1 / -1; margin-top: -4px; } .gsq { display: none; } }
+    .set-col.gold-col { border-left-color: var(--gold); }
+    .set-col.gold-col h3 { color: var(--gold); }
+    .draw.no li::before { color: var(--gold); }
+    .draw li.gold::before { color: var(--teal); }
   </style>
 
   <!-- Meta Pixel -->
@@ -430,9 +452,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="nav-logo-text" style="display:none">Velocity <span>Studio</span></span>
       </a>
       <div class="nav-links">
+        <a href="#what">What we are</a>
         <a href="#pricing">Price and speed</a>
-        <a href="#how">How it works</a>
         <a href="#set">What is included</a>
+        <a href="#how">How it works</a>
         <a href="#answers">Answers</a>
       </div>
       <a href="#qualify" class="btn btn-teal">See if you qualify</a>
@@ -472,25 +495,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec-white" id="why">
   <div class="container">
     <div class="sec-hd">
-      <span class="eyebrow">The usual experience</span>
-      <h2>Drawings are slow because nobody is working only on yours.</h2>
-      <p>Architects and engineers juggle a dozen projects at once. Yours waits its turn.</p>
+      <span class="eyebrow eyebrow-red">Permits are usually painful</span>
+      <h2>Most architects are slow, and not only because they are busy.</h2>
+      <p>Their tools are old, their teams are thin, their process is loose, there is no urgency, and your project shares a queue with a dozen others that stop and start.</p>
     </div>
     <div class="costs">
       <div class="cost">
         <h3>Time</h3>
-        <p>Days for a reply. Weeks for a round of drawings. Months to a permit.</p>
+        <p>With most architects you wait days for each reply, weeks for each round of drawings, and months for a permit set.</p>
       </div>
       <div class="cost">
         <h3>Money</h3>
-        <p>Engineering, energy, and revisions billed after the quote. Your contractor and your loan wait with the meter running.</p>
+        <p>You pay for architecture, engineering, and energy work separately, revisions add up, and if you are carrying a loan on the property, every extra month costs you money.</p>
       </div>
       <div class="cost">
         <h3>Your sanity</h3>
-        <p>You are in the dark and doing the chasing. When plan check comments land, the architect has moved on.</p>
+        <p>Most architects are unresponsive and manage projects poorly, so the ball ends up in your court and you spend the project chasing them for the next step.</p>
       </div>
     </div>
-    <p class="bridge">Fast track is the opposite: <b>one production architect on your project, and only yours</b>, from the day you contact us until the set is out the door.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 2b. WHAT VELOCITY STUDIO IS ══ -->
+<section class="sec" id="what">
+  <div class="container">
+    <div class="sec-hd">
+      <span class="eyebrow">What Velocity Studio is</span>
+      <h2>An architecture firm built so that nothing on your project is drawn from scratch except the layout.</h2>
+      <p>The layout has to change with your program and your site. Everything else, from details to engineering, is already in our library. That is where the speed comes from.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>A kit of parts, not a blank sheet</h3>
+        <p>Walls, roofs, stairs, kitchens, baths, details, and structural systems are drawn, detailed, and engineered once, then fitted to your layout. High-end finishes and custom design still happen; they just do not start over.</p>
+      </div>
+      <div class="pillar">
+        <h3>One architect, one project, a tight queue</h3>
+        <p>We only take jobs we can run without interruption, so your production architect works on your project alone, starts on the day we promised, and delivers on the day we promised.</p>
+      </div>
+      <div class="pillar">
+        <h3>AI on the regulations</h3>
+        <p>Zoning, setbacks, fire zones, and your city's requirements come back in hours instead of weeks, before you pay us anything.</p>
+      </div>
+      <div class="pillar">
+        <h3>A 3D model that drives every sheet</h3>
+        <p>Your project lives in one BIM model, so a change to the layout flows to the plans, elevations, sections, structural, and MEP sheets at once.</p>
+      </div>
+      <div class="pillar">
+        <h3>A production team that never sleeps</h3>
+        <p>Drafting runs around the clock on a global team, under a California licensed architect who reviews and stamps every set.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -499,28 +554,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Price and speed</span>
-      <h2>Flat prices. Fixed days. Find your size.</h2>
-      <p>Half on deposit, half on delivery.</p>
+      <h2>Flat prices by size. Days by size too.</h2>
+      <p>Business days, counted from the day we start. Half on deposit, half on delivery.</p>
     </div>
     <div class="groups">
       <div class="group">
-        <header><h3>ADU</h3><span class="gdays">5 business days</span></header>
-        <div class="grow"><span class="gsz">Small</span><span class="gsq">up to 600 sq ft</span><span class="gpr">$6,000</span></div>
-        <div class="grow"><span class="gsz">Medium</span><span class="gsq">601 to 900 sq ft</span><span class="gpr">$7,500</span></div>
-        <div class="grow"><span class="gsz">Large</span><span class="gsq">901 to 1,200 sq ft</span><span class="gpr">$9,000</span></div>
+        <header><h3>ADU</h3><span class="grange">up to 1,200 sq ft · 5 to 7 business days</span></header>
+        <div class="grow"><span class="gsz">Small <small>up to 600 sq ft</small></span><span class="gdy">5 days</span><span class="gpr">$6,000</span></div>
+        <div class="grow"><span class="gsz">Medium <small>601 to 900 sq ft</small></span><span class="gdy">6 days</span><span class="gpr">$7,500</span></div>
+        <div class="grow"><span class="gsz">Large <small>901 to 1,200 sq ft</small></span><span class="gdy">7 days</span><span class="gpr">$9,000</span></div>
         <div class="gfoot">Two-story +$1,500. Attached to the house +$1,000.</div>
       </div>
       <div class="group">
-        <header><h3>Remodel or addition</h3><span class="gdays">10 business days</span></header>
-        <div class="grow"><span class="gsz">Garage conversion</span><span class="gsq">any size</span><span class="gpr">$7,000</span></div>
-        <div class="grow"><span class="gsz">Remodel</span><span class="gsq">by scope</span><span class="gpr">$13,000 to $16,000</span></div>
+        <header><h3>Remodel or addition</h3><span class="grange">existing house · 5 to 9 business days</span></header>
+        <div class="grow"><span class="gsz">Garage conversion <small>any size</small></span><span class="gdy">5 days</span><span class="gpr">$8,000</span></div>
+        <div class="grow"><span class="gsz">Interior remodel <small>kitchens, baths, walls</small></span><span class="gdy">7 days</span><span class="gpr">$12,000</span></div>
+        <div class="grow"><span class="gsz">Large addition <small>new rooms or a second story</small></span><span class="gdy">9 days</span><span class="gpr">$16,000</span></div>
         <div class="gfoot">Scope is confirmed on the call, before you pay.</div>
       </div>
       <div class="group">
-        <header><h3>New home or duplex</h3><span class="gdays">10 business days</span></header>
-        <div class="grow"><span class="gsz">Small</span><span class="gsq">1,500 to 2,000 sq ft</span><span class="gpr">$15,000</span></div>
-        <div class="grow"><span class="gsz">Medium</span><span class="gsq">2,001 to 3,000 sq ft</span><span class="gpr">$17,500</span></div>
-        <div class="grow"><span class="gsz">Large</span><span class="gsq">3,001 to 4,000 sq ft</span><span class="gpr">$20,000</span></div>
+        <header><h3>New home or duplex</h3><span class="grange">1,500 to 4,000 sq ft · 8 to 10 business days</span></header>
+        <div class="grow"><span class="gsz">Small <small>1,500 to 2,000 sq ft</small></span><span class="gdy">8 days</span><span class="gpr">$15,000</span></div>
+        <div class="grow"><span class="gsz">Medium <small>2,001 to 3,000 sq ft</small></span><span class="gdy">9 days</span><span class="gpr">$17,500</span></div>
+        <div class="grow"><span class="gsz">Large <small>3,001 to 4,000 sq ft</small></span><span class="gdy">10 days</span><span class="gpr">$20,000</span></div>
         <div class="gfoot">Your own design or a plan you bring. No templates required.</div>
       </div>
     </div>
@@ -564,7 +620,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li class="gold">Plan check responses until it issues</li>
         </ul>
       </div>
-      <div class="set-col you">
+      <div class="set-col you gold-col">
         <h3>You provide</h3>
         <ul class="draw no">
           <li>Boundary or topographic survey</li>
@@ -623,9 +679,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="stop">
         <div class="stop-img"><div class="ph-box">[PLACEHOLDER: image: stamped cover sheet]</div></div>
         <div class="stop-num">4</div>
-        <div class="stop-when">Day 5 for an ADU, Day 10 for a home or remodel</div>
+        <div class="stop-when">Your delivery day</div>
         <h3>Stamped set, ready to submit</h3>
-        <p>The PDF set and a walkthrough of how to submit it. When the city sends comments, your architect answers within 3 business days until the permit issues.</p>
+        <p>Five to ten business days after we start, by project size: the PDF set and a walkthrough of how to submit it. When the city sends comments, your architect answers within 3 business days until the permit issues.</p>
       </div>
     </div>
     <details class="more">
@@ -695,7 +751,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="faq">
       <details>
         <summary>Does the timeline include the city's review?</summary>
-        <p>No. You get a submittable set in 5 or 10 business days. The city then has up to 60 days on an ADU. We answer their comments within 3 business days until the permit issues, at no extra cost.</p>
+        <p>No. You get a submittable set in 5 to 10 business days, by project size. The city then has up to 60 days on an ADU. We answer their comments within 3 business days until the permit issues, at no extra cost.</p>
       </details>
       <details>
         <summary>Is the price the whole price?</summary>
