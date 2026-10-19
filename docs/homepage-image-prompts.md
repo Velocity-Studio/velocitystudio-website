@@ -1,114 +1,147 @@
-# Homepage image pack
+# Homepage image pack: one prompt per slot
 
-Every slot below has a matching `[PLACEHOLDER: ...]` box on the page that names the file it expects. Drop the finished file into `images/home/` with that name and the page picks it up once the `<img>` tag replaces the placeholder (one-line change per slot).
+Every slot has a matching `[PLACEHOLDER: images/home/<file>]` box on the page. Drop the finished file into `images/home/` with that name, then swap the placeholder for the tag shown at the bottom of this file.
 
-## House style for every generated image
+## Which tool for which slot
 
-Paste this block at the end of each prompt so the set reads as one family:
+- **Static slots** (drawing sheets, renderings): ChatGPT Images 2.5. It holds clean linework and structured layouts better.
+- **Narrative slots** (pain, solution, the four how-it-works stops): Gemini. Generate the still first (Nano Banana), then animate that exact still with Veo 3 using the motion prompt. Generating the video from the approved still keeps the picture you chose.
 
-> Editorial photography look, 35mm lens, natural daylight, shallow depth of field. Warm, muted palette: off-white and oak tones with small accents of deep teal (#2D8B6E) and amber gold (#C9942B). No visible text, logos, watermarks, or captions anywhere in the image. No rendering or CGI look; it should read as a real photograph.
+## Append to every still prompt
 
-Both ChatGPT Images and Gemini accept the same prompt. Set the aspect ratio in the tool rather than in the prompt. Generate at the largest size offered and downscale; never upscale.
+> Editorial photography look, 35mm lens, natural daylight, shallow depth of field. Warm, muted palette: off-white and oak tones with small accents of deep teal (#2D8B6E) and amber gold (#C9942B). No visible text, logos, watermarks, or captions anywhere in the image. Reads as a real photograph, not a render.
 
-## Motion, without GIFs
+## Append to every Veo motion prompt
 
-GIFs are large, band poorly, and autoplay is unreliable on iOS. Everywhere the page uses motion it is done in code on top of a still image, which is lighter and loops perfectly:
+> Locked-off camera, no pans or zooms. Subtle, continuous motion only. Nothing enters or leaves the frame unless the prompt says so. The first and last frames should look the same so the clip loops. 8 seconds, no audio.
 
-- Hero: five sheet images are stacked and the front one cycles to the back every few seconds (CSS transform transition, already built).
-- Pain and solution images: a very slow zoom and drift (Ken Burns), 24 seconds per cycle, already built.
-- Solution image: the chat bubbles are HTML, fade in one after the other, then reset. Already built. Leave the screen area of the image free of UI text so the bubbles sit cleanly.
-
-If you still want a true video loop later, generate the still first, then animate it with an image-to-video tool (Veo 3, Runway Gen-4, or Kling) using a prompt like "subtle motion only: the person breathes, the cursor blinks, the camera is locked off, seamless 5 second loop". Export MP4 (H.264, muted) and use a `<video autoplay muted loop playsinline>` tag, not a GIF.
+Export loops as MP4 (H.264, muted, under 2 MB). Trim a few frames at each end if the seam shows. The page already does a slow drift on stills, so a slot works either way.
 
 ---
 
-## 1. Hero deck: five drawing sheets
+## 1. Hero deck · 5 stills · ChatGPT Images 2.5 · 4:3 · `hero-sheet-1.png` to `hero-sheet-5.png`
 
-**Files:** `hero-sheet-1.png` through `hero-sheet-5.png`
-**Size:** 1600 x 1200 (4:3), PNG
-**Recommendation:** do not generate these. Export five real sheets from a finished ADU or small-house set as PNG at 150 dpi, with the title block and stamp visible. Real sheets are the single strongest proof on the page and an AI image of a drawing never survives a close look on a phone.
+Real exported sheets are better here if a set exists. Generated fallbacks:
 
-Suggested order (front to back): cover sheet with stamp, site plan, floor plan, exterior elevations, structural framing plan.
+**hero-sheet-1, cover sheet**
+> A single architectural cover sheet, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. A small line-drawn perspective of a simple gabled accessory dwelling unit upper left, a sheet index grid below it, a title block strip down the right edge, and a round embossed architect's stamp with an illegible blue signature in the lower right. Thin professional black linework, flat even light.
 
-**Fallback prompt if a real set is not ready:**
+**hero-sheet-2, site plan**
+> A single architectural site plan sheet, letter-landscape, straight on. A rectangular suburban lot in thin black lines, an existing house footprint toward the street, a smaller new building footprint in the rear yard with dashed setback lines around it, a north arrow, dimension strings, trees drawn as circles, a title block strip down the right edge. No readable words.
 
-> A single architectural drawing sheet, letter-landscape proportion, seen straight on and filling the frame, white paper on a plain light grey surface. The sheet shows a clean black-line [floor plan of a small one-bedroom accessory dwelling unit / site plan of a backyard lot with a small building footprint / set of four exterior elevations of a simple gabled house / structural roof framing plan with joists and beams / cover sheet with a sheet index grid and a round architect's stamp in the lower right]. Thin professional linework, a title block strip along the right edge, dimension strings, no readable words. Crisp, flat, evenly lit, no shadows across the paper.
+**hero-sheet-3, floor plan**
+> A single architectural floor plan sheet, letter-landscape, straight on. A one-bedroom accessory dwelling unit plan with thick wall poche, door swings, a kitchen run, a bathroom, window symbols, dimension strings on all sides, a few small room tags as unreadable marks, title block strip down the right edge. Crisp black linework on white.
 
-Generate one image per bracketed option.
+**hero-sheet-4, elevations**
+> A single architectural sheet with four exterior elevations of a simple gabled one-story building arranged two over two, letter-landscape, straight on. Standing-seam roof hatch, board-and-batten siding hatch, window and door outlines, grade line, height dimension strings at the sides, title block strip down the right edge. Thin black linework on white.
 
----
-
-## 2. Pain: the slow architect
-
-**File:** `pain-desk.jpg`
-**Size:** 1200 x 1500 (4:5), JPG
-**Placement:** left of the pain copy on desktop, above it on phones.
-
-**Prompt:**
-
-> Across a cluttered architect's desk, a homeowner in her forties sits with her chin in her hand, visibly tired of waiting, looking at an older architect who is turned away toward a large monitor, slowly drawing a plain floor plan in a CAD program with one hand on the mouse. The monitor is angled so we see only a sliver of grey CAD interface, no readable text. Rolled drawings, a dusty desk phone, stacks of paper and binders, a wall calendar with weeks crossed out, fluorescent office light mixed with window light. The mood is slow, stale, and patient to the point of frustration. Medium shot from slightly behind the homeowner's shoulder so her posture carries the emotion. [house style block]
-
-Variations worth trying: swap the homeowner for a man in work clothes holding a contractor's clipboard; or show two chairs on the client side, a couple, one checking a phone.
+**hero-sheet-5, framing plan**
+> A single structural roof framing plan sheet, letter-landscape, straight on. Parallel rafter lines, a ridge beam, headers over openings drawn as double lines, small hexagon detail bubbles, a few dimension strings, a notes column of unreadable short lines at the left, title block strip down the right edge, a small round engineer's stamp lower right. Black linework on white.
 
 ---
 
-## 3. Solution: the live layout session
+## 2. Pain · Gemini · 4:5 · `pain-desk.jpg` (+ `pain-desk.mp4`)
 
-**File:** `solution-call.jpg`
-**Size:** 1600 x 1000 (16:10), JPG
-**Placement:** right of the solution bullets on desktop, above them on phones. The page overlays two animated chat bubbles in the upper-left quarter and two small circular portraits in the lower-right corner, so keep those areas visually quiet.
+**Still**
+> Across a cluttered architect's desk, a homeowner in her forties sits with her chin in her hand, tired of waiting, looking toward an older architect who is turned away to a large monitor, slowly drawing a plain floor plan in a CAD program, one hand on the mouse. We see only a sliver of grey CAD interface, no readable text. Rolled drawings, a dusty desk phone, binders, a wall calendar with weeks crossed out, fluorescent light mixed with window light. Medium shot from slightly behind the homeowner's shoulder so her posture carries the frustration.
 
-**Prompt:**
+**Motion**
+> Animate this image. The homeowner breathes slowly and shifts her weight once, her fingers tapping twice on the desk. The architect's mouse hand moves a few millimeters and stops. The monitor's cursor blinks. Dust drifts in the window light. Everything else is still.
 
-> A laptop screen filling most of the frame, photographed at a slight angle on a clean oak desk in warm daylight. On the screen is a video call: the shared screen shows a crisp 3D building-information model of a small backyard accessory dwelling unit with a gabled roof, cutaway to reveal the floor plan inside, rendered in soft white and light wood with teal selection highlights on one wall. Two small video-call thumbnails of people are in the lower right corner of the screen: a young architect with a headset, and a smiling homeowner at a kitchen table. The upper left of the screen is a calm, empty area of the model's sky. No menus, toolbars, text, or logos visible. The feeling is focused, modern, collaborative, and fast. [house style block]
-
-If the tool insists on drawing UI chrome, add: "the application is in full-screen presentation mode with no toolbars".
+Variants: a man in work clothes holding a contractor's clipboard; or a couple, one checking a phone.
 
 ---
 
-## 4. How it works: four stops
+## 3. Solution · Gemini · 16:10 · `solution-call.jpg` (+ `solution-call.mp4`)
 
-All four are 1600 x 1000 (16:10), JPG, shown as the top of each step card.
+The page overlays three chat bubbles in the upper-left quarter. Keep that area calm.
 
-**`journey-1-inputs.jpg`, before you contact us**
+**Still**
+> A laptop screen filling most of the frame, photographed at a slight angle on a clean oak desk in warm daylight. On screen, a video call in full-screen presentation mode: the shared view is a crisp 3D building model of a small backyard accessory dwelling unit with a gabled roof, cut away to show the floor plan inside, soft white and light wood, one wall highlighted in teal. Two small round video thumbnails sit in the lower right of the screen: a young architect with a headset and a smiling homeowner at a kitchen table. The upper left quarter of the screen is calm empty sky in the model. No menus, toolbars, text, or logos.
 
-> Top-down view of a kitchen table with a homeowner's hands laying out three things: a folded property survey drawing with boundary lines, a thin bound soils report with a plain cover, and an iPhone showing a colorful 3D room scan of an interior. A coffee cup and house keys at the edge. Morning light. No readable text. [house style block]
-
-**`journey-2-sketch.jpg`, the day you contact us**
-
-> Over-the-shoulder view of an architect at a standing desk with two monitors. One monitor shows a satellite view of a suburban parcel with a teal dashed boundary and a smaller amber dashed rectangle inside it; the other shows a rough hand-drawn floor-plan sketch on a tablet with a stylus mid-stroke. A phone on a stand shows a video call with a homeowner. Energetic, bright, late-morning light. No readable text. [house style block]
-
-**`journey-3-locked.jpg`, a day later**
-
-> A wide monitor showing a grid of eight small architectural sheet thumbnails filling in: plans, elevations, a framing plan, a plumbing plan, an energy form, all in clean black linework on white. In the foreground, slightly out of focus, a structural engineer's desk with a calculator, a span table book, and a wood sample. Afternoon light. No readable text. [house style block]
-
-**`journey-4-delivered.jpg`, delivery day**
-
-> A freshly printed full-size drawing set on a drafting table, cover sheet on top, with a round embossed architect's stamp and a blue-ink signature in the lower right corner, a red "received" stamp from a building department beside it. A hand is sliding a USB drive and a folded submittal checklist into a clear envelope. Clean, bright, satisfying. Any text on the stamps should be illegible. [house style block]
+**Motion**
+> Animate this image. The 3D model rotates very slowly, about ten degrees over the clip, then eases back. The teal highlight moves from one wall to the next. The two people in the thumbnails nod and talk naturally. Light on the desk does not change.
 
 ---
 
-## 5. Our work carousel
+## 4. How it works · Gemini · 16:10 · four slots
 
-Six slots, 1600 x 1200 (4:3). **Do not generate these.** Use real renderings and real sheets: the Palisades rendering is already in place; add a stamped ADU site plan, a 3D view of an ADU, a framing plan, a remodel scan-to-plan pair, and the Los Altos rendering. Generated "work" in a proof section is the one place an AI image would cost trust.
+**journey-1-inputs.jpg (+ .mp4), before you contact us**
+Still:
+> Top-down view of a kitchen table. A homeowner's hands lay out a folded property survey drawing with boundary lines, a thin bound soils report with a plain cover, and an iPhone showing a colorful 3D room scan of an interior. A coffee cup and house keys at the edge. Morning light.
+
+Motion:
+> Animate this image. The hands set the phone down and withdraw out of frame, then return to square up the survey. Steam rises from the coffee. The scan on the phone screen rotates slowly.
+
+**journey-2-sketch.jpg (+ .mp4), the day you contact us**
+Still:
+> Over-the-shoulder view of an architect at a standing desk with two monitors. One shows a satellite view of a suburban parcel with a teal dashed boundary and a smaller amber dashed rectangle inside it. The other shows a rough hand-drawn floor plan on a tablet with a stylus mid-stroke. A phone on a stand shows a video call with a homeowner. Bright late-morning light.
+
+Motion:
+> Animate this image. The stylus draws one more wall line on the tablet and lifts. The homeowner on the phone nods and speaks. The amber rectangle on the satellite view pulses gently once.
+
+**journey-3-locked.jpg (+ .mp4), a day later**
+Still:
+> A wide monitor showing a grid of eight small architectural sheet thumbnails: plans, elevations, a framing plan, a plumbing plan, an energy form, all clean black linework on white. In the soft foreground, a structural engineer's desk with a calculator, a span-table book, and a wood sample. Afternoon light.
+
+Motion:
+> Animate this image. The sheet thumbnails fill in one at a time, left to right, lines appearing as if being drawn, then hold. A hand enters at the bottom edge, taps the calculator twice, and leaves.
+
+**journey-4-delivered.jpg (+ .mp4), delivery day**
+Still:
+> A freshly printed full-size drawing set on a drafting table, cover sheet on top, a round embossed architect's stamp with an illegible blue-ink signature in the lower right, a red building-department received stamp beside it. A hand slides a USB drive and a folded checklist into a clear envelope. Clean, bright, satisfying.
+
+Motion:
+> Animate this image. The hand finishes sliding the envelope closed and rests. A corner of the top sheet lifts slightly in a draft and settles. Sunlight across the table brightens a touch.
 
 ---
 
-## 6. Richman portrait
+## 5. Our work carousel · 5 stills · ChatGPT Images 2.5 · 4:3
 
-**File:** `richman.jpg`, 1200 x 1500 (4:5). Real photograph, daylight, plain background, looking at the camera. Not generated.
+The Palisades rendering is already real. Real sheets and renderings are strongly preferred for the rest; a generated portfolio is the one place a viewer who knows drawings will catch it. If generating anyway:
+
+**work-adu-siteplan.jpg**
+> A photographed architectural site plan sheet lying on a white desk, slight angle, showing a rear-yard accessory dwelling unit footprint with dashed setbacks, an existing house outline, a north arrow, and a round embossed stamp with an illegible blue signature. Thin black linework, natural window light, a pencil at the edge.
+
+**work-adu-3d.jpg**
+> A photorealistic exterior view of a small modern two-bedroom accessory dwelling unit in a California backyard at golden hour, gabled standing-seam roof, board-and-batten siding in warm white, black window frames, a small porch, a mature oak behind it, drought-tolerant planting, the main house blurred at the edge of frame.
+
+**work-framing.jpg**
+> A photographed structural roof framing plan sheet on a desk, slight angle, rafters as parallel lines, a ridge beam, headers as double lines, hexagon detail bubbles, a small engineer's stamp. Black linework on white, natural light.
+
+**work-remodel-scan.jpg**
+> A split image: left half, a colorful phone LiDAR scan of a dated kitchen and living room shown as a 3D mesh; right half, the clean black-line floor plan drawn from it with wall poche and dimension strings. Thin dividing line, white background.
+
+**work-losaltos.jpg**
+> A photorealistic street view of a six-story mixed-use building on a sunny California suburban main street, ground-floor retail with large glazing and awnings, five floors of apartments above with balconies, warm stucco and wood-tone cladding, street trees, a few pedestrians, late afternoon light.
 
 ---
 
-## Naming and drop-in
+## 6. Portrait · `richman.jpg` · 4:5
 
-| Slot | File | Size | Source |
+Real photograph only. Daylight, plain background, looking at the camera.
+
+---
+
+## Drop-in
+
+| Slot | File | Size | Tool |
 |---|---|---|---|
-| Hero deck | `hero-sheet-1.png` to `-5.png` | 1600 x 1200 | real sheets (fallback prompt above) |
-| Pain | `pain-desk.jpg` | 1200 x 1500 | generate |
-| Solution | `solution-call.jpg` | 1600 x 1000 | generate |
-| How it works | `journey-1-inputs.jpg` to `journey-4-delivered.jpg` | 1600 x 1000 | generate |
-| Our work | six files, your choice of names | 1600 x 1200 | real |
+| Hero deck | `hero-sheet-1.png` to `-5.png` | 1600 x 1200 | ChatGPT Images (or real sheets) |
+| Pain | `pain-desk.jpg` / `.mp4` | 1200 x 1500 | Gemini + Veo |
+| Solution | `solution-call.jpg` / `.mp4` | 1600 x 1000 | Gemini + Veo |
+| How it works | `journey-1..4` `.jpg` / `.mp4` | 1600 x 1000 | Gemini + Veo |
+| Our work | `work-*.jpg` | 1600 x 1200 | ChatGPT Images (or real) |
 | Portrait | `richman.jpg` | 1200 x 1500 | real |
 
-Compress JPGs to roughly 200 KB each (Squoosh, quality 75) before committing. The page is mobile-first; a 1600-wide image is already more than a phone needs.
+Replace the placeholder box with one of:
+
+```html
+<img src="images/home/pain-desk.jpg" alt="..." loading="lazy"/>
+```
+
+```html
+<video src="images/home/pain-desk.mp4" poster="images/home/pain-desk.jpg" autoplay muted loop playsinline></video>
+```
+
+The `poster` keeps the still visible until the clip loads and on data-saver connections. Compress JPGs to roughly 200 KB (Squoosh, quality 75).

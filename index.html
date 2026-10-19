@@ -390,6 +390,7 @@
     .stop { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; position: relative; }
     .stop-img { aspect-ratio: 16/10; padding: 8px; }
     .stop-img .ph-box { height: 100%; font-size: .7rem; padding: 10px; }
+    .stop-img img, .stop-img video { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 8px; }
     .stop-num { position: absolute; top: 14px; left: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px var(--teal); }
     .stop-when { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); padding: 10px 16px 0; }
     .stop h3 { font-size: 1.08rem; font-weight: 800; letter-spacing: -.012em; line-height: 1.25; padding: 6px 16px 6px; }
@@ -423,7 +424,7 @@
     .deck { position: relative; aspect-ratio: 4/3; max-width: 520px; margin-left: auto; }
     .sheet-card { position: absolute; inset: 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.45); transform-origin: 50% 100%; transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s; will-change: transform; }
     .sheet-card .ph-box { height: 100%; border-radius: 8px; font-size: .7rem; }
-    .sheet-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sheet-card img, .sheet-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
     @media (max-width: 900px) { .deck { margin: 10px auto 0; max-width: 440px; } }
     /* draft 7: split layouts */
     .split { display: grid; grid-template-columns: 5fr 7fr; gap: 44px; align-items: center; }
@@ -431,7 +432,7 @@
     .split-img { margin: 0; aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; position: relative; box-shadow: var(--sh); background: var(--card); }
     .split-img.wide { aspect-ratio: 16/10; }
     .split-img .ph-box { position: absolute; inset: 0; border-radius: var(--r); font-size: .72rem; }
-    .split-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .split-img img, .split-img video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .kb img, .kb .ph-box { animation: kenburns 24s ease-in-out infinite alternate; }
     @keyframes kenburns { from { transform: scale(1) translate(0,0); } to { transform: scale(1.06) translate(-1.5%, 1%); } }
     .split-text .sec-hd { text-align: left; margin: 0; }
