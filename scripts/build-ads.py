@@ -236,7 +236,7 @@ def card_sheets(w, h, caption, tiles, bg=DARK):
 def grid_png(w, h, tiles_list, cols=3, gap=14):
     tw = (w - gap * (cols - 1)) // cols; th = int(tw * 2 / 3)
     rows = (len(tiles_list) + cols - 1) // cols
-    img = canvas(w, rows * (th + gap) + h, DARK)  # extra h so the crop never runs out
+    img = canvas(w, rows * (th + gap), DARK)
     for i, t in enumerate(tiles_list):
         r, c = divmod(i, cols); tt = tile(t, tw, th, 10); img.paste(tt, (c * (tw + gap), r * (th + gap)), tt)
     return img
@@ -259,10 +259,15 @@ SOLUTION = 'Full permit sets for ADUs and homes under 3,000 sq ft, in one to two
 def build_V1(ratio):
     w, h = RATIOS[ratio]; segs = []
     p = TMP / f'v1-{ratio}'; p.mkdir(exist_ok=True)
-    g = grid_png(w, h, [HG(n) for n in (2, 3, 4, 7, 8, 11, 12, 15, 16, 19, 20, 23)])
-    save(g, p / 'grid.png'); seg_scroll_grid(p / 'grid.png', 1.5, p / 's1.mp4', w, h, px_per_s=int(h * 0.9))
+    g = grid_png(w, h, [HG(n) for n in range(1, 25)] * 2)  # 16 rows: never scrolls off the end
+    save(g, p / 'grid.png'); seg_scroll_grid(p / 'grid.png', 1.2, p / 's1.mp4', w, h, px_per_s=int(h * 0.55))
     save(overlay_caption(w, h, 'Permit-ready in 5 days.', pos='top'), p / 'o1.png')
-    seg_from_clip(p / 's1.mp4', p / 'o1.png', 1.5, p / 's1b.mp4', w, h); segs.append(p / 's1b.mp4')
+    seg_from_clip(p / 's1.mp4', p / 'o1.png', 1.2, p / 's1b.mp4', w, h); segs.append(p / 's1b.mp4')
+    # snap to one stamped floor plan
+    plan = canvas(w, h, DARK); x0, y0, x1, y1 = safe(w, h); tw = x1 - x0; th = int(tw * 2 / 3)
+    tt = tile(HG(7), tw, th); plan.paste(tt, (x0, (h - th) // 2), tt)
+    save(plan, p / 'c1c.png'); seg_from_png(p / 'c1c.png', 0.8, p / 's1c.mp4', w, h, zoom=True)
+    seg_from_clip(p / 's1c.mp4', p / 'o1.png', 0.8, p / 's1d.mp4', w, h); segs.append(p / 's1d.mp4')
     save(card_text(w, h, 'Waiting months for drawings?', eyebrow='Permits are usually painful'), p / 'c2.png'); seg_from_png(p / 'c2.png', 2.0, p / 's2.mp4', w, h, zoom=True); segs.append(p / 's2.mp4')
     save(overlay_caption(w, h, SOLUTION), p / 'o3.png'); seg_from_clip(HOME / 'solution-call.mp4', p / 'o3.png', 3.0, p / 's3.mp4', w, h, start=1); segs.append(p / 's3.mp4')
     save(card_spectrum(w, h, 'From $6,000.', sub='Stamped, engineered, Title 24 included.'), p / 'c4.png'); seg_from_png(p / 'c4.png', 2.0, p / 's4.mp4', w, h, zoom=True); segs.append(p / 's4.mp4')
