@@ -23,12 +23,28 @@ PROMPTS = ROOT / 'docs' / 'homepage-image-prompts.md'
 OUT = ROOT / 'images' / 'home'
 MANIFEST = OUT / 'manifest.json'
 SIZES = {'4:3': (1600, 1200), '4:5': (1200, 1500), '16:10': (1600, 1000), '16:9': (1600, 900), '1:1': (1200, 1200)}
+# The API only accepts a fixed list of ratios; anything else is requested as the
+# nearest supported ratio and cropped to the slot's size afterwards.
+API_ASPECT = {'16:10': '16:9'}
 SKIP = {'richman.jpg'}  # real photo only
 
 
 def load_env():
     if os.environ.get('GEMINI_API_KEY'):
         return
+    # Windows: a key set with setx or the Environment Variables dialog is only
+    # visible to processes started afterward. Read the user scope directly so
+    # no restart is needed.
+    if os.name == 'nt':
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, 'Environment') as k:
+                val, _ = winreg.QueryValueEx(k, 'GEMINI_API_KEY')
+                if val:
+                    os.environ['GEMINI_API_KEY'] = val
+                    return
+        except OSError:
+            pass
     env = ROOT / '.env'
     if env.exists():
         for line in env.read_text(encoding='utf-8').splitlines():
@@ -71,14 +87,15 @@ def save(img_bytes, dest, aspect):
     if dest.suffix.lower() in ('.jpg', '.jpeg'):
         img.save(dest, 'JPEG', quality=82, optimize=True, progressive=True)
     else:
-        img.save(dest, 'PNG', optimize=True)
+        # Line drawings: a 128-colour palette keeps the lines crisp at a fraction of the size.
+        img.quantize(colors=128, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(dest, 'PNG', optimize=True)
 
 
 def generate(client, model, prompt, aspect):
     from google.genai import types
     cfg_kwargs = {'response_modalities': ['IMAGE']}
     try:
-        cfg = types.GenerateContentConfig(image_config=types.ImageConfig(aspect_ratio=aspect), **cfg_kwargs)
+        cfg = types.GenerateContentConfig(image_config=types.ImageConfig(aspect_ratio=API_ASPECT.get(aspect, aspect)), **cfg_kwargs)
     except Exception:
         cfg = types.GenerateContentConfig(**cfg_kwargs)
         prompt = f'Aspect ratio {aspect}. ' + prompt

@@ -8,19 +8,19 @@ Sizes: 4:3 = 1600 x 1200, 4:5 = 1200 x 1500, 16:10 = 1600 x 1000. Compress JPGs 
 
 ## Hero deck (real exported sheets preferred; these are fallbacks)
 
-### hero-sheet-1.png · 4:3
+### hero-sheet-1.jpg · 4:3
 A single architectural cover sheet, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. A small line-drawn perspective of a simple gabled accessory dwelling unit in the upper left, a sheet index grid below it, a title block strip down the right edge, and a round embossed architect's stamp with an illegible blue signature in the lower right. Thin professional black linework, flat even light, no shadows across the paper. No readable words, logos, or watermarks anywhere. Photographed look, not a render.
 
-### hero-sheet-2.png · 4:3
+### hero-sheet-2.jpg · 4:3
 A single architectural site plan sheet, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. A rectangular suburban lot in thin black lines, an existing house footprint toward the street, a smaller new building footprint in the rear yard with dashed setback lines around it, a north arrow, dimension strings, trees drawn as circles, a title block strip down the right edge. Thin professional black linework, flat even light, no shadows across the paper. No readable words, logos, or watermarks anywhere. Photographed look, not a render.
 
-### hero-sheet-3.png · 4:3
+### hero-sheet-3.jpg · 4:3
 A single architectural floor plan sheet, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. A one-bedroom accessory dwelling unit plan with thick wall poche, door swings, a kitchen run, a bathroom, window symbols, dimension strings on all sides, a few small room tags as unreadable marks, a title block strip down the right edge. Crisp black linework, flat even light, no shadows across the paper. No readable words, logos, or watermarks anywhere. Photographed look, not a render.
 
-### hero-sheet-4.png · 4:3
+### hero-sheet-4.jpg · 4:3
 A single architectural sheet with four exterior elevations of a simple gabled one-story building arranged two over two, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. Standing-seam roof hatch, board-and-batten siding hatch, window and door outlines, a grade line, height dimension strings at the sides, a title block strip down the right edge. Thin black linework, flat even light, no shadows across the paper. No readable words, logos, or watermarks anywhere. Photographed look, not a render.
 
-### hero-sheet-5.png · 4:3
+### hero-sheet-5.jpg · 4:3
 A single structural roof framing plan sheet, letter-landscape, filling the frame straight on, white paper on a plain light grey surface. Parallel rafter lines, a ridge beam, headers over openings drawn as double lines, small hexagon detail bubbles, a few dimension strings, a column of short unreadable note lines at the left, a title block strip down the right edge, a small round engineer's stamp lower right. Black linework, flat even light, no shadows across the paper. No readable words, logos, or watermarks anywhere. Photographed look, not a render.
 
 ---

@@ -1,0 +1,86 @@
+{
+  "work-adu-3d.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "d808f3cda5f9",
+    "generated_at": "2026-10-20T10:06:03",
+    "bytes": 344134
+  },
+  "work-remodel-scan.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "05357d2f4cb4",
+    "generated_at": "2026-10-20T10:09:01",
+    "bytes": 128324
+  },
+  "work-losaltos.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "1a6309a13527",
+    "generated_at": "2026-10-20T10:09:07",
+    "bytes": 304022
+  },
+  "journey-1-inputs.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "16:10",
+    "prompt_sha1": "0fa264f01ba6",
+    "generated_at": "2026-10-20T10:10:03",
+    "bytes": 169812
+  },
+  "journey-2-sketch.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "16:10",
+    "prompt_sha1": "9706aad4fa7d",
+    "generated_at": "2026-10-20T10:10:08",
+    "bytes": 153206
+  },
+  "journey-3-locked.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "16:10",
+    "prompt_sha1": "e17e433fbefb",
+    "generated_at": "2026-10-20T10:10:14",
+    "bytes": 100590
+  },
+  "journey-4-delivered.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "16:10",
+    "prompt_sha1": "af903cd58cca",
+    "generated_at": "2026-10-20T10:10:19",
+    "bytes": 108666
+  },
+  "hero-sheet-1.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "36da2d9cb95f",
+    "generated_at": "2026-10-20T10:06:25",
+    "bytes": 1691266
+  },
+  "hero-sheet-2.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "d058613fd436",
+    "generated_at": "2026-10-20T10:06:34",
+    "bytes": 1751463
+  },
+  "hero-sheet-3.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "91f18238b6c5",
+    "generated_at": "2026-10-20T10:06:46",
+    "bytes": 1565440
+  },
+  "hero-sheet-4.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "0a81ce94c3ec",
+    "generated_at": "2026-10-20T10:06:56",
+    "bytes": 1764754
+  },
+  "hero-sheet-5.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:3",
+    "prompt_sha1": "33772e32e638",
+    "generated_at": "2026-10-20T10:07:06",
+    "bytes": 1889110
+  }
+}
