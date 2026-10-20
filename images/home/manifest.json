@@ -79,9 +79,9 @@
   "hero-grid-02.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "2997f4de9b15",
-    "generated_at": "2026-10-20T12:27:03",
-    "bytes": 290911
+    "prompt_sha1": "c2478a7d1aa4",
+    "generated_at": "2026-10-20T13:09:08",
+    "bytes": 396623
   },
   "hero-grid-03.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -93,9 +93,9 @@
   "hero-grid-04.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "97eb612342fa",
-    "generated_at": "2026-10-20T12:27:08",
-    "bytes": 372834
+    "prompt_sha1": "76bb70b4982b",
+    "generated_at": "2026-10-20T13:09:14",
+    "bytes": 405648
   },
   "hero-grid-05.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -107,9 +107,9 @@
   "hero-grid-06.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "5ea968eef29e",
-    "generated_at": "2026-10-20T12:27:15",
-    "bytes": 312717
+    "prompt_sha1": "889373885b20",
+    "generated_at": "2026-10-20T13:09:20",
+    "bytes": 288871
   },
   "hero-grid-07.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -121,9 +121,9 @@
   "hero-grid-08.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "5df83e231d72",
-    "generated_at": "2026-10-20T12:27:21",
-    "bytes": 189616
+    "prompt_sha1": "a4a25d5f4b95",
+    "generated_at": "2026-10-20T13:12:30",
+    "bytes": 374993
   },
   "hero-grid-09.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -135,9 +135,9 @@
   "hero-grid-10.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "559c66f7bd11",
-    "generated_at": "2026-10-20T12:27:27",
-    "bytes": 357408
+    "prompt_sha1": "eb82018fccf6",
+    "generated_at": "2026-10-20T13:09:32",
+    "bytes": 338351
   },
   "hero-grid-11.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -149,9 +149,9 @@
   "hero-grid-12.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "b78e8544977f",
-    "generated_at": "2026-10-20T12:27:33",
-    "bytes": 245190
+    "prompt_sha1": "fcc98d74f006",
+    "generated_at": "2026-10-20T13:09:37",
+    "bytes": 351719
   },
   "hero-grid-13.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -163,9 +163,9 @@
   "hero-grid-14.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "29763bde5227",
-    "generated_at": "2026-10-20T12:27:38",
-    "bytes": 261699
+    "prompt_sha1": "e3decdef2fe7",
+    "generated_at": "2026-10-20T13:09:43",
+    "bytes": 329945
   },
   "hero-grid-15.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -177,9 +177,9 @@
   "hero-grid-16.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "1fa26434b2e3",
-    "generated_at": "2026-10-20T12:27:45",
-    "bytes": 356797
+    "prompt_sha1": "708460d2ec0d",
+    "generated_at": "2026-10-20T13:09:48",
+    "bytes": 316474
   },
   "hero-grid-17.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -191,9 +191,9 @@
   "hero-grid-18.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "ad0e3d31987b",
-    "generated_at": "2026-10-20T12:27:51",
-    "bytes": 177210
+    "prompt_sha1": "bde7ce2e5511",
+    "generated_at": "2026-10-20T13:09:54",
+    "bytes": 348051
   },
   "hero-grid-19.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -205,9 +205,9 @@
   "hero-grid-20.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "99033ad25bd9",
-    "generated_at": "2026-10-20T12:27:57",
-    "bytes": 358933
+    "prompt_sha1": "4bbfc9dcada9",
+    "generated_at": "2026-10-20T13:13:46",
+    "bytes": 193841
   },
   "hero-grid-21.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -219,9 +219,9 @@
   "hero-grid-22.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "08aa20d63777",
-    "generated_at": "2026-10-20T12:28:03",
-    "bytes": 233741
+    "prompt_sha1": "e1d2a2d4a7c2",
+    "generated_at": "2026-10-20T13:10:05",
+    "bytes": 233637
   },
   "hero-grid-23.jpg": {
     "model": "gemini-nano-banana-2.1",
@@ -233,8 +233,8 @@
   "hero-grid-24.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "3:2",
-    "prompt_sha1": "8c8cef9e8364",
-    "generated_at": "2026-10-20T12:28:08",
-    "bytes": 364122
+    "prompt_sha1": "e9bcfeba06f8",
+    "generated_at": "2026-10-20T13:12:42",
+    "bytes": 412795
   }
 }
