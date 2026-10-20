@@ -480,7 +480,7 @@
     .hgrid { position: relative; aspect-ratio: 3/2; overflow: hidden; border-radius: var(--r);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%); }
     .hgrid-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; will-change: transform; }
-    .tile { aspect-ratio: 3/2; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+    .tile { aspect-ratio: 3/2; border-radius: 6px; overflow: hidden; background: #2a2a28; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
     .tile img, .tile .ph-box { width: 100%; height: 100%; object-fit: cover; display: block; }
     .tile .ph-box { font-size: .58rem; padding: 6px; border-radius: 6px; }
     @media (max-width: 900px) { .hgrid { max-width: 520px; margin: 6px auto 0; } }
@@ -565,15 +565,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="hgrid" aria-hidden="true">
           <div class="hgrid-track" id="hgridTrack">
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-01.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-02.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-03.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-04.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-05.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-06.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-07.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-08.jpg" alt=""/></div>
-          <div class="tile"><img decoding="async" src="images/home/hero-grid-09.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-01.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-02.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-03.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-04.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-05.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-06.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-07.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-08.jpg" alt=""/></div>
+          <div class="tile"><img decoding="async" fetchpriority="high" src="images/home/hero-grid-09.jpg" alt=""/></div>
           <div class="tile"><img decoding="async" src="images/home/hero-grid-10.jpg" alt=""/></div>
           <div class="tile"><img decoding="async" src="images/home/hero-grid-11.jpg" alt=""/></div>
           <div class="tile"><img decoding="async" src="images/home/hero-grid-12.jpg" alt=""/></div>
@@ -643,10 +643,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="bio-row">
-      <div class="bio-photo"><div class="ph-box">[PLACEHOLDER: images/home/richman.jpg]</div></div>
+      <div class="bio-photo"><img src="images/home/richman.jpg" alt="Richman Neumann, founder of Velocity Studio" loading="lazy"/></div>
       <div>
         <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
-        <div class="bio-title">Licensed architect, California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
+        <div class="bio-title">Licensed architect, California. Founder of Velocity Studio.</div>
         <p class="bio-line">I review and stamp every set. One production architect works on your project, and only yours, and emails you every business day until it is out the door. A California licensed structural engineer stamps the structural sheets when your city requires it.</p>
         <details class="more">
           <summary>Where we have drawn</summary>
