@@ -29,6 +29,12 @@ Score the image from 1 to 10 on how convincingly it reads as a real photograph o
 Return only JSON: {"score": <1-10>, "pass": <true if score >= 7>, "issues": ["short issue", ...]}"""
 
 
+SHEET_RUBRIC = """You are a senior architect reviewing an AI-generated image of a permit drawing sheet for an architecture firm's website.
+Score it from 1 to 10 on how convincingly it reads as a real, professionally laid out 24x36 permit sheet. Required layout: the title block is a vertical strip at the far right edge made of stacked boxes; a single column of notes sits immediately to its left; the drawings fill the remaining area to the left. Fail (score 4 or less) if: any round stamp, red mark, or signature appears anywhere; the title block is missing, horizontal, or not at the right edge; the notes are not a column beside the title block; the drawings are sparse, toy-like, or clearly not what the sheet type should contain; or the geometry is warped or nonsensical (walls not meeting, rooms with no doors, elevations that do not match a plausible building).
+Reward dense, consistent linework, dimension strings, keynotes, drawing titles with scales, and an overall look of a scanned sheet.
+Return only JSON: {"score": <1-10>, "pass": <true if score >= 7>, "issues": ["short issue", ...]}"""
+
+
 def load_env():
     if os.environ.get('GEMINI_API_KEY'):
         return
@@ -50,12 +56,12 @@ def load_env():
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
-def judge(client, model, path):
+def judge(client, model, path, rubric=None):
     from google.genai import types
     img = types.Part.from_bytes(data=path.read_bytes(), mime_type='image/jpeg')
     for attempt in range(3):
         try:
-            resp = client.models.generate_content(model=model, contents=[RUBRIC, img],
+            resp = client.models.generate_content(model=model, contents=[rubric or RUBRIC, img],
                                                   config=types.GenerateContentConfig(response_mime_type='application/json', temperature=0.2))
             txt = resp.text or ''
             m = re.search(r'\{.*\}', txt, re.S)
@@ -71,10 +77,12 @@ def main():
     ap.add_argument('--only')
     ap.add_argument('--pattern', default='hero-grid-??.jpg')
     ap.add_argument('--even', action='store_true', help='only even-numbered files (the renderings)')
+    ap.add_argument('--odd', action='store_true', help='only odd-numbered files (the sheets)')
+    ap.add_argument('--kind', choices=['render', 'sheet'], default='render')
     ap.add_argument('--rounds', type=int, default=2)
     ap.add_argument('--threshold', type=int, default=7)
     ap.add_argument('--judge-only', action='store_true')
-    ap.add_argument('--model', default='gemini-2.5-flash')
+    ap.add_argument('--model', default='gemini-flash-latest')
     args = ap.parse_args()
 
     if args.only:
@@ -83,6 +91,8 @@ def main():
         files = sorted(OUT.glob(args.pattern))
         if args.even:
             files = [f for f in files if int(re.search(r'(\d+)', f.stem).group(1)) % 2 == 0]
+        if args.odd:
+            files = [f for f in files if int(re.search(r'(\d+)', f.stem).group(1)) % 2 == 1]
     files = [f for f in files if f.exists()]
     if not files:
         sys.exit('no files')
@@ -96,7 +106,7 @@ def main():
     for rnd in range(args.rounds + 1):
         failed = []
         for f in pending:
-            v = judge(client, args.model, f)
+            v = judge(client, args.model, f, SHEET_RUBRIC if args.kind == 'sheet' else RUBRIC)
             report.setdefault(f.name, []).append({'round': rnd, 'score': v.get('score'), 'issues': v.get('issues', [])})
             REPORT.write_text(json.dumps(report, indent=2))
             ok = (v.get('score') or 0) >= args.threshold
