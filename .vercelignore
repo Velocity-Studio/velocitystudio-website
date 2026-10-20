@@ -1,0 +1,6 @@
+docs/
+scripts/
+images/home/raw/
+images/home/manifest.json
+images/home/judge-report.json
+.claude/

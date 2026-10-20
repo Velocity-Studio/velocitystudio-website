@@ -1,0 +1,663 @@
+{
+  "hero-grid-02.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Asymmetrical exterior sconce placement relative to the centered French doors",
+        "Slightly repetitive texture in the lawn and perimeter foliage"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Roof edge termination lacks standard flashing or gutter details",
+        "Single window opening on front facade feels slightly undersized for primary natural lighting"
+      ]
+    }
+  ],
+  "hero-grid-04.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Tight clearance between front door casing and left window frame",
+        "Missing typical exterior utilities or shutoffs required by California code"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Unbalanced blank facade on right elevation",
+        "Interior visible through entry door appears vacant"
+      ]
+    }
+  ],
+  "hero-grid-06.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Lack of privacy with full-height glazing for the bedroom directly on entry path",
+        "Unrealistic lack of exterior glass reflections",
+        "Unconventional layout placing an open bedroom immediately adjacent to the main kitchen entry"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Entry door lacks exterior lighting and a proper concrete landing",
+        "Gravel driveway sits awkwardly close to the main entrance threshold"
+      ]
+    }
+  ],
+  "hero-grid-08.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Circulation space between kitchen island and living area is slightly compact",
+        "Minor alignment quirks around range hood crown molding"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Architectural style reads more East Coast colonial than California vernacular",
+        "Upper window rhythm is unusually crowded and tight to trim"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 7,
+      "issues": [
+        "Slightly rigid upper window spacing relative to the lower porch bays",
+        "Minor repetitive rendering artifacts in lawn texture"
+      ]
+    }
+  ],
+  "hero-grid-10.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Minor ambiguity in upper gambrel roof transition",
+        "Slightly hyper-curated staging across patio and visible interior"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Deck lacks guardrail edge definition, though within height limits",
+        "Gutter downspout terminates directly into foundation deck area without clear drainage detail",
+        "Landscape and gravel edges appear slightly synthetic in their uniform perfection"
+      ]
+    }
+  ],
+  "hero-grid-12.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Design leans generic suburban tract rather than regional California residential architecture",
+        "Lot scale and setbacks reflect greenfield subdivision rather than typical urban/infill California lots"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Car license plate and badge show minor AI artifacts",
+        "Exterior stair lacks code-compliant handrail continuous grip",
+        "Upper window awning bracket detail is slightly unconvincing structurally"
+      ]
+    }
+  ],
+  "hero-grid-14.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Strict, rigid symmetry reads more like a formal multi-family duplex than a typical single-family remodel or ADU",
+        "Facade lacks traditional Spanish Revival massing variation or depth"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Styling and vehicle date the scene rather than showing modern construction"
+      ]
+    }
+  ],
+  "hero-grid-16.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Stone porch piers terminate abruptly without conventional continuous posts",
+        "Subtle synthetic smoothing in garden foliage"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Slight CGI sheen on stucco and roof textures",
+        "Car badging and rear details are slightly synthetic",
+        "Picket fence layout awkwardly blocks direct path access"
+      ]
+    }
+  ],
+  "hero-grid-18.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Slightly artificial cleanliness and soft lighting across ceiling surfaces",
+        "Minor perspective tension between the island alignment and dining area backdrop"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Carport timber structure lacks visible structural hardware/fasteners",
+        "Minor inconsistencies in window reflections"
+      ]
+    }
+  ],
+  "hero-grid-20.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Minor perspective distortion visible through large picture windows",
+        "Deck structural support connections appear slightly simplified"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Suburban East Coast/Midwestern colonial aesthetic does not fit typical California vernacular",
+        "Missing a primary pedestrian path connecting the street sidewalk to the front porch",
+        "Scale and massing exceed typical ADU or modest California infill home"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 6,
+      "issues": [
+        "Styling and adjacent red brick house reflect Midwestern or East Coast suburban vernacular rather than typical California context",
+        "Lacks a direct pedestrian pathway from the public sidewalk to the front entry porch"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Slight distortion in curb address numerals",
+        "Repetitive, overly uniform xeriscape plantings"
+      ]
+    }
+  ],
+  "hero-grid-22.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Abrupt transition of wall paneling into corner casing",
+        "Bathroom doorway lacks visible door slab or pocket frame detail"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Minor AI smoothing and illegible text on car badging and license plate",
+        "Slightly irregular rhythm with small upper right accent windows"
+      ]
+    }
+  ],
+  "hero-grid-24.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Stone chimney awkwardly penetrates front porch roofline and wall plane",
+        "Porch column rhythm does not align cleanly with window groupings"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Scale and massive lot footprint exceed typical California simple homes or ADUs",
+        "Expansive turf lawn does not reflect typical California drought-tolerant landscape standards",
+        "Minor AI smoothing visible along vehicle wheels and gravel edge definition"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 7,
+      "issues": [
+        "Scale is overly sprawling for typical modest additions or ADUs",
+        "Window interior lighting appears slightly uniform"
+      ]
+    }
+  ],
+  "hero-grid-01.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Drawings are excessively sparse with large empty voids",
+        "Notes are embedded inside the title block rather than a distinct adjacent column",
+        "Drawing title and graphic scale are detached floating elements with poor placement"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 6,
+      "issues": [
+        "Illegible pseudo-text across notes and title block",
+        "Relatively sparse drawing linework and minimal dimension strings",
+        "Missing critical site plan data such as setbacks and utility connections"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Placeholder gibberish text in notes and zoning schedule",
+        "Empty title block text fields"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Title block fields lack project information and client text",
+        "General notes and zoning data contain illegible pseudo-text",
+        "Drawing linework slightly sparse relative to overall sheet area"
+      ]
+    }
+  ],
+  "hero-grid-03.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Notes column is embedded within the title block rather than situated beside it",
+        "Excessive empty space and sparse sheet utilization",
+        "Reflected ceiling plan incorrectly shows full furniture layout and contains misspellings",
+        "Typographical errors in drawing titles and scales"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Drawings are overly sparse, leaving excessive unused sheet space",
+        "Notes column is integrated into title block rather than running adjacent to it",
+        "Reflected ceiling plan incorrectly displays full furniture layout",
+        "Annotations, notes, and dimension text are illegible pseudo-lettering"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Garbled AI placeholder text in notes and labels",
+        "Minor annotation typos like 'WINODW' and 'LIGHITNG'",
+        "Dimension string callouts contain repetitive placeholder values"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Garbled pseudo-text in notes and callouts",
+        "Minor dimension string arithmetic inconsistencies"
+      ]
+    }
+  ],
+  "hero-grid-05.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Complete lack of dimension strings and datum elevation markers",
+        "Empty keynote bubbles and illegible simulated annotation text",
+        "Excessive empty space resulting in a sparse layout",
+        "Inconsistent roof geometry between upper and lower elevations"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Drawings are overly sparse with significant dead space",
+        "Missing vertical dimension strings and level datums",
+        "Repetitive elevations and gibberish titles",
+        "Incomplete title block strip"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 5,
+      "issues": [
+        "Duplicate Front and Right elevation titles on lower set instead of Rear and Left",
+        "Notes section contains two sub-columns rather than a single column",
+        "Pervasive AI gibberish in labels and callout text",
+        "Excessive empty margins around drawings"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Illegible or pseudo-text in general notes and title block",
+        "Minor typographical error in sheet title area"
+      ]
+    }
+  ],
+  "hero-grid-07.jpg": [
+    {
+      "round": 0,
+      "score": 3,
+      "issues": [
+        "No column of general notes immediately to the left of the title block",
+        "Drawing field is sparse with excessive unused white space",
+        "Multiple conflicting drawing titles placed beneath a single plan",
+        "Illegible pseudo-text and inconsistent dimension strings"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 6,
+      "issues": [
+        "Unreadable AI pseudo-text in notes and title block",
+        "Sparse dimensioning and annotation for a permit set",
+        "Drawing density is relatively low with excess white space"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Minor AI text artifacts and misspelled room labels",
+        "Notes and revision schedule contain illegible placeholder text"
+      ]
+    }
+  ],
+  "hero-grid-09.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Notes are placed above the title block rather than in a separate column to its left",
+        "Title block does not run the full height of the right edge",
+        "Drawings leave excessive blank sheet area",
+        "Visible gibberish text in drawing labels and notes"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Roof plan label assigned to an interior floor plan",
+        "Drawing titles detached and floating far to the left of plans",
+        "Severe empty space across the left half of the sheet"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Keynote and schedule text is simulated placeholder text",
+        "Slight discrepancy between floor plan outline and roof plan footprint"
+      ]
+    }
+  ],
+  "hero-grid-11.jpg": [
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "North arrow shown on exterior elevations",
+        "Relatively sparse drawing field for sheet size",
+        "Window schedule floating in drawing area rather than aligned with notes"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "North arrows placed incorrectly on vertical elevation views",
+        "Duplicate detail number '1' used for both drawings",
+        "Minor AI gibberish text in notes and window schedule"
+      ]
+    }
+  ],
+  "hero-grid-13.jpg": [
+    {
+      "round": 0,
+      "score": 5,
+      "issues": [
+        "Duplicate section drawings stacked vertically",
+        "North arrow inappropriately assigned to a building section",
+        "Large areas of unutilized sheet space",
+        "Garbled text in drawing titles, notes, and title block"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Notes are placed within the title block rather than in a dedicated column immediately to its left",
+        "Duplicate titles for both section drawings",
+        "Sparse drawing content lacking dimension strings and structural detailing",
+        "North arrow incorrectly placed on a building section"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Minor pseudo-text illegibility in notes and callouts",
+        "Slightly sparse upper drawing area"
+      ]
+    }
+  ],
+  "hero-grid-15.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Excessive empty space with sparse single drawing",
+        "Missing electrical circuiting and switch runs for an electrical plan",
+        "Panel schedule header placed over graphic scale without an actual table",
+        "Illegible pseudo-text across notes and dimension strings"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 5,
+      "issues": [
+        "Excessive blank space with only a single small floor plan",
+        "Drawing content is sparse for a standard 24x36 permit sheet",
+        "Unreadable placeholder text in notes and title block"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Dimension string text does not match actual lengths or totals",
+        "Excessive empty space between drawing and notes column",
+        "Notes and panel schedule contain AI gibberish text"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Text strings in legends, notes, and schedules contain AI spelling errors and pseudo-text",
+        "Exterior dimension strings do not mathematically sum to overall totals",
+        "Legends placed floating in the drawing field rather than in dedicated margin"
+      ]
+    }
+  ],
+  "hero-grid-17.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Notes stacked above title block rather than in an adjacent column",
+        "Drawing content is sparse with excessive empty space",
+        "Duplicate drawing title text",
+        "Minimal mechanical ductwork and linework for an M-sheet"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Drawing content is excessively sparse with a large blank area on the left",
+        "Single room plan is inadequate to fill a standard 24x36 permit sheet",
+        "Title block contains unpopulated placeholder fields",
+        "Text strings and callouts are largely illegible or simulated"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Considerable empty space for a 24x36 sheet layout",
+        "Dimension string values do not add up mathematically",
+        "Unreadable gibberish text in general notes and equipment schedule",
+        "Keynote tag callout bubbles lack reference numbers"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Dimension string totals do not match intermediate segment dimensions",
+        "Minor typographic errors in callouts ('CONDENGER', 'THERMGSTAT')",
+        "Body text in general notes and schedules consists of illegible pseudo-text",
+        "Drawing density is somewhat sparse for standard 24x36 coverage"
+      ]
+    }
+  ],
+  "hero-grid-19.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Notes are stacked directly above the title block rather than in an adjacent vertical column",
+        "Drawing content is sparse with simplistic isometric cutaways instead of standard plumbing layouts",
+        "Text and callouts contain illegible AI gibberish"
+      ]
+    },
+    {
+      "round": 1,
+      "score": 4,
+      "issues": [
+        "Drawings are overly sparse with excessive empty space",
+        "Diagram architecture is toy-like and oversimplified",
+        "Extensive gibberish and misspelled labels throughout title block and notes"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Unreadable placeholder text in notes and schedule",
+        "Minor isometric projection inconsistencies in backdrop geometry"
+      ]
+    }
+  ],
+  "hero-grid-21.jpg": [
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Drawing labeled 'Roof Framing Plan' depicts an exterior elevation instead of framing linework.",
+        "Drawings are overly sparse with large amounts of unutilized sheet area.",
+        "Slab foundation plan lacks interior footings, plumbing, or structural reinforcement callouts.",
+        "Annotation and schedule text is illegible pseudo-script."
+      ]
+    },
+    {
+      "round": 1,
+      "score": 6,
+      "issues": [
+        "Excessive empty space between drawings and notes column",
+        "Drawing linework and interior details are sparse for permit documents",
+        "AI-generated gibberish in drawing titles and note text"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Both drawings are labeled as detail number 1",
+        "Minor illegible AI-generated placeholder text in notes and dimensions"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Unreadable pseudo-text in notes and callouts",
+        "Duplicate detail number 1 used on both drawings"
+      ]
+    }
+  ],
+  "hero-grid-23.jpg": [
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "Text strings contain AI gibberish and misspellings in notes, legend, and title block",
+        "Architectural scale indicated instead of standard civil engineering scale for grading plan",
+        "Topographic spot elevations and dimensioning are sparse"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 6,
+      "issues": [
+        "AI pseudotext throughout notes and title block",
+        "Conflicting sheet numbers (C-1 and A1.1) stacked in title block",
+        "Detail callout 2 lacks an associated drawing viewport"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 4,
+      "issues": [
+        "Notes are stacked within the title block rather than in an adjacent column to its left",
+        "Inappropriate sheet numbering (A-101) and architectural scale for a civil grading plan",
+        "Pervasive pseudo-text in notes and drawing callouts"
+      ]
+    },
+    {
+      "round": 0,
+      "score": 7,
+      "issues": [
+        "Repetitive bearing labels on all property lines",
+        "Pseudotext in general notes column",
+        "Unfilled title block data fields"
+      ]
+    }
+  ]
+}

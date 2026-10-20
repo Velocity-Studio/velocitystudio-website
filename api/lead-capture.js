@@ -3,11 +3,13 @@
 // browser cookies exist. The post-call process-lead skill later reuses this
 // Person, so fbp/fbc are already attached when the deal reaches Active SQL.
 //
-// Two callers:
+// Three callers:
 //   - /start (legacy): sends email + attribution + a client-computed lead_quality.
-//   - home CTA form: sends the full intake (name/phone/role/size/urgency/address/
-//     scope). When those raw fields are present we recompute the score
-//     AUTHORITATIVELY here, write a Pipedrive Note, and email Richman.
+//   - developer form (/developers, role/size/urgency/scope): developer scoring below.
+//   - fast-track homeowner form (/, page: 'fast-track', owns/project_type/timing/
+//     reason): pass rule scoring below. High when the lead passes, mid otherwise.
+// When raw fields are present we recompute the score AUTHORITATIVELY here,
+// write a Pipedrive Note, and email Richman.
 //
 // Dependency-free: Node built-ins only. Email via Resend REST (no SDK).
 
@@ -50,6 +52,31 @@ function scoreLead(b) {
   return { score: s, tier };
 }
 
+// ─── Fast-track (homeowner) scoring, mirror of the client weights in index.html ─
+// Pass rule (scaffold section 8, item 10): owns or in contract; structure type is
+// one of the three tiers; wants to submit within a month; a timing reason other
+// than "no deadline yet". Address clearance happens in pre-call parcel research,
+// not here. A pass is "high"; anything else from this page is "mid".
+const FT_OWNS   = { yes: 30, in_contract: 25, no: 0 };
+const FT_TYPE   = { detached_adu: 25, attached_adu: 25, garage_conversion: 25, renovation_addition: 25, new_home_duplex: 25, other: 0 };
+const FT_TIMING = { within_2_weeks: 30, within_month: 25, '1_3_months': 10, not_sure: 0 };
+const FT_REASON = { contractor_waiting: 15, moving_in: 15, loan_sale_deadline: 15, fire_rebuild: 15, no_deadline: 0 };
+
+function fastTrackPass(b) {
+  return (b.owns === 'yes' || b.owns === 'in_contract')
+    && !!b.project_type && b.project_type !== 'other'
+    && (b.timing === 'within_2_weeks' || b.timing === 'within_month')
+    && !!b.reason && b.reason !== 'no_deadline';
+}
+function scoreFastTrack(b) {
+  const s = (FT_OWNS[b.owns] || 0) + (FT_TYPE[b.project_type] || 0) + (FT_TIMING[b.timing] || 0) + (FT_REASON[b.reason] || 0);
+  const pass = fastTrackPass(b);
+  return { score: s, tier: pass ? 'high' : 'mid', pass };
+}
+function isFastTrack(b) {
+  return b.page === 'fast-track' || b.source === 'fast-track' || (!!b.owns && !!b.project_type && !!b.timing);
+}
+
 // Rough well-formedness gate (a proper LLM judge comes later, server-side).
 function wellFormed(b) {
   const scope = (b.scope || '').trim();
@@ -60,6 +87,12 @@ function wellFormed(b) {
 const ROLE_LABEL = { pure_developer: 'Developer', developer_gc: 'Developer + GC', pure_gc: 'General contractor', architect_engineer: 'Architect / Engineer', homeowner: 'Homeowner', other: 'Other' };
 const SIZE_LABEL = { res_addition_adu: 'Addition / alteration / ADU', res_new_1u: 'New construction (1 unit)', res_2_4u: '2 - 4 units', res_5_9u: '5 - 9 units', res_10_plus_u: '10+ units', com_lt_10k: 'Commercial < 10k sf', com_gt_10k: 'Commercial > 10k sf' };
 const URG_LABEL  = { behind_0_1: 'ASAP - already behind', fast_1_3: 'Fast (1-3 mo)', regular_3_6: 'Regular (3-6 mo)', slow_6_12: 'Slower (6-12 mo)', brainstorm: 'Just exploring' };
+const FT_OWNS_LABEL   = { yes: 'Owns', in_contract: 'In contract', no: 'Does not own' };
+const FT_TYPE_LABEL   = { detached_adu: 'Detached ADU or JADU', attached_adu: 'Attached ADU', garage_conversion: 'Garage conversion', renovation_addition: 'Interior renovation or addition', new_home_duplex: 'New home or duplex', other: 'Something else' };
+const FT_TIMING_LABEL = { within_2_weeks: 'Within 2 weeks', within_month: 'Within a month', '1_3_months': '1 to 3 months', not_sure: 'Not sure' };
+const FT_REASON_LABEL = { contractor_waiting: 'Contractor is waiting', moving_in: 'Someone is moving in', loan_sale_deadline: 'Loan or sale deadline', fire_rebuild: 'Fire rebuild', no_deadline: 'No deadline yet' };
+const FT_CONTR_LABEL  = { chosen: 'Chosen', getting_bids: 'Getting bids', not_yet: 'Not yet' };
+const FT_REVIEW_LABEL = { no: 'No', hoa: 'HOA', planning_review: 'Planning review', not_sure: 'Not sure' };
 
 function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
@@ -113,9 +146,12 @@ module.exports = async (req, res) => {
   const email = (b.email || '').trim().toLowerCase();
   if (!email || !email.includes('@')) { res.statusCode = 400; return res.end(JSON.stringify({ ok: false, error: 'email required' })); }
 
-  // Rich intake (home form) vs legacy (/start sends only a precomputed lead_quality).
-  const hasRaw = !!(b.role && b.size);
-  const scored = hasRaw ? scoreLead(b) : { score: b.lead_score || '', tier: b.lead_quality || '' };
+  // Which caller: fast-track homeowner form, developer form, or legacy /start
+  // (which sends only a precomputed lead_quality).
+  const fast = isFastTrack(b);
+  const hasDev = !fast && !!(b.role && b.size);
+  const hasRaw = fast || hasDev;
+  const scored = fast ? scoreFastTrack(b) : hasDev ? scoreLead(b) : { score: b.lead_score || '', tier: b.lead_quality || '' };
   const tier = scored.tier || '';
 
   const custom = {
@@ -129,7 +165,7 @@ module.exports = async (req, res) => {
   if (b.utm_campaign) custom[F.utm_campaign] = b.utm_campaign;
   if (b.utm_content) custom[F.utm_content] = b.utm_content;
 
-  const diag = { tokenPresent: !!PD_TOKEN, resendConfigured: !!RESEND_KEY, hasRaw, tier };
+  const diag = { tokenPresent: !!PD_TOKEN, resendConfigured: !!RESEND_KEY, hasRaw, fast, tier, pass: fast ? scored.pass : undefined };
   try {
     const search = await pd('GET', '/v1/persons/search?term=' + encodeURIComponent(email) + '&fields=email&exact_match=true');
     diag.searchStatus = search.status;
@@ -158,25 +194,42 @@ module.exports = async (req, res) => {
     // Rich intake (home form): write a Pipedrive Note if the person write succeeded,
     // and email Richman REGARDLESS of Pipedrive so a lead is never silently lost.
     if (hasRaw) {
-      const wf = wellFormed(b);
-      const rows = [
-        ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (wf ? '' : ' - NEEDS MORE INFO')],
-        ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
-        ['Role', ROLE_LABEL[b.role] || b.role], ['Size', SIZE_LABEL[b.size] || b.size], ['Timeline', URG_LABEL[b.urgency] || b.urgency],
-        ['Address', b.address], ['Scope', b.scope],
-        ['Source', [b.utm_source, b.utm_medium, b.utm_campaign, b.utm_content].filter(Boolean).join(' / ') || 'direct'],
-      ];
+      const wf = fast ? true : wellFormed(b);
+      const srcRow = ['Source', [b.utm_source, b.utm_medium, b.utm_campaign, b.utm_content].filter(Boolean).join(' / ') || 'direct'];
+      const rows = fast
+        ? [
+            ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ') - fast track ' + (scored.pass ? 'PASS' : 'NO PASS')],
+            ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
+            ['Address', b.address],
+            ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
+            ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
+            ['Size', b.size_text || '-'],
+            ['Submit by', FT_TIMING_LABEL[b.timing] || b.timing],
+            ['Timing reason', FT_REASON_LABEL[b.reason] || b.reason],
+            ['Contractor', FT_CONTR_LABEL[b.contractor] || b.contractor || '-'],
+            ['Other quotes', b.other_quotes || '-'],
+            ['HOA / review', FT_REVIEW_LABEL[b.review] || b.review || '-'],
+            srcRow,
+          ]
+        : [
+            ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (wf ? '' : ' - NEEDS MORE INFO')],
+            ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
+            ['Role', ROLE_LABEL[b.role] || b.role], ['Size', SIZE_LABEL[b.size] || b.size], ['Timeline', URG_LABEL[b.urgency] || b.urgency],
+            ['Address', b.address], ['Scope', b.scope],
+            srcRow,
+          ];
+      const formName = fast ? 'Fast-track qualify form (homepage)' : 'Website lead form (developers)';
       if (personId) {
-        const noteHtml = '<b>Website lead form</b><br>' + rows.map((r) => '<b>' + esc(r[0]) + ':</b> ' + esc(r[1])).join('<br>');
+        const noteHtml = '<b>' + formName + '</b><br>' + rows.map((r) => '<b>' + esc(r[0]) + ':</b> ' + esc(r[1])).join('<br>');
         const nt = await pd('POST', '/v1/notes', { person_id: personId, content: noteHtml, pinned_to_person_flag: 1 });
         diag.noteStatus = nt.status;
       }
       const crmLine = personId
         ? 'Pipedrive person #' + personId + '.'
         : 'WARNING: the Pipedrive write FAILED (search ' + diag.searchStatus + ' / create ' + diag.createStatus + ') - PIPEDRIVE_TOKEN is probably not set for this environment. The lead is captured in this email only.';
-      const subj = 'New lead [' + (tier || '?').toUpperCase() + ']: ' + (b.name || email) + ' - ' + (b.address || '');
+      const subj = (fast ? 'Fast-track lead [' : 'New lead [') + (tier || '?').toUpperCase() + (fast ? (scored.pass ? ' PASS' : ' NO PASS') : '') + ']: ' + (b.name || email) + ' - ' + (b.address || '');
       const emailRes = await sendEmail(subj,
-        '<h2 style="margin:0 0 8px">New website lead - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (wf ? '' : ' &middot; needs more info') + '</h2>'
+        '<h2 style="margin:0 0 8px">' + esc(formName) + ' - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (fast ? (scored.pass ? ' &middot; fast track pass' : ' &middot; no pass') : (wf ? '' : ' &middot; needs more info')) + '</h2>'
         + '<table cellpadding="4" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">'
         + rows.slice(1).map((r) => '<tr><td style="color:#6B6560">' + esc(r[0]) + '</td><td><b>' + esc(r[1]) + '</b></td></tr>').join('')
         + '</table><p style="font-family:Arial,sans-serif;font-size:13px;color:#6B6560">' + esc(crmLine) + ' Reply within one business day.</p>');

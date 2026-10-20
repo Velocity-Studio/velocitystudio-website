@@ -3,3 +3,8 @@ Thumbs.db
 *.log
 
 .vercel
+
+# local secrets
+.env
+.env.*
+images/home/raw/
