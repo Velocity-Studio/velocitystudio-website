@@ -474,6 +474,7 @@
       .note { position: static; width: auto; transform: none; margin-top: 18px; }
       .paper { padding: 20px 18px 18px; }
     }
+    video.clip { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--card); }
   </style>
 
   <!-- Meta Pixel -->
@@ -556,7 +557,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="split">
       <figure class="split-img kb">
-        <img src="images/home/pain-desk.jpg" alt="A homeowner waits across the desk while an architect slowly draws a floor plan in CAD" loading="lazy"/>
+        <video class="clip" src="images/home/pain-desk.mp4" poster="images/home/pain-desk.jpg" muted loop playsinline preload="none" aria-label="A homeowner waits across the desk while an architect slowly draws a floor plan in CAD"></video>
       </figure>
       <div class="split-text">
         <span class="eyebrow eyebrow-red">Permits are usually painful</span>
@@ -577,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="split split-flip">
       <figure class="split-img wide kb" id="callScene">
-        <img src="images/home/solution-call.jpg" alt="A video call with a shared 3D model of a backyard ADU" loading="lazy"/>
+        <video class="clip" src="images/home/solution-call.mp4" poster="images/home/solution-call.jpg" muted loop playsinline preload="none" aria-label="A video call with a shared 3D model of a backyard ADU"></video>
         <div class="bubble b1">Let's lock in this design. Anything to change?</div>
         <div class="bubble b2 me">Flip the kitchen and add a back porch.</div>
         <div class="bubble b3">Done. Locking it now.</div>
@@ -708,28 +709,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="journey">
       <div class="stop">
-        <div class="stop-img"><img src="images/home/journey-1-inputs.jpg" alt="A survey, a soils report, and a phone room scan laid out on a kitchen table" loading="lazy"/></div>
+        <div class="stop-img"><video class="clip" src="images/home/journey-1-inputs.mp4" poster="images/home/journey-1-inputs.jpg" muted loop playsinline preload="none" aria-label="A survey, a soils report, and a phone room scan laid out on a kitchen table"></video></div>
         <div class="stop-num">1</div>
         <div class="stop-when">Before you contact us</div>
         <h3>Get your inputs in hand</h3>
         <p>A survey and soils report if your lot needs them, and a scan of any existing structure the design touches. We point you to surveyors, engineers, and scan tutorials. We do not chase them down for you.</p>
       </div>
       <div class="stop">
-        <div class="stop-img"><img src="images/home/journey-2-sketch.jpg" alt="An architect sketching a floor plan beside a parcel map while on a call with the homeowner" loading="lazy"/></div>
+        <div class="stop-img"><video class="clip" src="images/home/journey-2-sketch.mp4" poster="images/home/journey-2-sketch.jpg" muted loop playsinline preload="none" aria-label="An architect sketching a floor plan beside a parcel map while on a call with the homeowner"></video></div>
         <div class="stop-num">2</div>
         <div class="stop-when">The day you contact us</div>
         <h3>Parcel analysis, a call, and a first sketch</h3>
         <p>Within hours: your path to permit and what the regulatory check found. On the earliest call we share a screen, find the buildable envelope, and sketch the layout until it is yours. A few hours later you have quick plans, elevations, and a 3D view.</p>
       </div>
       <div class="stop">
-        <div class="stop-img"><img src="images/home/journey-3-locked.jpg" alt="A monitor filling with drawing sheets beside a structural engineer's desk" loading="lazy"/></div>
+        <div class="stop-img"><video class="clip" src="images/home/journey-3-locked.mp4" poster="images/home/journey-3-locked.jpg" muted loop playsinline preload="none" aria-label="A monitor filling with drawing sheets beside a structural engineer's desk"></video></div>
         <div class="stop-num">3</div>
         <div class="stop-when">A day later</div>
         <h3>Design locked, every discipline starts</h3>
         <p>You send revisions within 24 hours and the deposit. We lock the design and start all of it at once: sheets, structural, MEP, Title 24.</p>
       </div>
       <div class="stop">
-        <div class="stop-img"><img src="images/home/journey-4-delivered.jpg" alt="A stamped drawing set with a received stamp and a USB drive being packed" loading="lazy"/></div>
+        <div class="stop-img"><video class="clip" src="images/home/journey-4-delivered.mp4" poster="images/home/journey-4-delivered.jpg" muted loop playsinline preload="none" aria-label="A stamped drawing set with a received stamp and a USB drive being packed"></video></div>
         <div class="stop-num">4</div>
         <div class="stop-when">Your delivery day</div>
         <h3>Stamped set, ready to submit</h3>
@@ -1176,6 +1177,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
+
+  // Clips: play only while on screen, never for people who asked for reduced motion.
+  (function () {
+    var clips = document.querySelectorAll('video.clip');
+    if (!clips.length) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; v.play().catch(function () {}); }
+        else v.pause();
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.2 });
+    clips.forEach(function (v) { io.observe(v); });
+  })();
+
   // Hero deck: the front sheet slides away and goes to the back every few seconds.
   (function () {
     var deck = document.getElementById('heroDeck');

@@ -7,3 +7,4 @@ Thumbs.db
 # local secrets
 .env
 .env.*
+images/home/raw/
