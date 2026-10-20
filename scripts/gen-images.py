@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROMPTS = ROOT / 'docs' / 'homepage-image-prompts.md'
 OUT = ROOT / 'images' / 'home'
 MANIFEST = OUT / 'manifest.json'
-SIZES = {'4:3': (1600, 1200), '4:5': (1200, 1500), '16:10': (1600, 1000), '16:9': (1600, 900), '1:1': (1200, 1200)}
+SIZES = {'4:3': (1600, 1200), '4:5': (1200, 1500), '16:10': (1600, 1000), '16:9': (1600, 900), '1:1': (1200, 1200), '3:2': (1500, 1000)}
 # The API only accepts a fixed list of ratios; anything else is requested as the
 # nearest supported ratio and cropped to the slot's size afterwards.
 API_ASPECT = {'16:10': '16:9'}

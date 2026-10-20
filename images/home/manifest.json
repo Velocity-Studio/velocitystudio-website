@@ -1,25 +1,4 @@
 {
-  "work-adu-3d.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "d808f3cda5f9",
-    "generated_at": "2026-10-20T10:06:03",
-    "bytes": 344134
-  },
-  "work-remodel-scan.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "05357d2f4cb4",
-    "generated_at": "2026-10-20T10:09:01",
-    "bytes": 128324
-  },
-  "work-losaltos.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "1a6309a13527",
-    "generated_at": "2026-10-20T10:09:07",
-    "bytes": 304022
-  },
   "journey-1-inputs.jpg": {
     "model": "gemini-2.5-flash-image",
     "aspect": "16:10",
@@ -47,41 +26,6 @@
     "prompt_sha1": "af903cd58cca",
     "generated_at": "2026-10-20T10:10:19",
     "bytes": 108666
-  },
-  "hero-sheet-1.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "36da2d9cb95f",
-    "generated_at": "2026-10-20T10:06:25",
-    "bytes": 1691266
-  },
-  "hero-sheet-2.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "d058613fd436",
-    "generated_at": "2026-10-20T10:06:34",
-    "bytes": 1751463
-  },
-  "hero-sheet-3.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "91f18238b6c5",
-    "generated_at": "2026-10-20T10:06:46",
-    "bytes": 1565440
-  },
-  "hero-sheet-4.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "0a81ce94c3ec",
-    "generated_at": "2026-10-20T10:06:56",
-    "bytes": 1764754
-  },
-  "hero-sheet-5.jpg": {
-    "model": "gemini-2.5-flash-image",
-    "aspect": "4:3",
-    "prompt_sha1": "33772e32e638",
-    "generated_at": "2026-10-20T10:07:06",
-    "bytes": 1889110
   },
   "solution-call.mp4": {
     "model": "veo-3.1-generate-preview",
@@ -124,5 +68,173 @@
     "generated_at": "2026-10-20T10:21:59",
     "raw_bytes": 1074024,
     "bytes": 405549
+  },
+  "hero-grid-01.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "b80d38924adc",
+    "generated_at": "2026-10-20T12:09:48",
+    "bytes": 108405
+  },
+  "hero-grid-02.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "8f02c9e80135",
+    "generated_at": "2026-10-20T12:09:53",
+    "bytes": 295672
+  },
+  "hero-grid-03.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "5c5d6268458b",
+    "generated_at": "2026-10-20T12:10:00",
+    "bytes": 101735
+  },
+  "hero-grid-04.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "9ee8bc5ac7ca",
+    "generated_at": "2026-10-20T12:10:06",
+    "bytes": 311482
+  },
+  "hero-grid-05.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "c2dac35c99cc",
+    "generated_at": "2026-10-20T12:10:13",
+    "bytes": 140587
+  },
+  "hero-grid-06.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "0720f830dfb2",
+    "generated_at": "2026-10-20T12:10:19",
+    "bytes": 272951
+  },
+  "hero-grid-07.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "5a2f2c4dc8e2",
+    "generated_at": "2026-10-20T12:10:26",
+    "bytes": 145811
+  },
+  "hero-grid-08.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "7e659a7994df",
+    "generated_at": "2026-10-20T12:10:32",
+    "bytes": 108082
+  },
+  "hero-grid-09.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "356b62e2dc9c",
+    "generated_at": "2026-10-20T12:10:38",
+    "bytes": 82462
+  },
+  "hero-grid-10.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "3f8e36151c32",
+    "generated_at": "2026-10-20T12:10:44",
+    "bytes": 342724
+  },
+  "hero-grid-11.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "c09517cc6a90",
+    "generated_at": "2026-10-20T12:10:50",
+    "bytes": 102456
+  },
+  "hero-grid-12.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "605ea68b7804",
+    "generated_at": "2026-10-20T12:10:56",
+    "bytes": 236049
+  },
+  "hero-grid-13.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "38ac55432d19",
+    "generated_at": "2026-10-20T12:11:02",
+    "bytes": 124356
+  },
+  "hero-grid-14.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "464c932b0982",
+    "generated_at": "2026-10-20T12:11:07",
+    "bytes": 168861
+  },
+  "hero-grid-15.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "7ba0262a0d03",
+    "generated_at": "2026-10-20T12:11:15",
+    "bytes": 134761
+  },
+  "hero-grid-16.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "44261d5f33ba",
+    "generated_at": "2026-10-20T12:11:21",
+    "bytes": 415156
+  },
+  "hero-grid-17.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "11e0f309642d",
+    "generated_at": "2026-10-20T12:11:28",
+    "bytes": 96479
+  },
+  "hero-grid-18.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "ebdbcb1cc9dd",
+    "generated_at": "2026-10-20T12:11:33",
+    "bytes": 114897
+  },
+  "hero-grid-19.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "fdf909545173",
+    "generated_at": "2026-10-20T12:11:40",
+    "bytes": 117251
+  },
+  "hero-grid-20.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "2928230d7e20",
+    "generated_at": "2026-10-20T12:11:46",
+    "bytes": 284557
+  },
+  "hero-grid-21.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "306038efb60d",
+    "generated_at": "2026-10-20T12:11:52",
+    "bytes": 135813
+  },
+  "hero-grid-22.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "d7a7661ccb46",
+    "generated_at": "2026-10-20T12:11:58",
+    "bytes": 180957
+  },
+  "hero-grid-23.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "5679e261beed",
+    "generated_at": "2026-10-20T12:12:05",
+    "bytes": 121283
+  },
+  "hero-grid-24.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "3:2",
+    "prompt_sha1": "8eabfd09de08",
+    "generated_at": "2026-10-20T12:12:10",
+    "bytes": 165643
   }
 }

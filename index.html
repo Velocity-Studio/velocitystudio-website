@@ -475,6 +475,32 @@
       .paper { padding: 20px 18px 18px; }
     }
     video.clip { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--card); }
+
+    /* draft 8: hero checkerboard */
+    .hgrid { position: relative; aspect-ratio: 3/2; overflow: hidden; border-radius: var(--r);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%); }
+    .hgrid-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; animation: hgrid-scroll 80s linear infinite; will-change: transform; }
+    .tile { aspect-ratio: 3/2; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+    .tile img, .tile .ph-box { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tile .ph-box { font-size: .58rem; padding: 6px; border-radius: 6px; }
+    @keyframes hgrid-scroll { from { transform: translateY(0); } to { transform: translateY(calc(-50% - 5px)); } }
+    @media (prefers-reduced-motion: reduce) { .hgrid-track { animation: none; } }
+    @media (max-width: 900px) { .hgrid { max-width: 520px; margin: 6px auto 0; } }
+    /* draft 8: bio inside the solution section */
+    .bio-row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: start; margin-top: 28px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 22px; }
+    .bio-row .bio-photo { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; background: var(--card); }
+    .bio-row .bio-photo .ph-box { height: 100%; border-radius: var(--r); }
+    .bio-row .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bio-row .bio-name { font-size: 1.2rem; font-weight: 800; letter-spacing: -.015em; margin-bottom: 4px; color: var(--dark); }
+    .bio-row .bio-title { font-size: .92rem; color: var(--muted); line-height: 1.45; }
+    .bio-row .bio-line { font-size: 1rem; line-height: 1.55; color: var(--dark); margin-top: 10px; }
+    .bio-row .more { margin-top: 12px; }
+    @media (max-width: 600px) { .bio-row { grid-template-columns: 110px 1fr; gap: 14px; padding: 16px; } .bio-row .bio-line { grid-column: 1 / -1; margin-top: 4px; } .bio-row .more { grid-column: 1 / -1; } }
+    /* draft 8: dark FAQ */
+    .sec-dark .faq details { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); }
+    .sec-dark .faq summary { color: #fff; }
+    .sec-dark .faq summary::after { color: var(--teal-lt); }
+    .sec-dark .faq details p { color: rgba(255,255,255,.82); }
   </style>
 
   <!-- Meta Pixel -->
@@ -539,12 +565,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="hero-micro">A short form, then a 15-minute call with your exact price.</p>
       </div>
       <div>
-        <div class="deck" id="heroDeck" aria-label="Pages of a permit set">
-          <div class="sheet-card"><img src="images/home/hero-sheet-1.jpg" alt="Permit set cover sheet"/></div>
-          <div class="sheet-card"><img src="images/home/hero-sheet-2.jpg" alt="Permit set site plan"/></div>
-          <div class="sheet-card"><img src="images/home/hero-sheet-3.jpg" alt="Permit set floor plan"/></div>
-          <div class="sheet-card"><img src="images/home/hero-sheet-4.jpg" alt="Permit set exterior elevations"/></div>
-          <div class="sheet-card"><img src="images/home/hero-sheet-5.jpg" alt="Permit set roof framing plan"/></div>
+        <div class="hgrid" aria-hidden="true">
+          <div class="hgrid-track" id="hgridTrack">
+          <div class="tile"><img src="images/home/hero-grid-01.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-02.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-03.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-04.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-05.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-06.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-07.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-08.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-09.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-10.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-11.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-12.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-13.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-14.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-15.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-16.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-17.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-18.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-19.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-20.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-21.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-22.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-23.jpg" alt="" loading="lazy"/></div>
+          <div class="tile"><img src="images/home/hero-grid-24.jpg" alt="" loading="lazy"/></div>
+          </div>
         </div>
       </div>
     </div>
@@ -594,6 +641,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><b>One 3D model drives every sheet.</b> A change to the layout flows to plans, elevations, sections, structural, and MEP at once.</li>
           <li><b>A production team that never sleeps.</b> Drafting runs around the clock on a global team, under a California licensed architect who reviews and stamps every set.</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="bio-row">
+      <div class="bio-photo"><div class="ph-box">[PLACEHOLDER: images/home/richman.jpg]</div></div>
+      <div>
+        <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
+        <div class="bio-title">Licensed architect, California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
+        <p class="bio-line">I review and stamp every set. One production architect works on your project, and only yours, and emails you every business day until it is out the door. A California licensed structural engineer stamps the structural sheets when your city requires it.</p>
+        <details class="more">
+          <summary>Where we have drawn</summary>
+          <div class="more-body">
+            <p>Drawing for permit in California since 2025, from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. Plan sets accepted in <span class="ph">[PLACEHOLDER: City, City, City, City]</span>.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -757,45 +819,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ 6. PROOF ══ -->
-<section class="sec sec-dark" id="who">
-  <div class="container">
-    <div class="sec-hd">
-      <span class="eyebrow">The work</span>
-      <h2>Architects and engineers dedicated to your project.</h2>
-    </div>
-  </div>
-  <div class="work" aria-label="Examples of our drawings and renderings">
-    <div class="work-track">
-      <figure class="work-card"><img src="images/projects/palisades-ca-house-1800.jpg" alt="Rendering of a new house in Pacific Palisades, California" loading="lazy"/><figcaption>Fire rebuild, Pacific Palisades. 1,800 sq ft.</figcaption></figure>
-      <figure class="work-card"><div class="ph-box">[PLACEHOLDER: image: stamped ADU site plan]</div><figcaption>ADU site plan, stamped.</figcaption></figure>
-      <figure class="work-card"><img src="images/home/work-adu-3d.jpg" alt="Exterior view of a small board-and-batten ADU in a backyard" loading="lazy"/><figcaption>Two-bedroom ADU, exterior view. Illustration.</figcaption></figure>
-      <figure class="work-card"><div class="ph-box">[PLACEHOLDER: image: stamped framing plan]</div><figcaption>Structural framing plan.</figcaption></figure>
-      <figure class="work-card"><img src="images/home/work-remodel-scan.jpg" alt="A phone scan of a kitchen beside the floor plan drawn from it" loading="lazy"/><figcaption>Remodel: scan to plan. Illustration.</figcaption></figure>
-      <figure class="work-card"><img src="images/home/work-losaltos.jpg" alt="Street view of a mixed-use building with ground-floor retail" loading="lazy"/><figcaption>Mixed-use, street view. Illustration.</figcaption></figure>
-    </div>
-  </div>
-  <div class="container">
-    <div class="bio">
-      <div class="bio-photo"><div class="ph-box">[PLACEHOLDER: images/home/richman.jpg]</div></div>
-      <div>
-        <div class="bio-name">Richman Neumann, AIA, LEED AP</div>
-        <div class="bio-title">California license <span class="ph">[PLACEHOLDER: license number]</span>. Founder of Velocity Studio.</div>
-        <p class="bio-line">I review and stamp every set. One production architect works on your project, and only yours, and emails you every business day until it is out the door.</p>
-      </div>
-    </div>
-    <details class="more">
-      <summary>Engineering, and where we have drawn</summary>
-      <div class="more-body">
-        <p>A California licensed structural engineer reviews and stamps the structural sheets when your city requires it.</p>
-        <p>Drawing for permit in California since 2025, from a 1,800 sq ft fire rebuild in the Palisades to a six-story mixed-use building in Los Altos. Plan sets accepted in <span class="ph">[PLACEHOLDER: City, City, City, City]</span>.</p>
-      </div>
-    </details>
-  </div>
-</section>
-
 <!-- ══════════════════════════════════════ 7. ANSWERS ══ -->
-<section class="sec" id="answers">
+<section class="sec sec-dark" id="answers">
   <div class="container narrow">
     <div class="sec-hd">
       <span class="eyebrow">Straight answers</span>
@@ -1193,33 +1218,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     clips.forEach(function (v) { io.observe(v); });
   })();
 
-  // Hero deck: the front sheet slides away and goes to the back every few seconds.
+  // Hero grid: duplicate the tiles once so the upward scroll loops without a seam.
   (function () {
-    var deck = document.getElementById('heroDeck');
-    if (!deck) return;
-    function layout() {
-      var cards = deck.querySelectorAll('.sheet-card');
-      cards.forEach(function (c, i) {
-        c.style.zIndex = String(10 - i);
-        c.style.transform = 'translate(' + (i * 14) + 'px, ' + (-i * 12) + 'px) rotate(' + (i * 1.2) + 'deg) scale(' + (1 - i * 0.035) + ')';
-        c.style.opacity = i > 3 ? '0' : String(1 - i * 0.12);
-      });
-    }
-    layout();
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    setInterval(function () {
-      var first = deck.querySelector('.sheet-card');
-      if (!first) return;
-      first.style.transform = 'translate(-60px, 40px) rotate(-6deg) scale(.96)';
-      first.style.opacity = '0';
-      setTimeout(function () {
-        first.style.transition = 'none';
-        deck.appendChild(first);
-        layout();
-        void first.offsetWidth;
-        first.style.transition = '';
-      }, 520);
-    }, 2800);
+    var track = document.getElementById('hgridTrack');
+    if (!track) return;
+    track.innerHTML += track.innerHTML;
   })();
 
   var nav = document.getElementById('nav');
