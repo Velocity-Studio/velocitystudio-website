@@ -61,3 +61,10 @@ Files in this folder: `V1-*.mp4`, `V2-*.mp4`, `I1-adu-*.jpg`, `I1-house-*.jpg`, 
 ## Rebuilding
 
 `python scripts/build-ads.py` rebuilds everything from the site assets; `python scripts/build-ads.py V2` rebuilds one concept. Copy changes live in that script.
+
+## In Ads Manager (built 2026-10-21 through the Meta Ads MCP, all paused)
+
+- Campaign `120248961380990532` "Fast-track homeowners · week 1 (fasttrack-w1)": Leads objective, campaign budget $100/day, highest volume, no special ad category.
+- Ad set `120248961390240532` "California homeowners 35-65 · website Lead": optimizes for the pixel Lead event (pixel 778078978037243), website destination, California only, Advantage+ audience with 35 to 65 as the suggestion (hard floor 25), Advantage+ placements, 7-day click / 1-day view attribution. No interest targeting; Meta's API needs verified interest IDs and the copy-sheet interests are left for Ads Manager if wanted.
+- Ads: V1 `120248961403990532`, V2 `120248961406930532`, I1-adu `120248961404720532`, I2 `120248961405380532`. Each is one creative with placement asset customization: 4:5 fallback, 9:16 for Stories and Reels, 1:1 for Marketplace, right column and Explore.
+- AI disclosure was not declared (field omitted). I1-house is uploaded to the media library but has no ad.
