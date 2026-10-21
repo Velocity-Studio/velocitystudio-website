@@ -1021,8 +1021,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="qual-card qual-hidden" id="qualOutOfStateCard">
           <span class="qual-eyebrow">Thanks</span>
           <h3 class="qual-title">We only serve California right now.</h3>
-          <p class="qual-sub" style="margin-bottom:12px">Every set we deliver is stamped under a California architect&rsquo;s license, so we cannot take a project in <span id="qualOosState">another state</span> yet. If that changes, this page will say so.</p>
-          <div class="qual-nav"><button type="button" class="btn btn-ghost" id="qualOosBack">Back to the form</button></div>
+          <p class="qual-sub" style="margin-bottom:12px">Every set we deliver is stamped under a California architect&rsquo;s license, so we cannot take a project in <span id="qualOosState">another state</span> yet. We have your details, and if that changes we will let you know.</p>
+          <p class="qual-sub" id="qualOosEmail"></p>
         </div>
 
         <div class="qual-card qual-hidden" id="qualNoPassCard">
@@ -1056,7 +1056,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       && !!d.reason && d.reason !== 'no_deadline';
   }
   function ftScore(d) { return (FT.owns[d.owns] || 0) + (FT.type[d.project_type] || 0) + (FT.timing[d.timing] || 0) + (FT.reason[d.reason] || 0); }
-  function ftTier(d) { return ftPass(d) ? 'high' : 'mid'; }
+  function ftTier(d) { return d.state !== 'CA' ? 'low' : ftPass(d) ? 'high' : 'mid'; }
 
   var CAL_URL = 'https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat?hide_gdpr_banner=1';
   var TYPE_LABEL = { detached_adu: 'Detached ADU or JADU', attached_adu: 'Attached ADU', garage_conversion: 'Garage conversion', renovation_addition: 'Interior renovation or addition', new_home_duplex: 'New home or duplex', other: 'Something else' };
@@ -1086,32 +1086,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       }
     }
-    // California only: a non-California state ends the form at step 1. No Calendly,
-    // no Meta Lead event, nothing sent to Pipedrive. GA4 gets a non-conversion event.
+    // California only: the whole form runs for everyone so out-of-state demand is
+    // counted (the lead still reaches Pipedrive and email, tier low). The ending
+    // differs: a polite decline instead of Calendly, and no Meta Lead event.
     var STATE_NAME = {};
     form.querySelectorAll('[name="state"] option').forEach(function (o) { if (o.value) STATE_NAME[o.value] = o.textContent; });
     function inCalifornia() { return val('state') === 'CA'; }
-    function outOfState() {
-      var st = val('state');
+    function showOutOfState(d) {
       var el = document.getElementById('qualOosState');
-      if (el) el.textContent = STATE_NAME[st] || 'another state';
-      if (typeof gtag === 'function') gtag('event', 'qualify_out_of_state', { state: st });
+      if (el) el.textContent = STATE_NAME[d.state] || 'another state';
+      var em = document.getElementById('qualOosEmail');
+      if (em) em.textContent = 'We have your email as ' + d.email + '.';
       show('qualOutOfStateCard');
     }
-    var oosBack = document.getElementById('qualOosBack');
-    if (oosBack) oosBack.addEventListener('click', function () {
-      show('qualFormCard'); showStep(1);
-      var s = form.querySelector('[name="state"]'); if (s) s.focus({ preventScroll: true });
-    });
 
     form.querySelectorAll('[data-next]').forEach(function (b) {
       b.addEventListener('click', function () {
         var cur = parseInt(b.closest('.qstep').dataset.step, 10);
         var miss = missingIn(cur);
         flagError(cur, miss);
-        if (miss.length) return;
-        if (cur === 1 && !inCalifornia()) { outOfState(); return; }
-        showStep(parseInt(b.dataset.next, 10));
+        if (!miss.length) showStep(parseInt(b.dataset.next, 10));
       });
     });
     form.querySelectorAll('[data-back]').forEach(function (b) {
@@ -1158,12 +1152,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (miss.length) { showStep(s); flagError(s, miss); return; }
       }
       flagError(3, []);
-      if (!inCalifornia()) { outOfState(); return; }
 
+      var inCA = inCalifornia();
       var pass = ftPass(d), score = ftScore(d), tier = ftTier(d);
 
-      if (typeof fbq === 'function') fbq('track', 'Lead', { value: score, currency: 'USD', content_name: tier, content_category: d.project_type, timing: d.timing });
-      if (typeof gtag === 'function') gtag('event', 'qualify_form_submit', { lead_score: score, lead_tier: tier, fast_track_pass: pass, project_type: d.project_type, timing: d.timing, owns: d.owns });
+      if (inCA && typeof fbq === 'function') fbq('track', 'Lead', { value: score, currency: 'USD', content_name: tier, content_category: d.project_type, timing: d.timing });
+      if (typeof gtag === 'function') gtag('event', inCA ? 'qualify_form_submit' : 'qualify_out_of_state', { lead_score: score, lead_tier: tier, fast_track_pass: pass, project_type: d.project_type, timing: d.timing, owns: d.owns, state: d.state });
 
       var fbc = getCookie('_fbc');
       if (!fbc) { var fid = new URLSearchParams(location.search).get('fbclid'); if (fid) fbc = 'fb.1.' + Date.now() + '.' + fid; }
@@ -1184,7 +1178,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         })
       }).catch(function () {});
 
-      if (pass) {
+      if (!inCA) {
+        showOutOfState(d);
+      } else if (pass) {
         var summary = (TYPE_LABEL[d.project_type] || d.project_type) + ', ' + d.size_text + '. Submit ' + d.timing.replace(/_/g, ' ') + '. ' + d.reason.replace(/_/g, ' ') + '.';
         var url = CAL_URL
           + '&name=' + encodeURIComponent(d.name) + '&email=' + encodeURIComponent(d.email)
