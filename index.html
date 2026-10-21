@@ -282,7 +282,11 @@
     .qstep.on { display: flex; animation: qualFade .3s ease; }
     .qual-field { display: block; }
     .qual-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 480px) { .qual-field-row { grid-template-columns: 1fr; } }
+    .qual-field-row.city-state { grid-template-columns: 2fr 1fr; }
+    @media (max-width: 480px) { .qual-field-row { grid-template-columns: 1fr; } .qual-field-row.city-state { grid-template-columns: 3fr 2fr; } }
+    .qual-field select { width: 100%; padding: 13px 38px 13px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236B6560' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 14px center; color: var(--dark); appearance: none; -webkit-appearance: none; transition: border-color .15s, box-shadow .15s; }
+    .qual-field select:invalid, .qual-field select option[value=""] { color: rgba(28,28,28,.5); }
+    .qual-field select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45,139,110,.12); }
     .qual-label { display: block; font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.012em; line-height: 1.3; }
     .qual-label small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; margin-top: 2px; }
     .qual-field input[type="text"], .qual-field input[type="email"], .qual-field input[type="tel"], .qual-field textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; background: #fff; color: var(--dark); transition: border-color .15s, box-shadow .15s; }
@@ -877,8 +881,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <fieldset class="qstep on" data-step="1">
               <div class="qual-field">
-                <label class="qual-label" for="qf-address">Property address</label>
-                <input id="qf-address" type="text" name="address" autocomplete="street-address" placeholder="Street, city, ZIP" required />
+                <label class="qual-label" for="qf-street">Property address</label>
+                <input id="qf-street" type="text" name="street" autocomplete="address-line1" placeholder="Street address" required />
+              </div>
+              <div class="qual-field-row city-state">
+                <div class="qual-field"><input type="text" name="city" autocomplete="address-level2" placeholder="City" aria-label="City" required /></div>
+                <div class="qual-field"><select name="state" autocomplete="address-level1" aria-label="State" required><option value="">State</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option></select></div>
               </div>
               <div class="qual-field">
                 <span class="qual-label">Do you own this property?</span>
@@ -946,6 +954,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <label class="qual-opt"><input type="radio" name="review" value="hoa" /> HOA</label>
                   <label class="qual-opt"><input type="radio" name="review" value="planning_review" /> Planning review</label>
                   <label class="qual-opt"><input type="radio" name="review" value="not_sure" /> Not sure</label>
+                </div>
+              </div>
+              <div class="qual-field">
+                <span class="qual-label">If your project needs a topographic survey, do you already have one or need help getting one?</span>
+                <div class="opts opts-long">
+                  <label class="qual-opt"><input type="radio" name="topo_survey" value="have_it" required /> Yes, I have it.</label>
+                  <label class="qual-opt"><input type="radio" name="topo_survey" value="need_help" /> No, I need help getting it.</label>
+                  <label class="qual-opt"><input type="radio" name="topo_survey" value="not_needed" /> No, and I don&rsquo;t need it.</label>
+                </div>
+              </div>
+              <div class="qual-field">
+                <span class="qual-label">If your project needs a geotechnical soils report, do you already have one or need help getting one?</span>
+                <div class="opts opts-long">
+                  <label class="qual-opt"><input type="radio" name="soils_report" value="have_it" required /> Yes, I have it.</label>
+                  <label class="qual-opt"><input type="radio" name="soils_report" value="need_help" /> No, I need help getting it.</label>
+                  <label class="qual-opt"><input type="radio" name="soils_report" value="not_needed" /> No, and I don&rsquo;t need it.</label>
                 </div>
               </div>
               <div class="qual-error" id="qualError2">Please answer every question in this step.</div>
@@ -1035,8 +1059,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!form) return;
     var bar = document.getElementById('qualProgress');
     var stepLabel = document.getElementById('qualStepLabel');
-    var STEP_FIELDS = { 1: ['address', 'owns', 'project_type', 'size_text'], 2: ['timing', 'reason', 'contractor', 'review'], 3: ['name', 'email', 'phone'] };
-    var ALL = ['address', 'owns', 'project_type', 'size_text', 'timing', 'reason', 'contractor', 'other_quotes', 'review', 'name', 'email', 'phone'];
+    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'size_text'], 2: ['timing', 'reason', 'contractor', 'review', 'topo_survey', 'soils_report'], 3: ['name', 'email', 'phone'] };
+    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'size_text', 'timing', 'reason', 'contractor', 'other_quotes', 'review', 'topo_survey', 'soils_report', 'name', 'email', 'phone'];
 
     function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
     function missingIn(step) { return STEP_FIELDS[step].filter(function (k) { return !val(k); }); }
@@ -1099,6 +1123,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       e.preventDefault();
       var d = {};
       ALL.forEach(function (k) { d[k] = val(k); });
+      d.address = [d.street, d.city, d.state].filter(Boolean).join(', ');
       for (var s = 1; s <= 3; s++) {
         var miss = missingIn(s);
         if (s === 3 && d.email.indexOf('@') < 0 && miss.indexOf('email') < 0) miss.push('email');
@@ -1118,10 +1143,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
         body: JSON.stringify({
           page: 'fast-track',
-          name: d.name, email: d.email, phone: d.phone, address: d.address,
+          name: d.name, email: d.email, phone: d.phone,
+          address: d.address, street: d.street, city: d.city, state: d.state,
           owns: d.owns, project_type: d.project_type, size_text: d.size_text,
           timing: d.timing, reason: d.reason, contractor: d.contractor,
           other_quotes: d.other_quotes, review: d.review,
+          topo_survey: d.topo_survey, soils_report: d.soils_report,
           fast_track_pass: pass, lead_quality: tier, lead_score: score,
           fbp: getCookie('_fbp'), fbc: fbc, lead_created_at: String(Math.floor(Date.now() / 1000)),
           utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '', utm_content: attr.utm_content || ''

@@ -93,6 +93,7 @@ const FT_TIMING_LABEL = { within_2_weeks: 'Within 2 weeks', within_month: 'Withi
 const FT_REASON_LABEL = { contractor_waiting: 'Contractor is waiting', moving_in: 'Someone is moving in', loan_sale_deadline: 'Loan or sale deadline', fire_rebuild: 'Fire rebuild', no_deadline: 'No deadline yet' };
 const FT_CONTR_LABEL  = { chosen: 'Chosen', getting_bids: 'Getting bids', not_yet: 'Not yet' };
 const FT_REVIEW_LABEL = { no: 'No', hoa: 'HOA', planning_review: 'Planning review', not_sure: 'Not sure' };
+const FT_DOC_LABEL    = { have_it: 'Has it', need_help: 'Needs help getting it', not_needed: 'Says not needed' };
 
 function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
@@ -201,6 +202,7 @@ module.exports = async (req, res) => {
             ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ') - fast track ' + (scored.pass ? 'PASS' : 'NO PASS')],
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
             ['Address', b.address],
+            ['Street', b.street || '-'], ['City', b.city || '-'], ['State', b.state || '-'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
             ['Size', b.size_text || '-'],
@@ -209,6 +211,8 @@ module.exports = async (req, res) => {
             ['Contractor', FT_CONTR_LABEL[b.contractor] || b.contractor || '-'],
             ['Other quotes', b.other_quotes || '-'],
             ['HOA / review', FT_REVIEW_LABEL[b.review] || b.review || '-'],
+            ['Topographic survey', FT_DOC_LABEL[b.topo_survey] || b.topo_survey || '-'],
+            ['Soils report', FT_DOC_LABEL[b.soils_report] || b.soils_report || '-'],
             srcRow,
           ]
         : [
