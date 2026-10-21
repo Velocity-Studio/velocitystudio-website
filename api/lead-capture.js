@@ -73,7 +73,7 @@ function fastTrackPass(b) {
 function scoreFastTrack(b) {
   const s = (FT_OWNS[b.owns] || 0) + (FT_TYPE[b.project_type] || 0) + (FT_TIMING[b.timing] || 0) + (FT_REASON[b.reason] || 0);
   const pass = fastTrackPass(b);
-  return { score: s, tier: pass ? 'high' : 'mid', pass };
+  return { score: s, tier: outsideCalifornia(b) ? 'low' : pass ? 'high' : 'mid', pass };
 }
 function isFastTrack(b) {
   return b.page === 'fast-track' || b.source === 'fast-track' || (!!b.owns && !!b.project_type && !!b.timing);
@@ -206,7 +206,7 @@ module.exports = async (req, res) => {
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
             ['Address', b.address],
             ['Street', b.street || '-'], ['City', b.city || '-'], ['State', b.state || '-'],
-            ['Service area', outside ? 'OUTSIDE CALIFORNIA - not served, the form stopped at step 1' : 'California'],
+            ['Service area', outside ? 'OUTSIDE CALIFORNIA - declined on the page, no Calendly offered' : 'California'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
             ['Size', b.size_text || '-'],
