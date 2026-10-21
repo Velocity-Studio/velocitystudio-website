@@ -1018,6 +1018,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="qual-footnote" style="text-align:left">Your confirmation email from Calendly has the call details.</p>
         </div>
 
+        <div class="qual-card qual-hidden" id="qualOutOfStateCard">
+          <span class="qual-eyebrow">Thanks</span>
+          <h3 class="qual-title">We only serve California right now.</h3>
+          <p class="qual-sub" style="margin-bottom:12px">Every set we deliver is stamped under a California architect&rsquo;s license, so we cannot take a project in <span id="qualOosState">another state</span> yet. If that changes, this page will say so.</p>
+          <div class="qual-nav"><button type="button" class="btn btn-ghost" id="qualOosBack">Back to the form</button></div>
+        </div>
+
         <div class="qual-card qual-hidden" id="qualNoPassCard">
           <span class="qual-eyebrow">Thanks</span>
           <h3 class="qual-title">Sounds like you are earlier than our fast track is built for.</h3>
@@ -1042,7 +1049,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     reason: { contractor_waiting: 15, moving_in: 15, loan_sale_deadline: 15, fire_rebuild: 15, no_deadline: 0 }
   };
   function ftPass(d) {
-    return (d.owns === 'yes' || d.owns === 'in_contract')
+    return d.state === 'CA'
+      && (d.owns === 'yes' || d.owns === 'in_contract')
       && !!d.project_type && d.project_type !== 'other'
       && (d.timing === 'within_2_weeks' || d.timing === 'within_month')
       && !!d.reason && d.reason !== 'no_deadline';
@@ -1078,12 +1086,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       }
     }
+    // California only: a non-California state ends the form at step 1. No Calendly,
+    // no Meta Lead event, nothing sent to Pipedrive. GA4 gets a non-conversion event.
+    var STATE_NAME = {};
+    form.querySelectorAll('[name="state"] option').forEach(function (o) { if (o.value) STATE_NAME[o.value] = o.textContent; });
+    function inCalifornia() { return val('state') === 'CA'; }
+    function outOfState() {
+      var st = val('state');
+      var el = document.getElementById('qualOosState');
+      if (el) el.textContent = STATE_NAME[st] || 'another state';
+      if (typeof gtag === 'function') gtag('event', 'qualify_out_of_state', { state: st });
+      show('qualOutOfStateCard');
+    }
+    var oosBack = document.getElementById('qualOosBack');
+    if (oosBack) oosBack.addEventListener('click', function () {
+      show('qualFormCard'); showStep(1);
+      var s = form.querySelector('[name="state"]'); if (s) s.focus({ preventScroll: true });
+    });
+
     form.querySelectorAll('[data-next]').forEach(function (b) {
       b.addEventListener('click', function () {
         var cur = parseInt(b.closest('.qstep').dataset.step, 10);
         var miss = missingIn(cur);
         flagError(cur, miss);
-        if (!miss.length) showStep(parseInt(b.dataset.next, 10));
+        if (miss.length) return;
+        if (cur === 1 && !inCalifornia()) { outOfState(); return; }
+        showStep(parseInt(b.dataset.next, 10));
       });
     });
     form.querySelectorAll('[data-back]').forEach(function (b) {
@@ -1093,7 +1121,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function getCookie(n) { return (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || ''; }
 
     function show(id) {
-      ['qualFormCard', 'qualPassCard', 'qualBookedCard', 'qualNoPassCard'].forEach(function (k) {
+      ['qualFormCard', 'qualPassCard', 'qualBookedCard', 'qualNoPassCard', 'qualOutOfStateCard'].forEach(function (k) {
         var el = document.getElementById(k);
         if (!el) return;
         if (k === id) { el.classList.remove('qual-hidden'); el.classList.add('qual-fade-in'); }
@@ -1130,6 +1158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (miss.length) { showStep(s); flagError(s, miss); return; }
       }
       flagError(3, []);
+      if (!inCalifornia()) { outOfState(); return; }
 
       var pass = ftPass(d), score = ftScore(d), tier = ftTier(d);
 

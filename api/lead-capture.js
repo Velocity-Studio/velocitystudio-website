@@ -62,8 +62,10 @@ const FT_TYPE   = { detached_adu: 25, attached_adu: 25, garage_conversion: 25, r
 const FT_TIMING = { within_2_weeks: 30, within_month: 25, '1_3_months': 10, not_sure: 0 };
 const FT_REASON = { contractor_waiting: 15, moving_in: 15, loan_sale_deadline: 15, fire_rebuild: 15, no_deadline: 0 };
 
+function outsideCalifornia(b) { return !!b.state && String(b.state).trim().toUpperCase() !== 'CA'; }
 function fastTrackPass(b) {
-  return (b.owns === 'yes' || b.owns === 'in_contract')
+  return !outsideCalifornia(b)
+    && (b.owns === 'yes' || b.owns === 'in_contract')
     && !!b.project_type && b.project_type !== 'other'
     && (b.timing === 'within_2_weeks' || b.timing === 'within_month')
     && !!b.reason && b.reason !== 'no_deadline';
@@ -150,6 +152,7 @@ module.exports = async (req, res) => {
   // Which caller: fast-track homeowner form, developer form, or legacy /start
   // (which sends only a precomputed lead_quality).
   const fast = isFastTrack(b);
+  const outside = fast && outsideCalifornia(b);
   const hasDev = !fast && !!(b.role && b.size);
   const hasRaw = fast || hasDev;
   const scored = fast ? scoreFastTrack(b) : hasDev ? scoreLead(b) : { score: b.lead_score || '', tier: b.lead_quality || '' };
@@ -203,6 +206,7 @@ module.exports = async (req, res) => {
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
             ['Address', b.address],
             ['Street', b.street || '-'], ['City', b.city || '-'], ['State', b.state || '-'],
+            ['Service area', outside ? 'OUTSIDE CALIFORNIA - not served, the form stopped at step 1' : 'California'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
             ['Size', b.size_text || '-'],
@@ -231,7 +235,7 @@ module.exports = async (req, res) => {
       const crmLine = personId
         ? 'Pipedrive person #' + personId + '.'
         : 'WARNING: the Pipedrive write FAILED (search ' + diag.searchStatus + ' / create ' + diag.createStatus + ') - PIPEDRIVE_TOKEN is probably not set for this environment. The lead is captured in this email only.';
-      const subj = (fast ? 'Fast-track lead [' : 'New lead [') + (tier || '?').toUpperCase() + (fast ? (scored.pass ? ' PASS' : ' NO PASS') : '') + ']: ' + (b.name || email) + ' - ' + (b.address || '');
+      const subj = (fast ? 'Fast-track lead [' : 'New lead [') + (tier || '?').toUpperCase() + (fast ? (scored.pass ? ' PASS' : outside ? ' OUT OF STATE' : ' NO PASS') : '') + ']: ' + (b.name || email) + ' - ' + (b.address || '');
       const emailRes = await sendEmail(subj,
         '<h2 style="margin:0 0 8px">' + esc(formName) + ' - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (fast ? (scored.pass ? ' &middot; fast track pass' : ' &middot; no pass') : (wf ? '' : ' &middot; needs more info')) + '</h2>'
         + '<table cellpadding="4" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">'
