@@ -6,14 +6,16 @@
 // Three callers:
 //   - /start (legacy): sends email + attribution + a client-computed lead_quality.
 //   - developer form (/developers, role/size/urgency/scope): developer scoring below.
-//   - fast-track homeowner form (/, page: 'fast-track', owns/project_type/timing/
-//     reason): pass rule scoring below. High when the lead passes, mid otherwise.
+//   - homepage homeowner form (/, page: 'fast-track', owns/project_type/start/
+//     blocker/help): tier rule below. California leads are then forwarded to the
+//     secretary server, which researches them and drafts Richman's reply.
 // When raw fields are present we recompute the score AUTHORITATIVELY here,
 // write a Pipedrive Note, and email Richman.
 //
 // Dependency-free: Node built-ins only. Email via Resend REST (no SDK).
 
 const https = require('https');
+const crypto = require('crypto');
 
 const PD_TOKEN = process.env.PIPEDRIVE_TOKEN;
 const RESEND_KEY = process.env.RESEND_API_KEY;                       // optional; email no-ops until set
@@ -52,31 +54,63 @@ function scoreLead(b) {
   return { score: s, tier };
 }
 
-// ─── Fast-track (homeowner) scoring, mirror of the client weights in index.html ─
-// Pass rule (scaffold section 8, item 10): owns or in contract; structure type is
-// one of the three tiers; wants to submit within a month; a timing reason other
-// than "no deadline yet". Address clearance happens in pre-call parcel research,
-// not here. A pass is "high"; anything else from this page is "mid".
-const FT_OWNS   = { yes: 30, in_contract: 25, no: 0 };
-const FT_TYPE   = { detached_adu: 25, attached_adu: 25, garage_conversion: 25, renovation_addition: 25, new_home_duplex: 25, other: 0 };
-const FT_TIMING = { within_2_weeks: 30, within_month: 25, '1_3_months': 10, not_sure: 0 };
-const FT_REASON = { contractor_waiting: 15, moving_in: 15, loan_sale_deadline: 15, fire_rebuild: 15, no_deadline: 0 };
+// ─── Homepage (homeowner) scoring, mirror of the client weights in index.html ─
+// High = in California, owns or in contract, a listed building type, wants to
+// start within 3 months, and nothing has to happen first. Anything else in
+// California is "mid"; out of state is "low". The Oct 20 form's fields (timing /
+// reason) are mapped onto start / blocker so a cached old page still scores.
+const FT_OWNS    = { yes: 30, in_contract: 25, no: 0 };
+const FT_TYPE    = { detached_adu: 25, attached_adu: 25, garage_conversion: 25, renovation_addition: 25, new_home_duplex: 25, other: 0 };
+const FT_START   = { asap: 30, '1_3_months': 20, '3_6_months': 10, later_or_unsure: 0 };
+const FT_BLOCKER = { ready_contractor: 15, ready: 12, closing: 8, financing: 5, other: 3, deciding: 0 };
+const OLD_TIMING = { within_2_weeks: 'asap', within_month: 'asap', '1_3_months': '1_3_months', not_sure: 'later_or_unsure' };
+const OLD_REASON = { contractor_waiting: 'ready_contractor', moving_in: 'ready', loan_sale_deadline: 'ready', fire_rebuild: 'ready', no_deadline: 'deciding' };
 
 function outsideCalifornia(b) { return !!b.state && String(b.state).trim().toUpperCase() !== 'CA'; }
-function fastTrackPass(b) {
+function ftStart(b) { return b.start || OLD_TIMING[b.timing] || ''; }
+function ftBlocker(b) { return b.blocker || OLD_REASON[b.reason] || ''; }
+function fastTrackHigh(b) {
   return !outsideCalifornia(b)
     && (b.owns === 'yes' || b.owns === 'in_contract')
     && !!b.project_type && b.project_type !== 'other'
-    && (b.timing === 'within_2_weeks' || b.timing === 'within_month')
-    && !!b.reason && b.reason !== 'no_deadline';
+    && (ftStart(b) === 'asap' || ftStart(b) === '1_3_months')
+    && (ftBlocker(b) === 'ready' || ftBlocker(b) === 'ready_contractor');
 }
 function scoreFastTrack(b) {
-  const s = (FT_OWNS[b.owns] || 0) + (FT_TYPE[b.project_type] || 0) + (FT_TIMING[b.timing] || 0) + (FT_REASON[b.reason] || 0);
-  const pass = fastTrackPass(b);
+  const s = (FT_OWNS[b.owns] || 0) + (FT_TYPE[b.project_type] || 0) + (FT_START[ftStart(b)] || 0) + (FT_BLOCKER[ftBlocker(b)] || 0);
+  const pass = fastTrackHigh(b);
   return { score: s, tier: outsideCalifornia(b) ? 'low' : pass ? 'high' : 'mid', pass };
 }
 function isFastTrack(b) {
-  return b.page === 'fast-track' || b.source === 'fast-track' || (!!b.owns && !!b.project_type && !!b.timing);
+  return b.page === 'fast-track' || b.source === 'fast-track' || (!!b.owns && !!b.project_type && !!(b.start || b.timing));
+}
+
+// ─── Forward to the secretary server, which researches the lead and drafts
+// Richman's reply (Gmail draft + review email; nothing is sent to the lead).
+// Awaited with a short timeout so the serverless function does not exit first;
+// the secretary answers 202 immediately and does the work in the background.
+const SECRETARY_URL    = process.env.SECRETARY_URL;              // e.g. https://<service>.up.railway.app
+const SECRETARY_SECRET = process.env.SECRETARY_SITE_LEAD_SECRET; // matches SITE_LEAD_SECRET on Railway
+
+function forwardToSecretary(payload) {
+  return new Promise((resolve) => {
+    if (!SECRETARY_URL || !SECRETARY_SECRET) { resolve({ skipped: 'not configured' }); return; }
+    // Never throws: a forwarding problem must not fail the lead capture itself.
+    try {
+      const data = JSON.stringify(payload);
+      const url = new URL('/webhook/site-lead', SECRETARY_URL);
+      const mod = url.protocol === 'http:' ? require('http') : https; // http only for local testing
+      const req = mod.request(url, {
+        method: 'POST', timeout: 6000,
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), 'x-vs-secret': SECRETARY_SECRET },
+      }, (r) => { r.resume(); r.on('end', () => resolve({ status: r.statusCode })); });
+      req.on('timeout', () => { req.destroy(); resolve({ error: 'timeout' }); });
+      req.on('error', (e) => resolve({ error: String(e.message || e) }));
+      req.write(data); req.end();
+    } catch (e) {
+      resolve({ error: String(e.message || e) });
+    }
+  });
 }
 
 // Rough well-formedness gate (a proper LLM judge comes later, server-side).
@@ -91,6 +125,10 @@ const SIZE_LABEL = { res_addition_adu: 'Addition / alteration / ADU', res_new_1u
 const URG_LABEL  = { behind_0_1: 'ASAP - already behind', fast_1_3: 'Fast (1-3 mo)', regular_3_6: 'Regular (3-6 mo)', slow_6_12: 'Slower (6-12 mo)', brainstorm: 'Just exploring' };
 const FT_OWNS_LABEL   = { yes: 'Owns', in_contract: 'In contract', no: 'Does not own' };
 const FT_TYPE_LABEL   = { detached_adu: 'Detached ADU or JADU', attached_adu: 'Attached ADU', garage_conversion: 'Garage conversion', renovation_addition: 'Interior renovation or addition', new_home_duplex: 'New home or duplex', other: 'Something else' };
+const FT_DETAIL_LABEL = { flat: 'Backyard flat', gentle: 'Backyard gently sloped', steep: 'Backyard steep', shares_yes: 'Shares stairs, a door, or heating with the house', shares_no: 'Does not share stairs, doors, or heating', new_space: 'New space', attached_yes: 'Garage attached', attached_no: 'Garage detached', adding: 'Adding square footage', inside_only: 'Inside changes only', vacant: 'Vacant lot', teardown: 'Replacing a house', fire_rebuild: 'Fire rebuild' };
+const FT_START_LABEL   = { asap: 'Right away', '1_3_months': 'In 1 to 3 months', '3_6_months': 'In 3 to 6 months', later_or_unsure: 'Later, or not sure' };
+const FT_BLOCKER_LABEL = { ready: 'Nothing, ready', ready_contractor: 'Nothing, contractor ready', financing: 'Financing', closing: 'Closing on the property', deciding: 'Deciding if it is worth it', other: 'Something else' };
+const FT_HELP_LABEL    = { cost: 'Cost ballpark', plan: 'Step-by-step plan', economics: 'Rent vs sell math', hire: 'Ready to start a permit set' };
 const FT_TIMING_LABEL = { within_2_weeks: 'Within 2 weeks', within_month: 'Within a month', '1_3_months': '1 to 3 months', not_sure: 'Not sure' };
 const FT_REASON_LABEL = { contractor_waiting: 'Contractor is waiting', moving_in: 'Someone is moving in', loan_sale_deadline: 'Loan or sale deadline', fire_rebuild: 'Fire rebuild', no_deadline: 'No deadline yet' };
 const FT_CONTR_LABEL  = { chosen: 'Chosen', getting_bids: 'Getting bids', not_yet: 'Not yet' };
@@ -200,25 +238,29 @@ module.exports = async (req, res) => {
     if (hasRaw) {
       const wf = fast ? true : wellFormed(b);
       const srcRow = ['Source', [b.utm_source, b.utm_medium, b.utm_campaign, b.utm_content].filter(Boolean).join(' / ') || 'direct'];
+      const help = Array.isArray(b.help) ? b.help : (b.help ? String(b.help).split(',') : []);
       const rows = fast
         ? [
-            ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ') - fast track ' + (scored.pass ? 'PASS' : 'NO PASS')],
+            ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (scored.pass ? ' - ready now' : '')],
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
             ['Address', b.address],
-            ['Street', b.street || '-'], ['City', b.city || '-'], ['State', b.state || '-'],
-            ['Service area', outside ? 'OUTSIDE CALIFORNIA - declined on the page, no Calendly offered' : 'California'],
+            ['Service area', outside ? 'OUTSIDE CALIFORNIA - declined on the page, no research' : 'California - reply draft is being researched'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
+            ['Detail', FT_DETAIL_LABEL[b.detail] || b.detail || '-'],
             ['Size', b.size_text || '-'],
-            ['Submit by', FT_TIMING_LABEL[b.timing] || b.timing],
-            ['Timing reason', FT_REASON_LABEL[b.reason] || b.reason],
-            ['Contractor', FT_CONTR_LABEL[b.contractor] || b.contractor || '-'],
-            ['Other quotes', b.other_quotes || '-'],
-            ['HOA / review', FT_REVIEW_LABEL[b.review] || b.review || '-'],
-            ['Topographic survey', FT_DOC_LABEL[b.topo_survey] || b.topo_survey || '-'],
-            ['Soils report', FT_DOC_LABEL[b.soils_report] || b.soils_report || '-'],
-            srcRow,
-          ]
+            ['Wants help with', help.map((h) => FT_HELP_LABEL[h] || h).join(', ') || '-'],
+            ['Start building', FT_START_LABEL[b.start] || b.start || '-'],
+            ['Has to happen first', FT_BLOCKER_LABEL[b.blocker] || b.blocker || '-'],
+            ['Notes', b.notes || '-'],
+          ].concat(b.timing ? [ // Oct 20 form fields, if a cached old page sent them
+            ['Submit by (old form)', FT_TIMING_LABEL[b.timing] || b.timing],
+            ['Timing reason (old form)', FT_REASON_LABEL[b.reason] || b.reason || '-'],
+            ['Contractor (old form)', FT_CONTR_LABEL[b.contractor] || b.contractor || '-'],
+            ['HOA / review (old form)', FT_REVIEW_LABEL[b.review] || b.review || '-'],
+            ['Topographic survey (old form)', FT_DOC_LABEL[b.topo_survey] || b.topo_survey || '-'],
+            ['Soils report (old form)', FT_DOC_LABEL[b.soils_report] || b.soils_report || '-'],
+          ] : []).concat([srcRow])
         : [
             ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (wf ? '' : ' - NEEDS MORE INFO')],
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
@@ -235,13 +277,35 @@ module.exports = async (req, res) => {
       const crmLine = personId
         ? 'Pipedrive person #' + personId + '.'
         : 'WARNING: the Pipedrive write FAILED (search ' + diag.searchStatus + ' / create ' + diag.createStatus + ') - PIPEDRIVE_TOKEN is probably not set for this environment. The lead is captured in this email only.';
-      const subj = (fast ? 'Fast-track lead [' : 'New lead [') + (tier || '?').toUpperCase() + (fast ? (scored.pass ? ' PASS' : outside ? ' OUT OF STATE' : ' NO PASS') : '') + ']: ' + (b.name || email) + ' - ' + (b.address || '');
+      const subj = (fast ? 'Homepage lead [' : 'New lead [') + (tier || '?').toUpperCase() + (fast && outside ? ' OUT OF STATE' : '') + ']: ' + (b.name || email) + ' - ' + (b.address || '');
       const emailRes = await sendEmail(subj,
-        '<h2 style="margin:0 0 8px">' + esc(formName) + ' - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (fast ? (scored.pass ? ' &middot; fast track pass' : ' &middot; no pass') : (wf ? '' : ' &middot; needs more info')) + '</h2>'
+        '<h2 style="margin:0 0 8px">' + esc(formName) + ' - ' + esc((tier || '').toUpperCase()) + ' (score ' + scored.score + ')' + (fast ? (scored.pass ? ' &middot; ready now' : '') : (wf ? '' : ' &middot; needs more info')) + '</h2>'
         + '<table cellpadding="4" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">'
         + rows.slice(1).map((r) => '<tr><td style="color:#6B6560">' + esc(r[0]) + '</td><td><b>' + esc(r[1]) + '</b></td></tr>').join('')
-        + '</table><p style="font-family:Arial,sans-serif;font-size:13px;color:#6B6560">' + esc(crmLine) + ' Reply within one business day.</p>');
+        + '</table><p style="font-family:Arial,sans-serif;font-size:13px;color:#6B6560">' + esc(crmLine)
+        + (fast && !outside ? ' A researched reply draft will land in your Gmail drafts in a few minutes, with a separate review email.' : '')
+        + ' Reply within one business day.</p>');
       diag.email = emailRes.skipped ? 'skipped(no RESEND_API_KEY)' : (emailRes.error ? 'error' : (emailRes.status || 'sent'));
+
+      // California homepage leads: hand off to the secretary for the researched reply.
+      if (fast && !outside) {
+        const fwd = await forwardToSecretary({
+          submission_id: crypto.createHash('sha256').update(email + '|' + (b.lead_created_at || '')).digest('hex').slice(0, 32),
+          received_at: new Date().toISOString(),
+          tier, score: scored.score, pipedrive_person_id: personId,
+          utm: { utm_source: b.utm_source || '', utm_medium: b.utm_medium || '', utm_campaign: b.utm_campaign || '', utm_content: b.utm_content || '' },
+          lead: { name: b.name || '', email, phone: b.phone || '' },
+          project: {
+            street: b.street || '', city: b.city || '', state: b.state || '', address: b.address || '',
+            owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', size_text: b.size_text || '',
+            start: b.start || '', blocker: b.blocker || '', help, notes: b.notes || '',
+            // Oct 20 form fields, if a cached old page sent them
+            timing: b.timing || '', reason: b.reason || '', contractor: b.contractor || '', review: b.review || '',
+            topo_survey: b.topo_survey || '', soils_report: b.soils_report || '', other_quotes: b.other_quotes || '',
+          },
+        });
+        diag.forward = fwd.status || fwd.error || fwd.skipped;
+      }
     }
 
     console.log('lead-capture', JSON.stringify(diag));
