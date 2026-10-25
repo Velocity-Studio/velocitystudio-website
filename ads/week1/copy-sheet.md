@@ -95,3 +95,4 @@ Photographic layers come from Gemini via `scripts/gen-images.py` (prompt blocks 
 - Tests: cost of delay against I1's cost of the drawings. Expect more volume from the "no deadline yet" crowd.
 
 - In Ads Manager (2026-10-24, paused, same ad set 120248961390240532): A `120249014782100532` creative `28953444324295529`; B `120249014782530532` creative `40717370427861754`. Placement mapping as the week-one ads.
+- Ads A and B activated 2026-10-24 through the connector; six ads now share the $100/day campaign budget.
