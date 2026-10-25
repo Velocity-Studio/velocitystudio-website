@@ -311,7 +311,111 @@ def build_I2(ratio):
     save(img, OUT / f'I2-{ratio}.jpg')
 
 
-BUILDERS = {'V1': build_V1, 'V2': build_V2, 'I1': build_I1, 'I2': build_I2}
+def photo_top(img, path, frac, anchor=0.5):
+    """Paste a cover-fitted photo into the top `frac` of the canvas and fade its bottom into the card color.
+    anchor 0 keeps the top of the photo, 1 the bottom."""
+    w, h = img.size; ph = int(h * frac)
+    src = Image.open(path).convert('RGB')
+    s_ = max(w / src.width, ph / src.height)
+    src = src.resize((int(src.width * s_) + 1, int(src.height * s_) + 1), Image.LANCZOS)
+    oy = int((src.height - ph) * anchor); ox = (src.width - w) // 2
+    ph_img = src.crop((ox, oy, ox + w, oy + ph))
+    img.paste(ph_img, (0, 0))
+    fade_h = int(ph * 0.42)
+    fade = Image.new('L', (w, fade_h), 0)
+    fd = ImageDraw.Draw(fade)
+    for i in range(fade_h):
+        fd.line([(0, i), (w, i)], fill=int(255 * (i / fade_h) ** 1.6))
+    solid = Image.new('RGB', (w, fade_h), img.getpixel((0, h - 1)))
+    img.paste(solid, (0, ph - fade_h), fade)
+    return ph
+
+
+def bubble(img, box_w, text, size, left=True, bg='#2E2E2E', fg=WHITE):
+    """A chat bubble image. Returns an RGBA image sized to its text."""
+    d0 = ImageDraw.Draw(Image.new('RGB', (1, 1)))
+    f = font(size, False)
+    lines = wrap(d0, text, f, box_w - 2 * int(size * 0.9))
+    lh = int(size * 1.25); pad = int(size * 0.8)
+    tw = max(d0.textlength(ln, font=f) for ln in lines)
+    bw, bh = int(tw) + 2 * pad + 8, lh * len(lines) + 2 * pad - int(size * 0.2)
+    bub = Image.new('RGBA', (bw, bh), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(bub)
+    bd.rounded_rectangle((0, 0, bw - 1, bh - 1), radius=int(size * 1.1), fill=bg)
+    # tail
+    if left:
+        bd.polygon([(2, bh - int(size * 1.0)), (-6, bh + 2), (int(size * 0.9), bh - 4)], fill=bg)
+    else:
+        bd.polygon([(bw - 3, bh - int(size * 1.0)), (bw + 5, bh + 2), (bw - int(size * 0.9), bh - 4)], fill=bg)
+    y = pad - int(size * 0.1)
+    for ln in lines:
+        bd.text((pad, y), ln, font=f, fill=fg); y += lh
+    return bub
+
+
+A_TUNE = {'9x16': dict(frac=0.50, k=1.0, anchor=0.18, over=0.85), '4x5': dict(frac=0.42, k=0.88, anchor=0.18, over=0.85), '1x1': dict(frac=0.40, k=0.76, anchor=0.20, over=0.60)}
+
+
+def build_A(ratio):
+    """Ad A: the contractor is waiting. Photo, a two-bubble text thread, the promise, the button."""
+    w, h = RATIOS[ratio]; t = A_TUNE[ratio]; k = t['k']
+    img = canvas(w, h, DARK); d = ImageDraw.Draw(img)
+    x0, y0, x1, y1 = safe(w, h)
+    ph = photo_top(img, HOME / 'ad-contractor.jpg', t['frac'], anchor=t['anchor'])
+    bw = int((x1 - x0) * 0.78); s = int(w * 0.034 * k)
+    b1 = bubble(img, bw, 'Still good for the 15th? I need the stamped set to pull the permit.', s, True, '#3A3A3A')
+    b2 = bubble(img, bw, 'Yes. Velocity Studio has it stamped Friday.', s, False, TEAL)
+    total = b1.height + b2.height + int(s * 0.7)
+    y = ph - int(total * t['over']) - int(s * 0.4)
+    img.paste(b1, (x0, y), b1); y += b1.height + int(s * 0.7)
+    img.paste(b2, (x1 - b2.width, y), b2); y += b2.height + int(w * 0.06 * k)
+    hs = int(w * 0.078 * k)
+    y = draw_block(d, (x0, y, x1, y1), 'Contractor waiting on drawings?', hs, WHITE, y=y)
+    y = draw_block(d, (x0, y + 16, x1, y1), 'Permit-ready in 5 business days.', hs, GOLD_LT, y=y + 16)
+    if ratio != '1x1':  # the square has no room for the paragraph; the headline carries it
+        y = draw_block(d, (x0, y + 30, x1, y1), 'Full permit sets for ADUs and homes under 3,000 sq ft. Structural, MEP, and Title 24 included, stamped by a California licensed architect.', int(w * 0.034 * k), '#D9D4CA', False, y=y + 30)
+    by = min(max(y + 40, y1 - 190), h - 175)
+    button(img, w // 2, by, 'See if you qualify')
+    f2 = font(int(w * 0.03), False)
+    d.text(((w - d.textlength(URL, font=f2)) / 2, by + 134), URL, font=f2, fill='#D9D4CA')
+    save(img, OUT / f'A-contractor-{ratio}.jpg')
+
+
+RENT, MONTHS, LOST = '$2,500', 4, '$10,000'
+
+
+B_TUNE = {'9x16': dict(frac=0.46, k=1.0), '4x5': dict(frac=0.40, k=0.92), '1x1': dict(frac=0.34, k=0.76)}
+
+
+def build_B(ratio):
+    """Ad B: the delay costs more than the drawings. Photo, four months of rent, our price, the button."""
+    w, h = RATIOS[ratio]; t = B_TUNE[ratio]; k = t['k']
+    img = canvas(w, h, FOREST); d = ImageDraw.Draw(img)
+    x0, y0, x1, y1 = safe(w, h)
+    ph = photo_top(img, HOME / 'ad-adu-dusk.jpg', t['frac'], anchor=0.62)
+    y = ph - int(w * 0.10 * k)
+    y = draw_block(d, (x0, y, x1, y1), 'The delay costs more than the drawings.', int(w * 0.076 * k), WHITE, y=y)
+    y += int(w * 0.045 * k)
+    gap = 14; pw = (x1 - x0 - gap * (MONTHS - 1)) // MONTHS; pH = int(w * 0.13 * k)
+    fm, fr = font(int(w * 0.026 * k), False), font(int(w * 0.04 * k))
+    for i in range(MONTHS):
+        px = x0 + i * (pw + gap)
+        d.rounded_rectangle((px, y, px + pw, y + pH), radius=14, fill='#0F221B', outline='#2A4A3E', width=2)
+        d.text((px + 16, y + 10), f'Month {i + 1}', font=fm, fill='#9FB8AE')
+        d.text((px + 16, y + pH - int(w * 0.04 * k) - 12), f'-{RENT}', font=fr, fill=GOLD_LT)
+    y += pH + int(w * 0.03 * k)
+    y = draw_block(d, (x0, y, x1, y1), f'Four months with a slow drafter: about {LOST} in rent you never collect.', int(w * 0.036 * k), GOLD_LT, True, y=y)
+    y += int(w * 0.035 * k)
+    d.line([(x0, y), (x1, y)], fill='#2A4A3E', width=2); y += int(w * 0.035 * k)
+    y = draw_block(d, (x0, y, x1, y1), 'Our permit set: from $6,000, stamped in 5 business days.', int(w * 0.044 * k), TEAL_LT, True, y=y)
+    by = min(max(y + 40, y1 - 190), h - 175)
+    button(img, w // 2, by, 'See if you qualify')
+    f2 = font(int(w * 0.03), False)
+    d.text(((w - d.textlength(URL, font=f2)) / 2, by + 134), URL, font=f2, fill='#D9D4CA')
+    save(img, OUT / f'B-delay-{ratio}.jpg')
+
+
+BUILDERS = {'V1': build_V1, 'V2': build_V2, 'I1': build_I1, 'I2': build_I2, 'A': build_A, 'B': build_B}
 
 if __name__ == '__main__':
     OUT.mkdir(parents=True, exist_ok=True)

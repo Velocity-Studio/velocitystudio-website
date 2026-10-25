@@ -213,3 +213,15 @@ Attach three to five of the reference frames at once and use: "Create a professi
 
 ### Fit with the rest of the site
 The bio slot sits in the solution section on a white card. Warm neutral background and soft daylight match the generated scenes without any brand-color instruction. Target 1200 x 1500, JPG, about 200 KB.
+
+---
+
+## Ad photography (week two image ads)
+
+Photographic layers for the week-two Meta image ads. The build script lays the copy, chat bubbles, and price math over these in Pillow, so the images must carry no text and leave the lower half quiet. Same generation rules as the hero renderings: real camera, real light, plausible architecture, no stylized grading.
+
+### ad-contractor.jpg · 4:5
+Documentary photograph, full-frame camera, 35mm lens, natural late-morning light, shot from slightly below eye level. A general contractor in his mid-forties, work shirt with rolled sleeves, tool belt, sun-weathered, stands inside the freshly framed shell of a small detached backyard ADU under construction in a California suburb: raw Douglas fir studs and top plates, a stack of plywood, a level leaning on a stud, the finished main house visible through the framing behind him. He is looking down at the phone in his hand with a patient but slightly tired expression, clearly waiting on someone. He fills the upper left of the frame; the lower third of the frame is uncluttered framing lumber and the dirt pad, in soft shadow, so copy can be laid over it. No other people, no text, logos, or watermarks. True-to-life colors, no stylized grading. 4:5 aspect.
+
+### ad-adu-dusk.jpg · 4:5
+Architectural photograph at blue hour, full-frame camera, 24mm tilt-shift lens, straight verticals, tripod exposure. A finished detached one-bedroom ADU of about 600 square feet in a California backyard: simple gabled form, smooth light-grey stucco, a dark standing-seam roof, one large window and a glazed entry door glowing with warm interior light, a small concrete patio with two chairs and a potted olive tree, a strand of string lights to a fence post, the darker main house partly visible at the frame edge. Deep blue sky, warm light spilling onto the patio, a plausible lawn and a gravel path. The building must make architectural sense and look like something a city would permit. Keep the lower third of the frame as quiet lawn and patio in shadow so copy can be laid over it. No people, no text, logos, or watermarks. True-to-life colors. 4:5 aspect.

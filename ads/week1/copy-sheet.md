@@ -70,3 +70,26 @@ Files in this folder: `V1-*.mp4`, `V2-*.mp4`, `I1-adu-*.jpg`, `I1-house-*.jpg`, 
 - AI disclosure was not declared (field omitted). I1-house is uploaded to the media library but has no ad.
 
 - Launched 2026-10-21 about 12:30 PT through the connector: campaign, ad set and all four ads ACTIVE, ads in Meta review. Location targeting is Meta's current default (living in or recently in California); editing the ad set's locations in Ads Manager trips error 1870194, so make targeting edits through the connector.
+
+---
+
+## Week two additions (built 2026-10-24)
+
+Photographic layers come from Gemini via `scripts/gen-images.py` (prompt blocks at the end of `docs/homepage-image-prompts.md`, files `images/home/ad-contractor.jpg` and `images/home/ad-adu-dusk.jpg`); the cards are composed by `scripts/build-ads.py A B`.
+
+## A · Your contractor has a start date (image, persona pain)
+
+- Primary text: If your builder has a start date and you still do not have a stamped set, you are the person we built this for. Full permit sets for ADUs and homes under 3,000 sq ft in one to two weeks, with structural, MEP and Title 24 included, so the permit pull is not waiting on anyone else. Two minutes to see if your lot qualifies.
+- Headline: Drawings before your contractor's start date.
+- Description: Stamped set in 5 to 10 business days.
+- URL: https://velocitystud.io/?utm_source=meta&utm_medium=paid&utm_campaign=fasttrack-w1&utm_content=A-contractor
+- Tests: a named situation against I1 and I2's general audience. Expect fewer clicks and a higher pass rate.
+
+## B · The delay costs more than the drawings (image, magnitude in dollars)
+
+- Primary text: A detached ADU in most California cities rents for $2,000 to $3,500 a month. Every month your drawings sit with a slow drafter is a month of that rent gone, and most drafters take three to four months. We deliver a stamped, permit-ready set in 5 business days for a small ADU, 10 for a house, priced by size from $6,000. The drawings cost less than the delay. Two minutes to see if your lot qualifies.
+- Headline: The delay costs more than the drawings.
+- Description: ADU permit sets from $6,000 in 5 days.
+- URL: https://velocitystud.io/?utm_source=meta&utm_medium=paid&utm_campaign=fasttrack-w1&utm_content=B-delay
+- Rent figures: $2,500 a month typical, $10,000 over four months. 2026 sources put detached California ADU rents at roughly $2,200 to $4,000 statewide, with HUD fair market rent for a Los Angeles one-bedroom at $2,328, so $2,500 is conservative. Copy says "most California cities" and never promises income.
+- Tests: cost of delay against I1's cost of the drawings. Expect more volume from the "no deadline yet" crowd.
