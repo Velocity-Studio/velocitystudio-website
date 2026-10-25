@@ -93,3 +93,5 @@ Photographic layers come from Gemini via `scripts/gen-images.py` (prompt blocks 
 - URL: https://velocitystud.io/?utm_source=meta&utm_medium=paid&utm_campaign=fasttrack-w1&utm_content=B-delay
 - Rent figures: $2,500 a month typical, $10,000 over four months. 2026 sources put detached California ADU rents at roughly $2,200 to $4,000 statewide, with HUD fair market rent for a Los Angeles one-bedroom at $2,328, so $2,500 is conservative. Copy says "most California cities" and never promises income.
 - Tests: cost of delay against I1's cost of the drawings. Expect more volume from the "no deadline yet" crowd.
+
+- In Ads Manager (2026-10-24, paused, same ad set 120248961390240532): A `120249014782100532` creative `28953444324295529`; B `120249014782530532` creative `40717370427861754`. Placement mapping as the week-one ads.
