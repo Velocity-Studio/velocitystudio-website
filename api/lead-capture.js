@@ -125,7 +125,7 @@ const SIZE_LABEL = { res_addition_adu: 'Addition / alteration / ADU', res_new_1u
 const URG_LABEL  = { behind_0_1: 'ASAP - already behind', fast_1_3: 'Fast (1-3 mo)', regular_3_6: 'Regular (3-6 mo)', slow_6_12: 'Slower (6-12 mo)', brainstorm: 'Just exploring' };
 const FT_OWNS_LABEL   = { yes: 'Owns', in_contract: 'In contract', no: 'Does not own' };
 const FT_TYPE_LABEL   = { detached_adu: 'Detached ADU or JADU', attached_adu: 'Attached ADU', garage_conversion: 'Garage conversion', renovation_addition: 'Interior renovation or addition', new_home_duplex: 'New home or duplex', other: 'Something else' };
-const FT_DETAIL_LABEL = { flat: 'Backyard flat', gentle: 'Backyard gently sloped', steep: 'Backyard steep', shares_yes: 'Shares stairs, a door, or heating with the house', shares_no: 'Does not share stairs, doors, or heating', new_space: 'New space', attached_yes: 'Garage attached', attached_no: 'Garage detached', adding: 'Adding square footage', inside_only: 'Inside changes only', vacant: 'Vacant lot', teardown: 'Replacing a house', fire_rebuild: 'Fire rebuild' };
+const FT_DETAIL_LABEL = { flat: 'Backyard flat', gentle: 'Backyard gently sloped', steep: 'Backyard steep', shares_yes: 'Shares stairs, a door, or heating with the house', shares_no: 'Does not share stairs, doors, or heating', new_space: 'New space', interior_all: 'ADU is all inside the house today', interior_part: 'ADU is partly inside the house, partly new space', interior_none: 'ADU is all new space (addition)', attached_yes: 'Garage attached', attached_no: 'Garage detached', adding: 'Adding square footage', inside_only: 'Inside changes only', vacant: 'Vacant lot', teardown: 'Replacing a house', fire_rebuild: 'Fire rebuild' };
 const FT_START_LABEL   = { asap: 'Right away', '1_3_months': 'In 1 to 3 months', '3_6_months': 'In 3 to 6 months', later_or_unsure: 'Later, or not sure' };
 const FT_BLOCKER_LABEL = { ready: 'Nothing, ready', ready_contractor: 'Nothing, contractor ready', financing: 'Financing', closing: 'Closing on the property', deciding: 'Deciding if it is worth it', other: 'Something else' };
 const FT_HELP_LABEL    = { cost: 'Cost ballpark', plan: 'Step-by-step plan', economics: 'Rent vs sell math', hire: 'Ready to start a permit set' };
@@ -248,6 +248,7 @@ module.exports = async (req, res) => {
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
             ['Detail', FT_DETAIL_LABEL[b.detail] || b.detail || '-'],
+            ['Stories', b.stories === 'two' ? 'Two' : b.stories === 'one' ? 'One' : '-'],
             ['Size', b.size_text || '-'],
             ['Wants help with', help.map((h) => FT_HELP_LABEL[h] || h).join(', ') || '-'],
             ['Start building', FT_START_LABEL[b.start] || b.start || '-'],
@@ -297,7 +298,7 @@ module.exports = async (req, res) => {
           lead: { name: b.name || '', email, phone: b.phone || '' },
           project: {
             street: b.street || '', city: b.city || '', state: b.state || '', address: b.address || '',
-            owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', size_text: b.size_text || '',
+            owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', stories: b.stories || '', size_text: b.size_text || '',
             start: b.start || '', blocker: b.blocker || '', help, notes: b.notes || '',
             // Oct 20 form fields, if a cached old page sent them
             timing: b.timing || '', reason: b.reason || '', contractor: b.contractor || '', review: b.review || '',

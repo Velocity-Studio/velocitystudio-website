@@ -917,11 +917,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
               <div class="qual-field detail-group qual-hidden" data-for="attached_adu">
-                <span class="qual-label">Does the space share stairs, a door, or heating with the house today?</span>
+                <span class="qual-label">How much of the ADU is inside the house today?</span>
                 <div class="opts opts-3">
-                  <label class="qual-opt"><input type="radio" name="detail" value="shares_yes" /> Yes</label>
-                  <label class="qual-opt"><input type="radio" name="detail" value="shares_no" /> No</label>
-                  <label class="qual-opt"><input type="radio" name="detail" value="new_space" /> It is new space</label>
+                  <label class="qual-opt"><input type="radio" name="detail" value="interior_all" /> All of it</label>
+                  <label class="qual-opt"><input type="radio" name="detail" value="interior_part" /> Part of it</label>
+                  <label class="qual-opt"><input type="radio" name="detail" value="interior_none" /> None, all new space</label>
                 </div>
               </div>
               <div class="qual-field detail-group qual-hidden" data-for="garage_conversion">
@@ -944,6 +944,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <label class="qual-opt"><input type="radio" name="detail" value="vacant" /> Nothing, vacant</label>
                   <label class="qual-opt"><input type="radio" name="detail" value="teardown" /> A house we will replace</label>
                   <label class="qual-opt"><input type="radio" name="detail" value="fire_rebuild" /> Fire rebuild</label>
+                </div>
+              </div>
+              <!-- Shown only when the project builds new space -->
+              <div class="qual-field stories-group qual-hidden">
+                <span class="qual-label">One story or two?</span>
+                <div class="opts">
+                  <label class="qual-opt"><input type="radio" name="stories" value="one" /> One story</label>
+                  <label class="qual-opt"><input type="radio" name="stories" value="two" /> Two stories</label>
                 </div>
               </div>
               <div class="qual-field">
@@ -1055,15 +1063,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!form) return;
     var bar = document.getElementById('qualProgress');
     var stepLabel = document.getElementById('qualStepLabel');
-    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'size_text'], 2: ['help', 'start', 'blocker', 'name', 'email'] };
-    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'size_text', 'start', 'blocker', 'name', 'email', 'phone', 'notes'];
+    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text'], 2: ['help', 'start', 'blocker', 'name', 'email'] };
+    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'start', 'blocker', 'name', 'email', 'phone', 'notes'];
 
     function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
     function vals(k) { return new FormData(form).getAll(k).map(function (v) { return (v + '').trim(); }).filter(Boolean); }
     function detailGroup() { return form.querySelector('.detail-group[data-for="' + val('project_type') + '"]'); }
+    // Stories matter only when the project builds new space.
+    function needsStories() {
+      var t = val('project_type'), d = val('detail');
+      return t === 'detached_adu' || t === 'new_home_duplex'
+        || (t === 'attached_adu' && (d === 'interior_part' || d === 'interior_none'))
+        || (t === 'renovation_addition' && d === 'adding');
+    }
+    function syncStories() {
+      var g = form.querySelector('.stories-group');
+      var on = needsStories();
+      if (g) g.classList.toggle('qual-hidden', !on);
+      if (!on) form.querySelectorAll('[name="stories"]').forEach(function (x) { x.checked = false; });
+    }
     function missingIn(step) {
       return STEP_FIELDS[step].filter(function (k) {
         if (k === 'detail') return !!detailGroup() && !val('detail');
+        if (k === 'stories') return needsStories() && !val('stories');
         if (k === 'help') return !vals('help').length;
         if (k === 'email') return val('email').indexOf('@') < 0;
         return !val(k);
@@ -1090,8 +1112,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       r.addEventListener('change', function () {
         form.querySelectorAll('[name="detail"]').forEach(function (x) { x.checked = false; });
         form.querySelectorAll('.detail-group').forEach(function (g) { g.classList.toggle('qual-hidden', g.dataset.for !== r.value); });
+        syncStories();
       });
     });
+    form.querySelectorAll('[name="detail"]').forEach(function (r) { r.addEventListener('change', syncStories); });
 
     // California only: the whole form runs for everyone so out-of-state demand is
     // counted (the lead still reaches Pipedrive and email, tier low). The ending
@@ -1154,7 +1178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           page: 'fast-track',
           name: d.name, email: d.email, phone: d.phone,
           address: d.address, street: d.street, city: d.city, state: d.state,
-          owns: d.owns, project_type: d.project_type, detail: d.detail, size_text: d.size_text,
+          owns: d.owns, project_type: d.project_type, detail: d.detail, stories: d.stories, size_text: d.size_text,
           start: d.start, blocker: d.blocker, help: d.help, notes: d.notes,
           lead_quality: tier, lead_score: score,
           fbp: getCookie('_fbp'), fbc: fbc, lead_created_at: String(Math.floor(Date.now() / 1000)),
