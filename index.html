@@ -958,6 +958,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <label class="qual-label" for="qf-size">Roughly how big? <small>Square feet, or bedrooms and bathrooms</small></label>
                 <input id="qf-size" type="text" name="size_text" placeholder="e.g. 800 sq ft, or 2 bed 1 bath" required />
               </div>
+              <!-- Shown for renovations and "something else": scope varies too much for choices -->
+              <div class="qual-field scope-group qual-hidden">
+                <label class="qual-label" for="qf-scope">What do you want to change? <small>A sentence or two</small></label>
+                <textarea id="qf-scope" name="scope_text" rows="3" placeholder="e.g. Turn the back bedroom and laundry into a primary suite: remove one wall, add a bathroom with a shower, move the washer and dryer to the garage. About 350 sq ft."></textarea>
+              </div>
               <div class="qual-error" id="qualError1">Please answer every question in this step.</div>
               <div class="qual-nav"><button type="button" class="btn btn-teal" data-next="2">Next <span class="arr">→</span></button></div>
             </fieldset>
@@ -1064,7 +1069,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var bar = document.getElementById('qualProgress');
     var stepLabel = document.getElementById('qualStepLabel');
     var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text'], 2: ['help', 'start', 'blocker', 'name', 'email'] };
-    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'start', 'blocker', 'name', 'email', 'phone', 'notes'];
+    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'scope_text', 'start', 'blocker', 'name', 'email', 'phone', 'notes'];
 
     function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
     function vals(k) { return new FormData(form).getAll(k).map(function (v) { return (v + '').trim(); }).filter(Boolean); }
@@ -1113,6 +1118,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         form.querySelectorAll('[name="detail"]').forEach(function (x) { x.checked = false; });
         form.querySelectorAll('.detail-group').forEach(function (g) { g.classList.toggle('qual-hidden', g.dataset.for !== r.value); });
         syncStories();
+        var sg = form.querySelector('.scope-group');
+        if (sg) sg.classList.toggle('qual-hidden', !(r.value === 'renovation_addition' || r.value === 'other'));
       });
     });
     form.querySelectorAll('[name="detail"]').forEach(function (r) { r.addEventListener('change', syncStories); });
@@ -1178,7 +1185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           page: 'fast-track',
           name: d.name, email: d.email, phone: d.phone,
           address: d.address, street: d.street, city: d.city, state: d.state,
-          owns: d.owns, project_type: d.project_type, detail: d.detail, stories: d.stories, size_text: d.size_text,
+          owns: d.owns, project_type: d.project_type, detail: d.detail, stories: d.stories, size_text: d.size_text, scope_text: d.scope_text,
           start: d.start, blocker: d.blocker, help: d.help, notes: d.notes,
           lead_quality: tier, lead_score: score,
           fbp: getCookie('_fbp'), fbc: fbc, lead_created_at: String(Math.floor(Date.now() / 1000)),
