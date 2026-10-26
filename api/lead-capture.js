@@ -250,6 +250,7 @@ module.exports = async (req, res) => {
             ['Detail', FT_DETAIL_LABEL[b.detail] || b.detail || '-'],
             ['Stories', b.stories === 'two' ? 'Two' : b.stories === 'one' ? 'One' : '-'],
             ['Size', b.size_text || '-'],
+            ['Scope described', b.scope_text || '-'],
             ['Wants help with', help.map((h) => FT_HELP_LABEL[h] || h).join(', ') || '-'],
             ['Start building', FT_START_LABEL[b.start] || b.start || '-'],
             ['Has to happen first', FT_BLOCKER_LABEL[b.blocker] || b.blocker || '-'],
@@ -298,7 +299,7 @@ module.exports = async (req, res) => {
           lead: { name: b.name || '', email, phone: b.phone || '' },
           project: {
             street: b.street || '', city: b.city || '', state: b.state || '', address: b.address || '',
-            owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', stories: b.stories || '', size_text: b.size_text || '',
+            owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', stories: b.stories || '', size_text: b.size_text || '', scope_text: b.scope_text || '',
             start: b.start || '', blocker: b.blocker || '', help, notes: b.notes || '',
             // Oct 20 form fields, if a cached old page sent them
             timing: b.timing || '', reason: b.reason || '', contractor: b.contractor || '', review: b.review || '',
