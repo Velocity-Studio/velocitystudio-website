@@ -96,3 +96,9 @@ Photographic layers come from Gemini via `scripts/gen-images.py` (prompt blocks 
 
 - In Ads Manager (2026-10-24, paused, same ad set 120248961390240532): A `120249014782100532` creative `28953444324295529`; B `120249014782530532` creative `40717370427861754`. Placement mapping as the week-one ads.
 - Ads A and B activated 2026-10-24 through the connector; six ads now share the $100/day campaign budget.
+
+## Week-two test (2026-10-28)
+
+- A and B moved to their own campaign so the shared budget cannot starve them: campaign `120249078741190532` "Fast-track homeowners · week 2 test, ads A and B (fasttrack-w2)", $40/day, ends 2026-11-02 23:59 PT; ad set `120249078746110532` mirrors the week-one targeting; ads A `120249078748060532`, B `120249078748580532`. The A and B copies inside the week-one ad set are paused.
+- Old TOFU Ad Spend campaign trimmed from $100/day to $50/day. Note: a budget edit through the connector force-pauses the campaign; reactivate it right after.
+- Lead emails changed subject when the form was rebuilt on Oct 25-26; search the inbox by sender, not subject. "High" now means start within 3 months and nothing blocking ("READY NOW" in the body).
