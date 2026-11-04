@@ -70,3 +70,14 @@ Files in this folder: `V1-*.mp4`, `V2-*.mp4`, `I1-adu-*.jpg`, `I1-house-*.jpg`, 
 - AI disclosure was not declared (field omitted). I1-house is uploaded to the media library but has no ad.
 
 - Launched 2026-10-21 about 12:30 PT through the connector: campaign, ad set and all four ads ACTIVE, ads in Meta review. Location targeting is Meta's current default (living in or recently in California); editing the ad set's locations in Ads Manager trips error 1870194, so make targeting edits through the connector.
+
+## Round three (built 2026-11-04 through the connector, all ACTIVE, in review)
+
+Concepts and the read of Video 3 that led to them: `ads/round3-proposals.md`. Media in `ads/round3/`, builders C, D, E in `scripts/build-ads.py`, stills from the prompt blocks `ad-c-*.jpg`, `ad-d-duplex-site.jpg`, `ad-e-builder.jpg` in `docs/homepage-image-prompts.md`.
+
+- Video 3b · corrected copy: creative `1619125516367863`, ad `120249197270160532` in the TOFU ad set `120247854074950532` (campaign `120247045831660532`, $100/day). Same video `1919477256140219`, body now says "5 to 10 business days" and "one contract", not "3 days". URL `...utm_campaign=tofu&utm_content=V3b`. The original Video 3 `120247854092580532` is still running; pause it once 3b has a day of spend.
+- Test campaign `120249078741190532` renamed "Fast-track · round 3 test, ads C, D and E (fasttrack-r3)", $60/day, ad set `120249078746110532` (pixel Lead, California). A-test and B-test paused.
+- C · Whole house (video, PAC): videos 4x5 `2307676589966118`, 9x16 `1816304913015382`, 1x1 `3717795485034856`; creative `2634490150346260`; ad `120249197317750532`. CTA Learn More, `utm_content=C`.
+- D · Carry (image, PAC): hashes 4x5 `e007d02735021e3182b17b207c4b641c`, 9x16 `6c3cc2ea73ca4a810ca70d9d47bfcce1`, 1x1 `f0dcda382ae5148e703e4068c603c361`; creative `1401459781758777`; ad `120249197314680532`. CTA Get Quote, `utm_content=D`.
+- E · Repeat sets (image, PAC): hashes 4x5 `2fe74bb219a915bd9016ae087b1119de`, 9x16 `d2feb3fb0b6cb3b860b292e0ad88050a`, 1x1 `1d9a2d23b8b8b9de7ed4b813ff530716`; creative `2244455449444958`; ad `120249197315140532`. CTA Contact Us, `utm_content=E`.
+- Reading results: the site records utm_content and, since Nov 4, the persona answer on every lead. Judge C against Video 3b on cost per ready-now lead; judge D and E on builder/developer personas and new-home or duplex leads, not on lead count.

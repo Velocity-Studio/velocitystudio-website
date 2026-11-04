@@ -352,6 +352,18 @@
     @media (max-width: 420px) { .sec-dark .bio { grid-template-columns: 100px 1fr; } }
 
     /* draft 5: hero spectrum */
+    .hero-title { font-size: clamp(2.2rem, 3.55vw, 2.95rem); margin-bottom: 30px; max-width: none; }
+    @media (min-width: 1180px) { .hero-title { white-space: nowrap; } }
+    .vspec { display: grid; grid-template-columns: 22px 1fr; column-gap: 18px; max-width: 480px; margin: 0 0 14px; }
+    .vspec-bar { position: relative; width: 6px; justify-self: center; margin: 18px 0; border-radius: 6px; background: linear-gradient(180deg, var(--gold-lt), var(--gold) 30%, var(--teal) 70%, var(--teal-lt)); box-shadow: 0 0 18px rgba(230,184,74,.3), 0 0 18px rgba(91,224,176,.35); }
+    .vspec-stops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+    .vspec-stops li { position: relative; line-height: 1.2; }
+    .vspec-stops li::before { content: ''; position: absolute; left: -32px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.12); background: var(--teal); }
+    .vspec-stops b { display: block; font-size: 1.05rem; font-weight: 800; }
+    .vspec-stops span { display: block; font-size: .9rem; font-weight: 700; margin-top: 2px; color: rgba(255,255,255,.72); }
+    .vs-top::before { background: var(--gold-lt); } .vs-top span { color: var(--gold-lt); }
+    .vs-mid::before { background: #9FC98C; } .vs-mid span { color: #BFE0A6; }
+    .vs-bot::before { background: var(--teal-lt); } .vs-bot span { color: var(--teal-lt); }
     .spec { max-width: 480px; margin: 0 0 16px; }
     .spec-ends { display: flex; justify-content: space-between; gap: 16px; }
     .spec-end b { display: block; font-size: 1.02rem; font-weight: 800; line-height: 1.2; }
@@ -362,7 +374,7 @@
     .spec-bar::before, .spec-bar::after { content: ''; position: absolute; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
     .spec-bar::before { left: 0; background: var(--teal-lt); }
     .spec-bar::after { right: 0; background: var(--gold-lt); }
-    .spec-cap { font-size: .9rem; color: rgba(255,255,255,.6); }
+    .spec-cap { font-size: .9rem; color: rgba(255,255,255,.6); max-width: 480px; margin-bottom: 16px; }
     /* draft 5: pain costs */
     .costs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 980px; margin: 0 auto; }
     .cost { background: var(--card); border: 1px solid var(--border); border-left: 5px solid #B5473A; border-radius: var(--r); padding: 20px 20px 18px; }
@@ -557,17 +569,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════ 1. HERO: what is this ══ -->
 <section class="hero">
   <div class="container">
+    <h1 class="hero-title">Permit-ready plans in <em>days, not months.</em></h1>
     <div class="hero-grid">
       <div>
-        <h1>Permit-ready plans in <em>days, not months.</em></h1>
-        <div class="spec" aria-label="Project range">
-          <div class="spec-ends">
-            <div class="spec-end"><b>500 sq ft ADU</b><span>5 business days · $6,000</span></div>
-            <div class="spec-end right"><b>4,000 sq ft house</b><span>10 business days · $20,000</span></div>
-          </div>
-          <div class="spec-bar"></div>
-          <p class="spec-cap">Everything in between, priced by size: ADUs, remodels and additions, new homes, duplexes, and small multifamily.</p>
+        <div class="vspec" aria-label="Project range, smallest to largest">
+          <div class="vspec-bar" aria-hidden="true"></div>
+          <ol class="vspec-stops">
+            <li class="vs-top"><b>8,000 sq ft fourplex</b><span>15 business days · $30,000</span></li>
+            <li class="vs-mid"><b>4,000 sq ft house</b><span>10 business days · $20,000</span></li>
+            <li class="vs-bot"><b>500 sq ft ADU</b><span>5 business days · $6,000</span></li>
+          </ol>
         </div>
+        <p class="spec-cap">Everything in between, priced by size: ADUs, remodels and additions, new homes, duplexes, and small multifamily.</p>
         <p class="hero-sub">Stamped by a California licensed architect. Structural, MEP, and Title 24 included.</p>
         <a href="#qualify" class="btn btn-teal btn-lg">Get your price and permit path <span class="arr">→</span></a>
         <p class="hero-micro">A short form, then a personal email with your exact price and path to permit.</p>
@@ -715,7 +728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="group group-wide">
         <header><h3>Duplex to fourplex, and more than one building</h3><span class="grange">for builders and developers · quoted in writing within one business day · 10 to 15 business days</span></header>
-        <div class="grow"><span class="gsz">Two to four units on one lot <small>duplex, triplex, fourplex, or a house plus ADUs</small></span><span class="gdy">10 to 15 days</span><span class="gpr">Quoted</span></div>
+        <div class="grow"><span class="gsz">Two to four units on one lot <small>duplex, triplex, fourplex, or a house plus ADUs. An 8,000 sq ft fourplex is about $30,000 in 15 days.</small></span><span class="gdy">10 to 15 days</span><span class="gpr">Quoted</span></div>
         <div class="grow"><span class="gsz">Several buildings or lots <small>a plan set adapted to each lot</small></span><span class="gdy">per building</span><span class="gpr">Quoted</span></div>
         <div class="grow"><span class="gsz">Repeat sets for builders <small>the same plan on new lots</small></span><span class="gdy">5 to 7 days</span><span class="gpr">Priced per set</span></div>
         <div class="gfoot">Same kit of parts, same team, one architect per building. Send the form with your unit count and lot address and the quote comes with the parcel research.</div>
