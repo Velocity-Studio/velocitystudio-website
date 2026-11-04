@@ -213,3 +213,24 @@ Attach three to five of the reference frames at once and use: "Create a professi
 
 ### Fit with the rest of the site
 The bio slot sits in the solution section on a white card. Warm neutral background and soft daylight match the generated scenes without any brand-color instruction. Target 1200 x 1500, JPG, about 200 KB.
+
+---
+
+## Ad photography (round three)
+
+Photographic layers for the round-three Meta ads. The build script lays the copy over these in Pillow, so the images must carry no text. Same generation rules as the hero renderings: real camera, real light, plausible architecture, no stylized grading.
+
+### ad-c-house.jpg · 9:16
+Architectural photograph at golden hour, full-frame camera, 24mm tilt-shift lens, straight verticals, vertical framing. A newly finished two-story California house: white smooth stucco and warm vertical wood siding, black-framed windows, a dark standing-seam metal roof, a young front lawn of fresh sod, a new broom-finished concrete driveway, mature street trees along the sidewalk, a suburban Central Valley street. The house fills the middle of the frame with sky above and lawn below so text can sit at the top and bottom. True-to-life colors, no stylization, no people, no text, logos, or watermarks. 9:16 aspect.
+
+### ad-c-review.jpg · 9:16
+Documentary photograph, full-frame camera, 35mm lens, soft natural window light, vertical framing. A general contractor in his fifties in a plaid work shirt and a woman in her forties in a navy blazer lean over a full-size construction plan set spread on a plywood table inside a freshly framed house, raw studs and a window opening behind them, pencils and a tape measure on the sheets, both looking at the same drawing, relaxed and focused. Their heads sit in the middle third of the frame, with framing above and the table below, so text can sit at the top and bottom. No legible text on the drawings, no logos or watermarks. True-to-life colors. 9:16 aspect.
+
+### ad-c-stamp.jpg · 9:16
+Close-up photograph, 50mm lens, shallow depth of field, warm desk lamp light, vertical framing. A hand presses an architect's round embossing seal onto the title block of a construction drawing, a blue-line floor plan filling the sheet, a coffee cup and a laptop blurred in the background. The hand and seal sit in the middle of the frame with soft out-of-focus desk above and below for text. No legible text on the sheet, no logos or watermarks. True-to-life colors. 9:16 aspect.
+
+### ad-d-duplex-site.jpg · 4:5
+Documentary photograph, full-frame camera, 35mm lens, overcast midday light, slightly elevated viewpoint. A cleared and graded infill lot in a California city: orange survey stakes and pink string lines marking a duplex footprint, an orange silt fence along the sidewalk, a portable toilet, a parked white pickup, 1950s single-story houses on both sides, power lines overhead. Nothing built yet. The lower third of the frame is bare graded dirt in soft shadow so copy can be laid over it. No people, no text, logos, or watermarks. True-to-life colors. 4:5 aspect.
+
+### ad-e-builder.jpg · 4:5
+Documentary photograph, full-frame camera, 35mm lens, late afternoon sun. A builder in his forties, hi-vis vest over a grey hoodie, stands at the open tailgate of a white pickup with a rolled plan set under one arm and a phone in the other hand, looking at the camera and half-smiling as if mid-call. Behind him, two freshly framed single-story houses of the same design on adjacent lots in a new California subdivision, a third lot still bare dirt, blue sky. The lower third of the frame is the tailgate and gravel in shadow so copy can be laid over it. No text, logos, or watermarks. True-to-life colors. 4:5 aspect.

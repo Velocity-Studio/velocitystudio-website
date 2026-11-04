@@ -236,5 +236,54 @@
     "prompt_sha1": "e9bcfeba06f8",
     "generated_at": "2026-10-20T13:12:42",
     "bytes": 412795
+  },
+  "ad-contractor.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:5",
+    "prompt_sha1": "56e00bb96bc3",
+    "generated_at": "2026-10-24T23:09:37",
+    "bytes": 174888
+  },
+  "ad-adu-dusk.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:5",
+    "prompt_sha1": "9c741e6a3c34",
+    "generated_at": "2026-10-24T23:09:43",
+    "bytes": 189703
+  },
+  "ad-c-house.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "9:16",
+    "prompt_sha1": "3125bc77ee28",
+    "generated_at": "2026-11-04T11:35:58",
+    "bytes": 396619
+  },
+  "ad-c-review.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "9:16",
+    "prompt_sha1": "62e761343b45",
+    "generated_at": "2026-11-04T11:36:09",
+    "bytes": 232302
+  },
+  "ad-c-stamp.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "9:16",
+    "prompt_sha1": "9de6ca1333f6",
+    "generated_at": "2026-11-04T11:36:21",
+    "bytes": 137132
+  },
+  "ad-d-duplex-site.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:5",
+    "prompt_sha1": "3c34a4c936ac",
+    "generated_at": "2026-11-04T11:36:34",
+    "bytes": 289428
+  },
+  "ad-e-builder.jpg": {
+    "model": "gemini-2.5-flash-image",
+    "aspect": "4:5",
+    "prompt_sha1": "bee6ee020ae8",
+    "generated_at": "2026-11-04T11:36:53",
+    "bytes": 249752
   }
 }
