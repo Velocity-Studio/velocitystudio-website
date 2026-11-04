@@ -311,14 +311,122 @@ def build_I2(ratio):
     save(img, OUT / f'I2-{ratio}.jpg')
 
 
-BUILDERS = {'V1': build_V1, 'V2': build_V2, 'I1': build_I1, 'I2': build_I2}
+# ─── round three (Nov 4): the Video 3 pattern, honest numbers ────────────────
+OUT3 = ROOT / 'ads' / 'round3'
+R3_URL = 'velocitystud.io'
+
+
+def photo_cover(path, w, h):
+    return fit_cover(Image.open(path).convert('RGB'), w, h)
+
+
+def big_caption(w, h, lines, pos='top', accent_last=True):
+    """Video 3 style: bold uppercase centered lines over a soft dark gradient band.
+    `lines` is a list of strings, one per line. The last line is gold when accent_last."""
+    img = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    x0, y0, x1, y1 = safe(w, h)
+    size = int(w * 0.082)
+    f = font(size)
+    # shrink until the widest line fits the safe width, with a little air
+    while size > 30 and max(d.textlength(ln.upper(), font=f) for ln in lines) > (x1 - x0) * 0.98:
+        size -= 2; f = font(size)
+    lh = int(size * 1.08)
+    block = lh * len(lines)
+    band_h = block + int(h * 0.16)
+    band = Image.new('RGBA', (w, band_h), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(band)
+    for i in range(band_h):
+        t = (band_h - i) / band_h if pos == 'top' else i / band_h
+        bd.line([(0, i), (w, i)], fill=(12, 12, 12, int(190 * min(1, t * 1.6))))
+    by = 0 if pos == 'top' else h - band_h
+    img.alpha_composite(band, (0, by))
+    y = y0 + int(h * 0.02) if pos == 'top' else y1 - block - int(h * 0.02)
+    for i, ln in enumerate(lines):
+        ln = ln.upper()
+        tw = d.textlength(ln, font=f)
+        col = GOLD_LT if (accent_last and i == len(lines) - 1) else WHITE
+        d.text(((w - tw) / 2 + 3, y + 3), ln, font=f, fill=(0, 0, 0, 140))
+        d.text(((w - tw) / 2, y), ln, font=f, fill=col)
+        y += lh
+    return img
+
+
+def scene(p, tag, photo, lines, dur, w, h, pos='top'):
+    """Photo with a slow push-in and a big caption. Returns the segment path."""
+    save(photo_cover(photo, w, h), p / f'{tag}.png')
+    seg_from_png(p / f'{tag}.png', dur, p / f'{tag}-z.mp4', w, h, zoom=True)
+    save(big_caption(w, h, lines, pos), p / f'{tag}-o.png')
+    seg_from_clip(p / f'{tag}-z.mp4', p / f'{tag}-o.png', dur, p / f'{tag}-s.mp4', w, h)
+    return p / f'{tag}-s.mp4'
+
+
+def build_C(ratio):
+    """Ad C: the whole house. Three photographed scenes, Video 3 cadence, true numbers, end card."""
+    w, h = RATIOS[ratio]; segs = []
+    p = TMP / f'c-{ratio}'; p.mkdir(exist_ok=True)
+    segs.append(scene(p, 's1', HOME / 'ad-c-house.jpg', ['Permit-ready drawings', 'in 5 to 10', 'business days'], 5.0, w, h))
+    segs.append(scene(p, 's2', HOME / 'ad-c-review.jpg', ['Architecture, structural,', 'MEP and Title 24.', 'One contract.'], 5.0, w, h, pos='bottom'))
+    segs.append(scene(p, 's3', HOME / 'ad-c-stamp.jpg', ['Stamped by a California', 'licensed architect.'], 4.0, w, h))
+    save(card_text(w, h, 'Months to a permit is normal. It should not be.', sub='ADUs, remodels, new homes and duplexes across California. Fixed fee, quoted before you pay.', cta='See if you qualify', url=R3_URL, bg=FOREST), p / 'c4.png')
+    seg_from_png(p / 'c4.png', 3.0, p / 's4.mp4', w, h); segs.append(p / 's4.mp4')
+    concat(segs, OUT3 / f'C-house-{ratio}.mp4')
+
+
+def photo_band(img, path, frac):
+    """Paste a cover-fitted photo into the top `frac` of the canvas with a soft fade into the card color."""
+    w, h = img.size; ph = int(h * frac)
+    img.paste(photo_cover(path, w, ph), (0, 0))
+    fade_h = int(ph * 0.35)
+    fade = Image.new('L', (w, fade_h), 0)
+    fd = ImageDraw.Draw(fade)
+    for i in range(fade_h):
+        fd.line([(0, i), (w, i)], fill=int(255 * (i / fade_h) ** 1.5))
+    solid = Image.new('RGB', (w, fade_h), img.getpixel((0, h - 1)))
+    img.paste(solid, (0, ph - fade_h), fade)
+    return ph
+
+
+def image_ad(ratio, photo, headline, sub, cta, out, bg=FOREST, frac=None):
+    w, h = RATIOS[ratio]
+    img = canvas(w, h, bg); d = ImageDraw.Draw(img)
+    x0, y0, x1, y1 = safe(w, h)
+    tall = h > w * 1.4
+    ph = photo_band(img, photo, frac or (0.52 if tall else 0.47))
+    y = ph - int(w * 0.06)
+    y = draw_block(d, (x0, y, x1, y1), headline, int(w * 0.076), WHITE, y=y)
+    y = draw_block(d, (x0, y + 30, x1, y1), sub, int(w * 0.037), '#D9D4CA', False, y=y + 30)
+    by = max(y + 50, y1 - 190)
+    button(img, w // 2, by, cta)
+    f2 = font(int(w * 0.03), False)
+    d.text(((w - d.textlength(R3_URL, font=f2)) / 2, by + 134), R3_URL, font=f2, fill='#D9D4CA')
+    save(img, OUT3 / f'{out}-{ratio}.jpg')
+
+
+def build_D(ratio):
+    """Ad D: carry. A graded duplex lot, the cost of waiting, our timeline, quoted."""
+    image_ad(ratio, HOME / 'ad-d-duplex-site.jpg',
+             'Every month without a permit is a loan payment on dirt.',
+             'Duplex to fourplex permit sets in 10 to 15 business days. Architecture, structural, MEP and Title 24 under one contract, quoted in writing within one business day.',
+             'Get a quote', 'D-carry', bg=DARK)
+
+
+def build_E(ratio):
+    """Ad E: same plan, next lot. A builder, repeat sets, priced per set."""
+    image_ad(ratio, HOME / 'ad-e-builder.jpg',
+             'Your plan. New lot. Permit set in a week.',
+             'We adapt your plan to each lot, re-run structural and Title 24, and stamp a permit-ready set in 5 to 7 business days. Repeat sets for builders, priced per set after the first.',
+             'Talk to Richman', 'E-builder', bg=FOREST)
+
+
+BUILDERS = {'V1': build_V1, 'V2': build_V2, 'I1': build_I1, 'I2': build_I2, 'C': build_C, 'D': build_D, 'E': build_E}
 
 if __name__ == '__main__':
-    OUT.mkdir(parents=True, exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True); OUT3.mkdir(parents=True, exist_ok=True)
     wanted = sys.argv[1:] or list(BUILDERS)
     for k in wanted:
         for ratio in RATIOS:
             BUILDERS[k](ratio)
             print('built', k, ratio, flush=True)
-    for f in sorted(OUT.iterdir()):
+    for f in sorted(list(OUT.iterdir()) + list(OUT3.iterdir())):
         print(f'  {f.name:22s} {f.stat().st_size // 1024:6d} KB')
