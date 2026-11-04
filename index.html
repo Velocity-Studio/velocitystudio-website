@@ -447,6 +447,12 @@
     .bullets li::before { content: ''; position: absolute; left: 0; top: .5em; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(45,139,110,.15); }
     .bullets-red li::before { background: #B5473A; box-shadow: 0 0 0 4px rgba(181,71,58,.15); }
     .bullets b { font-weight: 800; }
+    .pain-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .pain-card { background: var(--card); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 22px 22px 20px; box-shadow: var(--sh); }
+    .pain-who { display: block; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #B5473A; margin-bottom: 12px; }
+    @media (max-width: 760px) { .pain-cards { grid-template-columns: 1fr; gap: 12px; margin-top: 20px; } .pain-card { padding: 18px; } }
+    .group-wide { grid-column: 1 / -1; }
+    .group-wide header { border-top-color: var(--gold-lt); }
     @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 22px; } .split-flip .split-img { order: 0; } .split-img { aspect-ratio: 4/3; } .split-img.wide { aspect-ratio: 16/10; } }
     /* draft 7: chat bubbles over the call scene */
     .bubble { position: absolute; left: 6%; max-width: 62%; background: #fff; color: var(--dark); border-radius: 14px 14px 14px 4px; padding: 9px 13px; font-size: .86rem; font-weight: 600; line-height: 1.35; box-shadow: 0 6px 24px rgba(0,0,0,.18); opacity: 0; transform: translateY(8px); animation: bubbles 9s infinite; }
@@ -560,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="spec-end right"><b>4,000 sq ft house</b><span>10 business days · $20,000</span></div>
           </div>
           <div class="spec-bar"></div>
-          <p class="spec-cap">Everything in between, priced by size. Remodels and additions too.</p>
+          <p class="spec-cap">Everything in between, priced by size: ADUs, remodels and additions, new homes, duplexes, and small multifamily.</p>
         </div>
         <p class="hero-sub">Stamped by a California licensed architect. Structural, MEP, and Title 24 included.</p>
         <a href="#qualify" class="btn btn-teal btn-lg">Get your price and permit path <span class="arr">→</span></a>
@@ -612,10 +618,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="eyebrow eyebrow-red">Permits are usually painful</span>
         <h2>Most architects deliver permit sets 3-5x slower than they should.</h2>
         <p class="lead">Their tools are old, their teams are thin, their process is loose, there is no urgency, and your project shares a queue with a dozen others that stop and start.</p>
+        <p class="lead" style="margin-bottom:0">What that costs depends on who you are.</p>
+      </div>
+    </div>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <span class="pain-who">If it is your home</span>
         <ul class="bullets bullets-red">
           <li><b>Time.</b> You wait days for each reply, weeks for each round of drawings, and months for a permit set.</li>
           <li><b>Money.</b> Architecture, engineering, and energy work are billed separately, revisions add up, and if you are carrying a loan on the property, every extra month costs you money.</li>
           <li><b>Your sanity.</b> Most architects are unresponsive and manage projects poorly, so the ball ends up in your court and you spend the project chasing them for the next step.</li>
+        </ul>
+      </div>
+      <div class="pain-card">
+        <span class="pain-who">If you build or develop</span>
+        <ul class="bullets bullets-red">
+          <li><b>Carry.</b> Every month between closing and permit is a loan payment, taxes, and insurance on land that earns nothing. On a duplex or a fourplex that is thousands of dollars a month, and the bigger the project, the more each week of waiting costs.</li>
+          <li><b>Crews.</b> Your framer and your subs cannot hold a start date for a permit that keeps slipping. Lose the slot and you wait for the next one, and the next one is behind someone else's job.</li>
+          <li><b>Your next project.</b> You cannot buy the next lot or quote the next client while your capital and your attention are stuck in this one. Permit speed is how often you get to go again.</li>
         </ul>
       </div>
     </div>
@@ -668,8 +688,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="sec-hd">
       <span class="eyebrow">Price and speed</span>
-      <h2>Fixed-fee permits from $6K-20K and 5-10 days.</h2>
-      <p>Business days, counted from the day we start. 25% deposit to start, the rest on delivery.</p>
+      <h2>Fixed-fee permits from $6K and 5 to 10 business days.</h2>
+      <p>ADUs to 4,000 sq ft homes are priced by size, below. Duplexes to fourplexes and larger homes are quoted in writing. Business days, counted from the day we start. 25% deposit to start, the rest on delivery.</p>
     </div>
     <div class="groups">
       <div class="group">
@@ -692,6 +712,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="grow"><span class="gsz">Medium <small>2,001 to 3,000 sq ft</small></span><span class="gdy">9 days</span><span class="gpr">$17,500</span></div>
         <div class="grow"><span class="gsz">Large <small>3,001 to 4,000 sq ft</small></span><span class="gdy">10 days</span><span class="gpr">$20,000</span></div>
         <div class="gfoot">Over 4,000 sq ft: +$1,000 per 250 sq ft and +1 day per 500 sq ft. Your own design or a plan you bring. No templates required.</div>
+      </div>
+      <div class="group group-wide">
+        <header><h3>Duplex to fourplex, and more than one building</h3><span class="grange">for builders and developers · quoted in writing within one business day · 10 to 15 business days</span></header>
+        <div class="grow"><span class="gsz">Two to four units on one lot <small>duplex, triplex, fourplex, or a house plus ADUs</small></span><span class="gdy">10 to 15 days</span><span class="gpr">Quoted</span></div>
+        <div class="grow"><span class="gsz">Several buildings or lots <small>a plan set adapted to each lot</small></span><span class="gdy">per building</span><span class="gpr">Quoted</span></div>
+        <div class="grow"><span class="gsz">Repeat sets for builders <small>the same plan on new lots</small></span><span class="gdy">5 to 7 days</span><span class="gpr">Priced per set</span></div>
+        <div class="gfoot">Same kit of parts, same team, one architect per building. Send the form with your unit count and lot address and the quote comes with the parcel research.</div>
       </div>
     </div>
     <details class="more">
@@ -998,6 +1025,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
               <div class="qual-field">
+                <span class="qual-label">Who are you on this project?</span>
+                <div class="opts opts-3">
+                  <label class="qual-opt"><input type="radio" name="persona" value="owner" required /> The owner</label>
+                  <label class="qual-opt"><input type="radio" name="persona" value="builder" /> Contractor or builder</label>
+                  <label class="qual-opt"><input type="radio" name="persona" value="developer" /> Developer or investor</label>
+                </div>
+              </div>
+              <div class="qual-field">
                 <label class="qual-label" for="qf-name">Where should Richman send it?</label>
                 <input id="qf-name" type="text" name="name" autocomplete="name" placeholder="Full name" required />
               </div>
@@ -1009,7 +1044,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <label class="qual-label" for="qf-notes">Anything else we should know? <small>Optional. For example, how the space is laid out today.</small></label>
                 <textarea id="qf-notes" name="notes" rows="2" placeholder="e.g. Downstairs has its own entrance but shares the furnace with upstairs"></textarea>
               </div>
-              <div class="qual-error" id="qualError2">Please pick at least one thing that would help, answer the timing questions, and add your name and a valid email.</div>
+              <div class="qual-error" id="qualError2">Please pick at least one thing that would help, answer the timing questions, say who you are on the project, and add your name and a valid email.</div>
               <div class="qual-nav">
                 <button type="button" class="btn btn-ghost" data-back="1">Back</button>
                 <button type="submit" class="btn btn-teal btn-lg">Send me my rundown <span class="arr">→</span></button>
@@ -1023,8 +1058,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="qual-card qual-hidden" id="qualSentCard">
           <span class="qual-eyebrow">Got it</span>
           <h3 class="qual-title" id="qualSentTitle">Thanks. Richman is on it.</h3>
-          <p class="qual-sub" style="margin-bottom:12px">We are researching your parcel and your city's rules now. Richman will email <b id="qualSentEmail">you</b> with our price, the city's fees, a construction ballpark, and your path to permit, usually within one business day.</p>
-          <p class="qual-footnote" style="text-align:left">Want to talk sooner? <a href="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Book 15 minutes with Richman</a>.</p>
+          <p class="qual-sub" style="margin-bottom:12px" id="qualSentBody">We are researching your parcel and your city's rules now. Richman will email <b id="qualSentEmail">you</b> with our price, the city's fees, a construction ballpark, and your path to permit, usually within one business day.</p>
+          <div class="qual-nav qual-hidden" id="qualSentPro"><a class="btn btn-teal" href="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat" target="_blank" rel="noopener">Book 15 minutes with Richman <span class="arr">→</span></a></div>
+          <p class="qual-footnote" style="text-align:left" id="qualSentFoot">Want to talk sooner? <a href="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Book 15 minutes with Richman</a>.</p>
         </div>
 
         <div class="qual-card qual-hidden" id="qualOutOfStateCard">
@@ -1060,6 +1096,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   function ftScore(d) { return (FT.owns[d.owns] || 0) + (FT.type[d.project_type] || 0) + (FT.start[d.start] || 0) + (FT.blocker[d.blocker] || 0); }
   function ftTier(d) { return d.state !== 'CA' ? 'low' : ftHigh(d) ? 'high' : 'mid'; }
+  // Dollar value sent to Meta with a ready-now lead: our fee for that kind of
+  // set, so Meta optimizes toward bigger projects, not more form fills. Builders
+  // and developers come back with the next lot, so they count for more.
+  // Mirrored in api/lead-capture.js (FT_VALUE), which writes it to Pipedrive.
+  var FT_VALUE = { detached_adu: 7500, attached_adu: 8500, garage_conversion: 8000, renovation_addition: 12000, new_home_duplex: 17500, other: 6000 };
+  function ftValue(d) {
+    var v = FT_VALUE[d.project_type] || 6000;
+    if (d.persona === 'builder' || d.persona === 'developer') v = Math.round(v * 1.5);
+    return v;
+  }
 
   var STEP_LABEL = { 1: 'Step 1 of 2 · Your project', 2: 'Step 2 of 2 · Timing and contact' };
 
@@ -1068,8 +1114,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!form) return;
     var bar = document.getElementById('qualProgress');
     var stepLabel = document.getElementById('qualStepLabel');
-    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text'], 2: ['help', 'start', 'blocker', 'name', 'email'] };
-    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'scope_text', 'start', 'blocker', 'name', 'email', 'phone', 'notes'];
+    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text'], 2: ['help', 'start', 'blocker', 'persona', 'name', 'email'] };
+    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'scope_text', 'start', 'blocker', 'persona', 'name', 'email', 'phone', 'notes'];
 
     function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
     function vals(k) { return new FormData(form).getAll(k).map(function (v) { return (v + '').trim(); }).filter(Boolean); }
@@ -1173,8 +1219,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var inCA = d.state === 'CA';
       var score = ftScore(d), tier = ftTier(d);
 
-      if (inCA && typeof fbq === 'function') fbq('track', 'Lead', { value: score, currency: 'USD', content_name: tier, content_category: d.project_type, timing: d.start });
-      if (typeof gtag === 'function') gtag('event', inCA ? 'qualify_form_submit' : 'qualify_out_of_state', { lead_score: score, lead_tier: tier, project_type: d.project_type, start: d.start, blocker: d.blocker, owns: d.owns, state: d.state, help: d.help.join(',') });
+      // Meta: every California submit is a SubmitApplication (cheap signal, for
+      // reporting). Lead fires only for ready-now leads, with a dollar value, so
+      // an ad set optimizing on Lead learns from projects, not form fills. The
+      // next rung (Richman moves the deal to Engaged in Pipedrive) is sent
+      // server-side by api/pd-meta-webhook.js.
+      var value = ftValue(d);
+      if (inCA && typeof fbq === 'function') {
+        fbq('track', 'SubmitApplication', { content_name: tier, content_category: d.project_type, persona: d.persona, timing: d.start });
+        if (tier === 'high') fbq('track', 'Lead', { value: value, currency: 'USD', content_name: tier, content_category: d.project_type, persona: d.persona, timing: d.start });
+      }
+      if (typeof gtag === 'function') gtag('event', inCA ? 'qualify_form_submit' : 'qualify_out_of_state', { lead_score: score, lead_tier: tier, lead_value: value, persona: d.persona, project_type: d.project_type, start: d.start, blocker: d.blocker, owns: d.owns, state: d.state, help: d.help.join(',') });
 
       var fbc = getCookie('_fbc');
       if (!fbc) { var fid = new URLSearchParams(location.search).get('fbclid'); if (fid) fbc = 'fb.1.' + Date.now() + '.' + fid; }
@@ -1186,8 +1241,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           name: d.name, email: d.email, phone: d.phone,
           address: d.address, street: d.street, city: d.city, state: d.state,
           owns: d.owns, project_type: d.project_type, detail: d.detail, stories: d.stories, size_text: d.size_text, scope_text: d.scope_text,
-          start: d.start, blocker: d.blocker, help: d.help, notes: d.notes,
-          lead_quality: tier, lead_score: score,
+          start: d.start, blocker: d.blocker, persona: d.persona, help: d.help, notes: d.notes,
+          lead_quality: tier, lead_score: score, lead_value: value,
           fbp: getCookie('_fbp'), fbc: fbc, lead_created_at: String(Math.floor(Date.now() / 1000)),
           utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '', utm_content: attr.utm_content || ''
         })
@@ -1201,8 +1256,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         show('qualOutOfStateCard');
       } else {
         var first = (d.name.split(/\s+/)[0] || '');
-        document.getElementById('qualSentTitle').textContent = 'Thanks' + (first ? ', ' + first : '') + '. Richman is on it.';
+        var pro = d.persona === 'builder' || d.persona === 'developer';
+        document.getElementById('qualSentTitle').textContent = 'Thanks' + (first ? ', ' + first : '') + (pro ? '. Let\'s talk this week.' : '. Richman is on it.');
         document.getElementById('qualSentEmail').textContent = d.email;
+        if (pro) {
+          document.getElementById('qualSentBody').innerHTML = 'We are researching the parcel now and Richman will email <b>' + d.email.replace(/[<>&]/g, '') + '</b> with price and path to permit. For builders and developers he would rather hear the project first: unit count, lots, and your schedule. Grab 15 minutes.';
+          document.getElementById('qualSentPro').classList.remove('qual-hidden');
+          document.getElementById('qualSentFoot').classList.add('qual-hidden');
+        }
         show('qualSentCard');
       }
     });
@@ -1216,13 +1277,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer-inner">
       <div>
         <div class="footer-brand-name">Velocity <span>Studio</span></div>
-        <p class="footer-tagline">Velocity Studio Architecture and Engineering, Inc. Licensed architects and engineers. Permit sets for ADUs, renovations, and simple homes across California. Developers and larger projects: see our <a href="/developers">developer page</a>.</p>
+        <p class="footer-tagline">Velocity Studio Architecture and Engineering, Inc. Licensed architects and engineers. Permit sets for ADUs, remodels, new homes, duplexes, and small multifamily across California, for homeowners, builders, and developers.</p>
       </div>
       <nav class="footer-links">
         <a href="#pricing">Price and speed</a>
         <a href="#answers">Answers</a>
         <a href="#qualify">Get your price</a>
-        <a href="/developers">Developers</a>
       </nav>
     </div>
     <div class="footer-bottom">© 2026 Velocity Studio Architecture and Engineering, Inc.</div>

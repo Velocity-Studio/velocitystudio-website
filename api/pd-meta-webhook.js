@@ -1,6 +1,11 @@
 // Pipedrive change webhook -> Meta Conversions API.
 //
 //   Person: initial_quality_score set/changed  -> LeadQualityScored (computed value)
+//   Deal:   enters Engaged (stage 3)           -> Lead              (person's lead_value_score, falls back to flat)
+//           Only when the pixel did not already send Lead for this person, i.e.
+//           lead_quality != "high". The site fires Lead client-side for
+//           ready-now leads; this is the second rung for everyone else: the
+//           lead wrote back, so it is real. See index.html, qualify form.
 //   Deal:   enters Active SQL (stage 4)        -> QualifiedLead     (computed value, falls back to flat)
 //   Deal:   enters Terms Agreed (stage 10)      -> TermsAgreed       (computed value, falls back to flat)
 //   Deal:   resolved_outcome set to a DISQUALIFYING reason -> LeadDisqualified (value corrected to $0)
@@ -41,6 +46,8 @@ const WH_SECRET    = process.env.PD_WEBHOOK_SECRET;          // shared secret in
 const TEST_CODE    = process.env.META_TEST_EVENT_CODE || ''; // set during QA, unset for production
 const QL_VALUE     = Number(process.env.QUALIFIED_LEAD_VALUE || 500);
 const AGREED_VALUE = Number(process.env.AGREED_TERMS_VALUE || 5000);
+const ENGAGED_VALUE = Number(process.env.ENGAGED_LEAD_VALUE || 8000);
+const ENGAGED_STAGE_ID   = 3;   // "Engaged"       -> Lead (unless the pixel already sent it)
 const QUALIFIED_STAGE_ID = 4;   // "Qualified"     -> QualifiedLead
 const TERMS_STAGE_ID     = 10;  // "Terms Agreed"  -> TermsAgreed
 const GRAPH_VER    = 'v21.0';
@@ -56,6 +63,7 @@ const P = {
   utm_content:  '902f42c528ba6e12fe58cafb978bd0fede40ed90',
   // Lead-scoring fields — see src/utils/pipedrive.js SCORING_FIELDS in the
   // secretary repo (kept in sync manually since this is a separate deploy).
+  lead_quality:          'ba9963674d8028438d398d6bc3e87271cdd1b40d', // high | mid | low, written by api/lead-capture.js
   initial_quality_score: '68ff1c1b8c0625001376b6208be2cd59bf96445f',
   lead_value_score:      'f8a7f35786ffa4c51c6d5b488129dcfd6e8e188d',
 };
@@ -215,6 +223,7 @@ async function handlePersonEvent(current, previous, res) {
 
 // ── Deal-triggered: stage change, won, or resolved_outcome correction ────────
 async function handleDealEvent(current, previous, res) {
+  const enteredEngaged   = current.stage_id === ENGAGED_STAGE_ID && previous.stage_id !== ENGAGED_STAGE_ID;
   const enteredQualified = current.stage_id === QUALIFIED_STAGE_ID && previous.stage_id !== QUALIFIED_STAGE_ID;
   const enteredTerms     = current.stage_id === TERMS_STAGE_ID && previous.stage_id !== TERMS_STAGE_ID;
   const becameWon        = current.status === 'won' && previous.status !== 'won';
@@ -229,6 +238,7 @@ async function handleDealEvent(current, previous, res) {
   else if (becameFrozen)       { /* frozen: paused, not disproven — send nothing */ }
   else if (enteredTerms)       { eventName = 'TermsAgreed';   needsPersonValue = true; }
   else if (enteredQualified)   { eventName = 'QualifiedLead'; needsPersonValue = true; }
+  else if (enteredEngaged)     { eventName = 'Lead';          needsPersonValue = true; }
 
   console.log('[pd-meta-webhook] deal event. id=%s stage %s->%s status %s->%s outcome %s->%s decided=%s frozen=%s',
     current.id, previous.stage_id, current.stage_id, previous.status, current.status,
@@ -254,6 +264,12 @@ async function handleDealEvent(current, previous, res) {
   const personResp = await pd('GET', '/v1/persons/' + pid);
   const person = (personResp && personResp.data) || {};
 
+  // Engaged -> Lead is only for leads the pixel did not already count.
+  if (eventName === 'Lead' && String(person[P.lead_quality] || '').toLowerCase() === 'high') {
+    res.statusCode = 200;
+    return res.end(JSON.stringify({ ok: true, skipped: 'engaged, but the pixel already sent Lead (lead_quality high)' }));
+  }
+
   // Self-healing campaign attribution: copy the lead's UTMs onto the deal if
   // the deal doesn't have them yet. Independent of Meta-attributability.
   const utmPatch = {};
@@ -268,7 +284,7 @@ async function handleDealEvent(current, previous, res) {
     await pd('PUT', '/v1/persons/' + pid, { [P.lead_value_score]: value });
   } else if (needsPersonValue) {
     const scored = person[P.lead_value_score];
-    value = scored != null ? Number(scored) : (eventName === 'TermsAgreed' ? AGREED_VALUE : QL_VALUE);
+    value = scored != null ? Number(scored) : (eventName === 'TermsAgreed' ? AGREED_VALUE : eventName === 'Lead' ? ENGAGED_VALUE : QL_VALUE);
   }
 
   const result = await sendCapiEvent(eventName, value, person);

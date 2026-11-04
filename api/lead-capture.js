@@ -29,6 +29,7 @@ const F = {
   external_id:     '8d6edd1c496274be496787770edf5dba6709d62a',
   lead_created_at: 'e99516949bfdfec88ee84d5a4a8c6202a67ef619',
   lead_quality:    'ba9963674d8028438d398d6bc3e87271cdd1b40d',
+  lead_value_score:'f8a7f35786ffa4c51c6d5b488129dcfd6e8e188d', // $ value sent to Meta; read by api/pd-meta-webhook.js
   utm_source:      'a8dc7ad5648960c4fa8c3349867cd001ed113be1',
   utm_medium:      '98ed85e6f2e8528df76b2bf9aa444ef032e71bf9',
   utm_campaign:    '502aef7a43210b4cd80ab6401d9a40961ac77b4e',
@@ -67,6 +68,14 @@ const OLD_TIMING = { within_2_weeks: 'asap', within_month: 'asap', '1_3_months':
 const OLD_REASON = { contractor_waiting: 'ready_contractor', moving_in: 'ready', loan_sale_deadline: 'ready', fire_rebuild: 'ready', no_deadline: 'deciding' };
 
 function outsideCalifornia(b) { return !!b.state && String(b.state).trim().toUpperCase() !== 'CA'; }
+// Dollar value of a lead for Meta (mirror of FT_VALUE in index.html): our fee
+// for that kind of set, times 1.5 for builders and developers who come back.
+const FT_VALUE = { detached_adu: 7500, attached_adu: 8500, garage_conversion: 8000, renovation_addition: 12000, new_home_duplex: 17500, other: 6000 };
+const FT_PERSONA_LABEL = { owner: 'The owner', builder: 'Contractor or builder', developer: 'Developer or investor' };
+function fastTrackValue(b) {
+  const v = FT_VALUE[b.project_type] || 6000;
+  return (b.persona === 'builder' || b.persona === 'developer') ? Math.round(v * 1.5) : v;
+}
 function ftStart(b) { return b.start || OLD_TIMING[b.timing] || ''; }
 function ftBlocker(b) { return b.blocker || OLD_REASON[b.reason] || ''; }
 function fastTrackHigh(b) {
@@ -200,6 +209,7 @@ module.exports = async (req, res) => {
     [F.lead_created_at]: b.lead_created_at || String(Math.floor(Date.now() / 1000)),
     [F.lead_quality]:    tier,
   };
+  if (fast && !outside) custom[F.lead_value_score] = fastTrackValue(b);
   if (b.fbp) custom[F.fbp] = b.fbp;
   if (b.fbc) custom[F.fbc] = b.fbc;
   if (b.utm_source) custom[F.utm_source] = b.utm_source;
@@ -245,6 +255,7 @@ module.exports = async (req, res) => {
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
             ['Address', b.address],
             ['Service area', outside ? 'OUTSIDE CALIFORNIA - declined on the page, no research' : 'California - reply draft is being researched'],
+            ['Who', FT_PERSONA_LABEL[b.persona] || b.persona || '-'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
             ['Building', FT_TYPE_LABEL[b.project_type] || b.project_type],
             ['Detail', FT_DETAIL_LABEL[b.detail] || b.detail || '-'],
@@ -294,7 +305,7 @@ module.exports = async (req, res) => {
         const fwd = await forwardToSecretary({
           submission_id: crypto.createHash('sha256').update(email + '|' + (b.lead_created_at || '')).digest('hex').slice(0, 32),
           received_at: new Date().toISOString(),
-          tier, score: scored.score, pipedrive_person_id: personId,
+          tier, score: scored.score, persona: b.persona || '', lead_value: fastTrackValue(b), pipedrive_person_id: personId,
           utm: { utm_source: b.utm_source || '', utm_medium: b.utm_medium || '', utm_campaign: b.utm_campaign || '', utm_content: b.utm_content || '' },
           lead: { name: b.name || '', email, phone: b.phone || '' },
           project: {
