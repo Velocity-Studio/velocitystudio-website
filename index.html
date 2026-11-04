@@ -360,7 +360,9 @@
     .vspec-bar { position: relative; width: 6px; justify-self: center; margin: 18px 0; border-radius: 6px; background: linear-gradient(180deg, #E6B84A 0%, #A8DA5C 50%, #5BE0B0 100%); box-shadow: 0 0 18px rgba(230,184,74,.3), 0 0 18px rgba(91,224,176,.35); }
     .vspec-stops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
     .vspec-stops li { position: relative; line-height: 1.2; }
-    .vspec-stops li::before { content: ''; position: absolute; left: -32px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
+    /* Bar column is 22px wide, so its center is 11px in; the gap is 18px. A 14px dot
+       centered on the bar therefore starts 36px left of the text column. */
+    .vspec-stops li::before { content: ''; position: absolute; left: -36px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
     .vspec-stops b { display: block; font-size: 1.05rem; font-weight: 800; }
     .vspec-stops span { display: block; font-size: .9rem; font-weight: 700; margin-top: 2px; color: rgba(255,255,255,.72); }
     .vspec-stops .vs-top::before { background: #E6B84A; } .vs-top span { color: #E6B84A; }
