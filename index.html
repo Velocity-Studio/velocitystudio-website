@@ -1066,7 +1066,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <button type="button" class="btn btn-ghost" data-back="1">Back</button>
                 <button type="submit" class="btn btn-teal btn-lg">Send me my rundown <span class="arr">→</span></button>
               </div>
-              <p class="qual-footnote">By submitting this form, you agree to receive a follow-up email and text message from Velocity Studio with your path to permit, construction cost, project ROI, and next steps. No obligation. We do not share your information.</p>
+              <p class="qual-footnote">By submitting this form, you agree to receive emails and text messages from Velocity Studio about your project, including your path to permit, a construction ballpark, and next steps. Message frequency varies, and message and data rates may apply. Reply STOP to opt out of texts. No obligation. We do not share your information.</p>
             </fieldset>
 
           </form>
@@ -1076,6 +1076,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="qual-eyebrow">Got it</span>
           <h3 class="qual-title" id="qualSentTitle">Thanks. Richman is on it.</h3>
           <p class="qual-sub" style="margin-bottom:12px" id="qualSentBody">We are researching your parcel and your city's rules now. Richman will email <b id="qualSentEmail">you</b> with our price, the city's fees, a construction ballpark, and your path to permit, usually within one business day.</p>
+          <p class="qual-sub" style="margin-bottom:12px" id="qualSentHeadsUp">Within a few minutes you will get an email from <b>richman.neumann@velocitystud.io</b> with a couple of quick questions<span id="qualSentText">, and a text from <b>(510) 447-5601</b></span>. If the email is not in your inbox, please check your junk or promotions folder and add Richman to your contacts, so the full rundown reaches you.</p>
           <div class="qual-nav qual-hidden" id="qualSentPro"><a class="btn btn-teal" href="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat" target="_blank" rel="noopener">Book 15 minutes with Richman <span class="arr">→</span></a></div>
           <p class="qual-footnote" style="text-align:left" id="qualSentFoot">Want to talk sooner? <a href="https://calendly.com/richman-neumann-velocitystud/15min-discovery-chat" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Book 15 minutes with Richman</a>.</p>
         </div>
@@ -1276,6 +1277,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var pro = d.persona === 'builder' || d.persona === 'developer';
         document.getElementById('qualSentTitle').textContent = 'Thanks' + (first ? ', ' + first : '') + (pro ? '. Let\'s talk this week.' : '. Richman is on it.');
         document.getElementById('qualSentEmail').textContent = d.email;
+        if (!(d.phone || '').replace(/\D/g, '')) document.getElementById('qualSentText').style.display = 'none';
         if (pro) {
           document.getElementById('qualSentBody').innerHTML = 'We are researching the parcel now and Richman will email <b>' + d.email.replace(/[<>&]/g, '') + '</b> with price and path to permit. For builders and developers he would rather hear the project first: unit count, lots, and your schedule. Grab 15 minutes.';
           document.getElementById('qualSentPro').classList.remove('qual-hidden');
