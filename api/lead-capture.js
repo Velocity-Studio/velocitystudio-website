@@ -253,7 +253,8 @@ module.exports = async (req, res) => {
         ? [
             ['Lead tier', (tier || '').toUpperCase() + ' (score ' + scored.score + ')' + (scored.pass ? ' - ready now' : '')],
             ['Name', b.name], ['Email', email], ['Phone', b.phone || '-'],
-            ['Address', b.address],
+            ['Address', b.address + (b.apn ? ' (APN ' + b.apn + ')' : '')],
+            ['Sewer or septic', ({ sewer: 'City sewer', septic: 'Septic tank', unsure: 'Not sure' })[b.sewer] || '-'],
             ['Service area', outside ? 'OUTSIDE CALIFORNIA - declined on the page, no research' : 'California - reply draft is being researched'],
             ['Who', FT_PERSONA_LABEL[b.persona] || b.persona || '-'],
             ['Owns', FT_OWNS_LABEL[b.owns] || b.owns],
@@ -309,7 +310,7 @@ module.exports = async (req, res) => {
           utm: { utm_source: b.utm_source || '', utm_medium: b.utm_medium || '', utm_campaign: b.utm_campaign || '', utm_content: b.utm_content || '' },
           lead: { name: b.name || '', email, phone: b.phone || '' },
           project: {
-            street: b.street || '', city: b.city || '', state: b.state || '', address: b.address || '',
+            street: b.street || '', apn: b.apn || '', sewer: b.sewer || '', city: b.city || '', state: b.state || '', address: b.address || '',
             owns: b.owns || '', project_type: b.project_type || '', detail: b.detail || '', stories: b.stories || '', size_text: b.size_text || '', scope_text: b.scope_text || '',
             start: b.start || '', blocker: b.blocker || '', help, notes: b.notes || '',
             // Oct 20 form fields, if a cached old page sent them
