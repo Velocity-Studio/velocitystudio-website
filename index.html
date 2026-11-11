@@ -927,7 +927,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <fieldset class="qstep on" data-step="1">
               <div class="qual-field">
                 <label class="qual-label" for="qf-street">Property address</label>
-                <input id="qf-street" type="text" name="street" autocomplete="address-line1" placeholder="Street address" required />
+                <input id="qf-street" type="text" name="street" autocomplete="address-line1" placeholder="Street address, e.g. 412 W Nicolet St" required />
+                <label class="qual-check" style="display:flex;align-items:center;gap:8px;margin-top:8px;font-size:.88rem;color:var(--muted);cursor:pointer"><input type="checkbox" name="no_street" value="1" /> The lot has no street address yet</label>
+              </div>
+              <div class="qual-field apn-group qual-hidden">
+                <label class="qual-label" for="qf-apn">Parcel number (APN) <small>On your property tax bill</small></label>
+                <input id="qf-apn" type="text" name="apn" placeholder="e.g. 541-123-045" />
               </div>
               <div class="qual-field-row city-state">
                 <div class="qual-field"><input type="text" name="city" autocomplete="address-level2" placeholder="City" aria-label="City" required /></div>
@@ -1002,6 +1007,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="qual-field">
                 <label class="qual-label" for="qf-size">How big is the new or remodeled space? <small>Square feet of the ADU or the area you are building or remodeling, not the whole house. Or bedrooms and bathrooms.</small></label>
                 <input id="qf-size" type="text" name="size_text" placeholder="e.g. 800 sq ft ADU, or 2 bed 1 bath" required />
+              </div>
+              <!-- Sewer or septic changes the scope; hidden only for inside-only remodels -->
+              <div class="qual-field sewer-group">
+                <span class="qual-label">Is the property on a city sewer or a septic tank?</span>
+                <div class="opts opts-3">
+                  <label class="qual-opt"><input type="radio" name="sewer" value="sewer" /> City sewer</label>
+                  <label class="qual-opt"><input type="radio" name="sewer" value="septic" /> Septic tank</label>
+                  <label class="qual-opt"><input type="radio" name="sewer" value="unsure" /> Not sure</label>
+                </div>
               </div>
               <!-- Shown for renovations and "something else": scope varies too much for choices -->
               <div class="qual-field scope-group qual-hidden">
@@ -1133,8 +1147,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!form) return;
     var bar = document.getElementById('qualProgress');
     var stepLabel = document.getElementById('qualStepLabel');
-    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text'], 2: ['help', 'start', 'blocker', 'persona', 'name', 'email'] };
-    var ALL = ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'scope_text', 'start', 'blocker', 'persona', 'name', 'email', 'phone', 'notes'];
+    var STEP_FIELDS = { 1: ['street', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'sewer'], 2: ['help', 'start', 'blocker', 'persona', 'name', 'email'] };
+    var ALL = ['street', 'apn', 'sewer', 'city', 'state', 'owns', 'project_type', 'detail', 'stories', 'size_text', 'scope_text', 'start', 'blocker', 'persona', 'name', 'email', 'phone', 'notes'];
 
     function val(k) { var fd = new FormData(form); return ((fd.get(k) || '') + '').trim(); }
     function vals(k) { return new FormData(form).getAll(k).map(function (v) { return (v + '').trim(); }).filter(Boolean); }
@@ -1152,8 +1166,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (g) g.classList.toggle('qual-hidden', !on);
       if (!on) form.querySelectorAll('[name="stories"]').forEach(function (x) { x.checked = false; });
     }
+    // A street address needs a house number; a lot with no address gives its APN.
+    function noStreet() { return !!form.querySelector('[name="no_street"]:checked'); }
+    function streetOk() { return noStreet() ? !!val('apn') : /^\s*\d+[a-z]?(-\d+)?\s+\S/i.test(val('street')); }
+    function needsSewer() { return !(val('project_type') === 'renovation_addition' && val('detail') === 'inside_only'); }
+    function syncSewer() {
+      var g = form.querySelector('.sewer-group');
+      var on = needsSewer();
+      if (g) g.classList.toggle('qual-hidden', !on);
+      if (!on) form.querySelectorAll('[name="sewer"]').forEach(function (x) { x.checked = false; });
+    }
     function missingIn(step) {
       return STEP_FIELDS[step].filter(function (k) {
+        if (k === 'street') return !streetOk();
+        if (k === 'sewer') return needsSewer() && !val('sewer');
         if (k === 'detail') return !!detailGroup() && !val('detail');
         if (k === 'stories') return needsStories() && !val('stories');
         if (k === 'help') return !vals('help').length;
@@ -1170,8 +1196,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function flagError(step, missing) {
       var box = document.getElementById('qualError' + step);
       if (box) box.classList.toggle('show', missing.length > 0);
+      if (box && step === 1) box.textContent = missing[0] === 'street' && (val('street') || noStreet())
+        ? (noStreet() ? 'Please enter the parcel number (APN) from your property tax bill.' : 'Please enter the house number and street, or check the box if the lot has no address yet.')
+        : 'Please answer every question in this step.';
       if (missing.length) {
         var first = form.querySelector('[name="' + missing[0] + '"]');
+        if (missing[0] === 'street' && noStreet()) first = form.querySelector('[name="apn"]');
         if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       }
     }
@@ -1187,7 +1217,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (sg) sg.classList.toggle('qual-hidden', !(r.value === 'renovation_addition' || r.value === 'other'));
       });
     });
-    form.querySelectorAll('[name="detail"]').forEach(function (r) { r.addEventListener('change', syncStories); });
+    form.querySelectorAll('[name="detail"]').forEach(function (r) { r.addEventListener('change', function () { syncStories(); syncSewer(); }); });
+    form.querySelectorAll('[name="project_type"]').forEach(function (r) { r.addEventListener('change', syncSewer); });
+    var ns = form.querySelector('[name="no_street"]');
+    if (ns) ns.addEventListener('change', function () {
+      form.querySelector('.apn-group').classList.toggle('qual-hidden', !ns.checked);
+      form.querySelector('[name="street"]').placeholder = ns.checked ? 'Street or nearest cross streets, if any' : 'Street address, e.g. 412 W Nicolet St';
+    });
 
     // California only: the whole form runs for everyone so out-of-state demand is
     // counted (the lead still reaches Pipedrive and email, tier low). The ending
@@ -1227,7 +1263,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var d = {};
       ALL.forEach(function (k) { d[k] = val(k); });
       d.help = vals('help');
-      d.address = [d.street, d.city, d.state].filter(Boolean).join(', ');
+      if (!noStreet()) d.apn = '';
+      d.address = [d.street || (d.apn ? 'APN ' + d.apn : ''), d.city, d.state].filter(Boolean).join(', ');
       for (var s = 1; s <= 2; s++) {
         var miss = missingIn(s);
         if (miss.length) { showStep(s); flagError(s, miss); return; }
@@ -1258,7 +1295,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         body: JSON.stringify({
           page: 'fast-track',
           name: d.name, email: d.email, phone: d.phone,
-          address: d.address, street: d.street, city: d.city, state: d.state,
+          address: d.address, street: d.street, apn: d.apn, sewer: d.sewer, city: d.city, state: d.state,
           owns: d.owns, project_type: d.project_type, detail: d.detail, stories: d.stories, size_text: d.size_text, scope_text: d.scope_text,
           start: d.start, blocker: d.blocker, persona: d.persona, help: d.help, notes: d.notes,
           lead_quality: tier, lead_score: score, lead_value: value,
